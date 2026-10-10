@@ -15,8 +15,7 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 	var missing: Array = session.missing_required()
 	var target: String = missing[0] if not missing.is_empty() else session.goal
 	var water: int = session.max_water_run()
-	var dist: Dictionary = graph.distances_from(target, water, session.continent, session.forbidden)
-	var here: int = dist.get(cur, 1 << 20)
+	var here: int = remaining(graph, session, cur, session.water_run)
 
 	var water_full: bool = water >= 0 and session.water_run + 1 > water
 	var options := []
@@ -25,6 +24,11 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 			continue
 		options.append(id)
 	_shuffle(options, rng)
+
+	# Câte mutări mai sunt până la țintă după fiecare variantă, ținând cont de apa deja parcursă.
+	var dist := {}
+	for id in options:
+		dist[id] = remaining(graph, session, id, session.water_run + 1 if graph.is_water(id) else 0)
 
 	var result := {"far": []}
 	var picked := []
@@ -81,7 +85,7 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 	var home_continents: Array = graph.nodes[home].get("continents", [])
 	var far := []
 	for id in graph.nodes:
-		if graph.is_water(id) or id == cur or id in picked or graph.are_linked(cur, id):
+		if graph.is_water(id) or id == cur or id == target or id in picked or graph.are_linked(cur, id):
 			continue
 		if not graph.is_allowed(id, session.continent):
 			continue
@@ -108,3 +112,12 @@ static func _shuffle(list: Array, rng: RandomNumberGenerator) -> void:
 		var tmp = list[i]
 		list[i] = list[j]
 		list[j] = tmp
+
+
+## Mutările rămase din `place` până la țintă (destinația sau primul punct obligatoriu), pornind cu `run` ape la rând.
+static func remaining(graph, session, place: String, run: int) -> int:
+	var missing: Array = session.missing_required()
+	var target: String = missing[0] if not missing.is_empty() else session.goal
+	var path: Array = graph.shortest_path(place, target, session.max_water_run(), session.continent,
+		session.forbidden, run)
+	return path.size() - 1 if not path.is_empty() else 1 << 20

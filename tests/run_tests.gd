@@ -335,8 +335,10 @@ func test_flag_choices() -> void:
 			s.setup(graph, pair[0], pair[1], GameSession.Mode.NORMAL)
 			var c: Dictionary = FlagChoices.make(graph, s, rng)
 			var cur: String = s.current()
-			var dist: Dictionary = graph.distances_from(pair[1], s.max_water_run())
-			var here: int = dist[cur]
+			var dist := {}
+			for id in c.all:
+				dist[id] = FlagChoices.remaining(graph, s, id, 1 if graph.is_water(id) else 0)
+			var here: int = FlagChoices.remaining(graph, s, cur, 0)
 			var label := "%s → %s" % pair
 			check(c.all.size() == 4, "4 variante " + label)
 			var unique := {}
@@ -368,3 +370,13 @@ func test_flag_choices() -> void:
 	var kc: Dictionary = FlagChoices.make(graph, k, rng)
 	check(kc.best == "W_IND", "Kenya: cea mai bună e Oceanul Indian")
 	check(kc.all.filter(func(id): return graph.is_water(id)).size() == 2, "Kenya: 2 ape printre variante")
+	# Din Oceanul Indian (o apă deja parcursă) spre Coreea: Pacificul nu mai e cea mai bună,
+	# fiindcă de acolo ar urma a 3-a apă la rând (Marea Chinei de Est).
+	var y := GameSession.new()
+	y.setup(graph, "YEM", "KOR", GameSession.Mode.NORMAL)
+	y.try_move("W_IND")
+	var yc: Dictionary = FlagChoices.make(graph, y, rng)
+	check(not graph.is_water(yc.best), "din ocean, cu limita de apă, cea mai bună e pe uscat")
+	check(FlagChoices.remaining(graph, y, yc.best, 0) == FlagChoices.remaining(graph, y, "W_IND", 1) - 1,
+		"cea mai bună chiar te apropie")
+	check(not "KOR" in yc.far, "destinația nu apare ca țară-capcană")

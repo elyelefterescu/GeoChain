@@ -160,10 +160,15 @@ func suggestions(text: String, limit := 6) -> Array:
 ## max_water_run = câte mutări consecutive pe apă sunt permise (< 0 = oricâte).
 ## continent = "" înseamnă harta lumii; prin locurile din blocked nu se poate trece.
 ## Returnează [] dacă nu există traseu.
-func shortest_path(start: String, goal: String, max_water_run := -1, continent := "", blocked := []) -> Array:
+## start_run: câte mutări pe apă la rând ai făcut deja când ești în start (-1 = 1 dacă startul e apă, altfel 0).
+func shortest_path(start: String, goal: String, max_water_run := -1, continent := "", blocked := [],
+		start_run := -1) -> Array:
 	if not is_allowed(start, continent) or not is_allowed(goal, continent):
 		return []
-	var start_run := 1 if is_water(start) else 0
+	if start_run < 0:
+		start_run = 1 if is_water(start) else 0
+	if max_water_run < 0:
+		start_run = 0
 	var start_key := [start, start_run]
 	var parent := {start_key: null}
 	var queue := [start_key]

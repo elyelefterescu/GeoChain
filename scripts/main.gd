@@ -15,6 +15,7 @@ const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_c
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
 const PORTRAIT_SIZE := Vector2i(540, 960)
 const LANDSCAPE_SIZE := Vector2i(1200, 720)
+const FLAG_SIZE := Vector2(120, 80)
 const LEGEND_ORDER := ["current", "visited", "start_goal", "required", "forbidden", "mistake"]
 
 
@@ -860,14 +861,14 @@ func _refresh_flag_choices() -> void:
 	var choices: Dictionary = FlagChoices.make(graph, session, rng)
 	for id in choices.all:
 		var button := Button.new()
-		button.custom_minimum_size = Vector2(0, 96)
+		button.custom_minimum_size = Vector2(0, 100)
+		button.clip_text = true
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var texture := _flag_texture(id) if not graph.is_water(id) else null
 		if texture:
 			button.icon = texture
-			button.expand_icon = true
 			button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			button.add_theme_constant_override("icon_max_width", 120)
+			button.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
 		else:
 			# Mările nu au steag: apar cu numele, pe albastru.
 			button.text = "≈ " + graph.name_of(id)
@@ -898,7 +899,11 @@ func _flag_texture(id: String) -> Texture2D:
 	var texture: Texture2D = null
 	if flags.has(id):
 		var image := Image.new()
-		if image.load_svg_from_string(flags[id], 0.25) == OK:
+		if image.load_svg_from_string(flags[id], 0.5) == OK:
+			# Toate steagurile au aceeași mărime, ca butoanele să fie egale.
+			var fit := minf(FLAG_SIZE.x / image.get_width(), FLAG_SIZE.y / image.get_height())
+			image.resize(maxi(1, int(image.get_width() * fit)), maxi(1, int(image.get_height() * fit)),
+				Image.INTERPOLATE_LANCZOS)
 			texture = ImageTexture.create_from_image(image)
 	_flag_cache[id] = texture
 	return texture
