@@ -181,7 +181,8 @@ func shortest_path(start: String, goal: String, max_water_run := -1, continent :
 		for nxt in adj[state[0]]:
 			if not is_allowed(nxt, continent) or nxt in blocked:
 				continue
-			var run: int = state[1] + 1 if is_water(nxt) else 0
+			# Fără limită, șirul de ape nu contează (altfel stările ar crește la nesfârșit).
+			var run: int = state[1] + 1 if is_water(nxt) and max_water_run >= 0 else 0
 			if max_water_run >= 0 and run > max_water_run:
 				continue
 			var key := [nxt, run]
@@ -189,6 +190,38 @@ func shortest_path(start: String, goal: String, max_water_run := -1, continent :
 				parent[key] = state
 				queue.append(key)
 	return []
+
+
+## Distanța minimă (în mutări) de la start la fiecare loc atins, cu aceleași reguli ca shortest_path.
+## Un singur BFS în loc de câte unul pentru fiecare destinație.
+func distances_from(start: String, max_water_run := -1, continent := "", blocked := []) -> Dictionary:
+	var dist := {}
+	if not is_allowed(start, continent):
+		return dist
+	var start_key := [start, 1 if is_water(start) else 0]
+	var seen := {start_key: true}
+	var queue := [start_key]
+	var depth := [0]
+	var head := 0
+	while head < queue.size():
+		var state: Array = queue[head]
+		var d: int = depth[head]
+		head += 1
+		if not dist.has(state[0]):
+			dist[state[0]] = d
+		for nxt in adj[state[0]]:
+			if not is_allowed(nxt, continent) or nxt in blocked:
+				continue
+			# Fără limită, șirul de ape nu contează (altfel stările ar crește la nesfârșit).
+			var run: int = state[1] + 1 if is_water(nxt) and max_water_run >= 0 else 0
+			if max_water_run >= 0 and run > max_water_run:
+				continue
+			var key := [nxt, run]
+			if not seen.has(key):
+				seen[key] = true
+				queue.append(key)
+				depth.append(d + 1)
+	return dist
 
 
 ## O pereche aleatoare de țări aflate la cel puțin min_moves mutări una de alta.

@@ -31,6 +31,9 @@ void fragment() {
 	vec3 base = texture(color_tex, uv).rgb;
 	ivec2 here = place(uv);
 	vec4 state = texelFetch(state_tex, ivec2(here.x, 0), 0);
+	if (here.y == 1) {
+		base *= 0.9;  // uscatul neimplicat: gri deschis, nu alb orbitor
+	}
 	base = mix(base, state.rgb, state.a);
 
 	// Granițe și țărm: unde un vecin are alt index și măcar unul e uscat.
@@ -51,6 +54,18 @@ void fragment() {
 		base = mix(base, vec3(0.12, 0.1, 0.08), 0.8);
 	}
 
-	float light = 0.6 + 0.4 * max(dot(NORMAL, normalize(vec3(-0.3, 0.35, 1.0))), 0.0);
-	ALBEDO = base * light;
+	// Lumină moale din stânga-sus, margine ușor întunecată și o strălucire pe ocean.
+	vec3 light_dir = normalize(vec3(-0.35, 0.4, 1.0));
+	float ndl = max(dot(NORMAL, light_dir), 0.0);
+	float light = 0.55 + 0.45 * ndl;
+	float limb = mix(0.75, 1.0, smoothstep(0.0, 0.5, dot(NORMAL, VIEW)));
+	vec3 col = base * light * limb;
+	if (here.y == 0 && state.a == 0.0) {
+		float spec = pow(max(dot(reflect(-light_dir, NORMAL), VIEW), 0.0), 40.0);
+		col += vec3(0.55, 0.7, 0.9) * spec * 0.35;
+	}
+	// Pe margine, un pic de albastru de atmosferă.
+	float rim = 1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0);
+	col = mix(col, vec3(0.45, 0.65, 1.0), pow(rim, 3.0) * 0.45);
+	ALBEDO = col;
 }

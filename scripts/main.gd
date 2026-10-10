@@ -1,5 +1,6 @@
 extends Control
-## Ecranul jocului: globul sus, iar dedesubt modul, harta, regulile și mutările.
+## Ecranul jocului. Pe telefon (ecran înalt) globul e sus și panoul dedesubt;
+## pe Windows (ecran lat) globul e în stânga și panoul în dreapta.
 
 const WorldGraph := preload("res://scripts/world_graph.gd")
 const GameSession := preload("res://scripts/game_session.gd")
@@ -7,41 +8,80 @@ const I18n := preload("res://scripts/i18n.gd")
 const Globe := preload("res://scripts/globe.gd")
 const Rules := preload("res://scripts/rules.gd")
 const Challenge := preload("res://scripts/challenge.gd")
+const UiTheme := preload("res://scripts/ui_theme.gd")
+const FlagChoices := preload("res://scripts/flag_choices.gd")
 
 const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
+const PORTRAIT_SIZE := Vector2i(540, 960)
+const LANDSCAPE_SIZE := Vector2i(1200, 720)
+const LEGEND_ORDER := ["current", "visited", "start_goal", "required", "forbidden", "mistake"]
+
+
+## Trei stele desenate (fontul nu are caracterul ★).
+class StarRow extends Control:
+	var filled := 0:
+		set(value):
+			filled = value
+			queue_redraw()
+
+	func _init() -> void:
+		custom_minimum_size = Vector2(156, 46)
+
+	func _draw() -> void:
+		for i in 3:
+			var center := Vector2(24 + i * 54, 23)
+			var points := PackedVector2Array()
+			for k in 10:
+				var radius := 21.0 if k % 2 == 0 else 9.0
+				var angle := -PI / 2 + k * PI / 5
+				points.append(center + Vector2(cos(angle), sin(angle)) * radius)
+			draw_colored_polygon(points, UiTheme.GOLD if i < filled else Color(1, 1, 1, 0.14))
+
 
 var i18n := I18n.new()
 var rules := Rules.new()
 var world_data: Dictionary
-var flags := {}  # țară -> SVG
+var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
+var _flags_loaded := false
+var _flag_cache := {}  # țară -> textură
 var graph := WorldGraph.new()
 var session := GameSession.new()
 var rng := RandomNumberGenerator.new()
 var pending_target := ""  # locul în care vrei să treci după ce numești poarta
 var _focused := ""  # locul spre care e rotit globul
+var _landscape := false
 var time_left := 0
 var move_timer: Timer
 
 var globe_assets := {}
 var globe
-var ui_root: MarginContainer
+var ui_root: Control
+var split: BoxContainer
+var globe_holder: VBoxContainer
+var scroll: ScrollContainer
 var mode_select: OptionButton
 var map_select: OptionButton
-var rules_panel: VBoxContainer
+var rules_panel: PanelContainer
 var pair_row: HBoxContainer
 var start_button: Button
 var from_edit: LineEdit
 var to_edit: LineEdit
-var info_label: Label
-var goal_row: HBoxContainer
+var subtitle_label: Label
+var start_label: Label
 var goal_label: Label
 var goal_flag: TextureRect
-var rules_label: Label
+var goal_hint: Label
+var stats_box: HFlowContainer
+var timer_chip: Label
 var where_label: Label
 var history_label: RichTextLabel
+var move_row: HBoxContainer
 var move_edit: LineEdit
 var suggestions_box: HFlowContainer
+var flag_grid: GridContainer
+var flag_prompt: Label
+var _choices_key := ""  # variantele cu steaguri se schimbă doar după o mutare
 var neighbors_box: HFlowContainer
 var sandbox_row: HBoxContainer
 var gate_panel: PanelContainer
@@ -50,27 +90,45 @@ var gate_row: HBoxContainer
 var gate_edit: LineEdit
 var gate_choices_box: HFlowContainer
 var feedback_label: Label
-var result_label: RichTextLabel
+var result_panel: PanelContainer
+var result_title: Label
+var result_stars: StarRow
+var result_points: Label
+var result_route: Label
 
 
 func _ready() -> void:
 	rng.randomize()
 	world_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
-	var flag_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/flags.json"))
-	if flag_data is Dictionary:
-		flags = flag_data["flags"]
 	globe_assets = load_globe_assets(world_data)
 	rules.load_saved()
 	i18n.lang = I18n.default_lang()
 	graph.load_data(world_data, rules.get_value("detailed_seas"))
 	graph.lang = i18n.lang
+	theme = UiTheme.build()
 
 	move_timer = Timer.new()
 	move_timer.wait_time = 1.0
 	move_timer.timeout.connect(_on_timer_tick)
 	add_child(move_timer)
 
+	var background := TextureRect.new()
+	var gradient := GradientTexture2D.new()
+	gradient.gradient = Gradient.new()
+	gradient.gradient.set_color(0, Color("121a33"))
+	gradient.gradient.set_color(1, Color("070a14"))
+	gradient.fill_from = Vector2(0.5, 0)
+	gradient.fill_to = Vector2(0.5, 1)
+	background.texture = gradient
+	background.stretch_mode = TextureRect.STRETCH_SCALE
+	background.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(background)
+
 	_build_ui()
+	get_window().size_changed.connect(_update_layout)
+	_update_layout()
 	_new_game()
 
 
@@ -81,7 +139,8 @@ static func load_globe_assets(world: Dictionary) -> Dictionary:
 	var color := Image.new()
 	color.load_png_from_buffer(FileAccess.get_file_as_bytes("res://data/globe/color.png"))
 	var index = JSON.parse_string(FileAccess.get_file_as_string("res://data/globe/index.json"))
-	return {"id_image": ids, "color_texture": ImageTexture.create_from_image(color), "index": index, "world": world}
+	return {"id_image": ids, "id_texture": ImageTexture.create_from_image(ids),
+		"color_texture": ImageTexture.create_from_image(color), "index": index, "world": world}
 
 
 func t(key: String) -> String:
@@ -96,15 +155,35 @@ func _normal() -> bool:
 	return session.mode == GameSession.Mode.NORMAL
 
 
-## Schimbă limba: refacem ecranul, partida continuă.
+## Ecran lat (Windows) sau înalt (telefon): schimbăm doar așezarea, nu refacem nimic.
+func _update_layout() -> void:
+	var window_size := get_window().size
+	_landscape = window_size.x > window_size.y * 1.05
+	get_window().content_scale_size = LANDSCAPE_SIZE if _landscape else PORTRAIT_SIZE
+	if split == null:
+		return
+	split.vertical = not _landscape
+	if _landscape:
+		scroll.custom_minimum_size = Vector2(470, 0)
+		scroll.size_flags_horizontal = Control.SIZE_FILL
+		globe_holder.custom_minimum_size = Vector2(0, 0)
+	else:
+		scroll.custom_minimum_size = Vector2(0, 0)
+		scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		globe_holder.custom_minimum_size = Vector2(0, 330)
+
+
+## Schimbă limba: refacem panoul, globul și partida rămân.
 func _on_language_pressed() -> void:
 	i18n.lang = "en" if i18n.lang == "ro" else "ro"
 	graph.lang = i18n.lang
 	var mode := mode_select.selected
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
+	globe.get_parent().remove_child(globe)
 	ui_root.queue_free()
 	_build_ui()
+	_update_layout()
 	mode_select.select(mode)
 	map_select.select(map)
 	rules_panel.visible = rules_open
@@ -115,50 +194,101 @@ func _on_language_pressed() -> void:
 
 
 func _build_ui() -> void:
-	var theme_res := Theme.new()
-	theme_res.default_font_size = 20
-	theme = theme_res
-
 	var margin := MarginContainer.new()
 	ui_root = margin
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
-		margin.add_theme_constant_override("margin_" + side, 16)
+		margin.add_theme_constant_override("margin_" + side, 12)
 	add_child(margin)
-	var root := VBoxContainer.new()
-	root.add_theme_constant_override("separation", 10)
-	margin.add_child(root)
 
-	var title := Label.new()
-	title.text = "GeoChain"
-	title.add_theme_font_size_override("font_size", 32)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var title_row := HBoxContainer.new()
-	title_row.add_child(title)
-	title_row.add_child(_button(t("rules"), func(): rules_panel.visible = not rules_panel.visible))
-	title_row.add_child(_button(t("language"), _on_language_pressed))
-	root.add_child(title_row)
+	split = BoxContainer.new()
+	split.add_theme_constant_override("separation", 12)
+	margin.add_child(split)
 
-	globe = Globe.new()
-	globe.custom_minimum_size = Vector2(0, 320)
-	globe.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	globe.setup(globe_assets, graph)
-	globe.place_tapped.connect(_try_move)
-	root.add_child(globe)
+	# Globul, cu titlul deasupra și legenda culorilor dedesubt.
+	globe_holder = VBoxContainer.new()
+	globe_holder.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	globe_holder.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	globe_holder.size_flags_stretch_ratio = 1.0
+	split.add_child(globe_holder)
+	if globe == null:
+		globe = Globe.new()
+		globe.setup(globe_assets, graph)
+		globe.place_tapped.connect(_try_move)
+	var globe_area := Control.new()
+	globe_area.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	globe_holder.add_child(globe_area)
+	globe.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	globe_area.add_child(globe)
+	globe_area.add_child(_build_header())
+	globe_holder.add_child(_build_legend())
 
-	# Sub glob, restul ecranului se poate derula.
-	var scroll := ScrollContainer.new()
+	scroll = ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_stretch_ratio = 1.15
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	root.add_child(scroll)
+	split.add_child(scroll)
 	var body := VBoxContainer.new()
 	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation", 10)
+	body.add_theme_constant_override("separation", 12)
 	scroll.add_child(body)
-	root = body
+
+	rules_panel = _build_rules_panel()
+	rules_panel.hide()
+	body.add_child(rules_panel)
+	body.add_child(_build_setup_card())
+	body.add_child(_build_route_card())
+	body.add_child(_build_move_card())
+	body.add_child(_build_result_card())
+
+
+func _build_header() -> HBoxContainer:
+	var header := HBoxContainer.new()
+	header.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	header.offset_left = 8
+	header.offset_right = -8
+	header.offset_top = 6
+	header.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var title := Label.new()
+	title.text = "GeoChain"
+	title.theme_type_variation = "Title"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	header.add_child(title)
+	header.add_child(_button(t("rules"), func(): rules_panel.visible = not rules_panel.visible))
+	header.add_child(_button(t("language"), _on_language_pressed))
+	return header
+
+
+## Legenda culorilor de pe glob, mică, jos peste glob.
+func _build_legend() -> HFlowContainer:
+	var legend := HFlowContainer.new()
+	legend.alignment = FlowContainer.ALIGNMENT_CENTER
+	legend.add_theme_constant_override("h_separation", 12)
+	legend.add_theme_constant_override("v_separation", 2)
+	legend.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	for key in LEGEND_ORDER:
+		var item := HBoxContainer.new()
+		item.add_theme_constant_override("separation", 5)
+		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var dot := _dot(UiTheme.LEGEND[key], 10)
+		dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		item.add_child(dot)
+		var label := Label.new()
+		label.text = t("legend_" + key)
+		label.theme_type_variation = "Small"
+		label.add_theme_color_override("font_color", UiTheme.MUTED)
+		item.add_child(label)
+		legend.add_child(item)
+	return legend
+
+
+func _build_setup_card() -> PanelContainer:
+	var card := _card()
+	var box: VBoxContainer = card.get_child(0)
 
 	var settings := HBoxContainer.new()
-	root.add_child(settings)
+	box.add_child(settings)
 	mode_select = OptionButton.new()
 	mode_select.add_item(t("mode_normal"))
 	mode_select.add_item(t("mode_sandbox"))
@@ -174,55 +304,97 @@ func _build_ui() -> void:
 	mode_select.item_selected.connect(func(_i): _new_game())
 	map_select.item_selected.connect(func(_i): _new_game())
 
-	rules_panel = _build_rules_panel()
-	rules_panel.hide()
-	root.add_child(rules_panel)
-
 	pair_row = HBoxContainer.new()
-	root.add_child(pair_row)
+	box.add_child(pair_row)
 	from_edit = _line_edit(t("from"))
 	to_edit = _line_edit(t("to"))
 	pair_row.add_child(from_edit)
 	pair_row.add_child(to_edit)
 
 	var buttons := HBoxContainer.new()
-	root.add_child(buttons)
+	box.add_child(buttons)
 	start_button = _button(t("start"), _on_start_pressed)
+	start_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	buttons.add_child(start_button)
-	buttons.add_child(_button(t("new_game"), _new_game))
+	var new_game := _button(t("new_game"), _new_game, "AccentButton")
+	new_game.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	buttons.add_child(new_game)
+	return card
 
-	info_label = _label()
-	root.add_child(info_label)
 
-	goal_row = HBoxContainer.new()
-	root.add_child(goal_row)
-	goal_label = _label()
-	goal_row.add_child(goal_label)
+## Traseul: de unde pleci, unde ajungi (sau steagul), mutările, regulile partidei.
+func _build_route_card() -> PanelContainer:
+	var card := _card()
+	var box: VBoxContainer = card.get_child(0)
+	subtitle_label = _label("Muted")
+	box.add_child(subtitle_label)
+
+	var pair := HBoxContainer.new()
+	pair.add_theme_constant_override("separation", 10)
+	box.add_child(pair)
+	pair.add_child(_dot(UiTheme.LEGEND.start_goal, 12))
+	start_label = Label.new()
+	start_label.theme_type_variation = "Big"
+	pair.add_child(start_label)
+	var arrow := Label.new()
+	arrow.text = "→"
+	arrow.theme_type_variation = "Big"
+	arrow.add_theme_color_override("font_color", UiTheme.MUTED)
+	pair.add_child(arrow)
+	pair.add_child(_dot(UiTheme.LEGEND.start_goal, 12))
+	goal_label = Label.new()
+	goal_label.theme_type_variation = "Big"
+	pair.add_child(goal_label)
 	goal_flag = TextureRect.new()
-	goal_flag.custom_minimum_size = Vector2(96, 72)
+	goal_flag.custom_minimum_size = Vector2(72, 48)
 	goal_flag.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	goal_flag.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	goal_row.add_child(goal_flag)
+	pair.add_child(goal_flag)
+	goal_hint = _label("Muted")
+	box.add_child(goal_hint)
 
-	rules_label = _label()
-	root.add_child(rules_label)
+	stats_box = HFlowContainer.new()
+	box.add_child(stats_box)
+	return card
 
-	where_label = _label()
-	where_label.add_theme_font_size_override("font_size", 26)
-	root.add_child(where_label)
 
-	var move_row := HBoxContainer.new()
-	root.add_child(move_row)
+func _build_move_card() -> PanelContainer:
+	var card := _card()
+	var box: VBoxContainer = card.get_child(0)
+
+	var you := _label("Muted")
+	you.text = t("you_are_in")
+	box.add_child(you)
+	where_label = Label.new()
+	where_label.theme_type_variation = "Big"
+	where_label.add_theme_font_size_override("font_size", 28)
+	where_label.add_theme_color_override("font_color", UiTheme.LEGEND.current.lightened(0.35))
+	where_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(where_label)
+
+	move_row = HBoxContainer.new()
+	box.add_child(move_row)
 	move_edit = _line_edit(t("move_hint"))
 	move_edit.text_changed.connect(_on_move_text_changed)
 	move_edit.text_submitted.connect(func(_t): _on_go_pressed())
 	move_row.add_child(move_edit)
-	move_row.add_child(_button(t("go"), _on_go_pressed))
+	move_row.add_child(_button(t("go"), _on_go_pressed, "AccentButton"))
 
 	suggestions_box = HFlowContainer.new()
-	root.add_child(suggestions_box)
+	box.add_child(suggestions_box)
+
+	flag_prompt = _label("Muted")
+	flag_prompt.text = t("pick_flag")
+	box.add_child(flag_prompt)
+	flag_grid = GridContainer.new()
+	flag_grid.columns = 2
+	flag_grid.add_theme_constant_override("h_separation", 10)
+	flag_grid.add_theme_constant_override("v_separation", 10)
+	box.add_child(flag_grid)
+	_choices_key = ""
 
 	gate_panel = PanelContainer.new()
+	gate_panel.add_theme_stylebox_override("panel", UiTheme.box(Color(UiTheme.GOLD, 0.08), 14, UiTheme.GOLD, 12))
 	var gate_box := VBoxContainer.new()
 	gate_panel.add_child(gate_box)
 	gate_label = _label()
@@ -232,40 +404,80 @@ func _build_ui() -> void:
 	gate_edit = _line_edit(t("gate_hint"))
 	gate_edit.text_submitted.connect(func(_t): _on_gate_pressed())
 	gate_row.add_child(gate_edit)
-	gate_row.add_child(_button(t("gate_pass"), _on_gate_pressed))
+	gate_row.add_child(_button(t("gate_pass"), _on_gate_pressed, "AccentButton"))
 	gate_choices_box = HFlowContainer.new()
 	gate_box.add_child(gate_choices_box)
-	gate_box.add_child(_button(t("gate_cancel"), _hide_gate))
-	root.add_child(gate_panel)
+	var cancel := _button(t("gate_cancel"), _hide_gate)
+	cancel.size_flags_horizontal = Control.SIZE_SHRINK_END
+	gate_box.add_child(cancel)
+	box.add_child(gate_panel)
+
+	feedback_label = _label()
+	box.add_child(feedback_label)
 
 	sandbox_row = HBoxContainer.new()
-	root.add_child(sandbox_row)
+	box.add_child(sandbox_row)
 	sandbox_row.add_child(_button(t("undo"), _on_undo_pressed))
 	sandbox_row.add_child(_button(t("show_optimal"), _on_show_optimal_pressed))
 	neighbors_box = HFlowContainer.new()
-	root.add_child(neighbors_box)
-
-	feedback_label = _label()
-	root.add_child(feedback_label)
+	box.add_child(neighbors_box)
 
 	history_label = RichTextLabel.new()
 	history_label.bbcode_enabled = true
 	history_label.fit_content = true
-	root.add_child(history_label)
+	history_label.add_theme_font_size_override("normal_font_size", 17)
+	history_label.add_theme_font_size_override("bold_font_size", 17)
+	box.add_child(history_label)
+	return card
 
-	result_label = RichTextLabel.new()
-	result_label.bbcode_enabled = true
-	result_label.fit_content = true
-	root.add_child(result_label)
+
+func _build_result_card() -> PanelContainer:
+	result_panel = PanelContainer.new()
+	result_panel.add_theme_stylebox_override("panel", UiTheme.box(UiTheme.CARD, 16, UiTheme.GOLD, 14))
+	var box := VBoxContainer.new()
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	result_panel.add_child(box)
+	result_title = Label.new()
+	result_title.theme_type_variation = "Title"
+	result_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(result_title)
+	result_stars = StarRow.new()
+	result_stars.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(result_stars)
+	result_points = Label.new()
+	result_points.theme_type_variation = "Big"
+	result_points.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	result_points.add_theme_color_override("font_color", UiTheme.GOLD)
+	box.add_child(result_points)
+	result_route = _label("Muted")
+	result_route.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(result_route)
+	var again := _button(t("new_game"), _new_game, "AccentButton")
+	again.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(again)
+	return result_panel
 
 
 ## Ecranul de reguli: scurtături, liste și câte o bifă pentru fiecare regulă.
-func _build_rules_panel() -> VBoxContainer:
-	var panel := VBoxContainer.new()
+func _build_rules_panel() -> PanelContainer:
+	var card := _card()
+	card.add_theme_stylebox_override("panel", UiTheme.box(UiTheme.CARD, 16, Color(UiTheme.ACCENT, 0.6), 12))
+	var panel: VBoxContainer = card.get_child(0)
+	var top := HBoxContainer.new()
+	panel.add_child(top)
+	var title := Label.new()
+	title.text = t("rules")
+	title.theme_type_variation = "Big"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(title)
+	top.add_child(_button(t("close"), func(): rules_panel.hide()))
+
 	var presets := HBoxContainer.new()
 	panel.add_child(presets)
 	for preset in ["easy", "medium", "hard"]:
-		presets.add_child(_button(t("preset_" + preset), _on_preset_pressed.bind(preset)))
+		var b := _button(t("preset_" + preset), _on_preset_pressed.bind(preset))
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		presets.add_child(b)
 
 	panel.add_child(_rule_select("rule_distance", "distance", Rules.DISTANCES.keys(), "dist_"))
 	panel.add_child(_rule_select("rule_water", "water_limit", Rules.WATER_LIMITS, "water_"))
@@ -278,18 +490,16 @@ func _build_rules_panel() -> VBoxContainer:
 		check.button_pressed = rules.get_value(key)
 		check.toggled.connect(_on_rule_changed.bind(key))
 		panel.add_child(check)
-	var note := _label()
+	var note := _label("Muted")
 	note.text = t("rules_note")
-	note.add_theme_font_size_override("font_size", 16)
 	panel.add_child(note)
-	return panel
+	return card
 
 
 func _rule_select(title_key: String, rule: String, values: Array, prefix: String) -> HBoxContainer:
 	var row := HBoxContainer.new()
 	var title := _label()
 	title.text = t(title_key)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(title)
 	var select := OptionButton.new()
 	select.fit_to_longest_item = false
@@ -329,10 +539,40 @@ func _on_preset_pressed(preset: String) -> void:
 	_new_game()
 
 
-func _label() -> Label:
+func _card() -> PanelContainer:
+	var card := PanelContainer.new()
+	var box := VBoxContainer.new()
+	card.add_child(box)
+	return card
+
+
+func _dot(color: Color, diameter: int) -> Panel:
+	var dot := Panel.new()
+	dot.custom_minimum_size = Vector2(diameter, diameter)
+	var style := StyleBoxFlat.new()
+	style.bg_color = color
+	style.set_corner_radius_all(diameter)
+	style.anti_aliasing = true
+	dot.add_theme_stylebox_override("panel", style)
+	dot.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	dot.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return dot
+
+
+func _chip(text: String, color: Color) -> Label:
+	var chip := Label.new()
+	chip.text = text
+	chip.add_theme_stylebox_override("normal", UiTheme.chip(color))
+	chip.add_theme_font_size_override("font_size", 16)
+	stats_box.add_child(chip)
+	return chip
+
+
+func _label(variation := "") -> Label:
 	var label := Label.new()
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.theme_type_variation = variation
 	return label
 
 
@@ -343,9 +583,10 @@ func _line_edit(placeholder: String) -> LineEdit:
 	return edit
 
 
-func _button(text: String, handler: Callable) -> Button:
+func _button(text: String, handler: Callable, variation := "") -> Button:
 	var button := Button.new()
 	button.text = text
+	button.theme_type_variation = variation
 	button.pressed.connect(handler)
 	return button
 
@@ -367,7 +608,7 @@ func _new_game() -> void:
 		return
 	var c: Dictionary = Challenge.make(graph, rng, rules, continent)
 	if c.is_empty():
-		_say(t("no_challenge"))
+		_say(t("no_challenge"), "bad")
 		return
 	_start_game(c.start, c.goal, c.forbidden, c.required)
 
@@ -375,10 +616,10 @@ func _new_game() -> void:
 func _start_game(from: String, to: String, forbidden := [], required := []) -> void:
 	var continent := _selected_continent()
 	if not graph.is_allowed(from, continent) or not graph.is_allowed(to, continent):
-		_say(t("not_on_map") % [graph.name_of(from), graph.name_of(to), _continent_name(continent)])
+		_say(t("not_on_map") % [graph.name_of(from), graph.name_of(to), _continent_name(continent)], "bad")
 		return
 	if graph.is_water(from) or graph.is_water(to):
-		_say(t("must_be_countries"))
+		_say(t("must_be_countries"), "bad")
 		return
 	var options := {
 		"water_limit": rules.get_value("water_limit"),
@@ -389,10 +630,14 @@ func _start_game(from: String, to: String, forbidden := [], required := []) -> v
 	from_edit.text = graph.name_of(from)
 	to_edit.text = graph.name_of(to)
 	_focused = ""
-	_say(t("no_route") if session.optimal_path.is_empty() else "")
+	if session.optimal_path.is_empty():
+		_say(t("no_route"), "bad")
+	else:
+		_say("")
 	_hide_gate()
 	_restart_timer()
 	_refresh()
+	scroll.scroll_vertical = 0
 
 
 func _restart_timer() -> void:
@@ -403,6 +648,7 @@ func _restart_timer() -> void:
 		move_timer.stop()
 
 
+## La fiecare secundă se schimbă doar cronometrul; restul ecranului se reface doar la greșeală.
 func _on_timer_tick() -> void:
 	if session.is_finished() or session.is_lost():
 		move_timer.stop()
@@ -410,18 +656,22 @@ func _on_timer_tick() -> void:
 	time_left -= 1
 	if time_left <= 0:
 		session.add_mistake()
-		_say(t("time_up"))
+		_say(t("time_up"), "bad")
 		time_left = Rules.SECONDS_PER_MOVE
 		if session.is_lost():
 			move_timer.stop()
-	_refresh()
+		_refresh()
+	elif timer_chip:
+		timer_chip.text = t("timer_info") % time_left
+		var urgent := time_left <= 10
+		timer_chip.add_theme_stylebox_override("normal", UiTheme.chip(UiTheme.BAD if urgent else UiTheme.MUTED))
 
 
 func _on_start_pressed() -> void:
 	var from := graph.find_place(from_edit.text)
 	var to := graph.find_place(to_edit.text)
 	if from == "" or to == "":
-		_say(t("unknown_pair"))
+		_say(t("unknown_pair"), "bad")
 		return
 	_start_game(from, to)
 
@@ -449,20 +699,21 @@ func _on_move_text_changed(text: String) -> void:
 		for id in graph.nodes:
 			var capital := graph.capital_of(id)
 			if capital != "" and WorldGraph.normalize(capital).begins_with(key) and graph.is_allowed(id, session.continent):
-				suggestions_box.add_child(_button(capital, _try_move.bind(id)))
+				suggestions_box.add_child(_button(capital, _try_move.bind(id), "ChipButton"))
 				shown += 1
 				if shown >= 6:
 					break
 		return
 	for id in graph.suggestions(text):
 		if graph.is_allowed(id, session.continent):
-			suggestions_box.add_child(_button(graph.name_of(id), _try_move.bind(id)))
+			var variation := "WaterChip" if graph.is_water(id) else "ChipButton"
+			suggestions_box.add_child(_button(graph.name_of(id), _try_move.bind(id), variation))
 
 
 func _on_go_pressed() -> void:
 	var id := _find_typed(move_edit.text)
 	if id == "":
-		_say(t("r_unknown"))
+		_say(t("r_unknown"), "bad")
 		return
 	_try_move(id)
 
@@ -497,7 +748,8 @@ func _ask_gate(target: String) -> void:
 		var options := [correct] + others.slice(0, 2)
 		options.shuffle()
 		for gate in options:
-			gate_choices_box.add_child(_button(graph.gate_name(gate), _apply_move.bind(target, graph.gate_name(gate))))
+			gate_choices_box.add_child(_button(graph.gate_name(gate),
+				_apply_move.bind(target, graph.gate_name(gate)), "ChipButton"))
 	gate_panel.show()
 	if not choices:
 		gate_edit.grab_focus()
@@ -517,15 +769,15 @@ func _apply_move(target: String, gate_answer: String) -> void:
 		_on_move_text_changed("")
 		_restart_timer()
 		if result.gate != "" and session.mode == GameSession.Mode.SANDBOX:
-			_say(t("gate_passed") % graph.gate_name(result.gate))
+			_say(t("gate_passed") % graph.gate_name(result.gate), "good")
 		elif result.gate != "":
-			_say(t("gate_correct") % graph.gate_name(result.gate))
+			_say(t("gate_correct") % graph.gate_name(result.gate), "good")
 		else:
 			_say("")
 		if session.current() == session.goal and not session.is_finished():
-			_say(t("need_required") % ", ".join(session.missing_required().map(graph.name_of)))
+			_say(t("need_required") % ", ".join(session.missing_required().map(graph.name_of)), "bad")
 	else:
-		_say(t("r_" + result.reason) if result.reason != "lost" else "")
+		_say(t("r_" + result.reason) if result.reason != "lost" else "", "bad")
 		if result.reason != "wrong_gate" or session.is_lost():
 			_hide_gate()
 	if session.is_lost():
@@ -561,8 +813,72 @@ func _route_text(path: Array) -> String:
 	return " → ".join(parts)
 
 
-func _say(text: String) -> void:
+## Traseul tău, colorat ca pe glob: mov pornirea, verde ce ai vizitat, albastru unde ești.
+func _route_bbcode(path: Array) -> String:
+	var parts := []
+	for i in path.size():
+		var id: String = path[i]
+		var color: Color = UiTheme.LEGEND.visited.lightened(0.3)
+		if i == path.size() - 1:
+			color = UiTheme.LEGEND.current.lightened(0.35)
+		elif i == 0:
+			color = UiTheme.LEGEND.start_goal.lightened(0.3)
+		elif graph.is_water(id):
+			color = Color("7fb2ff")
+		var text := "[color=#%s]%s[/color]" % [color.to_html(false), graph.name_of(id)]
+		if i > 0:
+			var gate: String = graph.gate_between(path[i - 1], id)
+			if gate != "":
+				text = "[color=#%s](%s)[/color] %s" % [UiTheme.GOLD.to_html(false), graph.gate_name(gate), text]
+		parts.append(text)
+	return (" [color=#%s]→[/color] " % UiTheme.MUTED.to_html(false)).join(parts)
+
+
+func _say(text: String, kind := "") -> void:
 	feedback_label.text = text
+	feedback_label.visible = text != ""
+	var color := UiTheme.TEXT
+	if kind == "good":
+		color = UiTheme.GOOD
+	elif kind == "bad":
+		color = UiTheme.BAD
+	feedback_label.add_theme_color_override("font_color", color)
+
+
+## Varianta cu steaguri: în Normal, cu destinația dată ca steag, mutarea se alege din 4 steaguri.
+func _flag_mode() -> bool:
+	return _normal() and rules.get_value("guess") == "flag"
+
+
+func _refresh_flag_choices() -> void:
+	var key := "%s|%d|%s" % [session.current(), session.path.size(), i18n.lang]
+	if key == _choices_key:
+		return
+	_choices_key = key
+	for child in flag_grid.get_children():
+		child.queue_free()
+	var choices: Dictionary = FlagChoices.make(graph, session, rng)
+	for id in choices.all:
+		var button := Button.new()
+		button.custom_minimum_size = Vector2(0, 96)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var texture := _flag_texture(id) if not graph.is_water(id) else null
+		if texture:
+			button.icon = texture
+			button.expand_icon = true
+			button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			button.add_theme_constant_override("icon_max_width", 120)
+		else:
+			# Mările nu au steag: apar cu numele, pe albastru.
+			button.text = "≈ " + graph.name_of(id)
+			button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			button.theme_type_variation = "WaterChip"
+		button.pressed.connect(func():
+			if not graph.are_linked(session.current(), id):
+				button.disabled = true
+				button.modulate = Color(1, 1, 1, 0.35)
+			_try_move(id))
+		flag_grid.add_child(button)
 
 
 ## Destinația e ascunsă (steag sau capitală) doar în Normal, până ajungi acolo.
@@ -570,50 +886,73 @@ func _goal_hidden() -> bool:
 	return _normal() and rules.get_value("guess") != "off" and not session.is_finished() and not session.is_lost()
 
 
+## Steagurile se citesc doar prima oară când e nevoie de unul, iar texturile se păstrează.
 func _flag_texture(id: String) -> Texture2D:
-	if not flags.has(id):
-		return null
-	var image := Image.new()
-	if image.load_svg_from_string(flags[id], 0.25) != OK:
-		return null
-	return ImageTexture.create_from_image(image)
+	if _flag_cache.has(id):
+		return _flag_cache[id]
+	if not _flags_loaded:
+		_flags_loaded = true
+		var data = JSON.parse_string(FileAccess.get_file_as_string("res://data/flags.json"))
+		if data is Dictionary:
+			flags = data["flags"]
+	var texture: Texture2D = null
+	if flags.has(id):
+		var image := Image.new()
+		if image.load_svg_from_string(flags[id], 0.25) == OK:
+			texture = ImageTexture.create_from_image(image)
+	_flag_cache[id] = texture
+	return texture
 
 
 func _refresh() -> void:
 	var sandbox := not _normal()
 	var hidden := _goal_hidden()
-	var goal_name := "?" if hidden else graph.name_of(session.goal)
-	info_label.text = t("info") % [
-		t("mode_sandbox") if sandbox else t("mode_normal"), _continent_name(session.continent),
-		graph.name_of(session.start), goal_name, session.moves(), session.mistakes]
-	if not sandbox and session.max_water_run() >= 0:
-		info_label.text += t("water_run") % [session.water_run, session.max_water_run()]
+	subtitle_label.text = "%s · %s" % [t("mode_sandbox") if sandbox else t("mode_normal"),
+		_continent_name(session.continent)]
+	start_label.text = graph.name_of(session.start)
 
-	goal_row.visible = hidden
 	goal_flag.visible = false
+	goal_hint.visible = hidden
 	if hidden and rules.get_value("guess") == "flag":
-		goal_label.text = "%s %s" % [t("destination"), t("goal_flag")]
+		goal_label.text = "?"
 		goal_flag.texture = _flag_texture(session.goal)
 		goal_flag.visible = goal_flag.texture != null
+		goal_hint.text = "%s %s" % [t("destination"), t("goal_flag")]
 	elif hidden:
-		goal_label.text = "%s %s" % [t("destination"), t("goal_capital") % graph.capital_of(session.goal)]
+		goal_label.text = "?"
+		goal_hint.text = "%s %s" % [t("destination"), t("goal_capital") % graph.capital_of(session.goal)]
+	else:
+		goal_label.text = graph.name_of(session.goal)
 
-	var lines := []
-	if not session.forbidden.is_empty():
-		lines.append(t("forbidden_info") % ", ".join(session.forbidden.map(graph.name_of)))
-	if not session.required.is_empty():
-		lines.append(t("required_info") % ", ".join(session.required.map(graph.name_of)))
+	for child in stats_box.get_children():
+		child.queue_free()
+	timer_chip = null
+	_chip(t("moves_chip") % session.moves(), UiTheme.ACCENT)
+	_chip(t("mistakes_chip") % session.mistakes, UiTheme.BAD if session.mistakes > 0 else UiTheme.MUTED)
+	if not sandbox and session.max_water_run() >= 0:
+		var full: bool = session.water_run >= session.max_water_run()
+		_chip(t("water_chip") % [session.water_run, session.max_water_run()], UiTheme.BAD if full else Color("7fb2ff"))
 	if not sandbox and session.lives > 0:
-		lines.append(t("lives_info") % [session.lives_left(), session.lives])
+		_chip(t("lives_info") % [session.lives_left(), session.lives],
+			UiTheme.BAD if session.lives_left() <= 1 else UiTheme.GOOD)
 	if not move_timer.is_stopped():
-		lines.append(t("timer_info") % time_left)
-	rules_label.text = "\n".join(lines)
-	rules_label.visible = not lines.is_empty()
+		timer_chip = _chip(t("timer_info") % time_left, UiTheme.BAD if time_left <= 10 else UiTheme.MUTED)
+	if not session.forbidden.is_empty():
+		_chip(t("forbidden_info") % ", ".join(session.forbidden.map(graph.name_of)), UiTheme.LEGEND.forbidden)
+	if not session.required.is_empty():
+		_chip(t("required_info") % ", ".join(session.required.map(graph.name_of)), UiTheme.LEGEND.required)
 
-	where_label.text = t("where") % graph.name_of(session.current())
-	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_text(session.path)]
+	where_label.text = graph.name_of(session.current())
+	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_bbcode(session.path)]
 	move_edit.placeholder_text = t("capital_hint") if rules.get_value("capitals") else t("move_hint")
-	suggestions_box.visible = not rules.get_value("no_suggestions")
+	var over := session.is_finished() or session.is_lost()
+	var flag_mode := _flag_mode()
+	suggestions_box.visible = not rules.get_value("no_suggestions") and not flag_mode
+	move_row.visible = not over and not flag_mode
+	flag_grid.visible = flag_mode and not over
+	flag_prompt.visible = flag_grid.visible
+	if flag_grid.visible:
+		_refresh_flag_choices()
 
 	sandbox_row.visible = sandbox
 	pair_row.visible = sandbox
@@ -623,10 +962,8 @@ func _refresh() -> void:
 		child.queue_free()
 	if sandbox and not session.is_finished():
 		for id in graph.neighbors(session.current(), session.continent):
-			var label := graph.name_of(id)
-			if graph.is_water(id):
-				label = "≈ " + label
-			neighbors_box.add_child(_button(label, _try_move.bind(id)))
+			var variation := "WaterChip" if graph.is_water(id) else "ChipButton"
+			neighbors_box.add_child(_button(graph.name_of(id), _try_move.bind(id), variation))
 
 	if globe:
 		globe.show_session(session, not sandbox and rules.get_value("fog"), hidden)
@@ -634,11 +971,17 @@ func _refresh() -> void:
 			globe.focus(session.current(), _focused != "")
 			_focused = session.current()
 
+	result_panel.visible = over
 	if session.is_lost():
-		result_label.text = t("lost") % [session.optimal_moves(), _route_text(session.optimal_path)]
+		result_title.text = t("lost_title")
+		result_title.add_theme_color_override("font_color", UiTheme.BAD)
+		result_stars.visible = false
+		result_points.text = t("lost_reason")
+		result_route.text = t("optimal_was") % [session.optimal_moves(), _route_text(session.optimal_path)]
 	elif session.is_finished():
-		var stars := "★".repeat(session.stars()) + "☆".repeat(3 - session.stars())
-		result_label.text = t("finished") % [
-			stars, session.points(), session.optimal_moves(), _route_text(session.optimal_path)]
-	else:
-		result_label.text = ""
+		result_title.text = t("won_title")
+		result_title.add_theme_color_override("font_color", UiTheme.GOLD)
+		result_stars.visible = true
+		result_stars.filled = session.stars()
+		result_points.text = t("points") % session.points()
+		result_route.text = t("optimal_was") % [session.optimal_moves(), _route_text(session.optimal_path)]

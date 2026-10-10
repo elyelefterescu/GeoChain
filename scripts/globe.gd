@@ -17,6 +17,7 @@ const COLORS := {
 }
 const MIN_DISTANCE := 1.35
 const MAX_DISTANCE := 4.0
+const UiTheme := preload("res://scripts/ui_theme.gd")
 
 var viewport: SubViewport
 var camera: Camera3D
@@ -40,9 +41,10 @@ var _tween: Tween
 var _press_pos := Vector2.ZERO
 var _dragged := false
 var _touches := {}
+var _labels_key := ""
 
 
-## assets: {id_image: Image, color_texture: Texture2D, index: Dictionary, world: Dictionary}
+## assets: {id_image: Image, id_texture: Texture2D, color_texture: Texture2D, index: Dictionary, world: Dictionary}
 func setup(assets: Dictionary, world_graph) -> void:
 	graph = world_graph
 	id_image = assets.id_image
@@ -63,8 +65,13 @@ func setup(assets: Dictionary, world_graph) -> void:
 	add_child(viewport)
 
 	var env := Environment.new()
-	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.03, 0.04, 0.09)
+	var sky_material := ShaderMaterial.new()
+	sky_material.shader = preload("res://shaders/sky.gdshader")
+	var sky := Sky.new()
+	sky.sky_material = sky_material
+	sky.radiance_size = Sky.RADIANCE_SIZE_32
+	env.background_mode = Environment.BG_SKY
+	env.sky = sky
 	var world_env := WorldEnvironment.new()
 	world_env.environment = env
 	viewport.add_child(world_env)
@@ -81,7 +88,7 @@ func setup(assets: Dictionary, world_graph) -> void:
 	globe_material = ShaderMaterial.new()
 	globe_material.shader = preload("res://shaders/globe.gdshader")
 	globe_material.set_shader_parameter("color_tex", assets.color_texture)
-	globe_material.set_shader_parameter("id_tex", ImageTexture.create_from_image(id_image))
+	globe_material.set_shader_parameter("id_tex", assets.id_texture)
 	globe_material.set_shader_parameter("id_size", Vector2(id_image.get_width(), id_image.get_height()))
 	state_image = Image.create(STATE_WIDTH, 1, false, Image.FORMAT_RGBA8)
 	state_texture = ImageTexture.create_from_image(state_image)
@@ -91,9 +98,30 @@ func setup(assets: Dictionary, world_graph) -> void:
 	globe.material_override = globe_material
 	viewport.add_child(globe)
 
+	var halo := MeshInstance3D.new()
+	var halo_mesh := SphereMesh.new()
+	halo_mesh.radius = 1.07
+	halo_mesh.height = 2.14
+	halo_mesh.radial_segments = 64
+	halo_mesh.rings = 32
+	halo.mesh = halo_mesh
+	var halo_material := ShaderMaterial.new()
+	halo_material.shader = preload("res://shaders/atmosphere.gdshader")
+	halo.material_override = halo_material
+	viewport.add_child(halo)
+
 	labels = Node3D.new()
 	globe.add_child(labels)
+	# Globul se redesenează doar când se schimbă ceva (rotire, zoom, mutare), nu la fiecare cadru.
+	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	resized.connect(_request_draw)
 	_apply_view()
+
+
+func _request_draw() -> void:
+	if viewport:
+		viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+		queue_redraw()
 
 
 ## Punctul de pe sfera locală pentru o latitudine și longitudine (în grade).
@@ -170,7 +198,13 @@ func show_session(session, fog := false, hide_goal := false) -> void:
 			state_image.set_pixel(i + 1, 0, colors[shown])
 	state_texture.update(state_image)
 	globe_material.set_shader_parameter("fog", fog)
+	_request_draw()
 
+	# Etichetele se refac doar când se schimbă traseul sau limba.
+	var key := "%s|%s" % [graph.lang, ",".join(session.path)]
+	if key == _labels_key:
+		return
+	_labels_key = key
 	for child in labels.get_children():
 		child.queue_free()
 	for id in session.path:
@@ -178,6 +212,7 @@ func show_session(session, fog := false, hide_goal := false) -> void:
 			continue
 		var label := Label3D.new()
 		label.text = graph.name_of(id)
+		label.font = UiTheme.bold()
 		label.font_size = 40
 		label.pixel_size = 0.0012
 		label.outline_size = 10
@@ -205,6 +240,7 @@ func _apply_view() -> void:
 	globe.basis = Basis(Vector3.RIGHT, pitch) * Basis(Vector3.UP, yaw)
 	camera.position = Vector3(0, 0, distance)
 	_update_label_visibility()
+	_request_draw()
 
 
 func _zoom(factor: float) -> void:

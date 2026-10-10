@@ -7,6 +7,8 @@ const Globe := preload("res://scripts/globe.gd")
 const Main := preload("res://scripts/main.gd")
 const Rules := preload("res://scripts/rules.gd")
 const Challenge := preload("res://scripts/challenge.gd")
+const I18n := preload("res://scripts/i18n.gd")
+const FlagChoices := preload("res://scripts/flag_choices.gd")
 
 var _failures := 0
 var _checks := 0
@@ -21,7 +23,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -295,6 +297,13 @@ func test_challenge() -> void:
 		var plain: Array = graph.shortest_path(c.start, c.goal, r.get_value("water_limit"))
 		var range: Array = r.distance_range()
 		check(plain.size() - 1 >= range[0] and plain.size() - 1 <= range[1], "distanța respectă nivelul " + preset)
+	# distances_from dă aceleași distanțe ca shortest_path, pentru fiecare regulă de apă.
+	for water in [-1, 0, 1, 2]:
+		var d: Dictionary = graph.distances_from("KEN", water)
+		for goal in ["ROU", "BRA", "JPN", "AUS", "MAR"]:
+			var p: Array = graph.shortest_path("KEN", goal, water)
+			check(d.get(goal, -1) == p.size() - 1 if not p.is_empty() else not d.has(goal),
+				"distanța KEN → %s (apă %d)" % [goal, water])
 	r.apply_preset("easy")
 	var e: Dictionary = Challenge.make(graph, rng, r, "europe")
 	check(graph.is_allowed(e.start, "europe") and graph.is_allowed(e.goal, "europe"), "partidă pe Europa")
@@ -306,3 +315,48 @@ func test_capitals() -> void:
 	check(graph.find_by_capital("Viena") == "AUT" and graph.find_by_capital("Vienna") == "AUT", "Viena / Vienna")
 	check(graph.find_by_capital("Nairobi") == "KEN", "Nairobi")
 	check(graph.capital_of("HUN") == "Budapesta", "capitala Ungariei în română")
+
+
+func test_i18n() -> void:
+	var ro: Dictionary = I18n.STRINGS["ro"]
+	var en: Dictionary = I18n.STRINGS["en"]
+	for key in ro:
+		check(en.has(key), "textul %s există și în engleză" % key)
+	for key in en:
+		check(ro.has(key), "textul %s există și în română" % key)
+
+
+func test_flag_choices() -> void:
+	var rng := RandomNumberGenerator.new()
+	for seed in 20:
+		rng.seed = seed
+		for pair in [["KEN", "ROU"], ["FRA", "POL"], ["BRA", "ARG"], ["CHN", "TUR"], ["PRT", "GRC"]]:
+			var s := GameSession.new()
+			s.setup(graph, pair[0], pair[1], GameSession.Mode.NORMAL)
+			var c: Dictionary = FlagChoices.make(graph, s, rng)
+			var cur: String = s.current()
+			var dist: Dictionary = graph.distances_from(pair[1], s.max_water_run())
+			var here: int = dist[cur]
+			var label := "%s → %s" % pair
+			check(c.all.size() == 4, "4 variante " + label)
+			var unique := {}
+			for id in c.all:
+				unique[id] = true
+			check(unique.size() == 4, "variante diferite " + label)
+			check(c.has("best") and dist[c.best] == here - 1, "cea mai bună te apropie " + label)
+			if c.has("useful"):
+				check(graph.are_linked(cur, c.useful) and dist[c.useful] == here, "utilă, nu cea mai bună " + label)
+			if c.has("useless"):
+				check(graph.are_linked(cur, c.useless) and dist.get(c.useless, 99) > here, "vecin care nu ajută " + label)
+			var available: int = graph.neighbors(cur).size()
+			check(c.all.filter(func(id): return graph.are_linked(cur, id)).size() == mini(3, available),
+				"3 vecini printre variante (sau câți are) " + label)
+			for id in c.far:
+				check(not graph.are_linked(cur, id) and not graph.is_water(id), "țara de pe continent nu e vecină " + label)
+				var shared: bool = graph.nodes[id].continents.any(func(x): return x in graph.nodes[cur].continents)
+				check(shared, "țara e pe același continent " + label)
+	# Lesotho are un singur vecin: restul variantelor sunt țări africane.
+	var l := GameSession.new()
+	l.setup(graph, "LSO", "KEN", GameSession.Mode.NORMAL)
+	var lc: Dictionary = FlagChoices.make(graph, l, rng)
+	check(lc.all.size() == 4 and lc.far.size() >= 2, "Lesotho: completat cu țări de pe continent")
