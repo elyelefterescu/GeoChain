@@ -11,7 +11,6 @@
    "name_en": "Alabama",
    "aliases": [],
    "continents": [],
-   "postal": "AL",
    "capital": "Montgomery",
    "capital_ro": "Montgomery"
   },
@@ -22,7 +21,6 @@
    "name_en": "Arizona",
    "aliases": [],
    "continents": [],
-   "postal": "AZ",
    "capital": "Phoenix",
    "capital_ro": "Phoenix"
   },
@@ -33,7 +31,6 @@
    "name_en": "Arkansas",
    "aliases": [],
    "continents": [],
-   "postal": "AR",
    "capital": "Little Rock",
    "capital_ro": "Little Rock"
   },
@@ -46,7 +43,6 @@
     "Californa"
    ],
    "continents": [],
-   "postal": "CA",
    "capital": "Sacramento",
    "capital_ro": "Sacramento"
   },
@@ -57,7 +53,6 @@
    "name_en": "Colorado",
    "aliases": [],
    "continents": [],
-   "postal": "CO",
    "capital": "Denver",
    "capital_ro": "Denver"
   },
@@ -68,7 +63,6 @@
    "name_en": "Connecticut",
    "aliases": [],
    "continents": [],
-   "postal": "CT",
    "capital": "Hartford",
    "capital_ro": "Hartford"
   },
@@ -79,7 +73,6 @@
    "name_en": "Delaware",
    "aliases": [],
    "continents": [],
-   "postal": "DE",
    "capital": "Dover",
    "capital_ro": "Dover"
   },
@@ -90,7 +83,6 @@
    "name_en": "Florida",
    "aliases": [],
    "continents": [],
-   "postal": "FL",
    "capital": "Tallahassee",
    "capital_ro": "Tallahassee"
   },
@@ -101,7 +93,6 @@
    "name_en": "Georgia",
    "aliases": [],
    "continents": [],
-   "postal": "GA",
    "capital": "Atlanta",
    "capital_ro": "Atlanta"
   },
@@ -112,7 +103,6 @@
    "name_en": "Idaho",
    "aliases": [],
    "continents": [],
-   "postal": "ID",
    "capital": "Boise",
    "capital_ro": "Boise"
   },
@@ -123,7 +113,6 @@
    "name_en": "Illinois",
    "aliases": [],
    "continents": [],
-   "postal": "IL",
    "capital": "Springfield",
    "capital_ro": "Springfield"
   },
@@ -134,7 +123,6 @@
    "name_en": "Indiana",
    "aliases": [],
    "continents": [],
-   "postal": "IN",
    "capital": "Indianapolis",
    "capital_ro": "Indianapolis"
   },
@@ -145,7 +133,6 @@
    "name_en": "Iowa",
    "aliases": [],
    "continents": [],
-   "postal": "IA",
    "capital": "Des Moines",
    "capital_ro": "Des Moines"
   },
@@ -156,7 +143,6 @@
    "name_en": "Kansas",
    "aliases": [],
    "continents": [],
-   "postal": "KS",
    "capital": "Topeka",
    "capital_ro": "Topeka"
   },
@@ -167,7 +153,6 @@
    "name_en": "Kentucky",
    "aliases": [],
    "continents": [],
-   "postal": "KY",
    "capital": "Frankfort",
    "capital_ro": "Frankfort"
   },
@@ -180,7 +165,6 @@
     "Luisiana"
    ],
    "continents": [],
-   "postal": "LA",
    "capital": "Baton Rouge",
    "capital_ro": "Baton Rouge"
   },
@@ -191,7 +175,6 @@
    "name_en": "Maine",
    "aliases": [],
    "continents": [],
-   "postal": "ME",
    "capital": "Augusta",
    "capital_ro": "Augusta"
   },
@@ -202,7 +185,6 @@
    "name_en": "Maryland",
    "aliases": [],
    "continents": [],
-   "postal": "MD",
    "capital": "Annapolis",
    "capital_ro": "Annapolis"
   },
@@ -215,7 +197,6 @@
     "Massachussetts"
    ],
    "continents": [],
-   "postal": "MA",
    "capital": "Boston",
    "capital_ro": "Boston"
   },
@@ -226,7 +207,6 @@
    "name_en": "Michigan",
    "aliases": [],
    "continents": [],
-   "postal": "MI",
    "capital": "Lansing",
    "capital_ro": "Lansing"
   },
@@ -237,7 +217,6 @@
    "name_en": "Minnesota",
    "aliases": [],
    "continents": [],
-   "postal": "MN",
    "capital": "Saint Paul",
    "capital_ro": "Saint Paul"
   },
@@ -248,7 +227,6 @@
    "name_en": "Mississippi",
    "aliases": [],
    "continents": [],
-   "postal": "MS",
    "capital": "Jackson",
    "capital_ro": "Jackson"
   },
@@ -259,7 +237,6 @@
    "name_en": "Missouri",
    "aliases": [],
    "continents": [],
-   "postal": "MO",
    "capital": "Jefferson City",
    "capital_ro": "Jefferson City"
   },
@@ -270,7 +247,6 @@
    "name_en": "Montana",
    "aliases": [],
    "continents": [],
-   "postal": "MT",
    "capital": "Helena",
    "capital_ro": "Helena"
   },
@@ -281,7 +257,6 @@
    "name_en": "Nebraska",
    "aliases": [],
    "continents": [],
-   "postal": "NE",
    "capital": "Lincoln",
    "capital_ro": "Lincoln"
   },
@@ -292,7 +267,6 @@
    "name_en": "Nevada",
    "aliases": [],
    "continents": [],
-   "postal": "NV",
    "capital": "Carson City",
    "capital_ro": "Carson City"
   },
@@ -303,7 +277,6 @@
    "name_en": "New Hampshire",
    "aliases": [],
    "continents": [],
-   "postal": "NH",
    "capital": "Concord",
    "capital_ro": "Concord"
   },
@@ -316,7 +289,6 @@
     "Noul Jersey"
    ],
    "continents": [],
-   "postal": "NJ",
    "capital": "Trenton",
    "capital_ro": "Trenton"
   },
@@ -329,7 +301,6 @@
     "Noul Mexic"
    ],
    "continents": [],
-   "postal": "NM",
    "capital": "Santa Fe",
    "capital_ro": "Santa Fe"
   },
@@ -342,7 +313,6 @@
     "Statul New York"
    ],
    "continents": [],
-   "postal": "NY",
    "capital": "Albany",
    "capital_ro": "Albany"
   },
@@ -357,7 +327,6 @@
     "Carolina Nord"
    ],
    "continents": [],
-   "postal": "NC",
    "capital": "Raleigh",
    "capital_ro": "Raleigh"
   },
@@ -370,7 +339,6 @@
     "Dakota Nord"
    ],
    "continents": [],
-   "postal": "ND",
    "capital": "Bismarck",
    "capital_ro": "Bismarck"
   },
@@ -381,7 +349,6 @@
    "name_en": "Ohio",
    "aliases": [],
    "continents": [],
-   "postal": "OH",
    "capital": "Columbus",
    "capital_ro": "Columbus"
   },
@@ -392,7 +359,6 @@
    "name_en": "Oklahoma",
    "aliases": [],
    "continents": [],
-   "postal": "OK",
    "capital": "Oklahoma City",
    "capital_ro": "Oklahoma City"
   },
@@ -403,7 +369,6 @@
    "name_en": "Oregon",
    "aliases": [],
    "continents": [],
-   "postal": "OR",
    "capital": "Salem",
    "capital_ro": "Salem"
   },
@@ -416,7 +381,6 @@
     "Pensilvania"
    ],
    "continents": [],
-   "postal": "PA",
    "capital": "Harrisburg",
    "capital_ro": "Harrisburg"
   },
@@ -427,7 +391,6 @@
    "name_en": "Rhode Island",
    "aliases": [],
    "continents": [],
-   "postal": "RI",
    "capital": "Providence",
    "capital_ro": "Providence"
   },
@@ -441,7 +404,6 @@
     "Carolina Sud"
    ],
    "continents": [],
-   "postal": "SC",
    "capital": "Columbia",
    "capital_ro": "Columbia"
   },
@@ -454,7 +416,6 @@
     "Dakota Sud"
    ],
    "continents": [],
-   "postal": "SD",
    "capital": "Pierre",
    "capital_ro": "Pierre"
   },
@@ -465,7 +426,6 @@
    "name_en": "Tennessee",
    "aliases": [],
    "continents": [],
-   "postal": "TN",
    "capital": "Nashville",
    "capital_ro": "Nashville"
   },
@@ -476,7 +436,6 @@
    "name_en": "Texas",
    "aliases": [],
    "continents": [],
-   "postal": "TX",
    "capital": "Austin",
    "capital_ro": "Austin"
   },
@@ -487,7 +446,6 @@
    "name_en": "Utah",
    "aliases": [],
    "continents": [],
-   "postal": "UT",
    "capital": "Salt Lake City",
    "capital_ro": "Salt Lake City"
   },
@@ -498,7 +456,6 @@
    "name_en": "Vermont",
    "aliases": [],
    "continents": [],
-   "postal": "VT",
    "capital": "Montpelier",
    "capital_ro": "Montpelier"
   },
@@ -509,7 +466,6 @@
    "name_en": "Virginia",
    "aliases": [],
    "continents": [],
-   "postal": "VA",
    "capital": "Richmond",
    "capital_ro": "Richmond"
   },
@@ -520,7 +476,6 @@
    "name_en": "Washington",
    "aliases": [],
    "continents": [],
-   "postal": "WA",
    "capital": "Olympia",
    "capital_ro": "Olympia"
   },
@@ -533,7 +488,6 @@
     "Virginia Vest"
    ],
    "continents": [],
-   "postal": "WV",
    "capital": "Charleston",
    "capital_ro": "Charleston"
   },
@@ -544,7 +498,6 @@
    "name_en": "Wisconsin",
    "aliases": [],
    "continents": [],
-   "postal": "WI",
    "capital": "Madison",
    "capital_ro": "Madison"
   },
@@ -555,7 +508,6 @@
    "name_en": "Wyoming",
    "aliases": [],
    "continents": [],
-   "postal": "WY",
    "capital": "Cheyenne",
    "capital_ro": "Cheyenne"
   }

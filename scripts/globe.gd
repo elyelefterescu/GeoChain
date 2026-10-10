@@ -43,6 +43,8 @@ var graph
 var yaw := 0.0
 var pitch := 0.0
 var distance := 2.6
+var _region_bounds: Array = []
+var min_distance := MIN_DISTANCE  # pe hărțile mici (România, Regatul Unit) poți veni mai aproape
 var _tween: Tween
 var _press_pos := Vector2.ZERO
 var _dragged := false
@@ -120,6 +122,7 @@ func setup(assets: Dictionary, world_graph) -> void:
 	# Globul se redesenează doar când se schimbă ceva (rotire, zoom, mutare), nu la fiecare cadru.
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	resized.connect(_request_draw)
+	resized.connect(_fit_region)
 	_apply_view()
 
 
@@ -151,8 +154,28 @@ func set_region(region: Dictionary) -> void:
 		_use_index(_world.id_image, _world.index, WORLD_BOUNDS)
 	for child in labels.get_children():
 		child.queue_free()
-	# SUA se vede mai de aproape; lumea, de mai departe.
-	distance = 1.85 if on else 2.6
+	# Regiunea umple globul: camera vine cât de aproape cere mărimea ei (SUA mai departe, România aproape).
+	_region_bounds = region.index["bounds"] if on else []
+	if on:
+		_fit_region()
+	else:
+		distance = 2.6
+		min_distance = MIN_DISTANCE
+	_apply_view()
+
+
+## Camera vine cât de aproape trebuie ca regiunea să încapă în fereastra globului (lată sau înaltă).
+func _fit_region() -> void:
+	if _region_bounds.is_empty():
+		return
+	var b := _region_bounds
+	var mid := deg_to_rad((b[1] + b[3]) * 0.5)
+	var wide := deg_to_rad((b[2] - b[0]) * cos(mid))
+	var tall := deg_to_rad(b[3] - b[1])
+	var aspect := size.x / maxf(size.y, 1.0) if size.y > 0 else 1.0
+	var extent := maxf(wide / maxf(aspect, 0.01), tall)
+	distance = clampf(1.0 + 1.1 * extent / (2.0 * tan(deg_to_rad(camera.fov * 0.5))), 1.05, MAX_DISTANCE)
+	min_distance = minf(MIN_DISTANCE, 1.0 + (distance - 1.0) * 0.35)
 	_apply_view()
 
 
@@ -241,6 +264,10 @@ func focus(id: String, animate := true) -> void:
 		return
 	var target_yaw := -deg_to_rad(centers[id][1])
 	var target_pitch := deg_to_rad(centers[id][0])
+	if not _region_bounds.is_empty():
+		# Pe harta unei regiuni se vede toată regiunea, centrată.
+		target_yaw = -deg_to_rad((_region_bounds[0] + _region_bounds[2]) * 0.5)
+		target_pitch = deg_to_rad((_region_bounds[1] + _region_bounds[3]) * 0.5)
 	target_yaw = yaw + wrapf(target_yaw - yaw, -PI, PI)
 	if _tween:
 		_tween.kill()
@@ -381,7 +408,7 @@ func _apply_view() -> void:
 
 
 func _zoom(factor: float) -> void:
-	distance = clampf(distance * factor, MIN_DISTANCE, MAX_DISTANCE)
+	distance = clampf(distance * factor, min_distance, MAX_DISTANCE)
 	_apply_view()
 
 

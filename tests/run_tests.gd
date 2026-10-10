@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -567,5 +567,34 @@ func test_usa() -> void:
 		var c: Dictionary = Challenge.make(usa, rng, r)
 		check(not c.is_empty() and c.forbidden.size() == 1 and c.required.size() == 1, "partidă SUA cu interzis și obligatoriu")
 	var s := GameSession.new()
-	s.setup(usa, "US-WA", "US-ID", GameSession.Mode.USA)
+	s.setup(usa, "US-WA", "US-ID", GameSession.Mode.REGION)
 	check(s.max_water_run() == -1 and s.try_move("US-ID").ok and s.is_finished(), "Washington → Idaho")
+
+
+func test_regions() -> void:
+	var ro := WorldGraph.new()
+	check(ro.load_file("res://data/romania.json"), "romania.json se încarcă")
+	check(ro.nodes.size() == 42, "41 de județe și București")
+	var b := ro.find_place("bucuresti")
+	check(b != "" and ro.neighbors(b).size() == 1 and ro.find_place("Ilfov") in ro.neighbors(b), "București e înconjurat de Ilfov")
+	check(ro.find_by_capital("Timișoara") == ro.find_place("Timiș"), "reședința Timișului")
+	check(ro.are_linked(ro.find_place("Constanța"), ro.find_place("Tulcea")), "Constanța–Tulcea")
+	var uk := WorldGraph.new()
+	check(uk.load_file("res://data/uk.json"), "uk.json se încarcă")
+	check(uk.find_place("Kent") != "" and uk.find_place("Londra") == uk.find_place("Greater London"), "Kent, Londra")
+	check(uk.find_place("Antrim") == "" and uk.find_place("Isle of Wight") == "", "fără Irlanda de Nord și insulele fără pod")
+	check(uk.are_linked(uk.find_place("Anglesey"), uk.find_place("Gwynedd")), "Anglesey e legat cu podul de Gwynedd")
+	check(uk.shortest_path(uk.find_place("Cornwall"), uk.find_place("Highland")).size() > 8, "Cornwall → Highland")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 9
+	for g in [ro, uk]:
+		var c: Dictionary = Challenge.make(g, rng, Rules.new())
+		check(not c.is_empty(), "partidă pe harta regiunii")
+	for key in ["usa", "romania", "uk"]:
+		var g := WorldGraph.new()
+		g.load_file("res://data/%s.json" % key)
+		var index = JSON.parse_string(FileAccess.get_file_as_string("res://data/globe_%s/index.json" % key))
+		var ok := true
+		for id in g.nodes:
+			ok = ok and index["centers"].has(id)
+		check(ok and index.has("bounds"), "toate locurile din %s sunt pe glob" % key)

@@ -11,7 +11,7 @@ Cu cât faci mai puține mutări, cu atât scorul e mai mare.
 - **Normal**: cel mult 2 mutări pe apă la rând. Greșelile (loc care nu e legat, poartă greșită, prea multă apă) scad punctajul.
 - **Strâmtori între țări** (Normal și Sandbox): unele țări fără graniță pe uscat sunt legate de o strâmtoare (Bering între SUA și Rusia, Pas-de-Calais între Marea Britanie și Franța, Bab el-Mandeb, Ormuz, Torres…). Treci direct dintr-o țară în cealaltă dacă numești strâmtoarea. Lista e în `data/straits.json`.
 - **Sandbox**: îți creezi singur jocul: alegi țara de pornire, destinația, până la 6 țări interzise și până la 4 obligatorii (le vizitezi în orice ordine). Fără limite, vezi vecinii ca butoane, poți da înapoi și poți vedea traseul minim.
-- **SUA**: harta celor 48 de state lipite ale SUA (fără Alaska și Hawaii). Treci doar din stat în stat, pe uscat; regulile sunt ca în Normal (cu capitalele statelor pentru modul capitale). Harta vine din `tools/build_usa.py` (Natural Earth), cu o textură mai detaliată doar pentru regiunea SUA.
+- **State/Județe**: alegi harta unei țări: SUA (cele 48 de state lipite, fără Alaska și Hawaii), România (41 de județe și București) sau Regatul Unit (Marea Britanie: comitatele Angliei, consiliile Scoției, zonele Țării Galilor; fără Irlanda de Nord și insulele fără pod). Treci doar dintr-o unitate în alta, pe uscat; regulile sunt ca în Normal, cu reședințele/capitalele pentru modul capitale (Regatul Unit nu are). Hărțile vin din `tools/build_regions.py` (Natural Earth), fiecare cu textura ei detaliată peste globul lumii.
 - **Bac**: doar pe uscat; între unele țări (`data/ferries.json`) treci cu bacul, dacă răspunzi corect la 2 din 3 întrebări de geografie cu variante. Dacă nu reușești, mai încerci. Întrebările nu se repetă până nu se termină, iar la repetare variantele se amestecă.
 - **Mări detaliate** (opțional): Adriatica, Ionică, Tireniană, Egee, Marmara, Azov, Golful Aden, Golful Oman, Canalul Mânecii și Golful Botnic devin locuri separate, cu porți noi (Otranto, Dardanele, Bosfor, Kerci, Pas-de-Calais). Pe harta simplă, numele lor duc la marea mare din care fac parte.
 - **Limba**: română sau engleză (buton sus). Numele țărilor, mărilor și porților se pot scrie în oricare dintre limbi.
@@ -104,4 +104,4 @@ python3 tools/build_globe.py .
 
 ## Android
 
-Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.3, fără Gradle. Semnarea: `tools/android/Signer.java` înlocuiește `apksigner` (semnătură v2, minSdk 24). Pe telefon, când apare tastatura, globul se ascunde ca să rămână vizibil câmpul în care scrii.
+Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.3, fără Gradle. Semnarea: `tools/android/Signer.java` înlocuiește `apksigner` (semnătură v2, minSdk 24). Pe telefon, panoul se derulează trăgând cu degetul oriunde pe el, iar când apare tastatura globul se ascunde ca să rămână vizibil câmpul în care scrii.

@@ -1,0 +1,1254 @@
+{
+ "version": 1,
+ "region": "romania",
+ "continents": [],
+ "source": "Natural Earth (domeniu public): ne_10m_admin_1_states_provinces_lakes, ne_50m_lakes",
+ "nodes": [
+  {
+   "id": "RO-AB",
+   "type": "country",
+   "name_ro": "Alba",
+   "name_en": "Alba",
+   "aliases": [],
+   "continents": [],
+   "capital": "Alba Iulia",
+   "capital_ro": "Alba Iulia"
+  },
+  {
+   "id": "RO-AR",
+   "type": "country",
+   "name_ro": "Arad",
+   "name_en": "Arad",
+   "aliases": [],
+   "continents": [],
+   "capital": "Arad",
+   "capital_ro": "Arad"
+  },
+  {
+   "id": "RO-AG",
+   "type": "country",
+   "name_ro": "Argeș",
+   "name_en": "Argeș",
+   "aliases": [],
+   "continents": [],
+   "capital": "Pitești",
+   "capital_ro": "Pitești"
+  },
+  {
+   "id": "RO-BC",
+   "type": "country",
+   "name_ro": "Bacău",
+   "name_en": "Bacău",
+   "aliases": [],
+   "continents": [],
+   "capital": "Bacău",
+   "capital_ro": "Bacău"
+  },
+  {
+   "id": "RO-BH",
+   "type": "country",
+   "name_ro": "Bihor",
+   "name_en": "Bihor",
+   "aliases": [],
+   "continents": [],
+   "capital": "Oradea",
+   "capital_ro": "Oradea"
+  },
+  {
+   "id": "RO-BN",
+   "type": "country",
+   "name_ro": "Bistrița-Năsăud",
+   "name_en": "Bistrița-Năsăud",
+   "aliases": [],
+   "continents": [],
+   "capital": "Bistrița",
+   "capital_ro": "Bistrița"
+  },
+  {
+   "id": "RO-BT",
+   "type": "country",
+   "name_ro": "Botoșani",
+   "name_en": "Botoșani",
+   "aliases": [],
+   "continents": [],
+   "capital": "Botoșani",
+   "capital_ro": "Botoșani"
+  },
+  {
+   "id": "RO-BV",
+   "type": "country",
+   "name_ro": "Brașov",
+   "name_en": "Brașov",
+   "aliases": [],
+   "continents": [],
+   "capital": "Brașov",
+   "capital_ro": "Brașov"
+  },
+  {
+   "id": "RO-BR",
+   "type": "country",
+   "name_ro": "Brăila",
+   "name_en": "Brăila",
+   "aliases": [],
+   "continents": [],
+   "capital": "Brăila",
+   "capital_ro": "Brăila"
+  },
+  {
+   "id": "RO-B",
+   "type": "country",
+   "name_ro": "București",
+   "name_en": "Bucharest",
+   "aliases": [
+    "Bucuresti",
+    "Municipiul București",
+    "Bucharest",
+    "Bucharest"
+   ],
+   "continents": [],
+   "capital": "București",
+   "capital_ro": "București"
+  },
+  {
+   "id": "RO-BZ",
+   "type": "country",
+   "name_ro": "Buzău",
+   "name_en": "Buzău",
+   "aliases": [],
+   "continents": [],
+   "capital": "Buzău",
+   "capital_ro": "Buzău"
+  },
+  {
+   "id": "RO-CS",
+   "type": "country",
+   "name_ro": "Caraș-Severin",
+   "name_en": "Caraș-Severin",
+   "aliases": [],
+   "continents": [],
+   "capital": "Reșița",
+   "capital_ro": "Reșița"
+  },
+  {
+   "id": "RO-CJ",
+   "type": "country",
+   "name_ro": "Cluj",
+   "name_en": "Cluj",
+   "aliases": [],
+   "continents": [],
+   "capital": "Cluj-Napoca",
+   "capital_ro": "Cluj-Napoca"
+  },
+  {
+   "id": "RO-CT",
+   "type": "country",
+   "name_ro": "Constanța",
+   "name_en": "Constanța",
+   "aliases": [],
+   "continents": [],
+   "capital": "Constanța",
+   "capital_ro": "Constanța"
+  },
+  {
+   "id": "RO-CV",
+   "type": "country",
+   "name_ro": "Covasna",
+   "name_en": "Covasna",
+   "aliases": [],
+   "continents": [],
+   "capital": "Sfântu Gheorghe",
+   "capital_ro": "Sfântu Gheorghe"
+  },
+  {
+   "id": "RO-CL",
+   "type": "country",
+   "name_ro": "Călărași",
+   "name_en": "Călărași",
+   "aliases": [],
+   "continents": [],
+   "capital": "Călărași",
+   "capital_ro": "Călărași"
+  },
+  {
+   "id": "RO-DJ",
+   "type": "country",
+   "name_ro": "Dolj",
+   "name_en": "Dolj",
+   "aliases": [],
+   "continents": [],
+   "capital": "Craiova",
+   "capital_ro": "Craiova"
+  },
+  {
+   "id": "RO-DB",
+   "type": "country",
+   "name_ro": "Dâmbovița",
+   "name_en": "Dâmbovița",
+   "aliases": [],
+   "continents": [],
+   "capital": "Târgoviște",
+   "capital_ro": "Târgoviște"
+  },
+  {
+   "id": "RO-GL",
+   "type": "country",
+   "name_ro": "Galați",
+   "name_en": "Galați",
+   "aliases": [],
+   "continents": [],
+   "capital": "Galați",
+   "capital_ro": "Galați"
+  },
+  {
+   "id": "RO-GR",
+   "type": "country",
+   "name_ro": "Giurgiu",
+   "name_en": "Giurgiu",
+   "aliases": [],
+   "continents": [],
+   "capital": "Giurgiu",
+   "capital_ro": "Giurgiu"
+  },
+  {
+   "id": "RO-GJ",
+   "type": "country",
+   "name_ro": "Gorj",
+   "name_en": "Gorj",
+   "aliases": [],
+   "continents": [],
+   "capital": "Târgu Jiu",
+   "capital_ro": "Târgu Jiu"
+  },
+  {
+   "id": "RO-HR",
+   "type": "country",
+   "name_ro": "Harghita",
+   "name_en": "Harghita",
+   "aliases": [],
+   "continents": [],
+   "capital": "Miercurea Ciuc",
+   "capital_ro": "Miercurea Ciuc"
+  },
+  {
+   "id": "RO-HD",
+   "type": "country",
+   "name_ro": "Hunedoara",
+   "name_en": "Hunedoara",
+   "aliases": [],
+   "continents": [],
+   "capital": "Deva",
+   "capital_ro": "Deva"
+  },
+  {
+   "id": "RO-IL",
+   "type": "country",
+   "name_ro": "Ialomița",
+   "name_en": "Ialomița",
+   "aliases": [],
+   "continents": [],
+   "capital": "Slobozia",
+   "capital_ro": "Slobozia"
+  },
+  {
+   "id": "RO-IS",
+   "type": "country",
+   "name_ro": "Iași",
+   "name_en": "Iași",
+   "aliases": [],
+   "continents": [],
+   "capital": "Iași",
+   "capital_ro": "Iași"
+  },
+  {
+   "id": "RO-IF",
+   "type": "country",
+   "name_ro": "Ilfov",
+   "name_en": "Ilfov",
+   "aliases": [],
+   "continents": [],
+   "capital": "Buftea",
+   "capital_ro": "Buftea"
+  },
+  {
+   "id": "RO-MM",
+   "type": "country",
+   "name_ro": "Maramureș",
+   "name_en": "Maramureș",
+   "aliases": [],
+   "continents": [],
+   "capital": "Baia Mare",
+   "capital_ro": "Baia Mare"
+  },
+  {
+   "id": "RO-MH",
+   "type": "country",
+   "name_ro": "Mehedinți",
+   "name_en": "Mehedinți",
+   "aliases": [],
+   "continents": [],
+   "capital": "Drobeta-Turnu Severin",
+   "capital_ro": "Drobeta-Turnu Severin"
+  },
+  {
+   "id": "RO-MS",
+   "type": "country",
+   "name_ro": "Mureș",
+   "name_en": "Mureș",
+   "aliases": [],
+   "continents": [],
+   "capital": "Târgu Mureș",
+   "capital_ro": "Târgu Mureș"
+  },
+  {
+   "id": "RO-NT",
+   "type": "country",
+   "name_ro": "Neamț",
+   "name_en": "Neamț",
+   "aliases": [],
+   "continents": [],
+   "capital": "Piatra Neamț",
+   "capital_ro": "Piatra Neamț"
+  },
+  {
+   "id": "RO-OT",
+   "type": "country",
+   "name_ro": "Olt",
+   "name_en": "Olt",
+   "aliases": [],
+   "continents": [],
+   "capital": "Slatina",
+   "capital_ro": "Slatina"
+  },
+  {
+   "id": "RO-PH",
+   "type": "country",
+   "name_ro": "Prahova",
+   "name_en": "Prahova",
+   "aliases": [],
+   "continents": [],
+   "capital": "Ploiești",
+   "capital_ro": "Ploiești"
+  },
+  {
+   "id": "RO-SM",
+   "type": "country",
+   "name_ro": "Satu Mare",
+   "name_en": "Satu Mare",
+   "aliases": [],
+   "continents": [],
+   "capital": "Satu Mare",
+   "capital_ro": "Satu Mare"
+  },
+  {
+   "id": "RO-SB",
+   "type": "country",
+   "name_ro": "Sibiu",
+   "name_en": "Sibiu",
+   "aliases": [],
+   "continents": [],
+   "capital": "Sibiu",
+   "capital_ro": "Sibiu"
+  },
+  {
+   "id": "RO-SV",
+   "type": "country",
+   "name_ro": "Suceava",
+   "name_en": "Suceava",
+   "aliases": [],
+   "continents": [],
+   "capital": "Suceava",
+   "capital_ro": "Suceava"
+  },
+  {
+   "id": "RO-SJ",
+   "type": "country",
+   "name_ro": "Sălaj",
+   "name_en": "Sălaj",
+   "aliases": [],
+   "continents": [],
+   "capital": "Zalău",
+   "capital_ro": "Zalău"
+  },
+  {
+   "id": "RO-TR",
+   "type": "country",
+   "name_ro": "Teleorman",
+   "name_en": "Teleorman",
+   "aliases": [],
+   "continents": [],
+   "capital": "Alexandria",
+   "capital_ro": "Alexandria"
+  },
+  {
+   "id": "RO-TM",
+   "type": "country",
+   "name_ro": "Timiș",
+   "name_en": "Timiș",
+   "aliases": [],
+   "continents": [],
+   "capital": "Timișoara",
+   "capital_ro": "Timișoara"
+  },
+  {
+   "id": "RO-TL",
+   "type": "country",
+   "name_ro": "Tulcea",
+   "name_en": "Tulcea",
+   "aliases": [],
+   "continents": [],
+   "capital": "Tulcea",
+   "capital_ro": "Tulcea"
+  },
+  {
+   "id": "RO-VS",
+   "type": "country",
+   "name_ro": "Vaslui",
+   "name_en": "Vaslui",
+   "aliases": [],
+   "continents": [],
+   "capital": "Vaslui",
+   "capital_ro": "Vaslui"
+  },
+  {
+   "id": "RO-VN",
+   "type": "country",
+   "name_ro": "Vrancea",
+   "name_en": "Vrancea",
+   "aliases": [],
+   "continents": [],
+   "capital": "Focșani",
+   "capital_ro": "Focșani"
+  },
+  {
+   "id": "RO-VL",
+   "type": "country",
+   "name_ro": "Vâlcea",
+   "name_en": "Vâlcea",
+   "aliases": [],
+   "continents": [],
+   "capital": "Râmnicu Vâlcea",
+   "capital_ro": "Râmnicu Vâlcea"
+  }
+ ],
+ "gates": [],
+ "edges": [
+  {
+   "a": "RO-AB",
+   "b": "RO-AR"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-BH"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-BV"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-DB"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-OT"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-BH"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-B",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-MM"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-BZ"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-CT"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-GL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-BT",
+   "b": "RO-IS"
+  },
+  {
+   "a": "RO-BT",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-BZ"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-DB"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-MM"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-CT"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-GR"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-GJ"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-CT",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-CT",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-CV",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-CV",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-GR"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-GJ"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-OT"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-GR",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-GR",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-HD",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-HD",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-IF",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-IF",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-IL",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-MS",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-MS",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-NT",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-NT",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-OT",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-OT",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-SB",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-SJ",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-VN",
+   "b": "RO-VS"
+  }
+ ],
+ "edges_detailed": [
+  {
+   "a": "RO-AB",
+   "b": "RO-AR"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-BH"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-AB",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-BV"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-DB"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-OT"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-AG",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-BH"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-AR",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-B",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-BC",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-BH",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-CJ"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-MM"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-BN",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-BZ"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-CT"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-GL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-BR",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-BT",
+   "b": "RO-IS"
+  },
+  {
+   "a": "RO-BT",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-BZ"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-DB"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-BV",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-CV"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-BZ",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-MM"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-CJ",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-CT"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-GR"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-CL",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-GJ"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-CS",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-CT",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-CT",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-CV",
+   "b": "RO-HR"
+  },
+  {
+   "a": "RO-CV",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-GR"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-DB",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-GJ"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-OT"
+  },
+  {
+   "a": "RO-DJ",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-HD"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-MH"
+  },
+  {
+   "a": "RO-GJ",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-TL"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-VN"
+  },
+  {
+   "a": "RO-GL",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-GR",
+   "b": "RO-IF"
+  },
+  {
+   "a": "RO-GR",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-HD",
+   "b": "RO-TM"
+  },
+  {
+   "a": "RO-HD",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-MS"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-HR",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-IF",
+   "b": "RO-IL"
+  },
+  {
+   "a": "RO-IF",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-IL",
+   "b": "RO-PH"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-NT"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-IS",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SJ"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-MM",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-MS",
+   "b": "RO-SB"
+  },
+  {
+   "a": "RO-MS",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-NT",
+   "b": "RO-SV"
+  },
+  {
+   "a": "RO-NT",
+   "b": "RO-VS"
+  },
+  {
+   "a": "RO-OT",
+   "b": "RO-TR"
+  },
+  {
+   "a": "RO-OT",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-SB",
+   "b": "RO-VL"
+  },
+  {
+   "a": "RO-SJ",
+   "b": "RO-SM"
+  },
+  {
+   "a": "RO-VN",
+   "b": "RO-VS"
+  }
+ ]
+}

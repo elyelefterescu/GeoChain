@@ -52,9 +52,12 @@ var _flag_cache := {}  # țară -> textură
 var graph := WorldGraph.new()  # harta partidei curente: normal_graph sau ferry_graph
 var normal_graph := WorldGraph.new()  # cu ape (Normal, Sandbox)
 var ferry_graph := WorldGraph.new()  # doar uscat și bacuri (modul Bac)
-var usa_graph := WorldGraph.new()  # cele 48 de state lipite ale SUA (modul SUA)
-var usa_assets := {}  # harta statelor pe glob
-var _region_on := false
+## Hărțile modului State/Județe: se încarcă doar când e nevoie de ele.
+const REGIONS := ["usa", "romania", "uk"]
+var region_graphs := {}  # key -> WorldGraph
+var _region_shown := ""  # harta de regiune de pe glob ("" = lumea)
+var _continent_pick := 0  # ce era ales în lista de hărți, separat pentru lume și pentru regiuni
+var _region_pick := 0
 var ferry_list: Array = []
 var strait_data := {}  # strâmtorile dintre țări (Normal, Sandbox)
 var quiz := Quiz.new()
@@ -83,6 +86,9 @@ var rules_panel: PanelContainer
 var pair_row: VBoxContainer
 var keyboard_spacer: Control  # loc gol sub panou cât tastatura de pe ecran (telefon, tabletă)
 var _keyboard_px := 0
+var _scroll_touch := -1  # degetul care derulează panoul (-1 = niciunul)
+var _scroll_moved := 0.0
+var _eat_release := false
 var custom_forbidden: Array = []  # Sandbox: țările interzise alese de jucător
 var custom_required: Array = []  # Sandbox: țările obligatorii alese de jucător
 var forbidden_chips: HFlowContainer
@@ -132,8 +138,6 @@ func _ready() -> void:
 	rng.randomize()
 	world_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
 	globe_assets = load_globe_assets(world_data)
-	usa_graph.load_file("res://data/usa.json")
-	usa_assets = load_region_assets("res://data/globe_usa/")
 	rules.load_saved()
 	i18n.lang = I18n.default_lang()
 	var ferries = JSON.parse_string(FileAccess.get_file_as_string("res://data/ferries.json"))
@@ -211,8 +215,68 @@ func _normal() -> bool:
 	return session.mode != GameSession.Mode.SANDBOX
 
 
-func _usa() -> bool:
-	return session.mode == GameSession.Mode.USA
+func _region() -> bool:
+	return session.mode == GameSession.Mode.REGION
+
+
+func _region_mode() -> bool:
+	return mode_select != null and _selected_mode() == GameSession.Mode.REGION
+
+
+func _selected_region() -> String:
+	return REGIONS[clampi(map_select.selected, 0, REGIONS.size() - 1)] if _region_mode() else ""
+
+
+func _region_graph(key: String):
+	if not region_graphs.has(key):
+		var g := WorldGraph.new()
+		g.load_file("res://data/%s.json" % key)
+		g.lang = i18n.lang
+		region_graphs[key] = g
+	return region_graphs[key]
+
+
+## Capitalele (reședințele) se folosesc doar dacă harta le are (comitatele britanice nu au).
+func _capitals_on() -> bool:
+	return rules.get_value("capitals") and _capitals_known()
+
+
+func _capitals_known() -> bool:
+	for id in graph.nodes:
+		return graph.capital_of(id) != ""
+	return false
+
+
+## Cum se ghicește destinația pe harta curentă: pe hărțile de regiune nu sunt steaguri (se folosește
+## reședința), iar unde nu sunt nici reședințe (Regatul Unit) destinația se vede.
+func _guess() -> String:
+	var guess: String = rules.get_value("guess")
+	if guess == "flag" and _region():
+		guess = "capital"
+	if guess == "capital" and not _capitals_known():
+		guess = "off"
+	return guess
+
+
+## Lista de hărți: continentele în modurile cu lumea, țările (SUA, România, Regatul Unit) în State/Județe.
+func _fill_map_select() -> void:
+	var regions := _region_mode()
+	if map_select.item_count > 0:
+		if map_select.get_item_metadata(0) is String and str(map_select.get_item_metadata(0)).begins_with("region:"):
+			_region_pick = map_select.selected
+		else:
+			_continent_pick = map_select.selected
+	map_select.clear()
+	if regions:
+		for key in REGIONS:
+			map_select.add_item(t("map_" + key))
+			map_select.set_item_metadata(map_select.item_count - 1, "region:" + key)
+		map_select.select(_region_pick)
+	else:
+		for key in [""] + normal_graph.continents:
+			map_select.add_item(_continent_name(key))
+			map_select.set_item_metadata(map_select.item_count - 1, key)
+		map_select.select(_continent_pick)
 
 
 func _ferry() -> bool:
@@ -227,25 +291,48 @@ func _load_graphs() -> void:
 	ferry_graph.use_ferries(ferry_list)
 	normal_graph.lang = i18n.lang
 	ferry_graph.lang = i18n.lang
-	usa_graph.lang = i18n.lang
+	for g in region_graphs.values():
+		g.lang = i18n.lang
 	_select_graph()
 
 
 func _select_graph() -> void:
 	var ferry_mode := mode_select != null and _selected_mode() == GameSession.Mode.FERRY
-	var usa_mode := mode_select != null and _selected_mode() == GameSession.Mode.USA
-	graph = ferry_graph if ferry_mode else usa_graph if usa_mode else normal_graph
-	if map_select:
-		map_select.visible = not usa_mode
+	var region := _selected_region() if map_select else ""
+	graph = ferry_graph if ferry_mode else _region_graph(region) if region != "" else normal_graph
 	if globe:
 		globe.graph = graph
-		if usa_mode != _region_on:
-			_region_on = usa_mode
-			globe.set_region(usa_assets if usa_mode else {})
+		if region != _region_shown:
+			_region_shown = region
+			# Texturile unei singure regiuni stau în memorie (contează pe telefon).
+			globe.set_region(load_region_assets("res://data/globe_%s/" % region) if region != "" else {})
 			_focused = ""
 		# Pe glob: bacurile în modul Bac, strâmtorile dintre țări în Normal și Sandbox.
-		var links: Array = ferry_list if ferry_mode else [] if usa_mode else strait_data.get("straits", [])
+		var links: Array = ferry_list if ferry_mode else [] if region != "" else strait_data.get("straits", [])
 		globe.set_links(links, Globe.FERRY_COLOR if ferry_mode else Globe.STRAIT_COLOR)
+
+
+## Derularea panoului cu degetul. ScrollContainer nu primește atingerile care încep pe un buton
+## sau pe un card, așa că le prindem aici, înaintea lor: tragi în sus sau în jos oriunde pe panou.
+func _input(event: InputEvent) -> void:
+	if scroll == null or not is_instance_valid(scroll):
+		return
+	if event is InputEventScreenTouch:
+		if event.pressed and scroll.get_global_rect().has_point(event.position):
+			_scroll_touch = event.index
+			_scroll_moved = 0.0
+			_eat_release = false
+		elif not event.pressed and event.index == _scroll_touch:
+			_scroll_touch = -1
+	elif event is InputEventScreenDrag and event.index == _scroll_touch:
+		_scroll_moved += absf(event.relative.y)
+		if _scroll_moved > 12.0:
+			scroll.scroll_vertical -= int(round(event.relative.y))
+			_eat_release = true  # după o derulare, ridicarea degetului nu apasă butonul de sub el
+			get_viewport().set_input_as_handled()
+	elif event is InputEventMouseButton and not event.pressed and _eat_release:
+		_eat_release = false
+		get_viewport().set_input_as_handled()
 
 
 ## Pe telefon, tastatura de pe ecran acoperă jumătatea de jos: cât e deschisă, ascundem globul
@@ -259,6 +346,7 @@ func _check_keyboard() -> void:
 	var scale := float(get_viewport_rect().size.y) / maxf(1.0, float(get_window().size.y))
 	keyboard_spacer.custom_minimum_size.y = pixels * scale
 	globe_holder.visible = not (open and not _landscape)
+	_fit_panel()
 	var focused := get_viewport().gui_get_focus_owner()
 	if open and focused and scroll.is_ancestor_of(focused):
 		await get_tree().process_frame
@@ -281,7 +369,26 @@ func _update_layout() -> void:
 	else:
 		scroll.custom_minimum_size = Vector2(0, 0)
 		scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		globe_holder.custom_minimum_size = Vector2(0, 330)
+		# Pe telefon globul ia cam o treime din ecran; restul e panoul.
+		globe_holder.custom_minimum_size = Vector2(0, 260)
+	scroll.size_flags_stretch_ratio = 1.15
+	_fit_panel.call_deferred()
+
+
+## Pe ecran înalt, panoul e cât îi trebuie (cel mult ~60% din ecran, apoi se derulează),
+## iar globul ia tot restul. Pe ecran lat, panoul e o coloană în dreapta.
+func _fit_panel() -> void:
+	if scroll == null or not is_instance_valid(scroll):
+		return
+	if _landscape or not globe_holder.visible:
+		scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		if _landscape:
+			scroll.custom_minimum_size.y = 0
+		return
+	var body: Control = scroll.get_child(0)
+	var wanted := body.get_combined_minimum_size().y
+	scroll.custom_minimum_size.y = minf(wanted, get_viewport_rect().size.y * 0.6)
+	scroll.size_flags_vertical = Control.SIZE_FILL
 
 
 ## Schimbă limba: refacem panoul, globul și partida rămân.
@@ -289,7 +396,8 @@ func _on_language_pressed() -> void:
 	i18n.lang = "en" if i18n.lang == "ro" else "ro"
 	normal_graph.lang = i18n.lang
 	ferry_graph.lang = i18n.lang
-	usa_graph.lang = i18n.lang
+	for g in region_graphs.values():
+		g.lang = i18n.lang
 	var mode := mode_select.selected
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
@@ -298,6 +406,7 @@ func _on_language_pressed() -> void:
 	_build_ui()
 	_update_layout()
 	mode_select.select(mode)
+	_fill_map_select()
 	map_select.select(map)
 	rules_panel.visible = rules_open
 	from_edit.text = graph.name_of(session.start)
@@ -345,6 +454,7 @@ func _build_ui() -> void:
 	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_theme_constant_override("separation", 12)
 	scroll.add_child(body)
+	body.minimum_size_changed.connect(_fit_panel, CONNECT_DEFERRED)
 
 	rules_panel = _build_rules_panel()
 	rules_panel.hide()
@@ -408,17 +518,17 @@ func _build_setup_card() -> PanelContainer:
 	mode_select.add_item(t("mode_normal"))
 	mode_select.add_item(t("mode_sandbox"))
 	mode_select.add_item(t("mode_ferry"))
-	mode_select.add_item(t("mode_usa"))
+	mode_select.add_item(t("mode_region"))
 	mode_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(mode_select)
 	map_select = OptionButton.new()
-	for key in [""] + graph.continents:
-		map_select.add_item(_continent_name(key))
-		map_select.set_item_metadata(map_select.item_count - 1, key)
+	_fill_map_select()
 	map_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(map_select)
 	# În Normal traseul e dat la întâmplare; doar în Sandbox îți alegi perechea.
-	mode_select.item_selected.connect(func(_i): _new_game())
+	mode_select.item_selected.connect(func(_i):
+		_fill_map_select()
+		_new_game())
 	map_select.item_selected.connect(func(_i): _new_game())
 
 	# Sandbox: îți creezi singur jocul (pornire, destinație, țări interzise și obligatorii).
@@ -846,12 +956,12 @@ func _button(text: String, handler: Callable, variation := "") -> Button:
 
 func _selected_mode() -> int:
 	return [GameSession.Mode.NORMAL, GameSession.Mode.SANDBOX, GameSession.Mode.FERRY,
-		GameSession.Mode.USA][mode_select.selected]
+		GameSession.Mode.REGION][mode_select.selected]
 
 
 func _selected_continent() -> String:
-	if _selected_mode() == GameSession.Mode.USA:
-		return ""  # harta SUA nu are continente
+	if _region_mode():
+		return ""  # hărțile de regiune nu au continente
 	return map_select.get_item_metadata(map_select.selected)
 
 
@@ -947,7 +1057,7 @@ func _on_start_pressed() -> void:
 
 ## În modul capitale, țările se găsesc după capitală; mările tot după nume.
 func _find_typed(text: String) -> String:
-	if not rules.get_value("capitals"):
+	if not _capitals_on():
 		return graph.find_place(text)
 	var id := graph.find_by_capital(text)
 	if id == "":
@@ -962,7 +1072,7 @@ func _on_move_text_changed(text: String) -> void:
 		child.queue_free()
 	if rules.get_value("no_suggestions") or text.strip_edges().is_empty():
 		return
-	if rules.get_value("capitals"):
+	if _capitals_on():
 		var key := WorldGraph.normalize(text)
 		var shown := 0
 		for id in graph.nodes:
@@ -1202,7 +1312,7 @@ func _say(text: String, kind := "") -> void:
 
 ## Varianta cu steaguri: în Normal, cu destinația dată ca steag, mutarea se alege din 4 steaguri.
 func _flag_mode() -> bool:
-	return _normal() and rules.get_value("guess") == "flag" and not _usa()  # statele nu au steaguri în joc
+	return _normal() and _guess() == "flag"
 
 
 func _refresh_flag_choices() -> void:
@@ -1238,7 +1348,7 @@ func _refresh_flag_choices() -> void:
 
 ## Destinația e ascunsă (steag sau capitală) doar în Normal, până ajungi acolo.
 func _goal_hidden() -> bool:
-	return _normal() and rules.get_value("guess") != "off" and not session.is_finished() and not session.is_lost()
+	return _normal() and _guess() != "off" and not session.is_finished() and not session.is_lost()
 
 
 ## Steagurile se citesc doar prima oară când e nevoie de unul, iar texturile se păstrează.
@@ -1266,8 +1376,9 @@ func _flag_texture(id: String) -> Texture2D:
 func _refresh() -> void:
 	var sandbox := not _normal()
 	var hidden := _goal_hidden()
-	var mode_key: String = ["mode_normal", "mode_sandbox", "mode_ferry", "mode_usa"][session.mode]
-	subtitle_label.text = t(mode_key) if _usa() else "%s · %s" % [t(mode_key), _continent_name(session.continent)]
+	var mode_key: String = ["mode_normal", "mode_sandbox", "mode_ferry", "mode_region"][session.mode]
+	var map_name := t("map_" + _region_shown) if _region() else _continent_name(session.continent)
+	subtitle_label.text = "%s · %s" % [t(mode_key), map_name]
 	# În modul Bac: ce bacuri pleacă din țara în care ești.
 	var ports := []
 	if _ferry():
@@ -1278,11 +1389,10 @@ func _refresh() -> void:
 	ferry_ports.text = t("ferry_ports") % "; ".join(ports) if not ports.is_empty() else ""
 	ferry_ports.visible = not ports.is_empty() and not session.is_finished()
 	start_label.text = graph.name_of(session.start)
-	map_select.visible = not _usa()
 
 	goal_flag.visible = false
 	goal_hint.visible = hidden
-	if hidden and rules.get_value("guess") == "flag" and not _usa():
+	if hidden and _guess() == "flag":
 		goal_label.text = "?"
 		goal_flag.texture = _flag_texture(session.goal)
 		goal_flag.visible = goal_flag.texture != null
@@ -1313,7 +1423,7 @@ func _refresh() -> void:
 
 	where_label.text = graph.name_of(session.current())
 	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_bbcode(session.path)]
-	move_edit.placeholder_text = t("capital_hint") if rules.get_value("capitals") else t("move_hint")
+	move_edit.placeholder_text = t("capital_hint") if _capitals_on() else t("move_hint")
 	var over := session.is_finished() or session.is_lost()
 	var flag_mode := _flag_mode()
 	suggestions_box.visible = not rules.get_value("no_suggestions") and not flag_mode
