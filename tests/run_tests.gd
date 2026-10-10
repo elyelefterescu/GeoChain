@@ -238,6 +238,18 @@ func test_globe() -> void:
 	check(globe.place_at(41.903, 12.453) == "VAT", "Vaticanul se poate atinge")
 	check(globe.place_at(40.75, 28.3) == "W_MED", "pe harta simplă, Marmara e Mediterana")
 	check(globe.place_at(75.0, -40.0) == "", "Groenlanda nu e în joc (neutru)")
+	# Golfurile de pe țărm iau marea de lângă ele, nu oceanul după longitudine.
+	check(globe.place_at(38.2, 22.5) == "W_MED", "Golful Corint e în Mediterana (harta simplă)")
+	check(globe.place_at(56.5, 11.5) == "W_NRT", "Kattegatul ține de Marea Nordului")
+	check(globe.place_at(55.5, 10.9) == "W_BAL", "Centura Mare duce în Baltica")
+	check(globe.place_at(9.8, -71.6) == "W_CAR", "Lacul Maracaibo e spre Marea Caraibilor")
+	check(globe.place_at(57.8, -6.0) == "W_ATL", "apele de lângă Scoția sunt în Atlantic")
+	var ind_ok := true
+	for lat in range(32, 80, 2):
+		for lon in range(-180, 180, 2):
+			if globe.place_at(lat, lon) == "W_IND":
+				ind_ok = false
+	check(ind_ok, "Oceanul Indian nu apare la nord de 32° N")
 	for id in graph.nodes:
 		check(globe.centers.has(id), "centru pe glob pentru " + id)
 	var detailed := WorldGraph.new()
@@ -293,6 +305,11 @@ func test_challenge() -> void:
 			{"water_limit": r.get_value("water_limit")})
 		check(not s.optimal_path.is_empty(), "există traseu cu reguli (%s)" % preset)
 		check(c.forbidden.size() == 1 and not c.forbidden[0] in s.optimal_path, "țara interzisă e ocolită")
+		var free: Array = graph.shortest_path(c.start, c.goal, r.get_value("water_limit"))
+		var blocked: Array = graph.shortest_path(c.start, c.goal, r.get_value("water_limit"), "", c.forbidden)
+		var first_land: Array = free.slice(1).filter(func(id): return not graph.is_water(id))
+		check(c.forbidden[0] in free and (blocked.size() > free.size() or c.forbidden[0] == first_land[0]),
+			"țara interzisă te obligă la ocol sau e prima de pe traseu (%s)" % preset)
 		check(c.required.size() == 1 and c.required[0] in s.optimal_path, "punctul obligatoriu e pe traseu")
 		var plain: Array = graph.shortest_path(c.start, c.goal, r.get_value("water_limit"))
 		var range: Array = r.distance_range()
@@ -304,6 +321,18 @@ func test_challenge() -> void:
 			var p: Array = graph.shortest_path("KEN", goal, water)
 			check(d.get(goal, -1) == p.size() - 1 if not p.is_empty() else not d.has(goal),
 				"distanța KEN → %s (apă %d)" % [goal, water])
+	# Pe Europa, cu țară interzisă, ea e mereu pe traseul minim și îl lungește.
+	for i in 30:
+		r.apply_preset("medium")
+		r.set_value("forbidden", true)
+		var ce: Dictionary = Challenge.make(graph, rng, r, "europe")
+		if ce.is_empty():
+			continue
+		var p1: Array = graph.shortest_path(ce.start, ce.goal, 2, "europe")
+		var p2: Array = graph.shortest_path(ce.start, ce.goal, 2, "europe", ce.forbidden)
+		var land1: Array = p1.slice(1).filter(func(id): return not graph.is_water(id))
+		check(ce.forbidden[0] in p1 and (p2.size() > p1.size() or ce.forbidden[0] == land1[0]),
+			"Europa: interzisa contează (%s→%s fără %s)" % [ce.start, ce.goal, ce.forbidden[0]])
 	r.apply_preset("easy")
 	var e: Dictionary = Challenge.make(graph, rng, r, "europe")
 	check(graph.is_allowed(e.start, "europe") and graph.is_allowed(e.goal, "europe"), "partidă pe Europa")

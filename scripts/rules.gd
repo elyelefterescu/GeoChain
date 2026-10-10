@@ -5,6 +5,8 @@ extends RefCounted
 ## detaliate, capitalele, porțile cu variante și sugestiile contează acolo).
 
 const SAVE_PATH := "user://rules.cfg"
+## Versiunea 2: porțile cu variante devin implicite și pentru regulile salvate înainte.
+const VERSION := 2
 
 ## distance: câte mutări are traseul minim al perechii primite.
 const DISTANCES := {"any": [3, 99], "easy": [3, 4], "medium": [5, 7], "hard": [8, 99]}
@@ -21,7 +23,7 @@ const DEFAULTS := {
 	"forbidden": false,
 	"required": false,
 	"detailed_seas": false,
-	"gate_choices": false,
+	"gate_choices": true,  # porțile scrise sunt foarte grele, deci implicit alegi din variante
 	"no_suggestions": false,
 	"fog": false,
 	"timer": false,
@@ -31,9 +33,9 @@ const DEFAULTS := {
 }
 
 const PRESETS := {
-	"easy": {"distance": "easy", "water_limit": 2, "gate_choices": true},
+	"easy": {"distance": "easy", "water_limit": 2},
 	"medium": {"distance": "medium", "water_limit": 2, "lives": true},
-	"hard": {"distance": "hard", "water_limit": 1, "lives": true, "no_suggestions": true,
+	"hard": {"distance": "hard", "water_limit": 1, "lives": true, "no_suggestions": true, "gate_choices": false,
 		"timer": true, "par_bonus": true},
 }
 
@@ -65,6 +67,7 @@ func save() -> void:
 	var cfg := ConfigFile.new()
 	for key in values:
 		cfg.set_value("rules", key, values[key])
+	cfg.set_value("meta", "version", VERSION)
 	cfg.save(SAVE_PATH)
 
 
@@ -74,3 +77,5 @@ func load_saved() -> void:
 		return
 	for key in DEFAULTS:
 		values[key] = cfg.get_value("rules", key, DEFAULTS[key])
+	if cfg.get_value("meta", "version", 1) < 2:
+		values.gate_choices = true

@@ -15,6 +15,7 @@ const COLORS := {
 	"forbidden": Color(0.9, 0.1, 0.1, 0.85),
 	"off_map": Color(0.85, 0.1, 0.1, 0.45),
 }
+const MAX_LABEL_PIXEL := 0.0012
 const MIN_DISTANCE := 1.35
 const MAX_DISTANCE := 4.0
 const UiTheme := preload("res://scripts/ui_theme.gd")
@@ -42,6 +43,7 @@ var _press_pos := Vector2.ZERO
 var _dragged := false
 var _touches := {}
 var _labels_key := ""
+var _boxes := {}  # țară -> {lat, lon, width, height}, mărimea ei în jurul punctului de etichetă
 
 
 ## assets: {id_image: Image, id_texture: Texture2D, color_texture: Texture2D, index: Dictionary, world: Dictionary}
@@ -214,15 +216,63 @@ func show_session(session, fog := false, hide_goal := false) -> void:
 		label.text = graph.name_of(id)
 		label.font = UiTheme.bold()
 		label.font_size = 40
-		label.pixel_size = 0.0012
 		label.outline_size = 10
+		# Numele încape în țară: mărimea textului urmează lățimea și înălțimea țării.
+		var box := _country_box(id)
+		var text_size: Vector2 = label.font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 40) \
+			+ Vector2(20, 10)
+		label.pixel_size = minf(MAX_LABEL_PIXEL, minf(0.9 * box.width / text_size.x, 0.85 * box.height / text_size.y))
 		label.modulate = Color.WHITE
 		label.outline_modulate = Color(0, 0, 0, 0.8)
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		label.no_depth_test = true  # altfel globul taie din litere; ascundem noi etichetele din spate
-		label.position = lat_lon_to_point(centers[id][0], centers[id][1]) * 1.01
+		label.position = lat_lon_to_point(box.lat, box.lon) * 1.01
 		labels.add_child(label)
 	_update_label_visibility()
+
+
+## Cât de lată și de înaltă e țara (în unități pe glob) pe rândul și coloana punctului de etichetă,
+## plus mijlocul rândului, unde stă numele.
+func _country_box(id: String) -> Dictionary:
+	if _boxes.has(id):
+		return _boxes[id]
+	var w := id_image.get_width()
+	var h := id_image.get_height()
+	var lat: float = centers[id][0]
+	var lon: float = centers[id][1]
+	var x := posmod(int(floor((lon + 180.0) / 360.0 * w)), w)
+	var y := clampi(int(floor((90.0 - lat) / 180.0 * h)), 0, h - 1)
+	var wanted: int = place_index.get(id, -1)
+	var left := 0
+	var right := 0
+	if _index_at(x, y) == wanted:
+		while left < w / 4 and _index_at(posmod(x - left - 1, w), y) == wanted:
+			left += 1
+		while right < w / 4 and _index_at(posmod(x + right + 1, w), y) == wanted:
+			right += 1
+	var mid_x := posmod(x + (right - left) / 2, w)
+	var up := 0
+	var down := 0
+	if _index_at(mid_x, y) == wanted:
+		while y - up - 1 >= 0 and up < h / 4 and _index_at(mid_x, y - up - 1) == wanted:
+			up += 1
+		while y + down + 1 < h and down < h / 4 and _index_at(mid_x, y + down + 1) == wanted:
+			down += 1
+	var deg_x := 360.0 / w
+	var deg_y := 180.0 / h
+	var box := {
+		"lat": lat + (up - down) * 0.5 * deg_y,
+		"lon": -180.0 + (mid_x + 0.5) * deg_x,
+		"width": deg_to_rad((left + right + 1) * deg_x) * cos(deg_to_rad(lat)),
+		"height": deg_to_rad((up + down + 1) * deg_y),
+	}
+	_boxes[id] = box
+	return box
+
+
+func _index_at(x: int, y: int) -> int:
+	var c := id_image.get_pixel(x, y)
+	return int(round(c.r * 255.0)) + int(round(c.g * 255.0)) * 256
 
 
 ## Etichetele de pe partea din spate a globului nu se văd.

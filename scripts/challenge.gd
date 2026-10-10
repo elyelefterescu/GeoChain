@@ -1,6 +1,6 @@
 extends RefCounted
 ## Alege la întâmplare o partidă potrivită regulilor: pornire, destinație,
-## eventual o țară interzisă (de pe traseul minim, dar ocolibilă)
+## eventual o țară interzisă (de pe traseul minim; fără ea, drumul e cu 1–3 mutări mai lung)
 ## și un punct obligatoriu (un ocol de 1–3 mutări).
 ## Un BFS din pornire dă toate distanțele deodată, deci destinația se alege direct din cele potrivite.
 
@@ -13,7 +13,13 @@ static func make(graph, rng: RandomNumberGenerator, rules, continent := "") -> D
 		func(id): return not graph.is_water(id) and graph.is_allowed(id, continent))
 	var starts := countries.duplicate()
 	_shuffle(starts, rng)
+	var backup := {}
+	var tried := 0
 	for a in starts:
+		# Pe trasee lungi aproape mereu există un ocol la fel de scurt; după destule încercări
+		# luăm varianta de rezervă: prima țară de pe traseu, chiar lângă pornire.
+		if not backup.is_empty() and tried >= 16:
+			return backup
 		var dist: Dictionary = graph.distances_from(a, water, continent)
 		var goals: Array = countries.filter(
 			func(id): return id != a and dist.has(id) and dist[id] >= range[0] and dist[id] <= range[1])
@@ -21,12 +27,20 @@ static func make(graph, rng: RandomNumberGenerator, rules, continent := "") -> D
 		for b in goals.slice(0, 8):
 			var result := {"start": a, "goal": b, "forbidden": [], "required": []}
 			var path: Array = graph.shortest_path(a, b, water, continent)
-			if rules.get_value("forbidden") and not _add_forbidden(graph, rng, result, path, water, continent):
-				continue
-			if rules.get_value("required") and not _add_required(graph, rng, result, countries, path, water, continent):
+			var need_required: bool = rules.get_value("required")
+			if rules.get_value("forbidden"):
+				tried += 1
+				if not _add_forbidden(graph, rng, result, path, water, continent):
+					if backup.is_empty():
+						var spare := _with_first_step_forbidden(graph, result, path, water, continent)
+						if not spare.is_empty() and (not need_required \
+								or _add_required(graph, rng, spare, countries, path, water, continent)):
+							backup = spare
+					continue
+			if need_required and not _add_required(graph, rng, result, countries, path, water, continent):
 				continue
 			return result
-	return {}
+	return backup
 
 
 static func _shuffle(list: Array, rng: RandomNumberGenerator) -> void:
@@ -37,14 +51,32 @@ static func _shuffle(list: Array, rng: RandomNumberGenerator) -> void:
 		list[j] = tmp
 
 
+## Țara interzisă trebuie să conteze: fără ea, traseul minim devine mai lung (ocol de 1–3 mutări),
+## nu doar o variantă la fel de scurtă pe lângă ea.
 static func _add_forbidden(graph, rng, result: Dictionary, path: Array, water: int, continent: String) -> bool:
+	var best := path.size() - 1
 	var middle := path.slice(1, path.size() - 1).filter(func(id): return not graph.is_water(id))
 	_shuffle(middle, rng)
 	for id in middle:
-		if not graph.shortest_path(result.start, result.goal, water, continent, [id]).is_empty():
+		var detour: Array = graph.shortest_path(result.start, result.goal, water, continent, [id])
+		var extra := detour.size() - 1 - best
+		if not detour.is_empty() and extra >= 1 and extra <= 3:
 			result.forbidden = [id]
 			return true
 	return false
+
+
+## Rezerva: interzicem prima țară de pe traseul minim (vecina în care ai vrea să intri primul).
+static func _with_first_step_forbidden(graph, result: Dictionary, path: Array, water: int, continent: String) -> Dictionary:
+	for id in path.slice(1, path.size() - 1):
+		if graph.is_water(id) or id in result.required:
+			continue
+		if graph.shortest_path(result.start, result.goal, water, continent, [id]).is_empty():
+			return {}
+		var copy := result.duplicate(true)
+		copy.forbidden = [id]
+		return copy
+	return {}
 
 
 ## Graful e simetric și capetele sunt țări, deci distanța până la destinație = distanța de la ea.

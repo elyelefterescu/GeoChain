@@ -38,7 +38,8 @@ MARINE = {
     "W_MAN": ["English Channel"],
     "W_ATL": ["North Atlantic Ocean", "South Atlantic Ocean", "Irish Sea", "Bristol Channel", "Bay of Biscay",
               "Sargasso Sea", "Gulf of Guinea", "Labrador Sea", "Gulf of Saint Lawrence", "Gulf of Maine",
-              "Bay of Fundy", "Chesapeake Bay", "Río de la Plata", "Golfo San Jorge", "Amazon River", "Norwegian Sea"],
+              "Bay of Fundy", "Chesapeake Bay", "Río de la Plata", "Golfo San Jorge", "Amazon River", "Norwegian Sea",
+              "Inner Seas"],  # Inner Seas = apele de pe coasta de vest a Scoției
     "W_CAR": ["Caribbean Sea", "Gulf of Honduras"],
     "W_MEX": ["Gulf of Mexico", "Bahía de Campeche", "Straits of Florida"],
     "W_PAC": ["North Pacific Ocean", "South Pacific Ocean", "Philippine Sea", "Coral Sea", "Tasman Sea",
@@ -46,7 +47,7 @@ MARINE = {
               "Golfo de Panamá", "Bay of Plenty", "Celebes Sea", "Sulu Sea", "Molucca Sea", "Banda Sea",
               "Ceram Sea", "Arafura Sea", "Gulf of Carpentaria", "Great Barrier Reef", "Sea of Okhotsk",
               "Shelikhova Gulf", "Cook Inlet", "Bristol Bay", "Makassar Strait", "Java Sea", "Columbia River",
-              "Luzon Strait", "Inner Sea", "Inner Seas"],
+              "Luzon Strait", "Inner Sea"],  # Inner Sea = Marea Interioară Seto, Japonia
     "W_SCS": ["South China Sea", "Gulf of Thailand", "Gulf of Tonkin", "Strait of Singapore"],
     "W_ECS": ["East China Sea", "Yellow Sea", "Bo Hai", "Taiwan Strait", "Yangtze River"],
     "W_JPN": ["Sea of Japan", "Korea Strait"],
@@ -59,6 +60,14 @@ MARINE = {
 BOXES = {
     "W_MAR": (40.25, 41.15, 26.6, 29.95, ["W_BLK", "W_EGE"]),
     "W_AZO": (45.2, 47.35, 34.8, 39.4, ["W_BLK"]),
+    # Kattegatul e inclus de Natural Earth în Atlantic; ține de Marea Nordului, ca Skagerrakul.
+    "W_NRT": (55.9, 57.8, 10.3, 12.9, []),
+    # Centura Mare și Centura Mică duc spre Baltica.
+    "W_BAL": (54.8, 55.9, 9.6, 12.0, []),
+    # Lacul Maracaibo se varsă în Marea Caraibilor, nu în Pacific.
+    "W_CAR": (8.5, 11.8, -72.6, -70.4, []),
+    # Golfurile adânci din vestul Golfului Hudson țin de Oceanul Arctic.
+    "W_ARC": (63.0, 66.8, -97.0, -86.0, []),
 }
 # Centrele apelor (lat, lon), unde se rotește globul când ajungi acolo.
 WATER_CENTERS = {
@@ -69,6 +78,10 @@ WATER_CENTERS = {
     "W_MAR": (40.7, 28.2), "W_AZO": (46.2, 36.7), "W_ADN": (12.5, 48), "W_OMG": (24.5, 58.5),
     "W_MAN": (50.2, -2), "W_BOT": (63, 20.5),
 }
+
+
+# Cât de departe (în pixeli, ~0,09° fiecare) se întinde o mare numită peste apa nenumită de lângă ea.
+NEAREST_SEA_PX = 60
 
 
 def fallback_ocean(lat, lon):
@@ -122,15 +135,8 @@ def main():
 
     lat = np.repeat((90 - (np.arange(H) + 0.5) * 180 / H)[:, None], W, axis=1)
     lon = np.repeat((-180 + (np.arange(W) + 0.5) * 360 / W)[None, :], H, axis=0)
-    empty = ids == 0
-    fb = fallback_ocean(lat[empty], lon[empty])
-    ids[empty] = np.vectorize(index.get)(fb)
-    for wid, (la0, la1, lo0, lo1, around) in BOXES.items():
-        box = (lat >= la0) & (lat <= la1) & (lon >= lo0) & (lon <= lo1)
-        replace = np.isin(ids, [index[a] for a in around] + [index["W_ATL"], index["W_IND"], index["W_PAC"]])
-        ids[box & replace] = index[wid]
 
-    # 2. Țările peste ape (teritoriile care nu sunt în joc rămân neutre, index 0).
+    # 2. Uscatul (teritoriile care nu sunt în joc rămân neutre, index 0).
     land_layer = Image.new("I", (W, H), -1)
     draw = ImageDraw.Draw(land_layer)
     admin = json.loads((src / "ne_50m_admin_0_countries.geojson").read_text(encoding="utf-8"))
@@ -142,7 +148,41 @@ def main():
         if code:
             label[code] = (p["LABEL_Y"], p["LABEL_X"])
     land = np.array(land_layer, dtype=np.int32)
-    ids[land >= 0] = land[land >= 0]
+    is_land = land >= 0
+
+    # Golfurile și apele de lângă țărm pe care Natural Earth nu le acoperă iau marea
+    # cea mai apropiată, întinzând apele numite pixel cu pixel doar peste apă.
+    # Abia ce rămâne departe de orice mare numită (ex. Oceanul de Sud) primește oceanul după longitudine.
+    for _ in range(NEAREST_SEA_PX):
+        empty = (ids == 0) & ~is_land
+        if not empty.any():
+            break
+        grown = ids.copy()
+        for shifted in (np.roll(ids, 1, axis=1), np.roll(ids, -1, axis=1),
+                        np.vstack([ids[:1], ids[:-1]]), np.vstack([ids[1:], ids[-1:]])):
+            take = empty & (grown == 0) & (shifted != 0)
+            grown[take] = shifted[take]
+        ids = grown
+    # Bălțile închise între țărmuri (nelegate prin apă de o mare numită) iau marea cea mai apropiată,
+    # de data asta și peste uscat. Oceanul de Sud (sub 45° S) rămâne pe longitudine.
+    pockets = (ids == 0) & ~is_land & (lat > -45)
+    spread = ids.copy()
+    while pockets.any() and (spread[pockets] == 0).any():
+        before = spread
+        for shifted in (np.roll(before, 1, axis=1), np.roll(before, -1, axis=1),
+                        np.vstack([before[:1], before[:-1]]), np.vstack([before[1:], before[-1:]])):
+            take = (spread == 0) & (shifted != 0)
+            spread = np.where(take, shifted, spread)
+    ids[pockets] = spread[pockets]
+    empty = ids == 0
+    fb = fallback_ocean(lat[empty], lon[empty])
+    ids[empty] = np.vectorize(index.get)(fb)
+    for wid, (la0, la1, lo0, lo1, around) in BOXES.items():
+        box = (lat >= la0) & (lat <= la1) & (lon >= lo0) & (lon <= lo1)
+        replace = np.isin(ids, [index[a] for a in around] + [index["W_ATL"], index["W_IND"], index["W_PAC"]])
+        ids[box & replace] = index[wid]
+
+    ids[is_land] = land[is_land]
 
     # Țările foarte mici (Vatican, Monaco, insule) primesc un punct, ca să poată fi atinse.
     counts = np.bincount(ids.ravel(), minlength=len(node_ids) + 1)

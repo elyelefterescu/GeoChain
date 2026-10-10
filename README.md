@@ -26,10 +26,10 @@ sunt scurtături care bifează mai multe deodată. Regulile se aplică în modul
 | Mutări pe apă la rând | Cel mult 2, cel mult 1, doar pe uscat sau oricâte |
 | Destinație ghicitoare | Destinația apare ca steag sau ca nume de capitală, nu ca nume de țară. Cu „Steag”, fiecare mutare se alege din 4 variante: cea mai bună, una utilă, un vecin care nu ajută și o țară de pe același continent care nu e vecină (mările apar cu numele). Când mutarea bună e pe apă, 2 variante sunt ape, una corectă; altfel toate sunt steaguri |
 | 3 vieți | La a treia greșeală ai pierdut |
-| Țară interzisă | O țară de pe traseul cel mai scurt devine interzisă (roșu pe glob) |
+| Țară interzisă | O țară de pe traseul cel mai scurt devine interzisă (roșu pe glob): de preferat una fără de care drumul e cu 1–3 mutări mai lung; pe trasee lungi, unde mereu există un ocol la fel de scurt, prima țară de pe traseu |
 | Punct obligatoriu | Trebuie să treci printr-o țară anume (galben pe glob) |
 | Mări detaliate | Mările mici devin locuri separate, cu porți noi |
-| Porți cu variante | Alegi canalul sau strâmtoarea dintre 3 variante, în loc să scrii |
+| Porți cu variante | Alegi canalul sau strâmtoarea dintre 3 variante, în loc să scrii (pornită implicit; Greu o oprește) |
 | Fără sugestii | Nu mai apar sugestii când scrii |
 | Ceață | Granițele apar doar la locurile prin care ai trecut |
 | Cronometru | 30 de secunde pe mutare; dacă expiră, e o greșeală |
