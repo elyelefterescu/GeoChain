@@ -47,15 +47,48 @@ func setup(world_graph, from: String, to: String, game_mode: Mode, on_continent 
 	optimal_path = _optimal_route()
 
 
-## Traseul minim prin punctele obligatorii, în ordinea dată, fără țările interzise.
+## Traseul minim prin punctele obligatorii, fără țările interzise.
+## Cu mai multe puncte obligatorii, alegem ordinea cea mai scurtă (le poți vizita în orice ordine).
 func _optimal_route() -> Array:
 	var route := [start]
-	for target in required + [goal]:
+	for target in _best_order() + [goal]:
 		var part: Array = graph.shortest_path(route[-1], target, max_water_run(), continent, forbidden)
 		if part.is_empty():
 			return []
 		route += part.slice(1)
 	return route
+
+
+func _best_order() -> Array:
+	if required.size() < 2:
+		return required
+	var dist := {}
+	for id in [start] + required:
+		dist[id] = graph.distances_from(id, max_water_run(), continent, forbidden)
+	var best := required
+	var best_len := INF
+	for order in _permutations(required):
+		var total := 0.0
+		var prev := start
+		for id in order + [goal]:
+			total += dist[prev].get(id, INF)
+			prev = id
+		if total < best_len:
+			best_len = total
+			best = order
+	return best
+
+
+static func _permutations(list: Array) -> Array:
+	if list.size() <= 1:
+		return [list]
+	var out := []
+	for i in list.size():
+		var rest := list.duplicate()
+		var first = rest.pop_at(i)
+		for tail in _permutations(rest):
+			out.append([first] + tail)
+	return out
 
 
 func max_water_run() -> int:

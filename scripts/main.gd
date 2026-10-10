@@ -17,6 +17,8 @@ const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_c
 const PORTRAIT_SIZE := Vector2i(540, 960)
 const LANDSCAPE_SIZE := Vector2i(1200, 720)
 const FLAG_SIZE := Vector2(120, 80)
+const MAX_CUSTOM_FORBIDDEN := 6
+const MAX_CUSTOM_REQUIRED := 4
 const LEGEND_ORDER := ["current", "visited", "start_goal", "required", "forbidden", "mistake"]
 
 
@@ -75,7 +77,11 @@ var scroll: ScrollContainer
 var mode_select: OptionButton
 var map_select: OptionButton
 var rules_panel: PanelContainer
-var pair_row: HBoxContainer
+var pair_row: VBoxContainer
+var custom_forbidden: Array = []  # Sandbox: țările interzise alese de jucător
+var custom_required: Array = []  # Sandbox: țările obligatorii alese de jucător
+var forbidden_chips: HFlowContainer
+var required_chips: HFlowContainer
 var start_button: Button
 var from_edit: LineEdit
 var to_edit: LineEdit
@@ -358,12 +364,24 @@ func _build_setup_card() -> PanelContainer:
 	mode_select.item_selected.connect(func(_i): _new_game())
 	map_select.item_selected.connect(func(_i): _new_game())
 
-	pair_row = HBoxContainer.new()
+	# Sandbox: îți creezi singur jocul (pornire, destinație, țări interzise și obligatorii).
+	pair_row = VBoxContainer.new()
 	box.add_child(pair_row)
-	from_edit = _line_edit(t("from"))
-	to_edit = _line_edit(t("to"))
-	pair_row.add_child(from_edit)
-	pair_row.add_child(to_edit)
+	var creator_title := _label("Muted")
+	creator_title.text = t("creator_title")
+	pair_row.add_child(creator_title)
+	from_edit = _place_field(pair_row, t("from"), _set_field_place.bind("from"))
+	to_edit = _place_field(pair_row, t("to"), _set_field_place.bind("to"))
+	for kind in ["forbidden", "required"]:
+		var edit := _place_field(pair_row, t("add_" + kind), _add_custom.bind(kind))
+		edit.text_submitted.connect(_on_custom_submitted.bind(kind))
+		var chips := HFlowContainer.new()
+		pair_row.add_child(chips)
+		if kind == "forbidden":
+			forbidden_chips = chips
+		else:
+			required_chips = chips
+	_refresh_custom()
 
 	var buttons := HBoxContainer.new()
 	box.add_child(buttons)
@@ -625,6 +643,98 @@ func _on_preset_pressed(preset: String) -> void:
 	_new_game()
 
 
+## Un câmp pentru o țară, cu sugestii sub el; la alegerea unei sugestii se cheamă on_pick(id).
+func _place_field(parent: Control, placeholder: String, on_pick: Callable) -> LineEdit:
+	var edit := _line_edit(placeholder)
+	parent.add_child(edit)
+	var hints := HFlowContainer.new()
+	parent.add_child(hints)
+	edit.text_changed.connect(_on_place_typed.bind(hints, on_pick))
+	return edit
+
+
+func _on_place_typed(text: String, hints: HFlowContainer, on_pick: Callable) -> void:
+	_clear_children(hints)
+	var exact := graph.find_place(text)
+	if exact != "" and WorldGraph.normalize(graph.name_of(exact)) == WorldGraph.normalize(text):
+		return
+	var list := graph.suggestions(text, 12).filter(func(x): return not graph.is_water(x) \
+		and graph.is_allowed(x, _selected_continent()))
+	for id in list.slice(0, 5):
+		hints.add_child(_button(graph.name_of(id), _on_place_hint.bind(id, hints, on_pick), "ChipButton"))
+
+
+func _on_place_hint(id: String, hints: HFlowContainer, on_pick: Callable) -> void:
+	_clear_children(hints)
+	on_pick.call(id)
+
+
+func _clear_children(node: Node) -> void:
+	for child in node.get_children():
+		child.queue_free()
+
+
+func _set_field_place(id: String, which: String) -> void:
+	(from_edit if which == "from" else to_edit).text = graph.name_of(id)
+
+
+func _on_custom_submitted(text: String, kind: String) -> void:
+	var id := graph.find_place(text)
+	if id == "":
+		_say(t("r_unknown"), "bad")
+	else:
+		_add_custom(id, kind)
+
+
+## Adaugă o țară la lista de interzise sau obligatorii din Sandbox (cu verificări).
+func _add_custom(id: String, kind: String) -> void:
+	var list: Array = custom_forbidden if kind == "forbidden" else custom_required
+	var other: Array = custom_required if kind == "forbidden" else custom_forbidden
+	var limit := MAX_CUSTOM_FORBIDDEN if kind == "forbidden" else MAX_CUSTOM_REQUIRED
+	var from := graph.find_place(from_edit.text)
+	var to := graph.find_place(to_edit.text)
+	if graph.is_water(id):
+		_say(t("custom_not_water"), "bad")
+	elif not graph.is_allowed(id, _selected_continent()):
+		_say(t("custom_off_map") % [graph.name_of(id), _continent_name(_selected_continent())], "bad")
+	elif id == from or id == to:
+		_say(t("custom_is_end") % graph.name_of(id), "bad")
+	elif id in list:
+		_say(t("custom_already") % graph.name_of(id), "bad")
+	elif id in other:
+		_say(t("custom_both") % graph.name_of(id), "bad")
+	elif list.size() >= limit:
+		_say(t("custom_limit") % limit, "bad")
+	else:
+		list.append(id)
+		_say("")
+	_refresh_custom()
+
+
+func _remove_custom(id: String) -> void:
+	custom_forbidden.erase(id)
+	custom_required.erase(id)
+	_refresh_custom()
+
+
+func _refresh_custom() -> void:
+	for kind in ["forbidden", "required"]:
+		var box: HFlowContainer = forbidden_chips if kind == "forbidden" else required_chips
+		var list: Array = custom_forbidden if kind == "forbidden" else custom_required
+		_clear_children(box)
+		if list.is_empty():
+			continue
+		var title := Label.new()
+		title.text = t("custom_" + kind)
+		title.add_theme_color_override("font_color", UiTheme.LEGEND[kind])
+		box.add_child(title)
+		for id in list:
+			box.add_child(_button("%s  ×" % graph.name_of(id), _remove_custom.bind(id), "ChipButton"))
+	for edit in pair_row.get_children():
+		if edit is LineEdit and edit != from_edit and edit != to_edit:
+			edit.text = ""
+
+
 func _card() -> PanelContainer:
 	var card := PanelContainer.new()
 	var box := VBoxContainer.new()
@@ -691,6 +801,9 @@ func _new_game() -> void:
 	var continent := _selected_continent()
 	if _selected_mode() == GameSession.Mode.SANDBOX:
 		var pair: Array = graph.random_pair(rng, 3, -1, continent)
+		custom_forbidden.clear()
+		custom_required.clear()
+		_refresh_custom()
 		_start_game(pair[0], pair[1])
 		return
 	var ferry_mode := _selected_mode() == GameSession.Mode.FERRY
@@ -762,7 +875,14 @@ func _on_start_pressed() -> void:
 	if from == "" or to == "":
 		_say(t("unknown_pair"), "bad")
 		return
-	_start_game(from, to)
+	if from == to:
+		_say(t("custom_same"), "bad")
+		return
+	var forbidden := custom_forbidden.filter(func(x): return x != from and x != to)
+	var required := custom_required.filter(func(x): return x != from and x != to)
+	_start_game(from, to, forbidden, required)
+	if not session.is_finished() and session.optimal_path.is_empty() and not (forbidden + required).is_empty():
+		_say(t("custom_no_route"), "bad")
 
 
 ## În modul capitale, țările se găsesc după capitală; mările tot după nume.
@@ -901,9 +1021,15 @@ func _next_ferry_question() -> void:
 		ferry_flag.texture = _flag_texture(ferry_question.flag)
 	for child in ferry_options.get_children():
 		child.queue_free()
+	# Variantele lungi stau pe câte un rând, cele scurte câte două pe rând.
+	var longest := 0
+	for option in ferry_question.options:
+		longest = maxi(longest, option.length())
+	ferry_options.columns = 1 if longest > 22 else 2
 	for i in ferry_question.options.size():
 		var button := _button(ferry_question.options[i], _on_ferry_answer.bind(i))
-		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.custom_minimum_size = Vector2(0, 52)
+		button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		ferry_options.add_child(button)
 

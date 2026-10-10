@@ -9,7 +9,9 @@ Cu cât faci mai puține mutări, cu atât scorul e mai mare.
 - **O mutare**: țară → țară vecină, țară → mare/ocean la care are ieșire, mare → mare legată de ea.
 - **Porți**: canalele și strâmtorile (Suez, Panama, Bosfor, Gibraltar…) trebuie numite ca să treci între două ape. Nu costă o mutare.
 - **Normal**: cel mult 2 mutări pe apă la rând. Greșelile (loc care nu e legat, poartă greșită, prea multă apă) scad punctajul.
-- **Sandbox**: fără limite, vezi vecinii ca butoane, poți da înapoi și poți vedea traseul minim.
+- **Strâmtori între țări** (Normal și Sandbox): unele țări fără graniță pe uscat sunt legate de o strâmtoare (Bering între SUA și Rusia, Pas-de-Calais între Marea Britanie și Franța, Bab el-Mandeb, Ormuz, Torres…). Treci direct dintr-o țară în cealaltă dacă numești strâmtoarea. Lista e în `data/straits.json`.
+- **Sandbox**: îți creezi singur jocul: alegi țara de pornire, destinația, până la 6 țări interzise și până la 4 obligatorii (le vizitezi în orice ordine). Fără limite, vezi vecinii ca butoane, poți da înapoi și poți vedea traseul minim.
+- **Bac**: doar pe uscat; între unele țări (`data/ferries.json`) treci cu bacul, dacă răspunzi corect la 2 din 3 întrebări de geografie cu variante. Dacă nu reușești, mai încerci. Întrebările nu se repetă până nu se termină, iar la repetare variantele se amestecă.
 - **Mări detaliate** (opțional): Adriatica, Ionică, Tireniană, Egee, Marmara, Azov, Golful Aden, Golful Oman, Canalul Mânecii și Golful Botnic devin locuri separate, cu porți noi (Otranto, Dardanele, Bosfor, Kerci, Pas-de-Calais). Pe harta simplă, numele lor duc la marea mare din care fac parte.
 - **Limba**: română sau engleză (buton sus). Numele țărilor, mărilor și porților se pot scrie în oricare dintre limbi.
 - **Harta**: toată lumea sau un singur continent (Europa, Africa, Asia, Americile unite). Oceania apare doar pe harta lumii.

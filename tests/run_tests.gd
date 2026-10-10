@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -528,3 +528,16 @@ func test_straits() -> void:
 	quiz.save_enabled = false
 	quiz.setup(g, [], RandomNumberGenerator.new())
 	check(not "RUS" in quiz._land_neighbors("USA"), "în întrebări, Rusia nu e vecină pe uscat cu SUA")
+
+
+func test_custom_sandbox() -> void:
+	var s := GameSession.new()
+	s.setup(graph, "FRA", "POL", GameSession.Mode.SANDBOX, "", ["CZE"], ["DEU", "ESP"])
+	check(s.optimal_moves() == 4, "obligatoriile se iau în ordinea cea mai scurtă: " + str(s.optimal_path))
+	check(not "CZE" in s.optimal_path, "traseul optim ocolește țara interzisă")
+	check(s.try_move("DEU").ok, "Sandbox: Franța → Germania")
+	check(not s.try_move("CZE").ok, "Sandbox: țara interzisă e refuzată")
+	check(s.try_move("POL").ok and not s.is_finished(), "nu termini fără Spania")
+	var none := GameSession.new()
+	none.setup(graph, "FRA", "ESP", GameSession.Mode.SANDBOX, "", ["AND", "W_BIS", "W_MED", "W_ATL"])
+	check(none.optimal_path.is_empty() or none.optimal_moves() == 1, "Franța–Spania au graniță directă")
