@@ -142,8 +142,9 @@ func suggestions(text: String, limit := 6) -> Array:
 
 ## Traseul cel mai scurt (BFS), ca listă de id-uri de la start la goal.
 ## max_water_run = câte mutări consecutive pe apă sunt permise (< 0 = oricâte).
-## continent = "" înseamnă harta lumii. Returnează [] dacă nu există traseu.
-func shortest_path(start: String, goal: String, max_water_run := -1, continent := "") -> Array:
+## continent = "" înseamnă harta lumii; prin locurile din blocked nu se poate trece.
+## Returnează [] dacă nu există traseu.
+func shortest_path(start: String, goal: String, max_water_run := -1, continent := "", blocked := []) -> Array:
 	if not is_allowed(start, continent) or not is_allowed(goal, continent):
 		return []
 	var start_run := 1 if is_water(start) else 0
@@ -162,7 +163,7 @@ func shortest_path(start: String, goal: String, max_water_run := -1, continent :
 				cur = parent[cur]
 			return path
 		for nxt in adj[state[0]]:
-			if not is_allowed(nxt, continent):
+			if not is_allowed(nxt, continent) or nxt in blocked:
 				continue
 			var run: int = state[1] + 1 if is_water(nxt) else 0
 			if max_water_run >= 0 and run > max_water_run:

@@ -15,6 +15,12 @@ Cu cât faci mai puține mutări, cu atât scorul e mai mare.
 - **Harta**: toată lumea sau un singur continent (Europa, Africa, Asia, Americile unite). Oceania apare doar pe harta lumii.
 - **Scor**: 3 stele dacă egalezi traseul minim, 2 stele cu cel mult 2 mutări în plus, altfel 1 stea. Puncte: 1000 − 100 × mutări în plus − 50 × greșeli.
 
+## Globul
+
+Globul 3D se rotește cu mouse-ul sau degetul și face zoom cu rotița sau cu două degete. O atingere pe o țară sau o mare înseamnă o mutare acolo.
+Pe glob nu apar nume, doar la țările prin care ai trecut. Culori: albastru = unde ești, verde = unde ai fost,
+mov = pornirea și destinația, portocaliu = greșeli, roșu = unde nu ai voie, galben = puncte obligatorii.
+
 ## Cum rulezi
 
 1. Instalează [Godot 4.3](https://godotengine.org/download) (versiunea standard, nu .NET).
@@ -39,6 +45,8 @@ godot --headless --path . --script res://tests/run_tests.gd
 | `scripts/game_session.gd` | O partidă: mutări, greșeli, stele, puncte |
 | `scripts/main.gd` | Ecranul prototipului (fără glob încă) |
 | `scripts/i18n.gd` | Textele interfeței în română și engleză |
+| `scripts/globe.gd`, `shaders/globe.gdshader` | Globul 3D: rotire, zoom, atingere, culori, granițe |
+| `data/globe/` | Texturile globului (harta colorată și harta ascunsă de identificare), generate de `tools/build_globe.py` |
 | `tests/run_tests.gd` | Testele |
 
 ## Date
@@ -50,9 +58,16 @@ numele în română sunt adăugate de mână în `tools/build_world.py`.
 Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sunt în Marea Mediterană,
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
 
+Contururile globului vin din [Natural Earth](https://www.naturalearthdata.com) (domeniu public), scara 1:50m.
+
 Ca să regenerezi datele:
 
 ```
 curl -sSLo countries.json https://raw.githubusercontent.com/mledoze/countries/master/countries.json
 python3 tools/build_world.py countries.json
+# globul (necesită numpy și pillow):
+for f in ne_50m_admin_0_countries ne_50m_geography_marine_polys; do
+  curl -sSLo $f.geojson https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/$f.geojson
+done
+python3 tools/build_globe.py .
 ```

@@ -3,6 +3,8 @@ extends SceneTree
 
 const WorldGraph := preload("res://scripts/world_graph.gd")
 const GameSession := preload("res://scripts/game_session.gd")
+const Globe := preload("res://scripts/globe.gd")
+const Main := preload("res://scripts/main.gd")
 
 var _failures := 0
 var _checks := 0
@@ -16,6 +18,7 @@ func _init() -> void:
 		"test_names", "test_graph_symmetry", "test_shortest_paths",
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
+		"test_forbidden_required", "test_globe",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -192,3 +195,48 @@ func test_detailed_seas() -> void:
 	check(s.try_move("W_ADR").ok, "Croația → Marea Adriatică")
 	check(not s.try_move("W_ION", "Gibraltar").ok, "poartă greșită spre Marea Ionică")
 	check(s.try_move("W_ION", "otranto").ok, "Otranto acceptat")
+
+
+func test_forbidden_required() -> void:
+	var s := GameSession.new()
+	s.setup(graph, "KEN", "ROU", GameSession.Mode.NORMAL, "", ["TUR"])
+	check(not "TUR" in s.optimal_path, "traseul minim ocolește țara interzisă")
+	# Kenya → Oceanul Indian → Iran → Marea Caspică → (Canalul Volga-Don) → Marea Neagră → România
+	check("W_CAS" in s.optimal_path, "fără Turcia, drumul trece prin Marea Caspică (%s)" % [s.optimal_path])
+	s.try_move("W_IND")
+	s.try_move("IRN")
+	var r: Dictionary = s.try_move("TUR")
+	check(not r.ok and r.reason == "forbidden", "intrarea în țara interzisă e refuzată")
+	check(s.mistake_places == ["TUR"], "greșeala e ținută minte")
+
+	var q := GameSession.new()
+	q.setup(graph, "ROU", "HUN", GameSession.Mode.NORMAL, "", [], ["SRB"])
+	check(q.optimal_moves() == 2, "România → Serbia → Ungaria: 2 mutări")
+	q.try_move("HUN")
+	check(q.current() == "HUN" and not q.is_finished(), "nu ai terminat fără punctul obligatoriu")
+	check(q.missing_required() == ["SRB"], "lipsește Serbia")
+	q.try_move("SRB")
+	q.try_move("HUN")
+	check(q.is_finished(), "ai terminat după ce ai trecut prin Serbia")
+
+
+func test_globe() -> void:
+	var file := FileAccess.open("res://data/world.json", FileAccess.READ)
+	var world: Dictionary = JSON.parse_string(file.get_as_text())
+	var globe := Globe.new()
+	globe.setup(Main.load_globe_assets(world), graph)
+	check(globe.place_at(44.43, 26.1) == "ROU", "București e în România")
+	check(globe.place_at(-1.29, 36.8) == "KEN", "Nairobi e în Kenya")
+	check(globe.place_at(43.0, 34.0) == "W_BLK", "Marea Neagră")
+	check(globe.place_at(0.0, -30.0) == "W_ATL", "Oceanul Atlantic")
+	check(globe.place_at(0.0, 170.0) == "W_PAC" and globe.place_at(0.0, -150.0) == "W_PAC", "Pacificul de o parte și de alta a meridianului 180")
+	check(globe.place_at(41.903, 12.453) == "VAT", "Vaticanul se poate atinge")
+	check(globe.place_at(40.75, 28.3) == "W_MED", "pe harta simplă, Marmara e Mediterana")
+	check(globe.place_at(75.0, -40.0) == "", "Groenlanda nu e în joc (neutru)")
+	for id in graph.nodes:
+		check(globe.centers.has(id), "centru pe glob pentru " + id)
+	var detailed := WorldGraph.new()
+	detailed.load_file("res://data/world.json", true)
+	globe.graph = detailed
+	check(globe.place_at(40.75, 28.3) == "W_MAR", "pe harta detaliată, Marea Marmara")
+	globe.free()

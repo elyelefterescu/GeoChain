@@ -28,6 +28,8 @@ const STRINGS := {
 		"r_too_much_water": "În modul Normal poți face cel mult 2 mutări pe apă la rând. Ajungi întâi pe uscat.",
 		"r_wrong_gate": "Nu e poarta corectă.",
 		"r_finished": "Ai ajuns deja la destinație. Începe un joc nou.",
+		"r_forbidden": "Nu ai voie să intri aici.",
+		"need_required": "Ai ajuns, dar trebuie să treci întâi prin: %s.",
 	},
 	"en": {
 		"mode_normal": "Normal", "mode_sandbox": "Sandbox",
@@ -55,6 +57,8 @@ const STRINGS := {
 		"r_too_much_water": "In Normal mode you can make at most 2 water moves in a row. Reach land first.",
 		"r_wrong_gate": "That's not the right gate.",
 		"r_finished": "You've already reached the destination. Start a new game.",
+		"r_forbidden": "You are not allowed to enter here.",
+		"need_required": "You're here, but first you must pass through: %s.",
 	},
 }
 

@@ -4,14 +4,18 @@ extends Control
 const WorldGraph := preload("res://scripts/world_graph.gd")
 const GameSession := preload("res://scripts/game_session.gd")
 const I18n := preload("res://scripts/i18n.gd")
+const Globe := preload("res://scripts/globe.gd")
 
 var i18n := I18n.new()
 var world_data: Dictionary
 var graph := WorldGraph.new()
 var session := GameSession.new()
 var rng := RandomNumberGenerator.new()
-var pending_target := ""  # locul în care vrei să treci după ce numești poarta
+var pending_target := ""
+var _focused := ""  # locul spre care e rotit globul  # locul în care vrei să treci după ce numești poarta
 
+var globe_assets := {}
+var globe
 var ui_root: MarginContainer
 var mode_select: OptionButton
 var map_select: OptionButton
@@ -38,11 +42,22 @@ func _ready() -> void:
 	rng.randomize()
 	var file := FileAccess.open("res://data/world.json", FileAccess.READ)
 	world_data = JSON.parse_string(file.get_as_text())
+	globe_assets = load_globe_assets(world_data)
 	i18n.lang = I18n.default_lang()
 	graph.load_data(world_data)
 	graph.lang = i18n.lang
 	_build_ui()
 	_on_random_pressed()
+
+
+## Texturile globului se încarcă o singură dată (PNG fără import, ca să rămână exacte).
+static func load_globe_assets(world: Dictionary) -> Dictionary:
+	var ids := Image.new()
+	ids.load_png_from_buffer(FileAccess.get_file_as_bytes("res://data/globe/ids.png"))
+	var color := Image.new()
+	color.load_png_from_buffer(FileAccess.get_file_as_bytes("res://data/globe/color.png"))
+	var index = JSON.parse_string(FileAccess.get_file_as_string("res://data/globe/index.json"))
+	return {"id_image": ids, "color_texture": ImageTexture.create_from_image(color), "index": index, "world": world}
 
 
 func t(key: String) -> String:
@@ -99,6 +114,24 @@ func _build_ui() -> void:
 	title_row.add_child(title)
 	title_row.add_child(_button(t("language"), _on_language_pressed))
 	root.add_child(title_row)
+
+	globe = Globe.new()
+	globe.custom_minimum_size = Vector2(0, 320)
+	globe.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	globe.setup(globe_assets, graph)
+	globe.place_tapped.connect(_try_move)
+	root.add_child(globe)
+
+	# Sub glob, restul ecranului se poate derula.
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	root.add_child(scroll)
+	var body := VBoxContainer.new()
+	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation", 10)
+	scroll.add_child(body)
+	root = body
 
 	var settings := HBoxContainer.new()
 	root.add_child(settings)
@@ -225,6 +258,7 @@ func _start_game(from: String, to: String) -> void:
 	session.setup(graph, from, to, _selected_mode(), continent)
 	from_edit.text = graph.name_of(from)
 	to_edit.text = graph.name_of(to)
+	_focused = ""
 	if session.optimal_path.is_empty():
 		_say(t("no_route"))
 	else:
@@ -300,6 +334,8 @@ func _apply_move(target: String, gate_answer: String) -> void:
 			_say(t("gate_correct") % graph.gate_name(result.gate))
 		else:
 			_say("")
+		if session.current() == session.goal and not session.is_finished():
+			_say(t("need_required") % ", ".join(session.missing_required().map(graph.name_of)))
 	else:
 		_say(t("r_" + result.reason))
 		if result.reason != "wrong_gate":
@@ -359,8 +395,14 @@ func _refresh() -> void:
 		for id in graph.neighbors(session.current(), session.continent):
 			var label := graph.name_of(id)
 			if graph.is_water(id):
-				label = "🌊 " + label
+				label = "≈ " + label
 			neighbors_box.add_child(_button(label, _try_move.bind(id)))
+
+	if globe:
+		globe.show_session(session)
+		if _focused != session.current():
+			globe.focus(session.current(), _focused != "")
+			_focused = session.current()
 
 	if session.is_finished():
 		var stars := "★".repeat(session.stars()) + "☆".repeat(3 - session.stars())

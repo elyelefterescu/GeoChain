@@ -16,9 +16,15 @@ var path: Array = []
 var water_run := 0
 var mistakes := 0
 var optimal_path: Array = []
+## Țări în care nu ai voie să intri și țări prin care ești obligat să treci.
+var forbidden: Array = []
+var required: Array = []
+## Locurile în care ai încercat să intri greșit.
+var mistake_places: Array = []
 
 
-func setup(world_graph, from: String, to: String, game_mode: Mode, on_continent := "") -> void:
+func setup(world_graph, from: String, to: String, game_mode: Mode, on_continent := "",
+		forbidden_ids := [], required_ids := []) -> void:
 	graph = world_graph
 	continent = on_continent
 	start = from
@@ -27,7 +33,21 @@ func setup(world_graph, from: String, to: String, game_mode: Mode, on_continent 
 	path = [from]
 	water_run = 0
 	mistakes = 0
-	optimal_path = graph.shortest_path(from, to, max_water_run(), continent)
+	forbidden = forbidden_ids.duplicate()
+	required = required_ids.duplicate()
+	mistake_places = []
+	optimal_path = _optimal_route()
+
+
+## Traseul minim prin punctele obligatorii, în ordinea dată, fără țările interzise.
+func _optimal_route() -> Array:
+	var route := [start]
+	for target in required + [goal]:
+		var part: Array = graph.shortest_path(route[-1], target, max_water_run(), continent, forbidden)
+		if part.is_empty():
+			return []
+		route += part.slice(1)
+	return route
 
 
 func max_water_run() -> int:
@@ -47,7 +67,12 @@ func optimal_moves() -> int:
 
 
 func is_finished() -> bool:
-	return current() == goal
+	return current() == goal and missing_required().is_empty()
+
+
+## Punctele obligatorii prin care nu ai trecut încă.
+func missing_required() -> Array:
+	return required.filter(func(id): return not id in path)
 
 
 ## Poarta (canal/strâmtoare) pe care trebuie să o numești ca să ajungi în target.
@@ -59,7 +84,7 @@ func required_gate(target: String) -> String:
 
 
 ## Încearcă o mutare. Întoarce { ok, reason, gate }.
-## reason: "", "finished", "unknown", "same", "off_map", "not_connected", "too_much_water", "wrong_gate".
+## reason: "", "finished", "unknown", "same", "off_map", "forbidden", "not_connected", "too_much_water", "wrong_gate".
 ## În Normal, orice mutare respinsă (în afară de „unknown”/„same”) e o greșeală.
 func try_move(target: String, gate_answer := "") -> Dictionary:
 	var gate: String = graph.gate_between(current(), target)
@@ -72,6 +97,8 @@ func try_move(target: String, gate_answer := "") -> Dictionary:
 		result.reason = "same"
 	elif not graph.is_allowed(target, continent):
 		result.reason = "off_map"
+	elif target in forbidden:
+		result.reason = "forbidden"
 	elif not graph.are_linked(current(), target):
 		result.reason = "not_connected"
 	elif graph.is_water(target) and max_water_run() >= 0 and water_run + 1 > max_water_run():
@@ -83,8 +110,10 @@ func try_move(target: String, gate_answer := "") -> Dictionary:
 		water_run = water_run + 1 if graph.is_water(target) else 0
 		result.ok = true
 		return result
-	if result.reason in ["off_map", "not_connected", "too_much_water", "wrong_gate"]:
+	if result.reason in ["off_map", "forbidden", "not_connected", "too_much_water", "wrong_gate"]:
 		mistakes += 1
+		if not target in mistake_places:
+			mistake_places.append(target)
 	return result
 
 
