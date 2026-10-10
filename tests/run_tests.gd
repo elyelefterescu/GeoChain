@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -598,3 +598,15 @@ func test_regions() -> void:
 		for id in g.nodes:
 			ok = ok and index["centers"].has(id)
 		check(ok and index.has("bounds"), "toate locurile din %s sunt pe glob" % key)
+
+
+func test_flag_svgs() -> void:
+	# ThorVG (motorul SVG din Godot) nu desenează <marker>; un steag care îl folosește apare greșit.
+	var flags: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/flags.json"))["flags"]
+	for id in flags:
+		check(not "<marker" in flags[id] and not "marker-" in flags[id], "steagul %s nu folosește <marker>" % id)
+	var image := Image.new()
+	check(image.load_svg_from_string(flags["USA"], 0.5) == OK, "steagul SUA se desenează")
+	# O stea albă din colțul albastru (prima stea, rândul 1).
+	check(image.get_pixel(int(30 * 0.5), int(24 * 0.5)).r > 0.9, "steagul SUA are stele albe")
+	check(image.get_pixel(int(60 * 0.5), int(24 * 0.5)).b > image.get_pixel(int(60 * 0.5), int(24 * 0.5)).r, "colțul steagului SUA e albastru")
