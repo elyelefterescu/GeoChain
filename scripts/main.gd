@@ -16,6 +16,8 @@ var ui_root: MarginContainer
 var mode_select: OptionButton
 var map_select: OptionButton
 var detailed_check: CheckBox
+var pair_row: HBoxContainer
+var start_button: Button
 var from_edit: LineEdit
 var to_edit: LineEdit
 var info_label: Label
@@ -40,7 +42,7 @@ func _ready() -> void:
 	graph.load_data(world_data)
 	graph.lang = i18n.lang
 	_build_ui()
-	_start_game("KEN", "ROU")
+	_on_random_pressed()
 
 
 func t(key: String) -> String:
@@ -117,7 +119,10 @@ func _build_ui() -> void:
 	detailed_check.toggled.connect(_on_detailed_toggled)
 	root.add_child(detailed_check)
 
-	var pair_row := HBoxContainer.new()
+	# În Normal traseul e dat la întâmplare; doar în Sandbox îți alegi perechea.
+	mode_select.item_selected.connect(func(_i): _on_random_pressed())
+	map_select.item_selected.connect(func(_i): _on_random_pressed())
+	pair_row = HBoxContainer.new()
 	root.add_child(pair_row)
 	from_edit = _line_edit(t("from"))
 	to_edit = _line_edit(t("to"))
@@ -126,8 +131,9 @@ func _build_ui() -> void:
 
 	var buttons := HBoxContainer.new()
 	root.add_child(buttons)
-	buttons.add_child(_button(t("start"), _on_start_pressed))
-	buttons.add_child(_button(t("random"), _on_random_pressed))
+	start_button = _button(t("start"), _on_start_pressed)
+	buttons.add_child(start_button)
+	buttons.add_child(_button(t("new_game"), _on_random_pressed))
 
 	info_label = Label.new()
 	info_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -344,6 +350,8 @@ func _refresh() -> void:
 	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_text(session.path)]
 
 	sandbox_row.visible = sandbox
+	pair_row.visible = sandbox
+	start_button.visible = sandbox
 	neighbors_box.visible = sandbox
 	for child in neighbors_box.get_children():
 		child.queue_free()
