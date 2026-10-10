@@ -38,7 +38,7 @@ sunt scurtături care bifează mai multe deodată. Regulile se aplică în modul
 
 ## Globul
 
-Globul 3D se rotește cu mouse-ul sau degetul și face zoom cu rotița sau cu două degete. O atingere pe o țară sau o mare înseamnă o mutare acolo.
+Globul 3D se rotește cu mouse-ul sau degetul și face zoom cu rotița sau cu două degete. Globul doar ajută: un clic pe el nu face o mutare. Muți scriind numele locului (sau capitala, în modul capitale) ori alegând steagul, în varianta cu steaguri.
 Pe glob nu apar nume, doar la țările prin care ai trecut. Culori: albastru = unde ești, verde = unde ai fost,
 mov = pornirea și destinația, portocaliu = greșeli, roșu = unde nu ai voie, galben = puncte obligatorii.
 
@@ -66,7 +66,7 @@ godot --headless --path . --script res://tests/run_tests.gd
 | `scripts/game_session.gd` | O partidă: mutări, greșeli, stele, puncte |
 | `scripts/main.gd` | Ecranul prototipului (fără glob încă) |
 | `scripts/i18n.gd` | Textele interfeței în română și engleză |
-| `scripts/globe.gd`, `shaders/globe.gdshader` | Globul 3D: rotire, zoom, atingere, culori, granițe |
+| `scripts/globe.gd`, `shaders/globe.gdshader` | Globul 3D: rotire, zoom, culori, granițe |
 | `data/globe/` | Texturile globului (harta colorată și harta ascunsă de identificare), generate de `tools/build_globe.py` |
 | `scripts/rules.gd`, `scripts/challenge.gd` | Regulile de dificultate și alegerea la întâmplare a partidei |
 | `data/flags.json` | Steagurile (SVG), generate de `tools/build_flags.py` |

@@ -215,7 +215,7 @@ func _build_ui() -> void:
 	if globe == null:
 		globe = Globe.new()
 		globe.setup(globe_assets, graph)
-		globe.place_tapped.connect(_try_move)
+		# Globul doar ajută (rotire, zoom): mutările se fac scriind numele, capitala sau alegând steagul.
 	var globe_area := Control.new()
 	globe_area.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	globe_holder.add_child(globe_area)

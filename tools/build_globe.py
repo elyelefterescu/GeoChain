@@ -183,6 +183,9 @@ def main():
         ids[box & replace] = index[wid]
 
     ids[is_land] = land[is_land]
+    # Sahara Occidentală (teritoriu disputat, în afara jocului) rămâne neutră în întregime:
+    # Natural Earth desenează o parte din ea ca Maroc. Granița recunoscută a Marocului e la 27°40' N.
+    ids[(ids == index["MAR"]) & (lat < 27.667)] = 0
 
     # Țările foarte mici (Vatican, Monaco, insule) primesc un punct, ca să poată fi atinse.
     counts = np.bincount(ids.ravel(), minlength=len(node_ids) + 1)

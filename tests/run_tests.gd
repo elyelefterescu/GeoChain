@@ -238,6 +238,9 @@ func test_globe() -> void:
 	check(globe.place_at(41.903, 12.453) == "VAT", "Vaticanul se poate atinge")
 	check(globe.place_at(40.75, 28.3) == "W_MED", "pe harta simplă, Marmara e Mediterana")
 	check(globe.place_at(75.0, -40.0) == "", "Groenlanda nu e în joc (neutru)")
+	check(globe.place_at(24.0, -14.5) == "" and globe.place_at(26.5, -13.5) == "", "Sahara Occidentală e neutră pe glob")
+	check(globe.place_at(31.6, -8.0) == "MAR", "Marrakech e în Maroc")
+	check(not graph.are_linked("MAR", "MRT"), "Marocul și Mauritania nu sunt vecine")
 	# Golfurile de pe țărm iau marea de lângă ele, nu oceanul după longitudine.
 	check(globe.place_at(38.2, 22.5) == "W_MED", "Golful Corint e în Mediterana (harta simplă)")
 	check(globe.place_at(56.5, 11.5) == "W_NRT", "Kattegatul ține de Marea Nordului")
