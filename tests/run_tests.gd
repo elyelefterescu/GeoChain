@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -541,3 +541,31 @@ func test_custom_sandbox() -> void:
 	var none := GameSession.new()
 	none.setup(graph, "FRA", "ESP", GameSession.Mode.SANDBOX, "", ["AND", "W_BIS", "W_MED", "W_ATL"])
 	check(none.optimal_path.is_empty() or none.optimal_moves() == 1, "Franța–Spania au graniță directă")
+
+
+func test_usa() -> void:
+	var usa := WorldGraph.new()
+	check(usa.load_file("res://data/usa.json"), "usa.json se încarcă")
+	check(usa.nodes.size() == 48, "48 de state")
+	check(not usa.nodes.has("US-AK") and not usa.nodes.has("US-HI"), "fără Alaska și Hawaii")
+	check(usa.are_linked("US-TX", "US-OK") and not usa.are_linked("US-AZ", "US-CO"), "Texas–Oklahoma da, colțul Four Corners nu")
+	check(usa.neighbors("US-MO").size() == 8 and usa.neighbors("US-ME").size() == 1, "Missouri are 8 vecini, Maine 1")
+	check(not usa.are_linked("US-MI", "US-MN"), "Michigan–Minnesota doar pe lac, nu sunt vecine")
+	check(usa.find_place("carolina de nord") == "US-NC" and usa.find_place("north carolina") == "US-NC", "nume RO și EN")
+	check(usa.find_by_capital("Sacramento") == "US-CA", "capitala Californiei")
+	var p: Array = usa.shortest_path("US-ME", "US-CA")
+	check(p.size() - 1 >= 8, "Maine → California pe uscat: " + str(p.size() - 1))
+	var index = JSON.parse_string(FileAccess.get_file_as_string("res://data/globe_usa/index.json"))
+	for id in usa.nodes:
+		check(index["ids"].has(id) and index["centers"].has(id), "statul %s e pe glob" % id)
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	var r := Rules.new()
+	r.values.forbidden = true
+	r.values.required = true
+	for i in 10:
+		var c: Dictionary = Challenge.make(usa, rng, r)
+		check(not c.is_empty() and c.forbidden.size() == 1 and c.required.size() == 1, "partidă SUA cu interzis și obligatoriu")
+	var s := GameSession.new()
+	s.setup(usa, "US-WA", "US-ID", GameSession.Mode.USA)
+	check(s.max_water_run() == -1 and s.try_move("US-ID").ok and s.is_finished(), "Washington → Idaho")

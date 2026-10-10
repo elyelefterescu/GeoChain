@@ -18,6 +18,7 @@ const COLORS := {
 const MAX_LABEL_PIXEL := 0.0012
 const FERRY_COLOR := Color(1.0, 0.82, 0.3)
 const STRAIT_COLOR := Color(0.55, 0.9, 1.0)
+const WORLD_BOUNDS := [-180.0, -90.0, 180.0, 90.0]
 const MIN_DISTANCE := 1.35
 const MAX_DISTANCE := 4.0
 const UiTheme := preload("res://scripts/ui_theme.gd")
@@ -31,6 +32,8 @@ var state_image: Image
 var state_texture: ImageTexture
 
 var id_image: Image
+var bounds := WORLD_BOUNDS          # lon_min, lat_min, lon_max, lat_max ale hărții de identificare active
+var _world := {}                    # harta lumii, ca să revenim la ea după harta SUA
 var place_ids: Array = []        # index - 1 -> id
 var place_index := {}            # id -> index
 var centers := {}                # id -> [lat, lon]
@@ -52,11 +55,8 @@ var _boxes := {}  # țară -> {lat, lon, width, height}, mărimea ei în jurul p
 ## assets: {id_image: Image, id_texture: Texture2D, color_texture: Texture2D, index: Dictionary, world: Dictionary}
 func setup(assets: Dictionary, world_graph) -> void:
 	graph = world_graph
-	id_image = assets.id_image
-	place_ids = assets.index["ids"]
-	centers = assets.index["centers"]
-	for i in place_ids.size():
-		place_index[place_ids[i]] = i + 1
+	_use_index(assets.id_image, assets.index, WORLD_BOUNDS)
+	_world = {"id_image": assets.id_image, "index": assets.index}
 	for node in assets.world["nodes"]:
 		if node.has("parent"):
 			parents[node["id"]] = node["parent"]
@@ -123,6 +123,47 @@ func setup(assets: Dictionary, world_graph) -> void:
 	_apply_view()
 
 
+func _use_index(image: Image, index: Dictionary, area: Array) -> void:
+	id_image = image
+	bounds = area
+	place_ids = index["ids"]
+	centers = index["centers"]
+	place_index.clear()
+	for i in place_ids.size():
+		place_index[place_ids[i]] = i + 1
+	_boxes.clear()
+	_labels_key = ""
+
+
+## Harta unei regiuni (SUA) peste globul lumii: în regiune locurile vin din harta ei, mai detaliată;
+## în rest se vede globul lumii, cu uscatul mai întunecat (nu e în joc). region = {} revine la lume.
+func set_region(region: Dictionary) -> void:
+	var on := not region.is_empty()
+	globe_material.set_shader_parameter("use_region", on)
+	if on:
+		_use_index(region.id_image, region.index, region.index["bounds"])
+		globe_material.set_shader_parameter("region_color_tex", region.color_texture)
+		globe_material.set_shader_parameter("region_id_tex", region.id_texture)
+		var b: Array = region.index["bounds"]
+		globe_material.set_shader_parameter("region_bounds", Vector4(b[0], b[1], b[2], b[3]))
+		globe_material.set_shader_parameter("region_size", Vector2(id_image.get_width(), id_image.get_height()))
+	else:
+		_use_index(_world.id_image, _world.index, WORLD_BOUNDS)
+	for child in labels.get_children():
+		child.queue_free()
+	# SUA se vede mai de aproape; lumea, de mai departe.
+	distance = 1.85 if on else 2.6
+	_apply_view()
+
+
+func _px(lat: float, lon: float) -> Vector2i:
+	var w := id_image.get_width()
+	var h := id_image.get_height()
+	var x := int(floor((lon - bounds[0]) / (bounds[2] - bounds[0]) * w))
+	var y := int(floor((bounds[3] - lat) / (bounds[3] - bounds[1]) * h))
+	return Vector2i(posmod(x, w) if bounds == WORLD_BOUNDS else clampi(x, 0, w - 1), clampi(y, 0, h - 1))
+
+
 ## Legături peste mare între țări (bacuri sau strâmtori): linii întrerupte pe glob, cu un punct la capete.
 func set_links(list: Array, color: Color) -> void:
 	if ferry_lines == null:
@@ -184,13 +225,9 @@ static func lat_lon_to_point(lat: float, lon: float) -> Vector3:
 
 ## Ce loc e la o latitudine și longitudine. "" = teritoriu neutru.
 func place_at(lat: float, lon: float) -> String:
-	var w := id_image.get_width()
-	var h := id_image.get_height()
-	var x := posmod(int(floor((lon + 180.0) / 360.0 * w)), w)
-	var y := clampi(int(floor((90.0 - lat) / 180.0 * h)), 0, h - 1)
-	var c := id_image.get_pixel(x, y)
-	var index := int(round(c.r * 255.0)) + int(round(c.g * 255.0)) * 256
-	if index == 0:
+	var at := _px(lat, lon)
+	var index := _index_at(at.x, at.y)
+	if index == 0 or index > place_ids.size():
 		return ""
 	var id: String = place_ids[index - 1]
 	if graph and not graph.nodes.has(id):
@@ -289,8 +326,9 @@ func _country_box(id: String) -> Dictionary:
 	var h := id_image.get_height()
 	var lat: float = centers[id][0]
 	var lon: float = centers[id][1]
-	var x := posmod(int(floor((lon + 180.0) / 360.0 * w)), w)
-	var y := clampi(int(floor((90.0 - lat) / 180.0 * h)), 0, h - 1)
+	var at := _px(lat, lon)
+	var x := at.x
+	var y := at.y
 	var wanted: int = place_index.get(id, -1)
 	var left := 0
 	var right := 0
@@ -307,11 +345,11 @@ func _country_box(id: String) -> Dictionary:
 			up += 1
 		while y + down + 1 < h and down < h / 4 and _index_at(mid_x, y + down + 1) == wanted:
 			down += 1
-	var deg_x := 360.0 / w
-	var deg_y := 180.0 / h
+	var deg_x: float = (bounds[2] - bounds[0]) / w
+	var deg_y: float = (bounds[3] - bounds[1]) / h
 	var box := {
 		"lat": lat + (up - down) * 0.5 * deg_y,
-		"lon": -180.0 + (mid_x + 0.5) * deg_x,
+		"lon": bounds[0] + (mid_x + 0.5) * deg_x,
 		"width": deg_to_rad((left + right + 1) * deg_x) * cos(deg_to_rad(lat)),
 		"height": deg_to_rad((up + down + 1) * deg_y),
 	}

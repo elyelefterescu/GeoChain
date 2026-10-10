@@ -52,6 +52,9 @@ var _flag_cache := {}  # țară -> textură
 var graph := WorldGraph.new()  # harta partidei curente: normal_graph sau ferry_graph
 var normal_graph := WorldGraph.new()  # cu ape (Normal, Sandbox)
 var ferry_graph := WorldGraph.new()  # doar uscat și bacuri (modul Bac)
+var usa_graph := WorldGraph.new()  # cele 48 de state lipite ale SUA (modul SUA)
+var usa_assets := {}  # harta statelor pe glob
+var _region_on := false
 var ferry_list: Array = []
 var strait_data := {}  # strâmtorile dintre țări (Normal, Sandbox)
 var quiz := Quiz.new()
@@ -129,6 +132,8 @@ func _ready() -> void:
 	rng.randomize()
 	world_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
 	globe_assets = load_globe_assets(world_data)
+	usa_graph.load_file("res://data/usa.json")
+	usa_assets = load_region_assets("res://data/globe_usa/")
 	rules.load_saved()
 	i18n.lang = I18n.default_lang()
 	var ferries = JSON.parse_string(FileAccess.get_file_as_string("res://data/ferries.json"))
@@ -183,6 +188,16 @@ static func load_globe_assets(world: Dictionary) -> Dictionary:
 		"color_texture": ImageTexture.create_from_image(color), "index": index, "world": world}
 
 
+static func load_region_assets(dir: String) -> Dictionary:
+	var ids := Image.new()
+	ids.load_png_from_buffer(FileAccess.get_file_as_bytes(dir + "ids.png"))
+	var color := Image.new()
+	color.load_png_from_buffer(FileAccess.get_file_as_bytes(dir + "color.png"))
+	var index = JSON.parse_string(FileAccess.get_file_as_string(dir + "index.json"))
+	return {"id_image": ids, "id_texture": ImageTexture.create_from_image(ids),
+		"color_texture": ImageTexture.create_from_image(color), "index": index}
+
+
 func t(key: String) -> String:
 	return i18n.t(key)
 
@@ -194,6 +209,10 @@ func _continent_name(continent: String) -> String:
 ## Normal și Bac au reguli; Sandbox e liber.
 func _normal() -> bool:
 	return session.mode != GameSession.Mode.SANDBOX
+
+
+func _usa() -> bool:
+	return session.mode == GameSession.Mode.USA
 
 
 func _ferry() -> bool:
@@ -208,17 +227,25 @@ func _load_graphs() -> void:
 	ferry_graph.use_ferries(ferry_list)
 	normal_graph.lang = i18n.lang
 	ferry_graph.lang = i18n.lang
+	usa_graph.lang = i18n.lang
 	_select_graph()
 
 
 func _select_graph() -> void:
 	var ferry_mode := mode_select != null and _selected_mode() == GameSession.Mode.FERRY
-	graph = ferry_graph if ferry_mode else normal_graph
+	var usa_mode := mode_select != null and _selected_mode() == GameSession.Mode.USA
+	graph = ferry_graph if ferry_mode else usa_graph if usa_mode else normal_graph
+	if map_select:
+		map_select.visible = not usa_mode
 	if globe:
 		globe.graph = graph
-		# Pe glob: bacurile în modul Bac, strâmtorile dintre țări în celelalte moduri.
-		globe.set_links(ferry_list if ferry_mode else strait_data.get("straits", []),
-			Globe.FERRY_COLOR if ferry_mode else Globe.STRAIT_COLOR)
+		if usa_mode != _region_on:
+			_region_on = usa_mode
+			globe.set_region(usa_assets if usa_mode else {})
+			_focused = ""
+		# Pe glob: bacurile în modul Bac, strâmtorile dintre țări în Normal și Sandbox.
+		var links: Array = ferry_list if ferry_mode else [] if usa_mode else strait_data.get("straits", [])
+		globe.set_links(links, Globe.FERRY_COLOR if ferry_mode else Globe.STRAIT_COLOR)
 
 
 ## Pe telefon, tastatura de pe ecran acoperă jumătatea de jos: cât e deschisă, ascundem globul
@@ -262,6 +289,7 @@ func _on_language_pressed() -> void:
 	i18n.lang = "en" if i18n.lang == "ro" else "ro"
 	normal_graph.lang = i18n.lang
 	ferry_graph.lang = i18n.lang
+	usa_graph.lang = i18n.lang
 	var mode := mode_select.selected
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
@@ -380,6 +408,7 @@ func _build_setup_card() -> PanelContainer:
 	mode_select.add_item(t("mode_normal"))
 	mode_select.add_item(t("mode_sandbox"))
 	mode_select.add_item(t("mode_ferry"))
+	mode_select.add_item(t("mode_usa"))
 	mode_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(mode_select)
 	map_select = OptionButton.new()
@@ -816,10 +845,13 @@ func _button(text: String, handler: Callable, variation := "") -> Button:
 
 
 func _selected_mode() -> int:
-	return [GameSession.Mode.NORMAL, GameSession.Mode.SANDBOX, GameSession.Mode.FERRY][mode_select.selected]
+	return [GameSession.Mode.NORMAL, GameSession.Mode.SANDBOX, GameSession.Mode.FERRY,
+		GameSession.Mode.USA][mode_select.selected]
 
 
 func _selected_continent() -> String:
+	if _selected_mode() == GameSession.Mode.USA:
+		return ""  # harta SUA nu are continente
 	return map_select.get_item_metadata(map_select.selected)
 
 
@@ -1170,7 +1202,7 @@ func _say(text: String, kind := "") -> void:
 
 ## Varianta cu steaguri: în Normal, cu destinația dată ca steag, mutarea se alege din 4 steaguri.
 func _flag_mode() -> bool:
-	return _normal() and rules.get_value("guess") == "flag"
+	return _normal() and rules.get_value("guess") == "flag" and not _usa()  # statele nu au steaguri în joc
 
 
 func _refresh_flag_choices() -> void:
@@ -1234,8 +1266,8 @@ func _flag_texture(id: String) -> Texture2D:
 func _refresh() -> void:
 	var sandbox := not _normal()
 	var hidden := _goal_hidden()
-	var mode_key: String = ["mode_normal", "mode_sandbox", "mode_ferry"][session.mode]
-	subtitle_label.text = "%s · %s" % [t(mode_key), _continent_name(session.continent)]
+	var mode_key: String = ["mode_normal", "mode_sandbox", "mode_ferry", "mode_usa"][session.mode]
+	subtitle_label.text = t(mode_key) if _usa() else "%s · %s" % [t(mode_key), _continent_name(session.continent)]
 	# În modul Bac: ce bacuri pleacă din țara în care ești.
 	var ports := []
 	if _ferry():
@@ -1246,10 +1278,11 @@ func _refresh() -> void:
 	ferry_ports.text = t("ferry_ports") % "; ".join(ports) if not ports.is_empty() else ""
 	ferry_ports.visible = not ports.is_empty() and not session.is_finished()
 	start_label.text = graph.name_of(session.start)
+	map_select.visible = not _usa()
 
 	goal_flag.visible = false
 	goal_hint.visible = hidden
-	if hidden and rules.get_value("guess") == "flag":
+	if hidden and rules.get_value("guess") == "flag" and not _usa():
 		goal_label.text = "?"
 		goal_flag.texture = _flag_texture(session.goal)
 		goal_flag.visible = goal_flag.texture != null

@@ -2,7 +2,8 @@ extends RefCounted
 ## O partidă: de la o țară de pornire la o destinație, mutare cu mutare.
 
 ## FERRY = modul Bac: ca Normal, dar doar pe uscat, cu bacuri între unele țări.
-enum Mode { NORMAL, SANDBOX, FERRY }
+## USA = ca Normal, pe harta celor 48 de state lipite ale SUA.
+enum Mode { NORMAL, SANDBOX, FERRY, USA }
 
 ## În modul Normal poți face implicit cel mult atâtea mutări consecutive pe apă.
 const NORMAL_MAX_WATER_RUN := 2
@@ -92,7 +93,7 @@ static func _permutations(list: Array) -> Array:
 
 
 func max_water_run() -> int:
-	return water_limit if mode == Mode.NORMAL else -1  # în modul Bac nu există ape
+	return water_limit if mode == Mode.NORMAL else -1  # în modurile Bac și SUA nu există ape
 
 
 func current() -> String:
