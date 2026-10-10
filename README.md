@@ -100,3 +100,7 @@ for f in ne_50m_admin_0_countries ne_50m_geography_marine_polys; do
 done
 python3 tools/build_globe.py .
 ```
+
+## Android
+
+Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.3, fără Gradle. Semnarea: `tools/android/Signer.java` înlocuiește `apksigner` (semnătură v2, minSdk 24). Pe telefon, când apare tastatura, globul se ascunde ca să rămână vizibil câmpul în care scrii.

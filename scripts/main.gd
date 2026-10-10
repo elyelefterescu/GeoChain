@@ -78,6 +78,8 @@ var mode_select: OptionButton
 var map_select: OptionButton
 var rules_panel: PanelContainer
 var pair_row: VBoxContainer
+var keyboard_spacer: Control  # loc gol sub panou cât tastatura de pe ecran (telefon, tabletă)
+var _keyboard_px := 0
 var custom_forbidden: Array = []  # Sandbox: țările interzise alese de jucător
 var custom_required: Array = []  # Sandbox: țările obligatorii alese de jucător
 var forbidden_chips: HFlowContainer
@@ -159,6 +161,12 @@ func _ready() -> void:
 	add_child(background)
 
 	_build_ui()
+	if OS.has_feature("mobile"):
+		var keyboard_timer := Timer.new()
+		keyboard_timer.wait_time = 0.2
+		keyboard_timer.timeout.connect(_check_keyboard)
+		add_child(keyboard_timer)
+		keyboard_timer.start()
 	get_window().size_changed.connect(_update_layout)
 	_update_layout()
 	_new_game()
@@ -211,6 +219,24 @@ func _select_graph() -> void:
 		# Pe glob: bacurile în modul Bac, strâmtorile dintre țări în celelalte moduri.
 		globe.set_links(ferry_list if ferry_mode else strait_data.get("straits", []),
 			Globe.FERRY_COLOR if ferry_mode else Globe.STRAIT_COLOR)
+
+
+## Pe telefon, tastatura de pe ecran acoperă jumătatea de jos: cât e deschisă, ascundem globul
+## (pe ecran înalt), lăsăm loc sub panou și aducem în vedere câmpul în care scrii.
+func _check_keyboard() -> void:
+	var pixels := DisplayServer.virtual_keyboard_get_height()
+	var open := pixels > 0
+	if pixels == _keyboard_px:
+		return
+	_keyboard_px = pixels
+	var scale := float(get_viewport_rect().size.y) / maxf(1.0, float(get_window().size.y))
+	keyboard_spacer.custom_minimum_size.y = pixels * scale
+	globe_holder.visible = not (open and not _landscape)
+	var focused := get_viewport().gui_get_focus_owner()
+	if open and focused and scroll.is_ancestor_of(focused):
+		await get_tree().process_frame
+		var body: Control = scroll.get_child(0)
+		scroll.scroll_vertical = int(focused.get_global_rect().position.y - body.global_position.y - 60)
 
 
 ## Ecran lat (Windows) sau înalt (telefon): schimbăm doar așezarea, nu refacem nimic.
@@ -299,6 +325,8 @@ func _build_ui() -> void:
 	body.add_child(_build_route_card())
 	body.add_child(_build_move_card())
 	body.add_child(_build_result_card())
+	keyboard_spacer = Control.new()
+	body.add_child(keyboard_spacer)
 
 
 func _build_header() -> HBoxContainer:
