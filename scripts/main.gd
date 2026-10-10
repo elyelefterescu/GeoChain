@@ -170,7 +170,7 @@ func _ready() -> void:
 	add_child(background)
 
 	_build_ui()
-	if OS.has_feature("mobile"):
+	if OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android"):
 		var keyboard_timer := Timer.new()
 		keyboard_timer.wait_time = 0.2
 		keyboard_timer.timeout.connect(_check_keyboard)
@@ -332,7 +332,7 @@ func _input(event: InputEvent) -> void:
 ## Pe telefon, tastatura de pe ecran acoperă jumătatea de jos: cât e deschisă, ascundem globul
 ## (pe ecran înalt), lăsăm loc sub panou și aducem în vedere câmpul în care scrii.
 func _check_keyboard() -> void:
-	var pixels := DisplayServer.virtual_keyboard_get_height()
+	var pixels := _keyboard_height()
 	var open := pixels > 0
 	if pixels == _keyboard_px:
 		return
@@ -346,6 +346,17 @@ func _check_keyboard() -> void:
 		await get_tree().process_frame
 		var body: Control = scroll.get_child(0)
 		scroll.scroll_vertical = int(focused.get_global_rect().position.y - body.global_position.y - 60)
+
+
+## Înălțimea tastaturii de pe ecran, în pixeli de fereastră. În browser, Godot nu o știe: o aflăm
+## din cât s-a micșorat partea vizibilă a paginii (visualViewport) când a apărut tastatura.
+func _keyboard_height() -> int:
+	if not OS.has_feature("web"):
+		return DisplayServer.virtual_keyboard_get_height()
+	var js = JavaScriptBridge.eval("(function(){var v=window.visualViewport;if(!v)return 0;"
+		+ "return Math.max(0,Math.round((window.innerHeight-v.height)*window.devicePixelRatio));})()", true)
+	var pixels := int(js) if js != null else 0
+	return pixels if pixels > 100 else 0  # bare mici ale browserului nu sunt tastatura
 
 
 ## Ecran lat (Windows) sau înalt (telefon): schimbăm doar așezarea, nu refacem nimic.

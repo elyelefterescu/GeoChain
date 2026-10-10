@@ -1,4 +1,5 @@
 <title>GeoChain</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <style>
 /* Ecran întreg pentru joc; peste el, cât se încarcă, un ecran de pornire în culorile jocului. */
 :root {
@@ -12,8 +13,11 @@
 	--font: "Nunito", "Segoe UI", system-ui, sans-serif;
 	color-scheme: dark;
 }
+/* Pagina nu derulează și nu se mărește: pe iPhone, tastatura ar împinge sau ar mări jocul. */
 html, body { height: 100%; }
 body {
+	position: fixed;
+	inset: 0;
 	margin: 0;
 	overflow: hidden;
 	touch-action: none;
@@ -21,7 +25,9 @@ body {
 	color: var(--ink);
 	font-family: var(--font);
 }
-#canvas { display: block; width: 100%; height: 100%; }
+#canvas { display: block; }
+/* Câmpul ascuns prin care Godot primește tastatura: sub 16px, Safari mărește pagina când îl atingi. */
+input, textarea { font-size: 16px !important; }
 #canvas:focus { outline: none; }
 #status {
 	position: fixed;
@@ -77,7 +83,7 @@ body {
 	const status = document.getElementById('status');
 	const progress = document.getElementById('progress');
 	const message = document.getElementById('message');
-	const sizes = { 'index.pck': 2698800, 'index.wasm': 35376909 };
+	const sizes = { 'index.pck': 4205920, 'index.wasm': 35376909 };
 	const config = {
 		args: [], canvasResizePolicy: 2, ensureCrossOriginIsolationHeaders: false, executable: 'index',
 		experimentalVK: true, fileSizes: sizes, focusCanvas: true, gdextensionLibs: [],
