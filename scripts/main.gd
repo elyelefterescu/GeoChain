@@ -388,7 +388,7 @@ func _build_move_card() -> PanelContainer:
 	flag_prompt.text = t("pick_flag")
 	box.add_child(flag_prompt)
 	flag_grid = GridContainer.new()
-	flag_grid.columns = 2
+	flag_grid.columns = 3
 	flag_grid.add_theme_constant_override("h_separation", 10)
 	flag_grid.add_theme_constant_override("v_separation", 10)
 	box.add_child(flag_grid)
@@ -861,7 +861,7 @@ func _refresh_flag_choices() -> void:
 	var choices: Dictionary = FlagChoices.make(graph, session, rng)
 	for id in choices.all:
 		var button := Button.new()
-		button.custom_minimum_size = Vector2(0, 100)
+		button.custom_minimum_size = Vector2(0, 92)
 		button.clip_text = true
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var texture := _flag_texture(id) if not graph.is_water(id) else null

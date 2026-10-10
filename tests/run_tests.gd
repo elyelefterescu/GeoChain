@@ -369,11 +369,19 @@ func test_flag_choices() -> void:
 				dist[id] = FlagChoices.remaining(graph, s, id, 1 if graph.is_water(id) else 0)
 			var here: int = FlagChoices.remaining(graph, s, cur, 0)
 			var label := "%s → %s" % pair
-			check(c.all.size() == 4, "4 variante " + label)
+			check(c.all.size() == 6, "6 variante " + label)
 			var unique := {}
 			for id in c.all:
 				unique[id] = true
-			check(unique.size() == 4, "variante diferite " + label)
+			check(unique.size() == 6, "variante diferite " + label)
+			if c.has("land_route"):
+				var mine: Array = graph.shortest_path(c.land_route, pair[1], 0)
+				var shortest := 1 << 20
+				for n in graph.neighbors(cur):
+					var lp: Array = graph.shortest_path(n, pair[1], 0)
+					if not graph.is_water(n) and not lp.is_empty():
+						shortest = mini(shortest, lp.size() - 1)
+				check(c.land_route in c.all and mine.size() - 1 == shortest, "varianta pe uscat e cel mai scurt drum fără ape " + label)
 			check(c.has("best") and dist[c.best] == here - 1, "cea mai bună te apropie " + label)
 			if c.has("useful"):
 				check(graph.are_linked(cur, c.useful) and dist[c.useful] == here, "utilă, nu cea mai bună " + label)
@@ -392,7 +400,7 @@ func test_flag_choices() -> void:
 	var l := GameSession.new()
 	l.setup(graph, "LSO", "KEN", GameSession.Mode.NORMAL)
 	var lc: Dictionary = FlagChoices.make(graph, l, rng)
-	check(lc.all.size() == 4 and lc.far.size() >= 2, "Lesotho: completat cu țări de pe continent")
+	check(lc.all.size() == 6 and lc.far.size() >= 4, "Lesotho: completat cu țări de pe continent")
 	# Din Kenya spre România mutarea bună e pe apă (Oceanul Indian): 2 ape printre variante.
 	var k := GameSession.new()
 	k.setup(graph, "KEN", "ROU", GameSession.Mode.NORMAL)

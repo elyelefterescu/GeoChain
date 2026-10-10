@@ -1,15 +1,20 @@
 extends RefCounted
-## Varianta cu steaguri: în loc să scrii, alegi mutarea dintre 4 variante.
+## Varianta cu steaguri: în loc să scrii, alegi mutarea dintre 6 variante.
 ## - cea mai bună: te apropie cu o mutare de țintă (destinația sau punctul obligatoriu);
+## - pe uscat: vecina de pe cel mai scurt traseu doar pe uscat, fără ape (dacă există);
 ## - utilă: vecin care nu te îndepărtează, dar nu e cea mai bună;
 ## - inutilă: vecin care te îndepărtează;
-## - capcană: țară de pe același continent, dar care nu e vecină.
-## Dacă locul are prea puțini vecini potriviți, restul variantelor sunt țări de pe continent.
+## - capcane: țări de pe același continent, dar care nu sunt vecine.
+## Cel mult 4 variante sunt vecini; restul (și ce lipsește) sunt țări de pe continent.
 ## Când mutarea bună e pe apă, 2 variante sunt ape: cea corectă și una greșită.
 
 
-## Întoarce {"best", "decoy_water", "useful", "useless", "far": [ids], "all": [4 ids amestecate]}.
+## Întoarce {"best", "decoy_water", "land_route", "useful", "useless", "far": [ids], "all": [6 ids amestecate]}.
 ## Lipsește o cheie când nu există o asemenea variantă.
+const COUNT := 6
+const MAX_NEIGHBORS := 4
+
+
 static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 	var cur: String = session.current()
 	var missing: Array = session.missing_required()
@@ -65,19 +70,35 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 			result.decoy_water = other_waters[0]
 			picked.append(other_waters[0])
 
+	# Drumul cel mai scurt doar pe uscat: vecina care te duce cel mai repede la țintă fără nicio apă.
+	var land_dist := {}
+	for id in lands:
+		var land_path: Array = graph.shortest_path(id, target, 0, session.continent, session.forbidden)
+		if not land_path.is_empty():
+			land_dist[id] = land_path.size() - 1
+	if not land_dist.is_empty():
+		var shortest: int = land_dist.values().min()
+		var by_land: Array = land_dist.keys().filter(func(id): return land_dist[id] == shortest)
+		if best in by_land and by_land.size() == 1:
+			result.land_route = best  # cea mai bună e deja și drumul pe uscat
+		else:
+			var other: Array = by_land.filter(func(id): return id != best)
+			result.land_route = other[0]
+			picked.append(other[0])
+
 	var useful := lands.filter(func(id): return d.call(id) == here and not id in picked)
 	if not useful.is_empty():
 		result.useful = useful[0]
 		picked.append(useful[0])
 	var useless := lands.filter(func(id): return d.call(id) > here and not id in picked)
-	if not useless.is_empty() and picked.size() < 3:
+	if not useless.is_empty() and picked.size() < MAX_NEIGHBORS:
 		result.useless = useless[0]
 		picked.append(useless[0])
 
-	# Dacă lipsește o categorie, dar locul are destui vecini, tot 3 variante sunt vecini.
+	# Dacă lipsește o categorie, dar locul are destui vecini, tot 4 variante sunt vecini.
 	var rest := lands.filter(func(id): return not id in picked)
 	rest.sort_custom(func(x, y): return d.call(x) < d.call(y))
-	while picked.size() < 3 and not rest.is_empty():
+	while picked.size() < MAX_NEIGHBORS and not rest.is_empty():
 		picked.append(rest.pop_front())
 
 	# Restul: țări de pe continentul locului (sau al țintei, dacă ești pe mare), dar nu vecine.
@@ -96,7 +117,7 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 		if on_continent:
 			far.append(id)
 	_shuffle(far, rng)
-	while picked.size() < 4 and not far.is_empty():
+	while picked.size() < COUNT and not far.is_empty():
 		var id: String = far.pop_back()
 		result.far.append(id)
 		picked.append(id)
