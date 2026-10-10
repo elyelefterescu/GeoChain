@@ -1,9 +1,9 @@
 extends Node
-## Muzica de fundal: două piese compuse de tools/make_music.py, cântate pe rând.
+## Muzica de fundal: două piese ritmate, compuse de tools/make_music.py, cântate pe rând.
 ## Pornită/oprită și volumul se păstrează în user://settings.cfg.
 
 const SAVE_PATH := "user://settings.cfg"
-const TRACKS := ["res://music/harta.ogg", "res://music/drum.ogg"]
+const TRACKS := ["res://music/ritm.ogg", "res://music/zbor.ogg"]
 ## Volumul 100 înseamnă tot -6 dB: muzica stă în spate, nu acoperă jocul.
 const MAX_DB := -6.0
 
