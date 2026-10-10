@@ -110,3 +110,7 @@ Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) f
 ## Web
 
 Presetul „Web” exportă jocul pentru browser (Godot 4.3, fără threads, deci nu cere antete COOP/COEP). Pagina de pornire e `tools/web/geochain.html`: motorul (`index.wasm`, ~35 MB) se publică comprimat ca `godot.wasm.gz`, iar pagina îl despachetează în browser cu `DecompressionStream`.
+
+## Muzică
+
+Cele două piese din `music/` sunt compuse din cod de `tools/make_music.py` (sintetizator simplu cu numpy, fără mostre), deci nu au licență străină. Butonul ♪ de sus oprește sau pornește muzica; volumul se reglează în Reguli. Setarea se păstrează în `user://settings.cfg`.

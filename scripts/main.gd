@@ -11,6 +11,7 @@ const Challenge := preload("res://scripts/challenge.gd")
 const UiTheme := preload("res://scripts/ui_theme.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
+const Music := preload("res://scripts/music.gd")
 
 const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
@@ -45,6 +46,10 @@ class StarRow extends Control:
 
 var i18n := I18n.new()
 var rules := Rules.new()
+var music: Node
+var music_button: Button
+var music_check: CheckBox
+var music_slider: HSlider
 var world_data: Dictionary
 var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
 var _flags_loaded := false
@@ -169,6 +174,9 @@ func _ready() -> void:
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background)
 
+	music = Music.new()
+	add_child(music)
+	music.changed.connect(_refresh_music_ui)
 	_build_ui()
 	if OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android"):
 		var keyboard_timer := Timer.new()
@@ -485,9 +493,24 @@ func _build_header() -> HBoxContainer:
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	header.add_child(title)
+	music_button = _button("♪", func(): music.set_enabled(not music.enabled))
+	music_button.tooltip_text = t("music")
+	music_button.custom_minimum_size = Vector2(48, 0)
+	header.add_child(music_button)
 	header.add_child(_button(t("rules"), func(): rules_panel.visible = not rules_panel.visible))
 	header.add_child(_button(t("language"), _on_language_pressed))
+	_refresh_music_ui()
 	return header
+
+
+## Butonul ♪ de sus și rândul de muzică din Reguli arată aceeași stare.
+func _refresh_music_ui() -> void:
+	if is_instance_valid(music_button):
+		music_button.modulate.a = 1.0 if music.enabled else 0.4
+	if is_instance_valid(music_check):
+		music_check.set_pressed_no_signal(music.enabled)
+	if is_instance_valid(music_slider):
+		music_slider.set_value_no_signal(music.volume)
 
 
 ## Legenda culorilor de pe glob, mică, jos peste glob.
@@ -768,6 +791,22 @@ func _build_rules_panel() -> PanelContainer:
 		check.button_pressed = rules.get_value(key)
 		check.toggled.connect(_on_rule_changed.bind(key))
 		panel.add_child(check)
+	var sound := HBoxContainer.new()
+	music_check = CheckBox.new()
+	music_check.text = t("music")
+	music_check.toggled.connect(func(on): music.set_enabled(on))
+	sound.add_child(music_check)
+	music_slider = HSlider.new()
+	music_slider.min_value = 0
+	music_slider.max_value = 100
+	music_slider.step = 5
+	music_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	music_slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	music_slider.tooltip_text = t("music_volume")
+	music_slider.value_changed.connect(func(v): music.set_volume(int(v)))
+	sound.add_child(music_slider)
+	panel.add_child(sound)
+	_refresh_music_ui()
 	var note := _label("Muted")
 	note.text = t("rules_note")
 	panel.add_child(note)

@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_music",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -610,3 +610,10 @@ func test_flag_svgs() -> void:
 	# O stea albă din colțul albastru (prima stea, rândul 1).
 	check(image.get_pixel(int(30 * 0.5), int(24 * 0.5)).r > 0.9, "steagul SUA are stele albe")
 	check(image.get_pixel(int(60 * 0.5), int(24 * 0.5)).b > image.get_pixel(int(60 * 0.5), int(24 * 0.5)).r, "colțul steagului SUA e albastru")
+
+
+func test_music() -> void:
+	const Music := preload("res://scripts/music.gd")
+	for path in Music.TRACKS:
+		var stream = load(path)
+		check(stream is AudioStream and stream.get_length() > 60.0, "piesa %s se încarcă și are peste un minut" % path)
