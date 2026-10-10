@@ -28,8 +28,11 @@ static func font() -> FontFile:
 	if _font == null:
 		_font = FontFile.new()
 		_font.data = FileAccess.get_file_as_bytes("res://fonts/Nunito.ttf")
-		# Nunito nu are săgeți; le ia din fontul Godot.
-		_font.fallbacks = [ThemeDB.fallback_font]
+		# Nunito nu are săgeți și stele. Le luăm dintr-un subset DejaVu Sans, pentru că în browser
+		# nu există fonturi de sistem în care să le caute.
+		var symbols := FontFile.new()
+		symbols.data = FileAccess.get_file_as_bytes("res://fonts/Symbols.ttf")
+		_font.fallbacks = [symbols, ThemeDB.fallback_font]
 	return _font
 
 
@@ -37,6 +40,7 @@ static func bold() -> FontVariation:
 	if _bold == null:
 		_bold = FontVariation.new()
 		_bold.base_font = font()
+		_bold.fallbacks = font().fallbacks
 		_bold.variation_opentype = {TextServerManager.get_primary_interface().name_to_tag("wght"): 800}
 	return _bold
 

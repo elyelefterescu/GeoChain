@@ -85,6 +85,7 @@ Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sun
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
 
 Fontul este [Nunito](https://github.com/googlefonts/nunito), licență SIL Open Font License (`fonts/OFL.txt`).
+Săgețile și stelele vin din `fonts/Symbols.ttf`, un subset din DejaVu Sans (licență Bitstream Vera, `fonts/DejaVu-LICENSE.txt`).
 
 Steagurile vin din [lipis/flag-icons](https://github.com/lipis/flag-icons) v7.2.3, licență MIT.
 
@@ -105,3 +106,7 @@ python3 tools/build_globe.py .
 ## Android
 
 Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.3, fără Gradle. Semnarea: `tools/android/Signer.java` înlocuiește `apksigner` (semnătură v2, minSdk 24). Pe telefon, panoul se derulează trăgând cu degetul oriunde pe el, iar când apare tastatura globul se ascunde ca să rămână vizibil câmpul în care scrii.
+
+## Web
+
+Presetul „Web” exportă jocul pentru browser (Godot 4.3, fără threads, deci nu cere antete COOP/COEP). Pagina de pornire e `tools/web/geochain.html`: motorul (`index.wasm`, ~35 MB) se publică comprimat ca `godot.wasm.gz`, iar pagina îl despachetează în browser cu `DecompressionStream`.

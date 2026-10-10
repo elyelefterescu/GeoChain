@@ -1,0 +1,112 @@
+<title>GeoChain</title>
+<style>
+/* Ecran întreg pentru joc; peste el, cât se încarcă, un ecran de pornire în culorile jocului. */
+:root {
+	--sky-top: #121a33;
+	--sky-bottom: #070a14;
+	--ink: #e8ecf8;
+	--muted: #8f9bbf;
+	--accent: #3b82f6;
+	--track: #1d2747;
+	--error: #f87171;
+	--font: "Nunito", "Segoe UI", system-ui, sans-serif;
+	color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+	margin: 0;
+	overflow: hidden;
+	touch-action: none;
+	background: var(--sky-bottom);
+	color: var(--ink);
+	font-family: var(--font);
+}
+#canvas { display: block; width: 100%; height: 100%; }
+#canvas:focus { outline: none; }
+#status {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+	padding-inline: 24px;
+	background: linear-gradient(var(--sky-top), var(--sky-bottom));
+	text-align: center;
+}
+#status h1 { margin: 0; font-size: 2.4rem; font-weight: 800; letter-spacing: 0.01em; }
+#status p { margin: 0; color: var(--muted); font-size: 1rem; max-width: 30ch; line-height: 1.45; }
+.bar { width: min(280px, 100%); height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.2s; }
+#status.error p { color: var(--error); }
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap">
+
+<canvas id="canvas"></canvas>
+<div id="status">
+	<h1>GeoChain</h1>
+	<div class="bar"><span id="progress"></span></div>
+	<p id="message">Se încarcă jocul…</p>
+</div>
+
+<script>
+// Fișierele mari ale jocului sunt publicate comprimate (gzip), cu extensia .wasm pentru că doar așa
+// le servește găzduirea. Când motorul Godot cere index.wasm sau index.pck, le despachetăm aici.
+(function () {
+	const realFetch = window.fetch.bind(window);
+	const packed = { 'index.wasm': ['engine.gz.wasm', 'application/wasm'], 'index.pck': ['game.gz.wasm', 'application/octet-stream'] };
+	window.fetch = function (input, init) {
+		const url = typeof input === 'string' ? input : input.url;
+		const name = url.split('?')[0].split('/').pop();
+		if (packed[name]) {
+			return realFetch(packed[name][0]).then(function (response) {
+				if (!response.ok) throw new Error('Nu s-a putut descărca jocul (' + response.status + ').');
+				const body = response.body.pipeThrough(new DecompressionStream('gzip'));
+				return new Response(body, { headers: { 'Content-Type': packed[name][1] } });
+			});
+		}
+		return realFetch(input, init);
+	};
+}());
+</script>
+<script src="index.js"></script>
+<script>
+(function () {
+	const status = document.getElementById('status');
+	const progress = document.getElementById('progress');
+	const message = document.getElementById('message');
+	const sizes = { 'index.pck': 2698800, 'index.wasm': 35376909 };
+	const config = {
+		args: [], canvasResizePolicy: 2, ensureCrossOriginIsolationHeaders: false, executable: 'index',
+		experimentalVK: true, fileSizes: sizes, focusCanvas: true, gdextensionLibs: [],
+	};
+
+	function fail(text) {
+		status.classList.add('error');
+		message.textContent = text;
+	}
+
+	if (typeof DecompressionStream === 'undefined') {
+		fail('Browserul e prea vechi pentru joc. Actualizează iOS sau Safari și încearcă din nou.');
+		return;
+	}
+	const missing = Engine.getMissingFeatures({ threads: false });
+	if (missing.length) {
+		fail('Browserul nu are tot ce trebuie pentru joc: ' + missing.join(', '));
+		return;
+	}
+	const engine = new Engine(config);
+	engine.startGame({
+		onProgress: function (current, total) {
+			if (current > 0 && total > 0) progress.style.width = Math.min(100, (current / total) * 100) + '%';
+		},
+	}).then(function () {
+		status.remove();
+	}, function (err) {
+		console.error(err);
+		fail('Jocul nu a pornit: ' + (err && err.message ? err.message : err));
+	});
+}());
+</script>
