@@ -15,7 +15,7 @@ func _init() -> void:
 	for test in [
 		"test_names", "test_graph_symmetry", "test_shortest_paths",
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
-		"test_random_pair", "test_continents", "test_world",
+		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -163,3 +163,32 @@ func test_world() -> void:
 	check(s.required_gate("W_PAC") == "G_PAN", "Caraibe → Pacific prin Canalul Panama")
 	check(s.try_move("W_PAC", "canalul panama").ok, "Canalul Panama acceptat")
 	check(s.try_move("PER").ok, "→ Peru")
+
+
+func test_detailed_seas() -> void:
+	check(graph.find_place("Marea Egee") == "W_MED", "pe harta simplă, Egeea duce la Mediterana")
+	check(not graph.nodes.has("W_EGE"), "Egeea nu e loc separat pe harta simplă")
+	check(graph.shortest_path("GRC", "W_BLK").size() - 1 == 2, "Grecia → Marea Neagră: 2 mutări simplu")
+
+	var detailed := WorldGraph.new()
+	check(detailed.load_file("res://data/world.json", true), "world.json detaliat se încarcă")
+	check(detailed.find_place("Marea Egee") == "W_EGE", "Egeea e loc separat pe harta detaliată")
+	check(detailed.find_place("Marea Mediterană") == "W_MED", "Mediterana rămâne")
+	check(not detailed.are_linked("W_MED", "W_BLK"), "Mediterana nu mai atinge direct Marea Neagră")
+	check(detailed.shortest_path("W_EGE", "W_BLK").size() - 1 == 2, "Egee → Marea Neagră: 2 mutări")
+	var g := GameSession.new()
+	g.setup(detailed, "GRC", "ROU", GameSession.Mode.NORMAL)
+	check(g.try_move("W_EGE").ok and g.try_move("W_MAR", "Dardanele").ok, "Grecia → Egee → Marmara")
+	check(g.try_move("W_BLK", "Bosfor").reason == "too_much_water", "a 3-a apă la rând e refuzată și pe harta detaliată")
+	check(graph.gate_matches("G_TUR", "Bosfor"), "pe harta simplă, „Bosfor” deschide poarta turcească")
+	check(detailed.gate_between("W_EGE", "W_MAR") == "G_DAR", "Egee → Marmara prin Dardanele")
+	check(detailed.gate_between("W_MAR", "W_BLK") == "G_BOS", "Marmara → Neagră prin Bosfor")
+	check(detailed.gate_between("W_ADR", "W_ION") == "G_OTR", "Adriatica → Ionică prin Otranto")
+	for a in detailed.adj:
+		for b in detailed.adj[a]:
+			check(detailed.adj[b].has(a), "legătură simetrică detaliată %s-%s" % [a, b])
+	var s := GameSession.new()
+	s.setup(detailed, "HRV", "TUR", GameSession.Mode.NORMAL)
+	check(s.try_move("W_ADR").ok, "Croația → Marea Adriatică")
+	check(not s.try_move("W_ION", "Gibraltar").ok, "poartă greșită spre Marea Ionică")
+	check(s.try_move("W_ION", "otranto").ok, "Otranto acceptat")

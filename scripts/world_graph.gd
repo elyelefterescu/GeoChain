@@ -11,13 +11,15 @@ const DIACRITICS := {
 
 var nodes := {}   # id -> Dictionary din world.json
 var continents: Array = []  # continentele jucabile separat (fără Oceania)
+var detailed_seas := false  # mările mici (Egeea, Marmara...) sunt locuri separate
+var lang := "ro"  # limba numelor afișate: "ro" sau "en"
 var gates := {}   # id -> Dictionary din world.json
 var adj := {}     # id -> { vecin_id: poartă_id sau "" }
 var _names := {}  # nume normalizat -> id
 var _gate_names := {}  # nume normalizat -> poartă_id
 
 
-func load_file(path: String) -> bool:
+func load_file(path: String, detailed := false) -> bool:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		push_error("Nu pot deschide %s" % path)
@@ -26,11 +28,14 @@ func load_file(path: String) -> bool:
 	if typeof(data) != TYPE_DICTIONARY:
 		push_error("world.json invalid")
 		return false
-	load_data(data)
+	load_data(data, detailed)
 	return true
 
 
-func load_data(data: Dictionary) -> void:
+## Cu detailed = false, mările detaliate lipsesc, iar numele lor duc la marea
+## mare din care fac parte (Marea Egee → Marea Mediterană).
+func load_data(data: Dictionary, detailed := false) -> void:
+	detailed_seas = detailed
 	nodes.clear()
 	gates.clear()
 	adj.clear()
@@ -38,18 +43,29 @@ func load_data(data: Dictionary) -> void:
 	_gate_names.clear()
 	continents = data.get("continents", [])
 	for node in data["nodes"]:
-		nodes[node["id"]] = node
-		adj[node["id"]] = {}
+		var id: String = node["id"]
+		if node.get("detailed", false) and not detailed:
+			id = node["parent"]
+		else:
+			nodes[id] = node
+			adj[id] = {}
 		for name in [node["name_ro"], node["name_en"]] + Array(node.get("aliases", [])):
-			_names[normalize(name)] = node["id"]
-	for gate in data["gates"]:
-		gates[gate["id"]] = gate
-		for name in [gate["name_ro"], gate["name_en"]] + Array(gate.get("aliases", [])):
-			_gate_names[normalize(name)] = gate["id"]
-	for edge in data["edges"]:
+			if not _names.has(normalize(name)) or id == node["id"]:
+				_names[normalize(name)] = id
+	var used_gates := {}
+	for edge in data["edges_detailed" if detailed else "edges"]:
 		var gate: String = edge.get("gate", "")
 		adj[edge["a"]][edge["b"]] = gate
 		adj[edge["b"]][edge["a"]] = gate
+		used_gates[gate] = true
+	# Doar porțile de pe harta încărcată: „Bosfor” e o poartă proprie pe harta
+	# detaliată, dar pe cea simplă face parte din „Bosfor și Dardanele”.
+	for gate in data["gates"]:
+		if not used_gates.has(gate["id"]):
+			continue
+		gates[gate["id"]] = gate
+		for name in [gate["name_ro"], gate["name_en"]] + Array(gate.get("aliases", [])):
+			_gate_names[normalize(name)] = gate["id"]
 
 
 static func normalize(text: String) -> String:
@@ -62,11 +78,11 @@ static func normalize(text: String) -> String:
 
 
 func name_of(id: String) -> String:
-	return nodes[id]["name_ro"] if nodes.has(id) else id
+	return nodes[id]["name_" + lang] if nodes.has(id) else id
 
 
 func gate_name(gate_id: String) -> String:
-	return gates[gate_id]["name_ro"] if gates.has(gate_id) else gate_id
+	return gates[gate_id]["name_" + lang] if gates.has(gate_id) else gate_id
 
 
 func is_water(id: String) -> bool:

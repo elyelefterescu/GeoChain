@@ -3,25 +3,19 @@ extends Control
 
 const WorldGraph := preload("res://scripts/world_graph.gd")
 const GameSession := preload("res://scripts/game_session.gd")
+const I18n := preload("res://scripts/i18n.gd")
 
-const CONTINENT_NAMES := {"": "Lumea", "europe": "Europa", "africa": "Africa", "asia": "Asia", "americas": "Americile"}
-const REASONS := {
-	"unknown": "Nu cunosc locul ăsta. Încearcă alt nume.",
-	"same": "Ești deja acolo.",
-	"off_map": "Locul ăsta nu e pe harta aleasă.",
-	"not_connected": "Nu e legat de locul în care ești.",
-	"too_much_water": "În modul Normal poți face cel mult 2 mutări pe apă la rând. Ajungi întâi pe uscat.",
-	"wrong_gate": "Nu e poarta corectă.",
-	"finished": "Ai ajuns deja la destinație. Începe un joc nou.",
-}
-
+var i18n := I18n.new()
+var world_data: Dictionary
 var graph := WorldGraph.new()
 var session := GameSession.new()
 var rng := RandomNumberGenerator.new()
 var pending_target := ""  # locul în care vrei să treci după ce numești poarta
 
+var ui_root: MarginContainer
 var mode_select: OptionButton
 var map_select: OptionButton
+var detailed_check: CheckBox
 var from_edit: LineEdit
 var to_edit: LineEdit
 var info_label: Label
@@ -40,10 +34,44 @@ var result_label: RichTextLabel
 
 func _ready() -> void:
 	rng.randomize()
-	if not graph.load_file("res://data/world.json"):
-		return
+	var file := FileAccess.open("res://data/world.json", FileAccess.READ)
+	world_data = JSON.parse_string(file.get_as_text())
+	i18n.lang = I18n.default_lang()
+	graph.load_data(world_data)
+	graph.lang = i18n.lang
 	_build_ui()
 	_start_game("KEN", "ROU")
+
+
+func t(key: String) -> String:
+	return i18n.t(key)
+
+
+func _continent_name(continent: String) -> String:
+	return t("map_world" if continent == "" else "map_" + continent)
+
+
+## Schimbă limba: refacem ecranul, partida continuă.
+func _on_language_pressed() -> void:
+	i18n.lang = "en" if i18n.lang == "ro" else "ro"
+	graph.lang = i18n.lang
+	var mode := mode_select.selected
+	var map := map_select.selected
+	ui_root.queue_free()
+	_build_ui()
+	mode_select.select(mode)
+	map_select.select(map)
+	from_edit.text = graph.name_of(session.start)
+	to_edit.text = graph.name_of(session.goal)
+	_say("")
+	_refresh()
+
+
+## Mările detaliate schimbă harta, deci pornim din nou aceeași pereche.
+func _on_detailed_toggled(on: bool) -> void:
+	graph.load_data(world_data, on)
+	graph.lang = i18n.lang
+	_start_game(session.start, session.goal)
 
 
 func _build_ui() -> void:
@@ -52,6 +80,7 @@ func _build_ui() -> void:
 	theme = theme_res
 
 	var margin := MarginContainer.new()
+	ui_root = margin
 	margin.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
 		margin.add_theme_constant_override("margin_" + side, 16)
@@ -63,33 +92,42 @@ func _build_ui() -> void:
 	var title := Label.new()
 	title.text = "GeoChain"
 	title.add_theme_font_size_override("font_size", 32)
-	root.add_child(title)
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	var title_row := HBoxContainer.new()
+	title_row.add_child(title)
+	title_row.add_child(_button(t("language"), _on_language_pressed))
+	root.add_child(title_row)
 
 	var settings := HBoxContainer.new()
 	root.add_child(settings)
 	mode_select = OptionButton.new()
-	mode_select.add_item("Normal")
-	mode_select.add_item("Sandbox")
+	mode_select.add_item(t("mode_normal"))
+	mode_select.add_item(t("mode_sandbox"))
 	mode_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(mode_select)
 	map_select = OptionButton.new()
 	for key in [""] + graph.continents:
-		map_select.add_item(CONTINENT_NAMES.get(key, key))
+		map_select.add_item(_continent_name(key))
 		map_select.set_item_metadata(map_select.item_count - 1, key)
 	map_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(map_select)
+	detailed_check = CheckBox.new()
+	detailed_check.text = t("detailed_seas")
+	detailed_check.button_pressed = graph.detailed_seas
+	detailed_check.toggled.connect(_on_detailed_toggled)
+	root.add_child(detailed_check)
 
 	var pair_row := HBoxContainer.new()
 	root.add_child(pair_row)
-	from_edit = _line_edit("De la")
-	to_edit = _line_edit("Până la")
+	from_edit = _line_edit(t("from"))
+	to_edit = _line_edit(t("to"))
 	pair_row.add_child(from_edit)
 	pair_row.add_child(to_edit)
 
 	var buttons := HBoxContainer.new()
 	root.add_child(buttons)
-	buttons.add_child(_button("Pornește", _on_start_pressed))
-	buttons.add_child(_button("Pereche aleatoare", _on_random_pressed))
+	buttons.add_child(_button(t("start"), _on_start_pressed))
+	buttons.add_child(_button(t("random"), _on_random_pressed))
 
 	info_label = Label.new()
 	info_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -102,11 +140,11 @@ func _build_ui() -> void:
 
 	var move_row := HBoxContainer.new()
 	root.add_child(move_row)
-	move_edit = _line_edit("Scrie unde mergi…")
+	move_edit = _line_edit(t("move_hint"))
 	move_edit.text_changed.connect(_on_move_text_changed)
 	move_edit.text_submitted.connect(func(_t): _on_go_pressed())
 	move_row.add_child(move_edit)
-	move_row.add_child(_button("Mergi", _on_go_pressed))
+	move_row.add_child(_button(t("go"), _on_go_pressed))
 
 	suggestions_box = HFlowContainer.new()
 	root.add_child(suggestions_box)
@@ -119,17 +157,17 @@ func _build_ui() -> void:
 	gate_box.add_child(gate_label)
 	var gate_row := HBoxContainer.new()
 	gate_box.add_child(gate_row)
-	gate_edit = _line_edit("Canal sau strâmtoare")
+	gate_edit = _line_edit(t("gate_hint"))
 	gate_edit.text_submitted.connect(func(_t): _on_gate_pressed())
 	gate_row.add_child(gate_edit)
-	gate_row.add_child(_button("Treci", _on_gate_pressed))
-	gate_row.add_child(_button("Renunț", _hide_gate))
+	gate_row.add_child(_button(t("gate_pass"), _on_gate_pressed))
+	gate_row.add_child(_button(t("gate_cancel"), _hide_gate))
 	root.add_child(gate_panel)
 
 	sandbox_row = HBoxContainer.new()
 	root.add_child(sandbox_row)
-	sandbox_row.add_child(_button("Înapoi o mutare", _on_undo_pressed))
-	sandbox_row.add_child(_button("Arată traseul minim", _on_show_optimal_pressed))
+	sandbox_row.add_child(_button(t("undo"), _on_undo_pressed))
+	sandbox_row.add_child(_button(t("show_optimal"), _on_show_optimal_pressed))
 	neighbors_box = HFlowContainer.new()
 	root.add_child(neighbors_box)
 
@@ -173,16 +211,16 @@ func _selected_continent() -> String:
 func _start_game(from: String, to: String) -> void:
 	var continent := _selected_continent()
 	if not graph.is_allowed(from, continent) or not graph.is_allowed(to, continent):
-		_say("%s și %s trebuie să fie pe harta aleasă (%s)." % [graph.name_of(from), graph.name_of(to), CONTINENT_NAMES[continent]])
+		_say(t("not_on_map") % [graph.name_of(from), graph.name_of(to), _continent_name(continent)])
 		return
 	if graph.is_water(from) or graph.is_water(to):
-		_say("Pornirea și destinația trebuie să fie țări.")
+		_say(t("must_be_countries"))
 		return
 	session.setup(graph, from, to, _selected_mode(), continent)
 	from_edit.text = graph.name_of(from)
 	to_edit.text = graph.name_of(to)
 	if session.optimal_path.is_empty():
-		_say("Nu există traseu între cele două țări pe harta asta.")
+		_say(t("no_route"))
 	else:
 		_say("")
 	_hide_gate()
@@ -193,7 +231,7 @@ func _on_start_pressed() -> void:
 	var from := graph.find_place(from_edit.text)
 	var to := graph.find_place(to_edit.text)
 	if from == "" or to == "":
-		_say("Nu recunosc una dintre țări.")
+		_say(t("unknown_pair"))
 		return
 	_start_game(from, to)
 
@@ -215,21 +253,21 @@ func _on_move_text_changed(text: String) -> void:
 func _on_go_pressed() -> void:
 	var id := graph.find_place(move_edit.text)
 	if id == "":
-		_say(REASONS["unknown"])
+		_say(t("r_unknown"))
 		return
 	_try_move(id)
 
 
 func _try_move(target: String) -> void:
 	if session.is_finished():
-		_say(REASONS["finished"])
+		_say(t("r_finished"))
 		return
 	if graph.is_allowed(target, session.continent) and graph.are_linked(session.current(), target) \
 			and session.required_gate(target) != "":
 		var too_much: bool = graph.is_water(target) and session.water_run + 1 > session.max_water_run()
 		if not too_much:
 			pending_target = target
-			gate_label.text = "Ca să treci în %s, numește canalul sau strâmtoarea:" % graph.name_of(target)
+			gate_label.text = t("gate_question") % graph.name_of(target)
 			gate_edit.text = ""
 			gate_panel.show()
 			gate_edit.grab_focus()
@@ -251,13 +289,13 @@ func _apply_move(target: String, gate_answer: String) -> void:
 		move_edit.text = ""
 		_on_move_text_changed("")
 		if result.gate != "" and session.mode == GameSession.Mode.SANDBOX:
-			_say("Ai trecut prin %s." % graph.gate_name(result.gate))
+			_say(t("gate_passed") % graph.gate_name(result.gate))
 		elif result.gate != "":
-			_say("Corect! %s." % graph.gate_name(result.gate))
+			_say(t("gate_correct") % graph.gate_name(result.gate))
 		else:
 			_say("")
 	else:
-		_say(REASONS.get(result.reason, result.reason))
+		_say(t("r_" + result.reason))
 		if result.reason != "wrong_gate":
 			_hide_gate()
 	_refresh()
@@ -276,7 +314,7 @@ func _on_undo_pressed() -> void:
 
 
 func _on_show_optimal_pressed() -> void:
-	_say("Traseul minim (%d mutări): %s" % [session.optimal_moves(), _route_text(session.optimal_path)])
+	_say(t("optimal") % [session.optimal_moves(), _route_text(session.optimal_path)])
 
 
 func _route_text(path: Array) -> String:
@@ -297,13 +335,13 @@ func _say(text: String) -> void:
 
 func _refresh() -> void:
 	var sandbox := session.mode == GameSession.Mode.SANDBOX
-	var water := "" if sandbox else " · Apă la rând: %d/%d" % [session.water_run, session.max_water_run()]
-	info_label.text = "%s · %s\nDe la %s la %s · Mutări: %d · Greșeli: %d%s" % [
-		"Sandbox" if sandbox else "Normal", CONTINENT_NAMES[session.continent],
+	var water := "" if sandbox else t("water_run") % [session.water_run, session.max_water_run()]
+	info_label.text = t("info") % [
+		t("mode_sandbox") if sandbox else t("mode_normal"), _continent_name(session.continent),
 		graph.name_of(session.start), graph.name_of(session.goal),
-		session.moves(), session.mistakes, water]
-	where_label.text = "Ești în: %s" % graph.name_of(session.current())
-	history_label.text = "[b]Traseul tău:[/b] " + _route_text(session.path)
+		session.moves(), session.mistakes] + water
+	where_label.text = t("where") % graph.name_of(session.current())
+	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_text(session.path)]
 
 	sandbox_row.visible = sandbox
 	neighbors_box.visible = sandbox
@@ -318,7 +356,7 @@ func _refresh() -> void:
 
 	if session.is_finished():
 		var stars := "★".repeat(session.stars()) + "☆".repeat(3 - session.stars())
-		result_label.text = "[b]Ai ajuns![/b] %s · %d puncte\nTraseul minim avea %d mutări: %s" % [
+		result_label.text = t("finished") % [
 			stars, session.points(), session.optimal_moves(), _route_text(session.optimal_path)]
 	else:
 		result_label.text = ""

@@ -221,6 +221,105 @@ NOT_BORDERS = {("IND", "LKA")}
 CASPIAN_ONLY = {"AZE", "KAZ", "TKM"}
 
 
+# --- Mări detaliate (opțiune) -------------------------------------------------
+# Cu opțiunea „Mări detaliate”, unele mări mari se împart în mări mai mici, cu
+# porți proprii. Fiecare mare detaliată are un „părinte”: pe harta simplă, numele
+# ei duce la părinte (dacă scrii „Marea Egee”, ajungi în Marea Mediterană).
+DETAILED_WATERS = {
+    "W_ADR": ("Marea Adriatică", "Adriatic Sea", ["Adriatica"], "W_MED"),
+    "W_ION": ("Marea Ionică", "Ionian Sea", ["Ionica"], "W_MED"),
+    "W_TYR": ("Marea Tireniană", "Tyrrhenian Sea", ["Tireniana"], "W_MED"),
+    "W_EGE": ("Marea Egee", "Aegean Sea", ["Egeea"], "W_MED"),
+    "W_MAR": ("Marea Marmara", "Sea of Marmara", ["Marmara"], "W_MED"),
+    "W_AZO": ("Marea Azov", "Sea of Azov", ["Azov"], "W_BLK"),
+    "W_ADN": ("Golful Aden", "Gulf of Aden", ["Aden"], "W_IND"),
+    "W_OMG": ("Golful Oman", "Gulf of Oman", [], "W_IND"),
+    "W_MAN": ("Canalul Mânecii", "English Channel", ["Marea Mânecii", "La Manche", "Mânecii"], "W_ATL"),
+    "W_BOT": ("Golful Botnic", "Gulf of Bothnia", ["Botnic"], "W_BAL"),
+}
+
+DETAILED_GATES = {
+    "G_OTR": ("Strâmtoarea Otranto", "Strait of Otranto", ["Otranto"]),
+    "G_DAR": ("Strâmtoarea Dardanele", "Dardanelles", ["Dardanele", "Dardanelles"]),
+    "G_BOS": ("Strâmtoarea Bosfor", "Bosporus", ["Bosfor", "Bosforul", "Bosporus"]),
+    "G_KER": ("Strâmtoarea Kerci", "Kerch Strait", ["Kerci", "Kerch"]),
+    "G_DOV": ("Strâmtoarea Pas-de-Calais", "Strait of Dover", ["Pas-de-Calais", "Pas de Calais", "Dover"]),
+}
+
+# Legăturile simple înlocuite pe harta detaliată, și legăturile noi.
+DETAILED_REMOVED_LINKS = {("W_MED", "W_BLK"), ("W_IND", "W_RED"), ("W_IND", "W_GUL"), ("W_BLK", "W_CAS")}
+DETAILED_LINKS = [
+    ("W_ADR", "W_ION", "G_OTR"),
+    ("W_ION", "W_MED", None),
+    ("W_TYR", "W_MED", None),
+    ("W_EGE", "W_MED", None),
+    ("W_EGE", "W_MAR", "G_DAR"),
+    ("W_MAR", "W_BLK", "G_BOS"),
+    ("W_AZO", "W_BLK", "G_KER"),
+    ("W_AZO", "W_CAS", "G_VOL"),
+    ("W_IND", "W_ADN", None),
+    ("W_ADN", "W_RED", "G_BAB"),
+    ("W_IND", "W_OMG", None),
+    ("W_OMG", "W_GUL", "G_HOR"),
+    ("W_MAN", "W_ATL", None),
+    ("W_MAN", "W_NRT", "G_DOV"),
+    ("W_BOT", "W_BAL", None),
+]
+
+# Ieșirile la mare care se schimbă pe harta detaliată (lista completă a țării).
+DETAILED_COASTS = {
+    "ITA": ["W_MED", "W_ADR", "W_ION", "W_TYR"],
+    "FRA": ["W_ATL", "W_MAN", "W_NRT", "W_MED", "W_TYR"],
+    "GRC": ["W_MED", "W_ION", "W_EGE"],
+    "TUR": ["W_MED", "W_EGE", "W_MAR", "W_BLK"],
+    "ALB": ["W_ADR", "W_ION"],
+    "SVN": ["W_ADR"], "HRV": ["W_ADR"], "BIH": ["W_ADR"], "MNE": ["W_ADR"],
+    "UKR": ["W_BLK", "W_AZO"],
+    "RUS": ["W_BAL", "W_BLK", "W_AZO", "W_ARC", "W_CAS", "W_PAC", "W_JPN"],
+    "DJI": ["W_ADN", "W_RED"],
+    "SOM": ["W_ADN", "W_IND"],
+    "YEM": ["W_RED", "W_ADN", "W_IND"],
+    "OMN": ["W_IND", "W_OMG", "W_GUL"],
+    "IRN": ["W_GUL", "W_OMG", "W_IND", "W_CAS"],
+    "ARE": ["W_GUL", "W_OMG"],
+    "GBR": ["W_ATL", "W_MAN", "W_NRT"],
+    "SWE": ["W_BAL", "W_BOT", "W_NRT"],
+    "FIN": ["W_BAL", "W_BOT"],
+}
+
+
+def check_reachable(nodes, edge_list, label, errors):
+    """Totul accesibil din România și, pe fiecare continent, doar prin țările lui și ape."""
+    ids = {n["id"] for n in nodes}
+    adj = {i: set() for i in ids}
+    for e in edge_list:
+        adj[e["a"]].add(e["b"])
+        adj[e["b"]].add(e["a"])
+
+    def reach(start, allowed):
+        seen, queue = {start}, deque([start])
+        while queue:
+            for nxt in adj[queue.popleft()]:
+                if nxt in allowed and nxt not in seen:
+                    seen.add(nxt)
+                    queue.append(nxt)
+        return seen
+
+    unreachable = sorted(ids - reach("ROU", ids))
+    if unreachable:
+        errors.append(f"[{label}] locuri inaccesibile: {unreachable}")
+    for cont in PLAYABLE_CONTINENTS:
+        allowed = {n["id"] for n in nodes if n["type"] == "water" or cont in n.get("continents", [])}
+        countries = sorted(i for i in allowed if not i.startswith("W_"))
+        missing = sorted(set(countries) - reach(countries[0], allowed))
+        if missing:
+            errors.append(f"[{label}] pe continentul {cont} sunt inaccesibile: {missing}")
+
+
+def edge_dicts(edges):
+    return [{"a": a, "b": b, **({"gate": g} if g else {})} for a, b, g in sorted(edges, key=lambda e: (e[0], e[1]))]
+
+
 def build(countries):
     sel = {c["cca3"]: c for c in countries if in_scope(c)}
     errors = []
@@ -242,23 +341,18 @@ def build(countries):
         })
     for wid, (ro, en, aliases) in WATERS.items():
         nodes.append({"id": wid, "type": "water", "name_ro": ro, "name_en": en, "aliases": aliases})
+    simple_nodes = list(nodes)
+    for wid, (ro, en, aliases, parent) in DETAILED_WATERS.items():
+        nodes.append({"id": wid, "type": "water", "name_ro": ro, "name_en": en, "aliases": aliases,
+                      "detailed": True, "parent": parent})
 
-    edges = set()
+    borders = set()
     for code, c in sel.items():
         for other in c["borders"]:
             if other in sel and (min(code, other), max(code, other)) not in NOT_BORDERS:
                 if code not in sel[other]["borders"]:
                     errors.append(f"graniță asimetrică {code}-{other}")
-                edges.add((min(code, other), max(code, other), None))
-
-    for code, waters in COASTS.items():
-        if code not in sel:
-            errors.append(f"COASTS conține {code}, care nu e în regiune")
-            continue
-        for w in waters:
-            if w not in WATERS:
-                errors.append(f"apă necunoscută {w} la {code}")
-            edges.add((code, w, None))
+                borders.add((min(code, other), max(code, other), None))
 
     for code, c in sel.items():
         coastal = code in COASTS
@@ -266,52 +360,42 @@ def build(countries):
         if coastal != should:
             errors.append(f"{code}: ieșire la mare = {coastal}, sursa spune {should}")
 
-    for a, b, gate in WATER_LINKS:
-        if gate is not None and gate not in GATES:
-            errors.append(f"poartă necunoscută {gate}")
-        edges.add((min(a, b), max(a, b), gate))
+    all_gates = {**GATES, **DETAILED_GATES}
 
-    gates = [{"id": g, "name_ro": ro, "name_en": en, "aliases": al} for g, (ro, en, al) in GATES.items()]
-    edge_list = [{"a": a, "b": b, **({"gate": g} if g else {})} for a, b, g in sorted(edges, key=lambda e: (e[0], e[1]))]
+    def make_edges(coasts, links, waters):
+        edges = set(borders)
+        for code, ws in coasts.items():
+            if code not in sel:
+                errors.append(f"ieșire la mare pentru {code}, care nu e în listă")
+                continue
+            for w in ws:
+                if w not in waters:
+                    errors.append(f"apă necunoscută {w} la {code}")
+                edges.add((code, w, None))
+        for a, b, gate in links:
+            if gate is not None and gate not in all_gates:
+                errors.append(f"poartă necunoscută {gate}")
+            edges.add((min(a, b), max(a, b), gate))
+        return edges
 
-    # Totul trebuie să fie accesibil din România.
-    adj = {n["id"]: set() for n in nodes}
-    for e in edge_list:
-        adj[e["a"]].add(e["b"])
-        adj[e["b"]].add(e["a"])
-    seen, queue = {"ROU"}, deque(["ROU"])
-    while queue:
-        for nxt in adj[queue.popleft()]:
-            if nxt not in seen:
-                seen.add(nxt)
-                queue.append(nxt)
-    unreachable = sorted(set(adj) - seen)
-    if unreachable:
-        errors.append(f"locuri inaccesibile: {unreachable}")
+    simple = make_edges(COASTS, WATER_LINKS, WATERS)
+    detailed_links = [l for l in WATER_LINKS if (l[0], l[1]) not in DETAILED_REMOVED_LINKS
+                      and (l[1], l[0]) not in DETAILED_REMOVED_LINKS] + DETAILED_LINKS
+    detailed = make_edges({**COASTS, **DETAILED_COASTS}, detailed_links, {**WATERS, **DETAILED_WATERS})
 
-    # Pe fiecare continent, toate țările lui trebuie să fie accesibile doar prin
-    # țări de pe acel continent și prin ape.
-    for cont in PLAYABLE_CONTINENTS:
-        allowed = {n["id"] for n in nodes if n["type"] == "water" or cont in n.get("continents", [])}
-        countries = sorted(i for i in allowed if not i.startswith("W_"))
-        seen, queue = {countries[0]}, deque([countries[0]])
-        while queue:
-            for nxt in adj[queue.popleft()]:
-                if nxt in allowed and nxt not in seen:
-                    seen.add(nxt)
-                    queue.append(nxt)
-        missing = sorted(set(countries) - seen)
-        if missing:
-            errors.append(f"pe continentul {cont} sunt inaccesibile: {missing}")
+    check_reachable(simple_nodes, edge_dicts(simple), "simplu", errors)
+    check_reachable(nodes, edge_dicts(detailed), "detaliat", errors)
 
+    gates = [{"id": g, "name_ro": ro, "name_en": en, "aliases": al} for g, (ro, en, al) in all_gates.items()]
     return {
-        "version": 1,
+        "version": 2,
         "region": "lume",
         "continents": PLAYABLE_CONTINENTS,
         "source": {"borders": SOURCE_URL, "license": "ODbL 1.0 (mledoze/countries)"},
         "nodes": nodes,
         "gates": gates,
-        "edges": edge_list,
+        "edges": edge_dicts(simple),
+        "edges_detailed": edge_dicts(detailed),
     }, errors
 
 
@@ -324,7 +408,8 @@ def main():
         sys.exit("Erori:\n  " + "\n  ".join(errors))
     out = Path(__file__).resolve().parent.parent / "data" / "world.json"
     out.write_text(json.dumps(world, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"{out}: {len(world['nodes'])} locuri, {len(world['edges'])} legături, {len(world['gates'])} porți")
+    print(f"{out}: {len(world['nodes'])} locuri, {len(world['edges'])} legături simple, "
+          f"{len(world['edges_detailed'])} detaliate, {len(world['gates'])} porți")
 
 
 if __name__ == "__main__":

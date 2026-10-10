@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "region": "lume",
  "continents": [
   "europe",
@@ -2532,6 +2532,116 @@
     "Marea de Est",
     "East Sea"
    ]
+  },
+  {
+   "id": "W_ADR",
+   "type": "water",
+   "name_ro": "Marea Adriatică",
+   "name_en": "Adriatic Sea",
+   "aliases": [
+    "Adriatica"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_ION",
+   "type": "water",
+   "name_ro": "Marea Ionică",
+   "name_en": "Ionian Sea",
+   "aliases": [
+    "Ionica"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_TYR",
+   "type": "water",
+   "name_ro": "Marea Tireniană",
+   "name_en": "Tyrrhenian Sea",
+   "aliases": [
+    "Tireniana"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_EGE",
+   "type": "water",
+   "name_ro": "Marea Egee",
+   "name_en": "Aegean Sea",
+   "aliases": [
+    "Egeea"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_MAR",
+   "type": "water",
+   "name_ro": "Marea Marmara",
+   "name_en": "Sea of Marmara",
+   "aliases": [
+    "Marmara"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_AZO",
+   "type": "water",
+   "name_ro": "Marea Azov",
+   "name_en": "Sea of Azov",
+   "aliases": [
+    "Azov"
+   ],
+   "detailed": true,
+   "parent": "W_BLK"
+  },
+  {
+   "id": "W_ADN",
+   "type": "water",
+   "name_ro": "Golful Aden",
+   "name_en": "Gulf of Aden",
+   "aliases": [
+    "Aden"
+   ],
+   "detailed": true,
+   "parent": "W_IND"
+  },
+  {
+   "id": "W_OMG",
+   "type": "water",
+   "name_ro": "Golful Oman",
+   "name_en": "Gulf of Oman",
+   "aliases": [],
+   "detailed": true,
+   "parent": "W_IND"
+  },
+  {
+   "id": "W_MAN",
+   "type": "water",
+   "name_ro": "Canalul Mânecii",
+   "name_en": "English Channel",
+   "aliases": [
+    "Marea Mânecii",
+    "La Manche",
+    "Mânecii"
+   ],
+   "detailed": true,
+   "parent": "W_ATL"
+  },
+  {
+   "id": "W_BOT",
+   "type": "water",
+   "name_ro": "Golful Botnic",
+   "name_en": "Gulf of Bothnia",
+   "aliases": [
+    "Botnic"
+   ],
+   "detailed": true,
+   "parent": "W_BAL"
   }
  ],
  "gates": [
@@ -2664,6 +2774,52 @@
    "name_en": "Straits of Florida",
    "aliases": [
     "Florida"
+   ]
+  },
+  {
+   "id": "G_OTR",
+   "name_ro": "Strâmtoarea Otranto",
+   "name_en": "Strait of Otranto",
+   "aliases": [
+    "Otranto"
+   ]
+  },
+  {
+   "id": "G_DAR",
+   "name_ro": "Strâmtoarea Dardanele",
+   "name_en": "Dardanelles",
+   "aliases": [
+    "Dardanele",
+    "Dardanelles"
+   ]
+  },
+  {
+   "id": "G_BOS",
+   "name_ro": "Strâmtoarea Bosfor",
+   "name_en": "Bosporus",
+   "aliases": [
+    "Bosfor",
+    "Bosforul",
+    "Bosporus"
+   ]
+  },
+  {
+   "id": "G_KER",
+   "name_ro": "Strâmtoarea Kerci",
+   "name_en": "Kerch Strait",
+   "aliases": [
+    "Kerci",
+    "Kerch"
+   ]
+  },
+  {
+   "id": "G_DOV",
+   "name_ro": "Strâmtoarea Pas-de-Calais",
+   "name_en": "Strait of Dover",
+   "aliases": [
+    "Pas-de-Calais",
+    "Pas de Calais",
+    "Dover"
    ]
   }
  ],
@@ -4825,6 +4981,2314 @@
   {
    "a": "W_PAC",
    "b": "W_SCS"
+  },
+  {
+   "a": "YEM",
+   "b": "W_IND"
+  },
+  {
+   "a": "YEM",
+   "b": "W_RED"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_IND"
+  },
+  {
+   "a": "ZAF",
+   "b": "ZWE"
+  },
+  {
+   "a": "ZMB",
+   "b": "ZWE"
+  }
+ ],
+ "edges_detailed": [
+  {
+   "a": "AFG",
+   "b": "CHN"
+  },
+  {
+   "a": "AFG",
+   "b": "IRN"
+  },
+  {
+   "a": "AFG",
+   "b": "PAK"
+  },
+  {
+   "a": "AFG",
+   "b": "TJK"
+  },
+  {
+   "a": "AFG",
+   "b": "TKM"
+  },
+  {
+   "a": "AFG",
+   "b": "UZB"
+  },
+  {
+   "a": "AGO",
+   "b": "COD"
+  },
+  {
+   "a": "AGO",
+   "b": "COG"
+  },
+  {
+   "a": "AGO",
+   "b": "NAM"
+  },
+  {
+   "a": "AGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "AGO",
+   "b": "ZMB"
+  },
+  {
+   "a": "ALB",
+   "b": "GRC"
+  },
+  {
+   "a": "ALB",
+   "b": "MKD"
+  },
+  {
+   "a": "ALB",
+   "b": "MNE"
+  },
+  {
+   "a": "ALB",
+   "b": "W_ADR"
+  },
+  {
+   "a": "ALB",
+   "b": "W_ION"
+  },
+  {
+   "a": "AND",
+   "b": "ESP"
+  },
+  {
+   "a": "AND",
+   "b": "FRA"
+  },
+  {
+   "a": "ARE",
+   "b": "OMN"
+  },
+  {
+   "a": "ARE",
+   "b": "SAU"
+  },
+  {
+   "a": "ARE",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ARE",
+   "b": "W_OMG"
+  },
+  {
+   "a": "ARG",
+   "b": "BOL"
+  },
+  {
+   "a": "ARG",
+   "b": "BRA"
+  },
+  {
+   "a": "ARG",
+   "b": "CHL"
+  },
+  {
+   "a": "ARG",
+   "b": "PRY"
+  },
+  {
+   "a": "ARG",
+   "b": "URY"
+  },
+  {
+   "a": "ARG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ARM",
+   "b": "AZE"
+  },
+  {
+   "a": "ARM",
+   "b": "GEO"
+  },
+  {
+   "a": "ARM",
+   "b": "IRN"
+  },
+  {
+   "a": "ARM",
+   "b": "TUR"
+  },
+  {
+   "a": "ATG",
+   "b": "W_CAR"
+  },
+  {
+   "a": "AUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "AUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "AUT",
+   "b": "CHE"
+  },
+  {
+   "a": "AUT",
+   "b": "CZE"
+  },
+  {
+   "a": "AUT",
+   "b": "DEU"
+  },
+  {
+   "a": "AUT",
+   "b": "HUN"
+  },
+  {
+   "a": "AUT",
+   "b": "ITA"
+  },
+  {
+   "a": "AUT",
+   "b": "LIE"
+  },
+  {
+   "a": "AUT",
+   "b": "SVK"
+  },
+  {
+   "a": "AUT",
+   "b": "SVN"
+  },
+  {
+   "a": "AZE",
+   "b": "GEO"
+  },
+  {
+   "a": "AZE",
+   "b": "IRN"
+  },
+  {
+   "a": "AZE",
+   "b": "RUS"
+  },
+  {
+   "a": "AZE",
+   "b": "TUR"
+  },
+  {
+   "a": "AZE",
+   "b": "W_CAS"
+  },
+  {
+   "a": "BDI",
+   "b": "COD"
+  },
+  {
+   "a": "BDI",
+   "b": "RWA"
+  },
+  {
+   "a": "BDI",
+   "b": "TZA"
+  },
+  {
+   "a": "BEL",
+   "b": "DEU"
+  },
+  {
+   "a": "BEL",
+   "b": "FRA"
+  },
+  {
+   "a": "BEL",
+   "b": "LUX"
+  },
+  {
+   "a": "BEL",
+   "b": "NLD"
+  },
+  {
+   "a": "BEL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "BEN",
+   "b": "BFA"
+  },
+  {
+   "a": "BEN",
+   "b": "NER"
+  },
+  {
+   "a": "BEN",
+   "b": "NGA"
+  },
+  {
+   "a": "BEN",
+   "b": "TGO"
+  },
+  {
+   "a": "BEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BFA",
+   "b": "CIV"
+  },
+  {
+   "a": "BFA",
+   "b": "GHA"
+  },
+  {
+   "a": "BFA",
+   "b": "MLI"
+  },
+  {
+   "a": "BFA",
+   "b": "NER"
+  },
+  {
+   "a": "BFA",
+   "b": "TGO"
+  },
+  {
+   "a": "BGD",
+   "b": "IND"
+  },
+  {
+   "a": "BGD",
+   "b": "MMR"
+  },
+  {
+   "a": "BGD",
+   "b": "W_IND"
+  },
+  {
+   "a": "BGR",
+   "b": "GRC"
+  },
+  {
+   "a": "BGR",
+   "b": "MKD"
+  },
+  {
+   "a": "BGR",
+   "b": "ROU"
+  },
+  {
+   "a": "BGR",
+   "b": "SRB"
+  },
+  {
+   "a": "BGR",
+   "b": "TUR"
+  },
+  {
+   "a": "BGR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "BHR",
+   "b": "W_GUL"
+  },
+  {
+   "a": "BHS",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BIH",
+   "b": "HRV"
+  },
+  {
+   "a": "BIH",
+   "b": "MNE"
+  },
+  {
+   "a": "BIH",
+   "b": "SRB"
+  },
+  {
+   "a": "BIH",
+   "b": "W_ADR"
+  },
+  {
+   "a": "BLR",
+   "b": "LTU"
+  },
+  {
+   "a": "BLR",
+   "b": "LVA"
+  },
+  {
+   "a": "BLR",
+   "b": "POL"
+  },
+  {
+   "a": "BLR",
+   "b": "RUS"
+  },
+  {
+   "a": "BLR",
+   "b": "UKR"
+  },
+  {
+   "a": "BLZ",
+   "b": "GTM"
+  },
+  {
+   "a": "BLZ",
+   "b": "MEX"
+  },
+  {
+   "a": "BLZ",
+   "b": "W_CAR"
+  },
+  {
+   "a": "BOL",
+   "b": "BRA"
+  },
+  {
+   "a": "BOL",
+   "b": "CHL"
+  },
+  {
+   "a": "BOL",
+   "b": "PER"
+  },
+  {
+   "a": "BOL",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "COL"
+  },
+  {
+   "a": "BRA",
+   "b": "GUY"
+  },
+  {
+   "a": "BRA",
+   "b": "PER"
+  },
+  {
+   "a": "BRA",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "SUR"
+  },
+  {
+   "a": "BRA",
+   "b": "URY"
+  },
+  {
+   "a": "BRA",
+   "b": "VEN"
+  },
+  {
+   "a": "BRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRN",
+   "b": "MYS"
+  },
+  {
+   "a": "BRN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "BTN",
+   "b": "CHN"
+  },
+  {
+   "a": "BTN",
+   "b": "IND"
+  },
+  {
+   "a": "BWA",
+   "b": "NAM"
+  },
+  {
+   "a": "BWA",
+   "b": "ZAF"
+  },
+  {
+   "a": "BWA",
+   "b": "ZMB"
+  },
+  {
+   "a": "BWA",
+   "b": "ZWE"
+  },
+  {
+   "a": "CAF",
+   "b": "CMR"
+  },
+  {
+   "a": "CAF",
+   "b": "COD"
+  },
+  {
+   "a": "CAF",
+   "b": "COG"
+  },
+  {
+   "a": "CAF",
+   "b": "SDN"
+  },
+  {
+   "a": "CAF",
+   "b": "SSD"
+  },
+  {
+   "a": "CAF",
+   "b": "TCD"
+  },
+  {
+   "a": "CAN",
+   "b": "USA"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ARC"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHE",
+   "b": "DEU"
+  },
+  {
+   "a": "CHE",
+   "b": "FRA"
+  },
+  {
+   "a": "CHE",
+   "b": "ITA"
+  },
+  {
+   "a": "CHE",
+   "b": "LIE"
+  },
+  {
+   "a": "CHL",
+   "b": "PER"
+  },
+  {
+   "a": "CHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHN",
+   "b": "IND"
+  },
+  {
+   "a": "CHN",
+   "b": "KAZ"
+  },
+  {
+   "a": "CHN",
+   "b": "KGZ"
+  },
+  {
+   "a": "CHN",
+   "b": "LAO"
+  },
+  {
+   "a": "CHN",
+   "b": "MMR"
+  },
+  {
+   "a": "CHN",
+   "b": "MNG"
+  },
+  {
+   "a": "CHN",
+   "b": "NPL"
+  },
+  {
+   "a": "CHN",
+   "b": "PAK"
+  },
+  {
+   "a": "CHN",
+   "b": "PRK"
+  },
+  {
+   "a": "CHN",
+   "b": "RUS"
+  },
+  {
+   "a": "CHN",
+   "b": "TJK"
+  },
+  {
+   "a": "CHN",
+   "b": "VNM"
+  },
+  {
+   "a": "CHN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "CHN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "CIV",
+   "b": "GHA"
+  },
+  {
+   "a": "CIV",
+   "b": "GIN"
+  },
+  {
+   "a": "CIV",
+   "b": "LBR"
+  },
+  {
+   "a": "CIV",
+   "b": "MLI"
+  },
+  {
+   "a": "CIV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CMR",
+   "b": "COG"
+  },
+  {
+   "a": "CMR",
+   "b": "GAB"
+  },
+  {
+   "a": "CMR",
+   "b": "GNQ"
+  },
+  {
+   "a": "CMR",
+   "b": "NGA"
+  },
+  {
+   "a": "CMR",
+   "b": "TCD"
+  },
+  {
+   "a": "CMR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "COG"
+  },
+  {
+   "a": "COD",
+   "b": "RWA"
+  },
+  {
+   "a": "COD",
+   "b": "SSD"
+  },
+  {
+   "a": "COD",
+   "b": "TZA"
+  },
+  {
+   "a": "COD",
+   "b": "UGA"
+  },
+  {
+   "a": "COD",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "ZMB"
+  },
+  {
+   "a": "COG",
+   "b": "GAB"
+  },
+  {
+   "a": "COG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COL",
+   "b": "ECU"
+  },
+  {
+   "a": "COL",
+   "b": "PAN"
+  },
+  {
+   "a": "COL",
+   "b": "PER"
+  },
+  {
+   "a": "COL",
+   "b": "VEN"
+  },
+  {
+   "a": "COL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "COL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "COM",
+   "b": "W_IND"
+  },
+  {
+   "a": "CPV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CRI",
+   "b": "NIC"
+  },
+  {
+   "a": "CRI",
+   "b": "PAN"
+  },
+  {
+   "a": "CRI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CRI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CUB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CUB",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CUB",
+   "b": "W_MEX"
+  },
+  {
+   "a": "CYP",
+   "b": "W_MED"
+  },
+  {
+   "a": "CZE",
+   "b": "DEU"
+  },
+  {
+   "a": "CZE",
+   "b": "POL"
+  },
+  {
+   "a": "CZE",
+   "b": "SVK"
+  },
+  {
+   "a": "DEU",
+   "b": "DNK"
+  },
+  {
+   "a": "DEU",
+   "b": "FRA"
+  },
+  {
+   "a": "DEU",
+   "b": "LUX"
+  },
+  {
+   "a": "DEU",
+   "b": "NLD"
+  },
+  {
+   "a": "DEU",
+   "b": "POL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DJI",
+   "b": "ERI"
+  },
+  {
+   "a": "DJI",
+   "b": "ETH"
+  },
+  {
+   "a": "DJI",
+   "b": "SOM"
+  },
+  {
+   "a": "DJI",
+   "b": "W_ADN"
+  },
+  {
+   "a": "DJI",
+   "b": "W_RED"
+  },
+  {
+   "a": "DMA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DNK",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DNK",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DOM",
+   "b": "HTI"
+  },
+  {
+   "a": "DOM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "DOM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DZA",
+   "b": "LBY"
+  },
+  {
+   "a": "DZA",
+   "b": "MAR"
+  },
+  {
+   "a": "DZA",
+   "b": "MLI"
+  },
+  {
+   "a": "DZA",
+   "b": "MRT"
+  },
+  {
+   "a": "DZA",
+   "b": "NER"
+  },
+  {
+   "a": "DZA",
+   "b": "TUN"
+  },
+  {
+   "a": "DZA",
+   "b": "W_MED"
+  },
+  {
+   "a": "ECU",
+   "b": "PER"
+  },
+  {
+   "a": "ECU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "EGY",
+   "b": "ISR"
+  },
+  {
+   "a": "EGY",
+   "b": "LBY"
+  },
+  {
+   "a": "EGY",
+   "b": "SDN"
+  },
+  {
+   "a": "EGY",
+   "b": "W_MED"
+  },
+  {
+   "a": "EGY",
+   "b": "W_RED"
+  },
+  {
+   "a": "ERI",
+   "b": "ETH"
+  },
+  {
+   "a": "ERI",
+   "b": "SDN"
+  },
+  {
+   "a": "ERI",
+   "b": "W_RED"
+  },
+  {
+   "a": "ESP",
+   "b": "FRA"
+  },
+  {
+   "a": "ESP",
+   "b": "MAR"
+  },
+  {
+   "a": "ESP",
+   "b": "PRT"
+  },
+  {
+   "a": "ESP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ESP",
+   "b": "W_MED"
+  },
+  {
+   "a": "EST",
+   "b": "LVA"
+  },
+  {
+   "a": "EST",
+   "b": "RUS"
+  },
+  {
+   "a": "EST",
+   "b": "W_BAL"
+  },
+  {
+   "a": "ETH",
+   "b": "KEN"
+  },
+  {
+   "a": "ETH",
+   "b": "SDN"
+  },
+  {
+   "a": "ETH",
+   "b": "SOM"
+  },
+  {
+   "a": "ETH",
+   "b": "SSD"
+  },
+  {
+   "a": "FIN",
+   "b": "NOR"
+  },
+  {
+   "a": "FIN",
+   "b": "RUS"
+  },
+  {
+   "a": "FIN",
+   "b": "SWE"
+  },
+  {
+   "a": "FIN",
+   "b": "W_BAL"
+  },
+  {
+   "a": "FIN",
+   "b": "W_BOT"
+  },
+  {
+   "a": "FJI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA"
+  },
+  {
+   "a": "FRA",
+   "b": "LUX"
+  },
+  {
+   "a": "FRA",
+   "b": "MCO"
+  },
+  {
+   "a": "FRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "FRA",
+   "b": "W_MAN"
+  },
+  {
+   "a": "FRA",
+   "b": "W_MED"
+  },
+  {
+   "a": "FRA",
+   "b": "W_NRT"
+  },
+  {
+   "a": "FRA",
+   "b": "W_TYR"
+  },
+  {
+   "a": "FSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GAB",
+   "b": "GNQ"
+  },
+  {
+   "a": "GAB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "IRL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_MAN"
+  },
+  {
+   "a": "GBR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "GEO",
+   "b": "RUS"
+  },
+  {
+   "a": "GEO",
+   "b": "TUR"
+  },
+  {
+   "a": "GEO",
+   "b": "W_BLK"
+  },
+  {
+   "a": "GHA",
+   "b": "TGO"
+  },
+  {
+   "a": "GHA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GIN",
+   "b": "GNB"
+  },
+  {
+   "a": "GIN",
+   "b": "LBR"
+  },
+  {
+   "a": "GIN",
+   "b": "MLI"
+  },
+  {
+   "a": "GIN",
+   "b": "SEN"
+  },
+  {
+   "a": "GIN",
+   "b": "SLE"
+  },
+  {
+   "a": "GIN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GMB",
+   "b": "SEN"
+  },
+  {
+   "a": "GMB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNB",
+   "b": "SEN"
+  },
+  {
+   "a": "GNB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNQ",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GRC",
+   "b": "MKD"
+  },
+  {
+   "a": "GRC",
+   "b": "TUR"
+  },
+  {
+   "a": "GRC",
+   "b": "W_EGE"
+  },
+  {
+   "a": "GRC",
+   "b": "W_ION"
+  },
+  {
+   "a": "GRC",
+   "b": "W_MED"
+  },
+  {
+   "a": "GRD",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "HND"
+  },
+  {
+   "a": "GTM",
+   "b": "MEX"
+  },
+  {
+   "a": "GTM",
+   "b": "SLV"
+  },
+  {
+   "a": "GTM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GUY",
+   "b": "SUR"
+  },
+  {
+   "a": "GUY",
+   "b": "VEN"
+  },
+  {
+   "a": "GUY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HND",
+   "b": "NIC"
+  },
+  {
+   "a": "HND",
+   "b": "SLV"
+  },
+  {
+   "a": "HND",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "HRV",
+   "b": "HUN"
+  },
+  {
+   "a": "HRV",
+   "b": "MNE"
+  },
+  {
+   "a": "HRV",
+   "b": "SRB"
+  },
+  {
+   "a": "HRV",
+   "b": "SVN"
+  },
+  {
+   "a": "HRV",
+   "b": "W_ADR"
+  },
+  {
+   "a": "HTI",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HTI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HUN",
+   "b": "ROU"
+  },
+  {
+   "a": "HUN",
+   "b": "SRB"
+  },
+  {
+   "a": "HUN",
+   "b": "SVK"
+  },
+  {
+   "a": "HUN",
+   "b": "SVN"
+  },
+  {
+   "a": "HUN",
+   "b": "UKR"
+  },
+  {
+   "a": "IDN",
+   "b": "MYS"
+  },
+  {
+   "a": "IDN",
+   "b": "PNG"
+  },
+  {
+   "a": "IDN",
+   "b": "TLS"
+  },
+  {
+   "a": "IDN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IDN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "IDN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "IND",
+   "b": "MMR"
+  },
+  {
+   "a": "IND",
+   "b": "NPL"
+  },
+  {
+   "a": "IND",
+   "b": "PAK"
+  },
+  {
+   "a": "IND",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "IRN",
+   "b": "IRQ"
+  },
+  {
+   "a": "IRN",
+   "b": "PAK"
+  },
+  {
+   "a": "IRN",
+   "b": "TKM"
+  },
+  {
+   "a": "IRN",
+   "b": "TUR"
+  },
+  {
+   "a": "IRN",
+   "b": "W_CAS"
+  },
+  {
+   "a": "IRN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "IRN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRN",
+   "b": "W_OMG"
+  },
+  {
+   "a": "IRQ",
+   "b": "JOR"
+  },
+  {
+   "a": "IRQ",
+   "b": "KWT"
+  },
+  {
+   "a": "IRQ",
+   "b": "SAU"
+  },
+  {
+   "a": "IRQ",
+   "b": "SYR"
+  },
+  {
+   "a": "IRQ",
+   "b": "TUR"
+  },
+  {
+   "a": "IRQ",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ARC"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ISR",
+   "b": "JOR"
+  },
+  {
+   "a": "ISR",
+   "b": "LBN"
+  },
+  {
+   "a": "ISR",
+   "b": "SYR"
+  },
+  {
+   "a": "ISR",
+   "b": "W_MED"
+  },
+  {
+   "a": "ISR",
+   "b": "W_RED"
+  },
+  {
+   "a": "ITA",
+   "b": "SMR"
+  },
+  {
+   "a": "ITA",
+   "b": "SVN"
+  },
+  {
+   "a": "ITA",
+   "b": "VAT"
+  },
+  {
+   "a": "ITA",
+   "b": "W_ADR"
+  },
+  {
+   "a": "ITA",
+   "b": "W_ION"
+  },
+  {
+   "a": "ITA",
+   "b": "W_MED"
+  },
+  {
+   "a": "ITA",
+   "b": "W_TYR"
+  },
+  {
+   "a": "JAM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "JOR",
+   "b": "SAU"
+  },
+  {
+   "a": "JOR",
+   "b": "SYR"
+  },
+  {
+   "a": "JOR",
+   "b": "W_RED"
+  },
+  {
+   "a": "JPN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "JPN",
+   "b": "W_JPN"
+  },
+  {
+   "a": "JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KAZ",
+   "b": "KGZ"
+  },
+  {
+   "a": "KAZ",
+   "b": "RUS"
+  },
+  {
+   "a": "KAZ",
+   "b": "TKM"
+  },
+  {
+   "a": "KAZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KAZ",
+   "b": "W_CAS"
+  },
+  {
+   "a": "KEN",
+   "b": "SOM"
+  },
+  {
+   "a": "KEN",
+   "b": "SSD"
+  },
+  {
+   "a": "KEN",
+   "b": "TZA"
+  },
+  {
+   "a": "KEN",
+   "b": "UGA"
+  },
+  {
+   "a": "KEN",
+   "b": "W_IND"
+  },
+  {
+   "a": "KGZ",
+   "b": "TJK"
+  },
+  {
+   "a": "KGZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KHM",
+   "b": "LAO"
+  },
+  {
+   "a": "KHM",
+   "b": "THA"
+  },
+  {
+   "a": "KHM",
+   "b": "VNM"
+  },
+  {
+   "a": "KHM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "KIR",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KNA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "KOR",
+   "b": "PRK"
+  },
+  {
+   "a": "KOR",
+   "b": "W_ECS"
+  },
+  {
+   "a": "KOR",
+   "b": "W_JPN"
+  },
+  {
+   "a": "KWT",
+   "b": "SAU"
+  },
+  {
+   "a": "KWT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "LAO",
+   "b": "MMR"
+  },
+  {
+   "a": "LAO",
+   "b": "THA"
+  },
+  {
+   "a": "LAO",
+   "b": "VNM"
+  },
+  {
+   "a": "LBN",
+   "b": "SYR"
+  },
+  {
+   "a": "LBN",
+   "b": "W_MED"
+  },
+  {
+   "a": "LBR",
+   "b": "SLE"
+  },
+  {
+   "a": "LBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "LBY",
+   "b": "NER"
+  },
+  {
+   "a": "LBY",
+   "b": "SDN"
+  },
+  {
+   "a": "LBY",
+   "b": "TCD"
+  },
+  {
+   "a": "LBY",
+   "b": "TUN"
+  },
+  {
+   "a": "LBY",
+   "b": "W_MED"
+  },
+  {
+   "a": "LCA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "LKA",
+   "b": "W_IND"
+  },
+  {
+   "a": "LSO",
+   "b": "ZAF"
+  },
+  {
+   "a": "LTU",
+   "b": "LVA"
+  },
+  {
+   "a": "LTU",
+   "b": "POL"
+  },
+  {
+   "a": "LTU",
+   "b": "RUS"
+  },
+  {
+   "a": "LTU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "LVA",
+   "b": "RUS"
+  },
+  {
+   "a": "LVA",
+   "b": "W_BAL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_MED"
+  },
+  {
+   "a": "MCO",
+   "b": "W_MED"
+  },
+  {
+   "a": "MDA",
+   "b": "ROU"
+  },
+  {
+   "a": "MDA",
+   "b": "UKR"
+  },
+  {
+   "a": "MDG",
+   "b": "W_IND"
+  },
+  {
+   "a": "MDV",
+   "b": "W_IND"
+  },
+  {
+   "a": "MEX",
+   "b": "USA"
+  },
+  {
+   "a": "MEX",
+   "b": "W_CAR"
+  },
+  {
+   "a": "MEX",
+   "b": "W_MEX"
+  },
+  {
+   "a": "MEX",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MKD",
+   "b": "SRB"
+  },
+  {
+   "a": "MLI",
+   "b": "MRT"
+  },
+  {
+   "a": "MLI",
+   "b": "NER"
+  },
+  {
+   "a": "MLI",
+   "b": "SEN"
+  },
+  {
+   "a": "MLT",
+   "b": "W_MED"
+  },
+  {
+   "a": "MMR",
+   "b": "THA"
+  },
+  {
+   "a": "MMR",
+   "b": "W_IND"
+  },
+  {
+   "a": "MNE",
+   "b": "SRB"
+  },
+  {
+   "a": "MNE",
+   "b": "W_ADR"
+  },
+  {
+   "a": "MNG",
+   "b": "RUS"
+  },
+  {
+   "a": "MOZ",
+   "b": "MWI"
+  },
+  {
+   "a": "MOZ",
+   "b": "SWZ"
+  },
+  {
+   "a": "MOZ",
+   "b": "TZA"
+  },
+  {
+   "a": "MOZ",
+   "b": "W_IND"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZMB"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZWE"
+  },
+  {
+   "a": "MRT",
+   "b": "SEN"
+  },
+  {
+   "a": "MRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MWI",
+   "b": "TZA"
+  },
+  {
+   "a": "MWI",
+   "b": "ZMB"
+  },
+  {
+   "a": "MYS",
+   "b": "THA"
+  },
+  {
+   "a": "MYS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MYS",
+   "b": "W_SCS"
+  },
+  {
+   "a": "NAM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NAM",
+   "b": "ZAF"
+  },
+  {
+   "a": "NAM",
+   "b": "ZMB"
+  },
+  {
+   "a": "NER",
+   "b": "NGA"
+  },
+  {
+   "a": "NER",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NIC",
+   "b": "W_CAR"
+  },
+  {
+   "a": "NIC",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NLD",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NOR",
+   "b": "RUS"
+  },
+  {
+   "a": "NOR",
+   "b": "SWE"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ARC"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NOR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NRU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NZL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "OMN",
+   "b": "SAU"
+  },
+  {
+   "a": "OMN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "OMN",
+   "b": "W_IND"
+  },
+  {
+   "a": "OMN",
+   "b": "W_OMG"
+  },
+  {
+   "a": "OMN",
+   "b": "YEM"
+  },
+  {
+   "a": "PAK",
+   "b": "W_IND"
+  },
+  {
+   "a": "PAN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "PAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PER",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_SCS"
+  },
+  {
+   "a": "PLW",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PNG",
+   "b": "W_PAC"
+  },
+  {
+   "a": "POL",
+   "b": "RUS"
+  },
+  {
+   "a": "POL",
+   "b": "SVK"
+  },
+  {
+   "a": "POL",
+   "b": "UKR"
+  },
+  {
+   "a": "POL",
+   "b": "W_BAL"
+  },
+  {
+   "a": "PRK",
+   "b": "RUS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_ECS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_JPN"
+  },
+  {
+   "a": "PRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "QAT",
+   "b": "SAU"
+  },
+  {
+   "a": "QAT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ROU",
+   "b": "SRB"
+  },
+  {
+   "a": "ROU",
+   "b": "UKR"
+  },
+  {
+   "a": "ROU",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "UKR"
+  },
+  {
+   "a": "RUS",
+   "b": "W_ARC"
+  },
+  {
+   "a": "RUS",
+   "b": "W_AZO"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BAL"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "W_CAS"
+  },
+  {
+   "a": "RUS",
+   "b": "W_JPN"
+  },
+  {
+   "a": "RUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "RWA",
+   "b": "TZA"
+  },
+  {
+   "a": "RWA",
+   "b": "UGA"
+  },
+  {
+   "a": "SAU",
+   "b": "W_GUL"
+  },
+  {
+   "a": "SAU",
+   "b": "W_RED"
+  },
+  {
+   "a": "SAU",
+   "b": "YEM"
+  },
+  {
+   "a": "SDN",
+   "b": "SSD"
+  },
+  {
+   "a": "SDN",
+   "b": "TCD"
+  },
+  {
+   "a": "SDN",
+   "b": "W_RED"
+  },
+  {
+   "a": "SEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SGP",
+   "b": "W_SCS"
+  },
+  {
+   "a": "SLB",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SLE",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SLV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SOM",
+   "b": "W_ADN"
+  },
+  {
+   "a": "SOM",
+   "b": "W_IND"
+  },
+  {
+   "a": "SSD",
+   "b": "UGA"
+  },
+  {
+   "a": "STP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SUR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SVK",
+   "b": "UKR"
+  },
+  {
+   "a": "SVN",
+   "b": "W_ADR"
+  },
+  {
+   "a": "SWE",
+   "b": "W_BAL"
+  },
+  {
+   "a": "SWE",
+   "b": "W_BOT"
+  },
+  {
+   "a": "SWE",
+   "b": "W_NRT"
+  },
+  {
+   "a": "SWZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "SYC",
+   "b": "W_IND"
+  },
+  {
+   "a": "SYR",
+   "b": "TUR"
+  },
+  {
+   "a": "SYR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "THA",
+   "b": "W_IND"
+  },
+  {
+   "a": "THA",
+   "b": "W_SCS"
+  },
+  {
+   "a": "TJK",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "W_CAS"
+  },
+  {
+   "a": "TLS",
+   "b": "W_IND"
+  },
+  {
+   "a": "TLS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TON",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TTO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "TTO",
+   "b": "W_CAR"
+  },
+  {
+   "a": "TUN",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "TUR",
+   "b": "W_EGE"
+  },
+  {
+   "a": "TUR",
+   "b": "W_MAR"
+  },
+  {
+   "a": "TUR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TZA",
+   "b": "UGA"
+  },
+  {
+   "a": "TZA",
+   "b": "W_IND"
+  },
+  {
+   "a": "TZA",
+   "b": "ZMB"
+  },
+  {
+   "a": "UKR",
+   "b": "W_AZO"
+  },
+  {
+   "a": "UKR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "URY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_ARC"
+  },
+  {
+   "a": "USA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_MEX"
+  },
+  {
+   "a": "USA",
+   "b": "W_PAC"
+  },
+  {
+   "a": "VCT",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "VEN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VNM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "VUT",
+   "b": "W_PAC"
+  },
+  {
+   "a": "WSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ADN",
+   "b": "W_IND"
+  },
+  {
+   "a": "W_ADN",
+   "b": "W_RED",
+   "gate": "G_BAB"
+  },
+  {
+   "a": "W_ADR",
+   "b": "W_ION",
+   "gate": "G_OTR"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_ATL"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_PAC",
+   "gate": "G_BER"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_IND"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MAN"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MED",
+   "gate": "G_GIB"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MEX",
+   "gate": "G_FLA"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_PAC",
+   "gate": "G_DRK"
+  },
+  {
+   "a": "W_AZO",
+   "b": "W_BLK",
+   "gate": "G_KER"
+  },
+  {
+   "a": "W_AZO",
+   "b": "W_CAS",
+   "gate": "G_VOL"
+  },
+  {
+   "a": "W_BAL",
+   "b": "W_BOT"
+  },
+  {
+   "a": "W_BAL",
+   "b": "W_NRT",
+   "gate": "G_DAN"
+  },
+  {
+   "a": "W_BLK",
+   "b": "W_MAR",
+   "gate": "G_BOS"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_MEX"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_PAC",
+   "gate": "G_PAN"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_JPN",
+   "gate": "G_KOR"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_SCS",
+   "gate": "G_TAI"
+  },
+  {
+   "a": "W_EGE",
+   "b": "W_MAR",
+   "gate": "G_DAR"
+  },
+  {
+   "a": "W_EGE",
+   "b": "W_MED"
+  },
+  {
+   "a": "W_GUL",
+   "b": "W_OMG",
+   "gate": "G_HOR"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_OMG"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_SCS",
+   "gate": "G_MAL"
+  },
+  {
+   "a": "W_ION",
+   "b": "W_MED"
+  },
+  {
+   "a": "W_JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_MAN",
+   "b": "W_NRT",
+   "gate": "G_DOV"
+  },
+  {
+   "a": "W_MED",
+   "b": "W_RED",
+   "gate": "G_SUE"
+  },
+  {
+   "a": "W_MED",
+   "b": "W_TYR"
+  },
+  {
+   "a": "W_PAC",
+   "b": "W_SCS"
+  },
+  {
+   "a": "YEM",
+   "b": "W_ADN"
   },
   {
    "a": "YEM",
