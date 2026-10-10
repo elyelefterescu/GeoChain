@@ -76,6 +76,40 @@ input, textarea { font-size: 16px !important; }
 		return realFetch(input, init);
 	};
 }());
+
+// Sunetul pe iPhone: Safari pornește sunetul doar dintr-o atingere și, implicit, îl oprește când
+// telefonul e pe silențios. Cerem sunet de tip „redare” (ca la muzică) și, la fiecare atingere,
+// repornim contextul audio al jocului, cu un sunet gol care deblochează difuzorul.
+(function () {
+	try {
+		if (navigator.audioSession) navigator.audioSession.type = 'playback';
+	} catch (e) { /* browser fără audioSession */ }
+	const contexts = [];
+	const Native = window.AudioContext || window.webkitAudioContext;
+	if (!Native) return;
+	function Tracked(options) {
+		const ctx = new Native(options);
+		contexts.push(ctx);
+		return ctx;
+	}
+	Tracked.prototype = Native.prototype;
+	window.AudioContext = Tracked;
+	window.webkitAudioContext = Tracked;
+	function unlock() {
+		contexts.forEach(function (ctx) {
+			if (ctx.state !== 'running') ctx.resume().catch(function () {});
+			try {
+				const source = ctx.createBufferSource();
+				source.buffer = ctx.createBuffer(1, 1, ctx.sampleRate);
+				source.connect(ctx.destination);
+				source.start(0);
+			} catch (e) { /* contextul nu e gata încă */ }
+		});
+	}
+	['touchend', 'pointerup', 'click', 'keydown'].forEach(function (type) {
+		window.addEventListener(type, unlock, true);
+	});
+}());
 </script>
 <script src="index.js"></script>
 <script>
