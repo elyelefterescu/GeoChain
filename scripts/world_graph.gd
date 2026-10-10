@@ -18,6 +18,7 @@ var adj := {}     # id -> { vecin_id: poartă_id sau "" }
 var _names := {}  # nume normalizat -> id
 var _gate_names := {}  # nume normalizat -> poartă_id
 var _capitals := {}  # capitală normalizată -> țară
+var ferries := {}  # "A|B" (în ordine alfabetică) -> bacul dintre cele două țări (modul Bac)
 
 
 func load_file(path: String, detailed := false) -> bool:
@@ -43,6 +44,7 @@ func load_data(data: Dictionary, detailed := false) -> void:
 	_names.clear()
 	_gate_names.clear()
 	_capitals.clear()
+	ferries.clear()
 	continents = data.get("continents", [])
 	for node in data["nodes"]:
 		var id: String = node["id"]
@@ -71,6 +73,59 @@ func load_data(data: Dictionary, detailed := false) -> void:
 		gates[gate["id"]] = gate
 		for name in [gate["name_ro"], gate["name_en"]] + Array(gate.get("aliases", [])):
 			_gate_names[normalize(name)] = gate["id"]
+
+
+## Strâmtori între două țări (Normal, Sandbox): țările devin vecine, iar trecerea cere numele strâmtorii.
+## extra_gates: porțile noi din straits.json; world_gates: porțile din world.json (unele apar doar pe harta detaliată).
+func add_straits(list: Array, extra_gates: Array, world_gates: Array) -> void:
+	var defs := {}
+	for gate in world_gates + extra_gates:
+		defs[gate["id"]] = gate
+	for strait in list:
+		var a: String = strait["a"]
+		var b: String = strait["b"]
+		var gate_id: String = strait["gate"]
+		if not nodes.has(a) or not nodes.has(b) or not defs.has(gate_id):
+			continue
+		adj[a][b] = gate_id
+		adj[b][a] = gate_id
+		if not gates.has(gate_id):
+			gates[gate_id] = defs[gate_id]
+			for name in [defs[gate_id]["name_ro"], defs[gate_id]["name_en"]] + Array(defs[gate_id].get("aliases", [])):
+				if not _gate_names.has(normalize(name)):
+					_gate_names[normalize(name)] = gate_id
+
+
+## Harta modului Bac: fără ape, doar uscatul, plus bacurile dintre țări.
+func use_ferries(list: Array) -> void:
+	for id in nodes.keys().filter(func(n): return is_water(n)):
+		nodes.erase(id)
+		adj.erase(id)
+	for id in adj:
+		for n in adj[id].keys():
+			if not nodes.has(n):
+				adj[id].erase(n)
+	ferries.clear()
+	for ferry in list:
+		if not nodes.has(ferry["a"]) or not nodes.has(ferry["b"]):
+			continue
+		adj[ferry["a"]][ferry["b"]] = ""
+		adj[ferry["b"]][ferry["a"]] = ""
+		ferries[ferry_key(ferry["a"], ferry["b"])] = ferry
+
+
+static func ferry_key(a: String, b: String) -> String:
+	return a + "|" + b if a < b else b + "|" + a
+
+
+## Bacul dintre două țări ({} dacă nu e), cu porturile în ordinea mersului: {from, to}.
+func ferry_between(a: String, b: String) -> Dictionary:
+	var ferry: Dictionary = ferries.get(ferry_key(a, b), {})
+	if ferry.is_empty():
+		return {}
+	if ferry["a"] == a:
+		return {"from": ferry["from"], "to": ferry["to"]}
+	return {"from": ferry["to"], "to": ferry["from"]}
 
 
 static func normalize(text: String) -> String:

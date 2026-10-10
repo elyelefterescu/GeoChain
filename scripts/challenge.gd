@@ -6,8 +6,9 @@ extends RefCounted
 
 
 ## Întoarce {start, goal, forbidden: [], required: []} sau {} dacă nu găsește.
-static func make(graph, rng: RandomNumberGenerator, rules, continent := "") -> Dictionary:
-	var water: int = rules.get_value("water_limit")
+## need_ferry (modul Bac): traseul minim trebuie să treacă măcar o dată cu bacul.
+static func make(graph, rng: RandomNumberGenerator, rules, continent := "", need_ferry := false) -> Dictionary:
+	var water: int = -1 if need_ferry else rules.get_value("water_limit")
 	var range: Array = rules.distance_range()
 	var countries: Array = graph.nodes.keys().filter(
 		func(id): return not graph.is_water(id) and graph.is_allowed(id, continent))
@@ -27,6 +28,8 @@ static func make(graph, rng: RandomNumberGenerator, rules, continent := "") -> D
 		for b in goals.slice(0, 8):
 			var result := {"start": a, "goal": b, "forbidden": [], "required": []}
 			var path: Array = graph.shortest_path(a, b, water, continent)
+			if need_ferry and not uses_ferry(graph, path):
+				continue
 			var need_required: bool = rules.get_value("required")
 			if rules.get_value("forbidden"):
 				tried += 1
@@ -96,3 +99,10 @@ static func _add_required(graph, rng, result: Dictionary, countries: Array, path
 		return false
 	result.required = [options[rng.randi_range(0, options.size() - 1)]]
 	return true
+
+
+static func uses_ferry(graph, path: Array) -> bool:
+	for i in range(1, path.size()):
+		if not graph.ferry_between(path[i - 1], path[i]).is_empty():
+			return true
+	return false

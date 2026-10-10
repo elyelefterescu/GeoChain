@@ -10,6 +10,7 @@ const Rules := preload("res://scripts/rules.gd")
 const Challenge := preload("res://scripts/challenge.gd")
 const UiTheme := preload("res://scripts/ui_theme.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
+const Quiz := preload("res://scripts/quiz.gd")
 
 const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
@@ -46,7 +47,17 @@ var world_data: Dictionary
 var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
 var _flags_loaded := false
 var _flag_cache := {}  # țară -> textură
-var graph := WorldGraph.new()
+var graph := WorldGraph.new()  # harta partidei curente: normal_graph sau ferry_graph
+var normal_graph := WorldGraph.new()  # cu ape (Normal, Sandbox)
+var ferry_graph := WorldGraph.new()  # doar uscat și bacuri (modul Bac)
+var ferry_list: Array = []
+var strait_data := {}  # strâmtorile dintre țări (Normal, Sandbox)
+var quiz := Quiz.new()
+var ferry_target := ""  # țara spre care vrei să iei bacul
+var ferry_asked := 0
+var ferry_correct := 0
+var ferry_question := {}
+var _ferry_token := 0  # ca un răspuns întârziat să nu se amestece cu o încercare nouă
 var session := GameSession.new()
 var rng := RandomNumberGenerator.new()
 var pending_target := ""  # locul în care vrei să treci după ce numești poarta
@@ -86,6 +97,14 @@ var _choices_key := ""  # variantele cu steaguri se schimbă doar după o mutare
 var neighbors_box: HFlowContainer
 var sandbox_row: HBoxContainer
 var gate_panel: PanelContainer
+var ferry_panel: PanelContainer
+var ferry_title: Label
+var ferry_progress: Label
+var ferry_text: Label
+var ferry_flag: TextureRect
+var ferry_options: GridContainer
+var ferry_retry_row: HBoxContainer
+var ferry_ports: Label
 var gate_label: Label
 var gate_row: HBoxContainer
 var gate_edit: LineEdit
@@ -104,8 +123,14 @@ func _ready() -> void:
 	globe_assets = load_globe_assets(world_data)
 	rules.load_saved()
 	i18n.lang = I18n.default_lang()
-	graph.load_data(world_data, rules.get_value("detailed_seas"))
-	graph.lang = i18n.lang
+	var ferries = JSON.parse_string(FileAccess.get_file_as_string("res://data/ferries.json"))
+	ferry_list = ferries["ferries"] if ferries is Dictionary else []
+	var straits = JSON.parse_string(FileAccess.get_file_as_string("res://data/straits.json"))
+	strait_data = straits if straits is Dictionary else {}
+	_load_graphs()
+	var questions = JSON.parse_string(FileAccess.get_file_as_string("res://data/questions.json"))
+	quiz.has_flag = func(id): return _flag_texture(id) != null
+	quiz.setup(normal_graph, questions["questions"] if questions is Dictionary else [], rng)
 	theme = UiTheme.build()
 
 	move_timer = Timer.new()
@@ -152,8 +177,34 @@ func _continent_name(continent: String) -> String:
 	return t("map_world" if continent == "" else "map_" + continent)
 
 
+## Normal și Bac au reguli; Sandbox e liber.
 func _normal() -> bool:
-	return session.mode == GameSession.Mode.NORMAL
+	return session.mode != GameSession.Mode.SANDBOX
+
+
+func _ferry() -> bool:
+	return session.mode == GameSession.Mode.FERRY
+
+
+## Încarcă ambele hărți (cu mările detaliate după reguli) și alege harta modului ales.
+func _load_graphs() -> void:
+	normal_graph.load_data(world_data, rules.get_value("detailed_seas"))
+	normal_graph.add_straits(strait_data.get("straits", []), strait_data.get("gates", []), world_data["gates"])
+	ferry_graph.load_data(world_data, false)
+	ferry_graph.use_ferries(ferry_list)
+	normal_graph.lang = i18n.lang
+	ferry_graph.lang = i18n.lang
+	_select_graph()
+
+
+func _select_graph() -> void:
+	var ferry_mode := mode_select != null and _selected_mode() == GameSession.Mode.FERRY
+	graph = ferry_graph if ferry_mode else normal_graph
+	if globe:
+		globe.graph = graph
+		# Pe glob: bacurile în modul Bac, strâmtorile dintre țări în celelalte moduri.
+		globe.set_links(ferry_list if ferry_mode else strait_data.get("straits", []),
+			Globe.FERRY_COLOR if ferry_mode else Globe.STRAIT_COLOR)
 
 
 ## Ecran lat (Windows) sau înalt (telefon): schimbăm doar așezarea, nu refacem nimic.
@@ -177,7 +228,8 @@ func _update_layout() -> void:
 ## Schimbă limba: refacem panoul, globul și partida rămân.
 func _on_language_pressed() -> void:
 	i18n.lang = "en" if i18n.lang == "ro" else "ro"
-	graph.lang = i18n.lang
+	normal_graph.lang = i18n.lang
+	ferry_graph.lang = i18n.lang
 	var mode := mode_select.selected
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
@@ -293,6 +345,7 @@ func _build_setup_card() -> PanelContainer:
 	mode_select = OptionButton.new()
 	mode_select.add_item(t("mode_normal"))
 	mode_select.add_item(t("mode_sandbox"))
+	mode_select.add_item(t("mode_ferry"))
 	mode_select.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	settings.add_child(mode_select)
 	map_select = OptionButton.new()
@@ -413,6 +466,40 @@ func _build_move_card() -> PanelContainer:
 	gate_box.add_child(cancel)
 	box.add_child(gate_panel)
 
+	ferry_panel = PanelContainer.new()
+	ferry_panel.add_theme_stylebox_override("panel", UiTheme.box(Color(UiTheme.ACCENT, 0.1), 14, UiTheme.ACCENT, 12))
+	var ferry_box := VBoxContainer.new()
+	ferry_panel.add_child(ferry_box)
+	ferry_title = Label.new()
+	ferry_title.theme_type_variation = "Big"
+	ferry_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	ferry_box.add_child(ferry_title)
+	ferry_progress = _label("Muted")
+	ferry_box.add_child(ferry_progress)
+	ferry_text = _label()
+	ferry_box.add_child(ferry_text)
+	ferry_flag = TextureRect.new()
+	ferry_flag.custom_minimum_size = FLAG_SIZE
+	ferry_flag.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	ferry_flag.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	ferry_box.add_child(ferry_flag)
+	ferry_options = GridContainer.new()
+	ferry_options.columns = 2
+	ferry_options.add_theme_constant_override("h_separation", 8)
+	ferry_options.add_theme_constant_override("v_separation", 8)
+	ferry_box.add_child(ferry_options)
+	ferry_retry_row = HBoxContainer.new()
+	ferry_retry_row.add_child(_button(t("ferry_retry"), func(): _ask_ferry(ferry_target), "AccentButton"))
+	ferry_box.add_child(ferry_retry_row)
+	var leave := _button(t("gate_cancel"), _hide_ferry)
+	leave.size_flags_horizontal = Control.SIZE_SHRINK_END
+	ferry_box.add_child(leave)
+	ferry_panel.hide()
+	box.add_child(ferry_panel)
+
+	ferry_ports = _label("Muted")
+	box.add_child(ferry_ports)
+
 	feedback_label = _label()
 	box.add_child(feedback_label)
 
@@ -520,8 +607,7 @@ func _on_rule_changed(value, key: String) -> void:
 	rules.set_value(key, value)
 	rules.save()
 	if key == "detailed_seas":
-		graph.load_data(world_data, value)
-		graph.lang = i18n.lang
+		_load_graphs()
 	_new_game()
 
 
@@ -529,8 +615,7 @@ func _on_rule_changed(value, key: String) -> void:
 func _on_preset_pressed(preset: String) -> void:
 	rules.apply_preset(preset)
 	rules.save()
-	graph.load_data(world_data, rules.get_value("detailed_seas"))
-	graph.lang = i18n.lang
+	_load_graphs()
 	var index := rules_panel.get_index()
 	var parent := rules_panel.get_parent()
 	rules_panel.queue_free()
@@ -593,7 +678,7 @@ func _button(text: String, handler: Callable, variation := "") -> Button:
 
 
 func _selected_mode() -> int:
-	return GameSession.Mode.SANDBOX if mode_select.selected == 1 else GameSession.Mode.NORMAL
+	return [GameSession.Mode.NORMAL, GameSession.Mode.SANDBOX, GameSession.Mode.FERRY][mode_select.selected]
 
 
 func _selected_continent() -> String:
@@ -602,12 +687,14 @@ func _selected_continent() -> String:
 
 ## Joc nou: în Normal partida e aleasă la întâmplare după reguli, în Sandbox o pereche oarecare.
 func _new_game() -> void:
+	_select_graph()
 	var continent := _selected_continent()
 	if _selected_mode() == GameSession.Mode.SANDBOX:
 		var pair: Array = graph.random_pair(rng, 3, -1, continent)
 		_start_game(pair[0], pair[1])
 		return
-	var c: Dictionary = Challenge.make(graph, rng, rules, continent)
+	var ferry_mode := _selected_mode() == GameSession.Mode.FERRY
+	var c: Dictionary = Challenge.make(graph, rng, rules, continent, ferry_mode)
 	if c.is_empty():
 		_say(t("no_challenge"), "bad")
 		return
@@ -636,6 +723,7 @@ func _start_game(from: String, to: String, forbidden := [], required := []) -> v
 	else:
 		_say("")
 	_hide_gate()
+	_hide_ferry()
 	_restart_timer()
 	_refresh()
 	scroll.scroll_vertical = 0
@@ -723,6 +811,11 @@ func _try_move(target: String) -> void:
 	if session.is_finished():
 		_say(t("r_finished"))
 		return
+	# Modul Bac: ca să urci pe bac, răspunzi corect la 2 din 3 întrebări.
+	if _ferry() and not session.is_lost() and graph.is_allowed(target, session.continent) \
+			and not target in session.forbidden and not graph.ferry_between(session.current(), target).is_empty():
+		_ask_ferry(target)
+		return
 	if graph.is_allowed(target, session.continent) and graph.are_linked(session.current(), target) \
 			and session.required_gate(target) != "" and not target in session.forbidden and not session.is_lost():
 		var too_much: bool = graph.is_water(target) and session.max_water_run() >= 0 \
@@ -784,6 +877,81 @@ func _apply_move(target: String, gate_answer: String) -> void:
 	if session.is_lost():
 		move_timer.stop()
 	_refresh()
+
+
+func _ask_ferry(target: String) -> void:
+	_hide_gate()
+	ferry_target = target
+	ferry_asked = 0
+	ferry_correct = 0
+	_ferry_token += 1
+	var ferry: Dictionary = graph.ferry_between(session.current(), target)
+	ferry_title.text = t("ferry_title") % [ferry["from"], ferry["to"]]
+	ferry_retry_row.hide()
+	ferry_panel.show()
+	_next_ferry_question()
+
+
+func _next_ferry_question() -> void:
+	ferry_question = quiz.next_question(i18n.lang)
+	ferry_progress.text = t("ferry_progress") % [ferry_asked + 1, ferry_correct]
+	ferry_text.text = ferry_question.text
+	ferry_flag.visible = ferry_question.flag != ""
+	if ferry_flag.visible:
+		ferry_flag.texture = _flag_texture(ferry_question.flag)
+	for child in ferry_options.get_children():
+		child.queue_free()
+	for i in ferry_question.options.size():
+		var button := _button(ferry_question.options[i], _on_ferry_answer.bind(i))
+		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		ferry_options.add_child(button)
+
+
+func _on_ferry_answer(choice: int) -> void:
+	var right: int = ferry_question.answer
+	var buttons := ferry_options.get_children()
+	for i in buttons.size():
+		var button: Button = buttons[i]
+		button.disabled = true
+		if i == right:
+			button.add_theme_stylebox_override("disabled", UiTheme.box(Color(UiTheme.GOOD, 0.3), 10, UiTheme.GOOD, 8))
+		elif i == choice:
+			button.add_theme_stylebox_override("disabled", UiTheme.box(Color(UiTheme.BAD, 0.3), 10, UiTheme.BAD, 8))
+		button.add_theme_color_override("font_disabled_color", UiTheme.TEXT)
+	ferry_asked += 1
+	if choice == right:
+		ferry_correct += 1
+	ferry_progress.text = t("ferry_progress") % [ferry_asked, ferry_correct]
+	var token := _ferry_token
+	get_tree().create_timer(1.0).timeout.connect(func():
+		if token == _ferry_token:
+			_after_ferry_answer())
+
+
+## 2 răspunsuri corecte: urci pe bac. 2 greșite: mai poți încerca, cu alte întrebări.
+func _after_ferry_answer() -> void:
+	if ferry_correct >= 2:
+		var ferry: Dictionary = graph.ferry_between(session.current(), ferry_target)
+		var target := ferry_target
+		_hide_ferry()
+		_apply_move(target, "")
+		_say(t("ferry_ok") % [ferry["from"], ferry["to"]], "good")
+	elif ferry_asked - ferry_correct >= 2:
+		ferry_text.text = t("ferry_fail")
+		ferry_flag.hide()
+		for child in ferry_options.get_children():
+			child.queue_free()
+		ferry_retry_row.show()
+	else:
+		_next_ferry_question()
+
+
+func _hide_ferry() -> void:
+	ferry_target = ""
+	_ferry_token += 1
+	if ferry_panel:
+		ferry_panel.hide()
 
 
 func _hide_gate() -> void:
@@ -912,8 +1080,17 @@ func _flag_texture(id: String) -> Texture2D:
 func _refresh() -> void:
 	var sandbox := not _normal()
 	var hidden := _goal_hidden()
-	subtitle_label.text = "%s · %s" % [t("mode_sandbox") if sandbox else t("mode_normal"),
-		_continent_name(session.continent)]
+	var mode_key: String = ["mode_normal", "mode_sandbox", "mode_ferry"][session.mode]
+	subtitle_label.text = "%s · %s" % [t(mode_key), _continent_name(session.continent)]
+	# În modul Bac: ce bacuri pleacă din țara în care ești.
+	var ports := []
+	if _ferry():
+		for id in graph.neighbors(session.current(), session.continent):
+			var ferry: Dictionary = graph.ferry_between(session.current(), id)
+			if not ferry.is_empty():
+				ports.append("%s → %s" % [ferry["from"], ferry["to"]])
+	ferry_ports.text = t("ferry_ports") % "; ".join(ports) if not ports.is_empty() else ""
+	ferry_ports.visible = not ports.is_empty() and not session.is_finished()
 	start_label.text = graph.name_of(session.start)
 
 	goal_flag.visible = false

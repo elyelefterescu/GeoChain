@@ -9,6 +9,7 @@ const Rules := preload("res://scripts/rules.gd")
 const Challenge := preload("res://scripts/challenge.gd")
 const I18n := preload("res://scripts/i18n.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
+const Quiz := preload("res://scripts/quiz.gd")
 
 var _failures := 0
 var _checks := 0
@@ -23,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -420,3 +421,110 @@ func test_flag_choices() -> void:
 	check(FlagChoices.remaining(graph, y, yc.best, 0) == FlagChoices.remaining(graph, y, "W_IND", 1) - 1,
 		"cea mai bună chiar te apropie")
 	check(not "KOR" in yc.far, "destinația nu apare ca țară-capcană")
+
+
+func test_ferries() -> void:
+	var data = JSON.parse_string(FileAccess.get_file_as_string("res://data/ferries.json"))
+	var list: Array = data["ferries"]
+	for ferry in list:
+		check(graph.nodes.has(ferry.a) and graph.nodes.has(ferry.b) and not graph.is_water(ferry.a)
+			and not graph.is_water(ferry.b), "bacul %s–%s leagă țări din joc" % [ferry.a, ferry.b])
+		check(not graph.are_linked(ferry.a, ferry.b), "bacul %s–%s nu dublează o graniță" % [ferry.a, ferry.b])
+	var ferry_graph := WorldGraph.new()
+	ferry_graph.load_file("res://data/world.json")
+	ferry_graph.use_ferries(list)
+	check(not ferry_graph.nodes.has("W_MED") and not ferry_graph.are_linked("ESP", "W_MED"), "modul Bac: fără ape")
+	check(ferry_graph.are_linked("ESP", "DZA") and ferry_graph.ferry_between("DZA", "ESP").from == "Oran",
+		"bacul Oran → Almería, în sensul mersului")
+	check(ferry_graph.ferry_between("FRA", "DEU").is_empty(), "Franța–Germania e graniță, nu bac")
+	var p: Array = ferry_graph.shortest_path("MAR", "ROU")
+	check(not p.is_empty(), "Maroc → România pe uscat și cu bacul: " + str(p))
+	check(ferry_graph.shortest_path("ISL", "ROU").size() > 1, "Islanda e legată cu bacul de Europa")
+	check(ferry_graph.shortest_path("AUS", "ROU").is_empty(), "Australia nu are bac")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 5
+	var r := Rules.new()
+	for i in 10:
+		var c: Dictionary = Challenge.make(ferry_graph, rng, r, "", true)
+		check(not c.is_empty(), "partidă în modul Bac")
+		if c.is_empty():
+			continue
+		check(Challenge.uses_ferry(ferry_graph, ferry_graph.shortest_path(c.start, c.goal)), "traseul folosește un bac")
+	var s := GameSession.new()
+	s.setup(ferry_graph, "TUN", "ITA", GameSession.Mode.FERRY, "", [], [], {"lives": 3})
+	check(s.try_move("ITA").ok and s.is_finished(), "Tunisia → Italia cu bacul")
+
+
+func test_quiz() -> void:
+	var data = JSON.parse_string(FileAccess.get_file_as_string("res://data/questions.json"))
+	var quiz := Quiz.new()
+	quiz.save_enabled = false
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 11
+	quiz.setup(graph, data["questions"], rng)
+	var keys := {}
+	var kinds := {}
+	var ok := true
+	for i in 800:
+		var q: Dictionary = quiz.next_question("ro" if i % 2 == 0 else "en")
+		if keys.has(q.key):
+			ok = false
+		keys[q.key] = true
+		kinds[q.key.split(":")[0]] = true
+		var unique := {}
+		for o in q.options:
+			unique[o] = true
+		if q.options.size() != 4 or unique.size() != 4 or q.answer < 0 or q.answer > 3 or q.text == "":
+			ok = false
+			print("întrebare greșită: ", q)
+	check(ok, "800 de întrebări diferite, fiecare cu 4 variante diferite")
+	check(kinds.size() == Quiz.KINDS.size(), "toate felurile de întrebări apar: " + str(kinds.keys()))
+	# Când se termină, întrebările se reiau, cu variantele amestecate.
+	var small := Quiz.new()
+	small.save_enabled = false
+	small.setup(graph, data["questions"], rng)
+	var order := {}
+	var reshuffled := false
+	for i in 400:
+		var q: Dictionary = small._make("fact", "ro")
+		var first: String = q.options[0]
+		if order.has(q.key) and order[q.key] != first:
+			reshuffled = true
+		order[q.key] = first
+	check(reshuffled, "la repetare, variantele apar în altă ordine")
+	# Întrebarea despre capitală are răspunsul corect.
+	graph.lang = "ro"
+	for i in 50:
+		var q: Dictionary = quiz._make("capital_of", "ro")
+		var country: String = q.key.split(":")[1]
+		check(q.options[q.answer] == graph.capital_of(country), "capitala corectă pentru " + country)
+
+
+func test_straits() -> void:
+	var raw: String = FileAccess.get_file_as_string("res://data/world.json")
+	var world = JSON.parse_string(raw)
+	var data = JSON.parse_string(FileAccess.get_file_as_string("res://data/straits.json"))
+	var list: Array = data["straits"]
+	var known := {}
+	for g in world["gates"] + data["gates"]:
+		known[g["id"]] = true
+	for st in list:
+		check(graph.nodes.has(st.a) and graph.nodes.has(st.b), "strâmtoarea %s–%s leagă țări din joc" % [st.a, st.b])
+		check(not graph.are_linked(st.a, st.b), "strâmtoarea %s–%s nu dublează o graniță" % [st.a, st.b])
+		check(known.has(st.gate), "poarta %s există" % st.gate)
+	var g := WorldGraph.new()
+	g.load_data(world)
+	g.add_straits(list, data["gates"], world["gates"])
+	check(g.gate_between("USA", "RUS") == "G_BER", "SUA–Rusia prin Strâmtoarea Bering")
+	check(g.gate_between("RUS", "JPN") == "G_LAP" and g.gate_matches("G_LAP", "la perouse"), "Rusia–Japonia prin La Pérouse")
+	check(g.gate_between("FRA", "DEU") == "", "Franța–Germania rămâne graniță simplă")
+	var s := GameSession.new()
+	s.setup(g, "USA", "RUS", GameSession.Mode.NORMAL)
+	check(s.optimal_moves() == 1, "SUA → Rusia dintr-o mutare")
+	var wrong: Dictionary = s.try_move("RUS", "Panama")
+	check(not wrong.ok and wrong.reason == "wrong_gate", "strâmtoare greșită refuzată")
+	check(s.try_move("RUS", "bering").ok and s.is_finished(), "SUA → Rusia numind Bering")
+	var quiz := Quiz.new()
+	quiz.save_enabled = false
+	quiz.setup(g, [], RandomNumberGenerator.new())
+	check(not "RUS" in quiz._land_neighbors("USA"), "în întrebări, Rusia nu e vecină pe uscat cu SUA")

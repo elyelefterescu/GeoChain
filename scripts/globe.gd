@@ -16,6 +16,8 @@ const COLORS := {
 	"off_map": Color(0.85, 0.1, 0.1, 0.45),
 }
 const MAX_LABEL_PIXEL := 0.0012
+const FERRY_COLOR := Color(1.0, 0.82, 0.3)
+const STRAIT_COLOR := Color(0.55, 0.9, 1.0)
 const MIN_DISTANCE := 1.35
 const MAX_DISTANCE := 4.0
 const UiTheme := preload("res://scripts/ui_theme.gd")
@@ -43,6 +45,7 @@ var _press_pos := Vector2.ZERO
 var _dragged := false
 var _touches := {}
 var _labels_key := ""
+var ferry_lines: MeshInstance3D
 var _boxes := {}  # țară -> {lat, lon, width, height}, mărimea ei în jurul punctului de etichetă
 
 
@@ -118,6 +121,52 @@ func setup(assets: Dictionary, world_graph) -> void:
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	resized.connect(_request_draw)
 	_apply_view()
+
+
+## Legături peste mare între țări (bacuri sau strâmtori): linii întrerupte pe glob, cu un punct la capete.
+func set_links(list: Array, color: Color) -> void:
+	if ferry_lines == null:
+		ferry_lines = MeshInstance3D.new()
+		var material := StandardMaterial3D.new()
+		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		ferry_lines.material_override = material
+		globe.add_child(ferry_lines)
+	ferry_lines.material_override.albedo_color = color
+	var mesh := ImmediateMesh.new()
+	ferry_lines.mesh = mesh
+	if list.is_empty():
+		_request_draw()
+		return
+	for ferry in list:
+		var a := lat_lon_to_point(ferry["pa"][0], ferry["pa"][1])
+		var b := lat_lon_to_point(ferry["pb"][0], ferry["pb"][1])
+		mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+		var steps := 24
+		# Linie întreruptă: un segment da, unul nu; arcul se ridică puțin deasupra mării.
+		for i in steps:
+			if i % 2 == 1:
+				continue
+			for k in [i, i + 1]:
+				var f := float(k) / steps
+				var lift := 1.004 + 0.02 * sin(PI * f) * a.distance_to(b)
+				mesh.surface_add_vertex(a.slerp(b, f).normalized() * lift)
+		mesh.surface_end()
+		for port in [a, b]:
+			mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLES)
+			_add_dot(mesh, port)
+			mesh.surface_end()
+	_request_draw()
+
+
+## Un romb mic, tangent la glob, la port.
+func _add_dot(mesh: ImmediateMesh, at: Vector3) -> void:
+	var n := at.normalized()
+	var u := n.cross(Vector3.UP if absf(n.y) < 0.9 else Vector3.RIGHT).normalized() * 0.006
+	var v := n.cross(u).normalized() * 0.006
+	var c := n * 1.005
+	for quad in [[c + u, c + v, c - u], [c - u, c - v, c + u]]:
+		for p in quad:
+			mesh.surface_add_vertex(p)
 
 
 func _request_draw() -> void:

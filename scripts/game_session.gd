@@ -1,7 +1,8 @@
 extends RefCounted
 ## O partidă: de la o țară de pornire la o destinație, mutare cu mutare.
 
-enum Mode { NORMAL, SANDBOX }
+## FERRY = modul Bac: ca Normal, dar doar pe uscat, cu bacuri între unele țări.
+enum Mode { NORMAL, SANDBOX, FERRY }
 
 ## În modul Normal poți face implicit cel mult atâtea mutări consecutive pe apă.
 const NORMAL_MAX_WATER_RUN := 2
@@ -58,7 +59,7 @@ func _optimal_route() -> Array:
 
 
 func max_water_run() -> int:
-	return water_limit if mode == Mode.NORMAL else -1
+	return water_limit if mode == Mode.NORMAL else -1  # în modul Bac nu există ape
 
 
 func current() -> String:
@@ -75,7 +76,7 @@ func optimal_moves() -> int:
 
 ## Ai pierdut dacă ai atins numărul maxim de greșeli (doar cu regula vieților).
 func is_lost() -> bool:
-	return mode == Mode.NORMAL and lives > 0 and mistakes >= lives
+	return mode != Mode.SANDBOX and lives > 0 and mistakes >= lives
 
 
 func lives_left() -> int:
