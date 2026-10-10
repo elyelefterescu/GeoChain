@@ -15,6 +15,27 @@ Cu cât faci mai puține mutări, cu atât scorul e mai mare.
 - **Harta**: toată lumea sau un singur continent (Europa, Africa, Asia, Americile unite). Oceania apare doar pe harta lumii.
 - **Scor**: 3 stele dacă egalezi traseul minim, 2 stele cu cel mult 2 mutări în plus, altfel 1 stea. Puncte: 1000 − 100 × mutări în plus − 50 × greșeli.
 
+## Reguli de dificultate
+
+Butonul **Reguli** deschide lista regulilor; fiecare se pornește sau se oprește separat, iar **Ușor**, **Mediu** și **Greu**
+sunt scurtături care bifează mai multe deodată. Regulile se aplică în modul Normal și se țin minte între jocuri.
+
+| Regulă | Ce face |
+|---|---|
+| Lungimea traseului | Scurt (3–4 mutări), mediu (5–7), lung (8+) sau oricare |
+| Mutări pe apă la rând | Cel mult 2, cel mult 1, doar pe uscat sau oricâte |
+| Destinație ghicitoare | Destinația apare ca steag sau ca nume de capitală, nu ca nume de țară |
+| 3 vieți | La a treia greșeală ai pierdut |
+| Țară interzisă | O țară de pe traseul cel mai scurt devine interzisă (roșu pe glob) |
+| Punct obligatoriu | Trebuie să treci printr-o țară anume (galben pe glob) |
+| Mări detaliate | Mările mici devin locuri separate, cu porți noi |
+| Porți cu variante | Alegi canalul sau strâmtoarea dintre 3 variante, în loc să scrii |
+| Fără sugestii | Nu mai apar sugestii când scrii |
+| Ceață | Granițele apar doar la locurile prin care ai trecut |
+| Cronometru | 30 de secunde pe mutare; dacă expiră, e o greșeală |
+| Mod capitale | Scrii capitala țării în care mergi (București în loc de România) |
+| Bonus „par” | +300 dacă egalezi traseul minim, −150 pe fiecare mutare în plus |
+
 ## Globul
 
 Globul 3D se rotește cu mouse-ul sau degetul și face zoom cu rotița sau cu două degete. O atingere pe o țară sau o mare înseamnă o mutare acolo.
@@ -47,6 +68,8 @@ godot --headless --path . --script res://tests/run_tests.gd
 | `scripts/i18n.gd` | Textele interfeței în română și engleză |
 | `scripts/globe.gd`, `shaders/globe.gdshader` | Globul 3D: rotire, zoom, atingere, culori, granițe |
 | `data/globe/` | Texturile globului (harta colorată și harta ascunsă de identificare), generate de `tools/build_globe.py` |
+| `scripts/rules.gd`, `scripts/challenge.gd` | Regulile de dificultate și alegerea la întâmplare a partidei |
+| `data/flags.json` | Steagurile (SVG), generate de `tools/build_flags.py` |
 | `tests/run_tests.gd` | Testele |
 
 ## Date
@@ -57,6 +80,8 @@ numele în română sunt adăugate de mână în `tools/build_world.py`.
 
 Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sunt în Marea Mediterană,
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
+
+Steagurile vin din [lipis/flag-icons](https://github.com/lipis/flag-icons) v7.2.3, licență MIT.
 
 Contururile globului vin din [Natural Earth](https://www.naturalearthdata.com) (domeniu public), scara 1:50m.
 

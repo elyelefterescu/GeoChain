@@ -4,7 +4,8 @@
 Ieșiri în data/globe/:
   ids.png    hartă ascunsă de identificare: fiecare pixel spune ce loc e acolo
              (R + 256 * G = indexul locului, 0 = teritoriu neutru; B = 255 pe uscat)
-  color.png  harta colorată, fără nume (țările în 6 culori, vecinii diferit)
+  color.png  harta de bază, fără nume: țările gri deschis, teritoriile neutre gri mai închis,
+             apa albastru închis (culorile rămân libere pentru traseu)
   index.json lista locurilor în ordinea indexurilor, cu centrul fiecăruia
 
 Utilizare:
@@ -98,19 +99,6 @@ def fill(draw, geom, value):
             draw.polygon(to_px(hole), fill=0)
 
 
-def greedy_colors(country_ids, edges):
-    adj = {c: set() for c in country_ids}
-    for e in edges:
-        if e["a"] in adj and e["b"] in adj:
-            adj[e["a"]].add(e["b"])
-            adj[e["b"]].add(e["a"])
-    colors = {}
-    for c in sorted(country_ids, key=lambda c: -len(adj[c])):
-        used = {colors.get(n) for n in adj[c]}
-        colors[c] = next(i for i in range(6) if i not in used)
-    return colors
-
-
 def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
@@ -182,14 +170,12 @@ def main():
     rgb[..., 2] = np.where(np.isin(ids, [0] + [index[c] for c in countries]), 255, 0)
     Image.fromarray(rgb, "RGB").save(out / "ids.png", optimize=True)
 
-    # 3. Harta colorată (fără nume).
-    palette = np.array([(233, 214, 160), (190, 218, 160), (240, 190, 160), (200, 190, 225),
-                        (245, 230, 140), (170, 210, 205)], dtype=np.uint8)
-    colors = greedy_colors(countries, world["edges"])
+    # 3. Harta de bază (fără nume). Țările sunt toate gri deschis, ca să nu se confunde
+    # cu culorile traseului; granițele le desenează globul.
     lut = np.zeros((len(node_ids) + 1, 3), dtype=np.uint8)
-    lut[0] = (150, 150, 150)  # teritoriu neutru
+    lut[0] = (165, 165, 165)  # teritoriu neutru
     for nid in node_ids:
-        lut[index[nid]] = palette[colors[nid]] if nid in countries else (22, 58, 110)
+        lut[index[nid]] = (226, 226, 222) if nid in countries else (22, 58, 110)
     color = lut[ids]
     # apa mai închisă spre poli, ca să se vadă relieful globului
     water = ~np.isin(ids, [0] + [index[c] for c in countries])

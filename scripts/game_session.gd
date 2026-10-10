@@ -3,7 +3,7 @@ extends RefCounted
 
 enum Mode { NORMAL, SANDBOX }
 
-## În modul Normal poți face cel mult atâtea mutări consecutive pe apă.
+## În modul Normal poți face implicit cel mult atâtea mutări consecutive pe apă.
 const NORMAL_MAX_WATER_RUN := 2
 
 var graph
@@ -21,10 +21,17 @@ var forbidden: Array = []
 var required: Array = []
 ## Locurile în care ai încercat să intri greșit.
 var mistake_places: Array = []
+## Opțiuni din reguli (doar în Normal): limita de apă, vieți, bonus „par”.
+var water_limit := NORMAL_MAX_WATER_RUN
+var lives := 0  # 0 = fără limită de greșeli
+var par_bonus := false
 
 
 func setup(world_graph, from: String, to: String, game_mode: Mode, on_continent := "",
-		forbidden_ids := [], required_ids := []) -> void:
+		forbidden_ids := [], required_ids := [], options := {}) -> void:
+	water_limit = options.get("water_limit", NORMAL_MAX_WATER_RUN)
+	lives = options.get("lives", 0)
+	par_bonus = options.get("par_bonus", false)
 	graph = world_graph
 	continent = on_continent
 	start = from
@@ -51,7 +58,7 @@ func _optimal_route() -> Array:
 
 
 func max_water_run() -> int:
-	return NORMAL_MAX_WATER_RUN if mode == Mode.NORMAL else -1
+	return water_limit if mode == Mode.NORMAL else -1
 
 
 func current() -> String:
@@ -64,6 +71,21 @@ func moves() -> int:
 
 func optimal_moves() -> int:
 	return optimal_path.size() - 1
+
+
+## Ai pierdut dacă ai atins numărul maxim de greșeli (doar cu regula vieților).
+func is_lost() -> bool:
+	return mode == Mode.NORMAL and lives > 0 and mistakes >= lives
+
+
+func lives_left() -> int:
+	return maxi(0, lives - mistakes)
+
+
+## O greșeală care nu vine dintr-o mutare (de exemplu, timpul a expirat).
+func add_mistake() -> void:
+	if not is_finished() and not is_lost():
+		mistakes += 1
 
 
 func is_finished() -> bool:
@@ -91,6 +113,8 @@ func try_move(target: String, gate_answer := "") -> Dictionary:
 	var result := {"ok": false, "reason": "", "gate": gate}
 	if is_finished():
 		result.reason = "finished"
+	elif is_lost():
+		result.reason = "lost"
 	elif not graph.nodes.has(target):
 		result.reason = "unknown"
 	elif target == current():
@@ -131,7 +155,7 @@ func undo() -> bool:
 
 
 func stars() -> int:
-	if not is_finished():
+	if not is_finished() or is_lost():
 		return 0
 	var extra := moves() - optimal_moves()
 	if extra <= 0:
@@ -139,7 +163,12 @@ func stars() -> int:
 	return 2 if extra <= 2 else 1
 
 
+## Puncte: 1000 − 100 × mutări în plus − 50 × greșeli.
+## Cu bonusul „par” (ca la golf): +300 dacă egalezi optimul, −150 pe fiecare mutare în plus.
 func points() -> int:
-	if not is_finished():
+	if not is_finished() or is_lost():
 		return 0
-	return maxi(0, 1000 - 100 * (moves() - optimal_moves()) - 50 * mistakes)
+	var extra := moves() - optimal_moves()
+	if par_bonus:
+		return maxi(0, 1000 + (300 if extra <= 0 else -150 * extra) - 50 * mistakes)
+	return maxi(0, 1000 - 100 * extra - 50 * mistakes)

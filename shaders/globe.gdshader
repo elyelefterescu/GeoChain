@@ -7,6 +7,8 @@ uniform sampler2D id_tex : filter_nearest, repeat_enable;
 uniform sampler2D state_tex : filter_nearest;
 uniform vec2 id_size = vec2(4096.0, 2048.0);
 uniform float border_px = 1.0;
+// Ceață: granițele dintre țări apar doar la locurile colorate; țărmul rămâne.
+uniform bool fog = false;
 
 varying vec3 local_pos;
 
@@ -38,7 +40,11 @@ void fragment() {
 			place(uv + vec2(0.0, step.y)), place(uv - vec2(0.0, step.y)));
 	for (int i = 0; i < 4; i++) {
 		if (n[i].x != here.x && (n[i].y == 1 || here.y == 1)) {
-			edge = true;
+			bool coast = n[i].y != here.y;
+			bool involved = state.a > 0.0 || texelFetch(state_tex, ivec2(n[i].x, 0), 0).a > 0.0;
+			if (!fog || coast || involved) {
+				edge = true;
+			}
 		}
 	}
 	if (edge) {

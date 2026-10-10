@@ -17,6 +17,7 @@ var gates := {}   # id -> Dictionary din world.json
 var adj := {}     # id -> { vecin_id: poartă_id sau "" }
 var _names := {}  # nume normalizat -> id
 var _gate_names := {}  # nume normalizat -> poartă_id
+var _capitals := {}  # capitală normalizată -> țară
 
 
 func load_file(path: String, detailed := false) -> bool:
@@ -41,6 +42,7 @@ func load_data(data: Dictionary, detailed := false) -> void:
 	adj.clear()
 	_names.clear()
 	_gate_names.clear()
+	_capitals.clear()
 	continents = data.get("continents", [])
 	for node in data["nodes"]:
 		var id: String = node["id"]
@@ -52,6 +54,9 @@ func load_data(data: Dictionary, detailed := false) -> void:
 		for name in [node["name_ro"], node["name_en"]] + Array(node.get("aliases", [])):
 			if not _names.has(normalize(name)) or id == node["id"]:
 				_names[normalize(name)] = id
+		for capital in [node.get("capital", ""), node.get("capital_ro", "")]:
+			if capital != "":
+				_capitals[normalize(capital)] = id
 	var used_gates := {}
 	for edge in data["edges_detailed" if detailed else "edges"]:
 		var gate: String = edge.get("gate", "")
@@ -115,6 +120,17 @@ func neighbors(id: String, continent := "") -> Array:
 ## Găsește un loc după nume (RO, EN sau alias), fără diacritice și majuscule.
 func find_place(text: String) -> String:
 	return _names.get(normalize(text), "")
+
+
+## Găsește o țară după capitală (în română sau engleză).
+func find_by_capital(text: String) -> String:
+	return _capitals.get(normalize(text), "")
+
+
+func capital_of(id: String) -> String:
+	if not nodes.has(id):
+		return ""
+	return nodes[id].get("capital_ro" if lang == "ro" else "capital", "")
 
 
 func gate_matches(gate_id: String, text: String) -> bool:

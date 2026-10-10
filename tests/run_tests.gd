@@ -5,6 +5,8 @@ const WorldGraph := preload("res://scripts/world_graph.gd")
 const GameSession := preload("res://scripts/game_session.gd")
 const Globe := preload("res://scripts/globe.gd")
 const Main := preload("res://scripts/main.gd")
+const Rules := preload("res://scripts/rules.gd")
+const Challenge := preload("res://scripts/challenge.gd")
 
 var _failures := 0
 var _checks := 0
@@ -19,6 +21,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
+		"test_rules_options", "test_challenge", "test_capitals",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -240,3 +243,66 @@ func test_globe() -> void:
 	globe.graph = detailed
 	check(globe.place_at(40.75, 28.3) == "W_MAR", "pe harta detaliată, Marea Marmara")
 	globe.free()
+
+
+func test_rules_options() -> void:
+	var r := Rules.new()
+	r.apply_preset("hard")
+	check(r.get_value("water_limit") == 1 and r.get_value("lives"), "Greu: 1 mutare pe apă, vieți")
+	r.set_value("detailed_seas", true)
+	r.apply_preset("easy")
+	check(r.get_value("detailed_seas") and r.get_value("gate_choices") and not r.get_value("lives"),
+		"scurtătura păstrează mările detaliate și resetează restul")
+
+	var s := GameSession.new()
+	s.setup(graph, "KEN", "ROU", GameSession.Mode.NORMAL, "", [], [], {"water_limit": 0, "lives": 3})
+	check(s.optimal_moves() == 8, "doar pe uscat: 8 mutări")
+	check(s.try_move("W_IND").reason == "too_much_water", "fără apă deloc")
+	s.try_move("FRA")
+	s.add_mistake()
+	check(s.is_lost() and s.lives_left() == 0, "3 greșeli: ai pierdut")
+	check(s.try_move("ETH").reason == "lost", "după ce ai pierdut nu mai poți muta")
+
+	var p := GameSession.new()
+	p.setup(graph, "ROU", "HUN", GameSession.Mode.NORMAL, "", [], [], {"par_bonus": true})
+	p.try_move("HUN")
+	check(p.points() == 1300, "bonus „par” la egalarea optimului")
+	var q := GameSession.new()
+	q.setup(graph, "ROU", "HUN", GameSession.Mode.NORMAL, "", [], [], {"par_bonus": true})
+	q.try_move("SRB")
+	q.try_move("HUN")
+	check(q.points() == 850, "fără bonus, −150 pe mutare în plus")
+
+
+func test_challenge() -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 3
+	var r := Rules.new()
+	for preset in ["easy", "medium", "hard"]:
+		r.apply_preset(preset)
+		r.set_value("forbidden", true)
+		r.set_value("required", true)
+		var c: Dictionary = Challenge.make(graph, rng, r)
+		check(not c.is_empty(), "partidă găsită pentru " + preset)
+		if c.is_empty():
+			continue
+		var s := GameSession.new()
+		s.setup(graph, c.start, c.goal, GameSession.Mode.NORMAL, "", c.forbidden, c.required,
+			{"water_limit": r.get_value("water_limit")})
+		check(not s.optimal_path.is_empty(), "există traseu cu reguli (%s)" % preset)
+		check(c.forbidden.size() == 1 and not c.forbidden[0] in s.optimal_path, "țara interzisă e ocolită")
+		check(c.required.size() == 1 and c.required[0] in s.optimal_path, "punctul obligatoriu e pe traseu")
+		var plain: Array = graph.shortest_path(c.start, c.goal, r.get_value("water_limit"))
+		var range: Array = r.distance_range()
+		check(plain.size() - 1 >= range[0] and plain.size() - 1 <= range[1], "distanța respectă nivelul " + preset)
+	r.apply_preset("easy")
+	var e: Dictionary = Challenge.make(graph, rng, r, "europe")
+	check(graph.is_allowed(e.start, "europe") and graph.is_allowed(e.goal, "europe"), "partidă pe Europa")
+
+
+func test_capitals() -> void:
+	check(graph.find_by_capital("Bucuresti") == "ROU", "București")
+	check(graph.find_by_capital("bucharest") == "ROU", "Bucharest")
+	check(graph.find_by_capital("Viena") == "AUT" and graph.find_by_capital("Vienna") == "AUT", "Viena / Vienna")
+	check(graph.find_by_capital("Nairobi") == "KEN", "Nairobi")
+	check(graph.capital_of("HUN") == "Budapesta", "capitala Ungariei în română")

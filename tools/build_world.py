@@ -79,6 +79,27 @@ NAMES_RO = {
     "VUT": "Vanuatu", "WSM": "Samoa",
 }
 
+# Capitalele al căror nume diferă în română (restul rămân ca în engleză).
+CAPITALS_RO = {
+    "ROU": "București", "HUN": "Budapesta", "AUT": "Viena", "DEU": "Berlin", "FRA": "Paris", "ITA": "Roma",
+    "ESP": "Madrid", "PRT": "Lisabona", "GBR": "Londra", "IRL": "Dublin", "BEL": "Bruxelles", "NLD": "Amsterdam",
+    "LUX": "Luxemburg", "CHE": "Berna", "POL": "Varșovia", "CZE": "Praga", "SVK": "Bratislava", "SVN": "Ljubljana",
+    "HRV": "Zagreb", "SRB": "Belgrad", "BIH": "Sarajevo", "MNE": "Podgorița", "MKD": "Skopje", "ALB": "Tirana",
+    "GRC": "Atena", "BGR": "Sofia", "MDA": "Chișinău", "UKR": "Kiev", "BLR": "Minsk", "RUS": "Moscova",
+    "LTU": "Vilnius", "LVA": "Riga", "EST": "Tallinn", "FIN": "Helsinki", "SWE": "Stockholm", "NOR": "Oslo",
+    "DNK": "Copenhaga", "ISL": "Reykjavík", "CYP": "Nicosia", "MLT": "Valletta", "VAT": "Vatican",
+    "TUR": "Ankara", "GEO": "Tbilisi", "ARM": "Erevan", "AZE": "Baku", "EGY": "Cairo", "LBY": "Tripoli",
+    "TUN": "Tunis", "DZA": "Alger", "MAR": "Rabat", "ISR": "Ierusalim", "LBN": "Beirut", "SYR": "Damasc",
+    "JOR": "Amman", "IRQ": "Bagdad", "IRN": "Teheran", "SAU": "Riad", "KWT": "Kuweit", "QAT": "Doha",
+    "ARE": "Abu Dhabi", "OMN": "Muscat", "YEM": "Sana'a", "AFG": "Kabul", "PAK": "Islamabad", "IND": "New Delhi",
+    "CHN": "Beijing", "JPN": "Tokyo", "KOR": "Seul", "PRK": "Phenian", "MNG": "Ulan Bator", "THA": "Bangkok",
+    "VNM": "Hanoi", "KHM": "Phnom Penh", "SGP": "Singapore", "IDN": "Jakarta", "PHL": "Manila",
+    "MEX": "Ciudad de México", "USA": "Washington", "CAN": "Ottawa", "BRA": "Brasília", "ARG": "Buenos Aires",
+    "CHL": "Santiago", "PER": "Lima", "COL": "Bogotá", "VEN": "Caracas", "CUB": "Havana",
+    "ZAF": "Pretoria", "KEN": "Nairobi", "ETH": "Addis Abeba", "NGA": "Abuja", "AUS": "Canberra",
+    "NZL": "Wellington", "KAZ": "Astana", "UZB": "Tașkent",
+}
+
 # Nume alternative acceptate la scriere (pe lângă numele RO și EN).
 ALIASES = {
     "NLD": ["Olanda", "Holland"], "GBR": ["Marea Britanie", "Anglia", "UK"],
@@ -336,7 +357,9 @@ def build(countries):
             "name_en": c["name"]["common"],
             "aliases": ALIASES.get(code, []),
             "continents": [CONTINENTS[c["region"]]] + EXTRA_CONTINENTS.get(code, []),
+            "cca2": c["cca2"],
             "capital": (c.get("capital") or [""])[0],
+            "capital_ro": CAPITALS_RO.get(code, (c.get("capital") or [""])[0]),
             "flag": c.get("flag", ""),
         })
     for wid, (ro, en, aliases) in WATERS.items():

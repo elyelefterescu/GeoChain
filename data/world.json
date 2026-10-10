@@ -21,7 +21,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "AF",
    "capital": "Kabul",
+   "capital_ro": "Kabul",
    "flag": "🇦🇫"
   },
   {
@@ -33,7 +35,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "AO",
    "capital": "Luanda",
+   "capital_ro": "Luanda",
    "flag": "🇦🇴"
   },
   {
@@ -45,7 +49,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "AL",
    "capital": "Tirana",
+   "capital_ro": "Tirana",
    "flag": "🇦🇱"
   },
   {
@@ -57,7 +63,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "AD",
    "capital": "Andorra la Vella",
+   "capital_ro": "Andorra la Vella",
    "flag": "🇦🇩"
   },
   {
@@ -73,7 +81,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "AE",
    "capital": "Abu Dhabi",
+   "capital_ro": "Abu Dhabi",
    "flag": "🇦🇪"
   },
   {
@@ -85,7 +95,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "AR",
    "capital": "Buenos Aires",
+   "capital_ro": "Buenos Aires",
    "flag": "🇦🇷"
   },
   {
@@ -97,7 +109,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "AM",
    "capital": "Yerevan",
+   "capital_ro": "Erevan",
    "flag": "🇦🇲"
   },
   {
@@ -109,7 +123,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "AG",
    "capital": "Saint John's",
+   "capital_ro": "Saint John's",
    "flag": "🇦🇬"
   },
   {
@@ -121,7 +137,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "AU",
    "capital": "Canberra",
+   "capital_ro": "Canberra",
    "flag": "🇦🇺"
   },
   {
@@ -133,7 +151,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "AT",
    "capital": "Vienna",
+   "capital_ro": "Viena",
    "flag": "🇦🇹"
   },
   {
@@ -145,7 +165,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "AZ",
    "capital": "Baku",
+   "capital_ro": "Baku",
    "flag": "🇦🇿"
   },
   {
@@ -157,7 +179,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "BI",
    "capital": "Gitega",
+   "capital_ro": "Gitega",
    "flag": "🇧🇮"
   },
   {
@@ -169,7 +193,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "BE",
    "capital": "Brussels",
+   "capital_ro": "Bruxelles",
    "flag": "🇧🇪"
   },
   {
@@ -181,7 +207,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "BJ",
    "capital": "Porto-Novo",
+   "capital_ro": "Porto-Novo",
    "flag": "🇧🇯"
   },
   {
@@ -193,7 +221,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "BF",
    "capital": "Ouagadougou",
+   "capital_ro": "Ouagadougou",
    "flag": "🇧🇫"
   },
   {
@@ -205,7 +235,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "BD",
    "capital": "Dhaka",
+   "capital_ro": "Dhaka",
    "flag": "🇧🇩"
   },
   {
@@ -217,7 +249,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "BG",
    "capital": "Sofia",
+   "capital_ro": "Sofia",
    "flag": "🇧🇬"
   },
   {
@@ -229,7 +263,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "BH",
    "capital": "Manama",
+   "capital_ro": "Manama",
    "flag": "🇧🇭"
   },
   {
@@ -241,7 +277,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "BS",
    "capital": "Nassau",
+   "capital_ro": "Nassau",
    "flag": "🇧🇸"
   },
   {
@@ -255,7 +293,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "BA",
    "capital": "Sarajevo",
+   "capital_ro": "Sarajevo",
    "flag": "🇧🇦"
   },
   {
@@ -267,7 +307,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "BY",
    "capital": "Minsk",
+   "capital_ro": "Minsk",
    "flag": "🇧🇾"
   },
   {
@@ -279,7 +321,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "BZ",
    "capital": "Belmopan",
+   "capital_ro": "Belmopan",
    "flag": "🇧🇿"
   },
   {
@@ -291,7 +335,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "BO",
    "capital": "Sucre",
+   "capital_ro": "Sucre",
    "flag": "🇧🇴"
   },
   {
@@ -303,7 +349,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "BR",
    "capital": "Brasília",
+   "capital_ro": "Brasília",
    "flag": "🇧🇷"
   },
   {
@@ -315,7 +363,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "BB",
    "capital": "Bridgetown",
+   "capital_ro": "Bridgetown",
    "flag": "🇧🇧"
   },
   {
@@ -327,7 +377,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "BN",
    "capital": "Bandar Seri Begawan",
+   "capital_ro": "Bandar Seri Begawan",
    "flag": "🇧🇳"
   },
   {
@@ -339,7 +391,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "BT",
    "capital": "Thimphu",
+   "capital_ro": "Thimphu",
    "flag": "🇧🇹"
   },
   {
@@ -351,7 +405,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "BW",
    "capital": "Gaborone",
+   "capital_ro": "Gaborone",
    "flag": "🇧🇼"
   },
   {
@@ -365,7 +421,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CF",
    "capital": "Bangui",
+   "capital_ro": "Bangui",
    "flag": "🇨🇫"
   },
   {
@@ -377,7 +435,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "CA",
    "capital": "Ottawa",
+   "capital_ro": "Ottawa",
    "flag": "🇨🇦"
   },
   {
@@ -389,7 +449,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "CH",
    "capital": "Bern",
+   "capital_ro": "Berna",
    "flag": "🇨🇭"
   },
   {
@@ -401,7 +463,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "CL",
    "capital": "Santiago",
+   "capital_ro": "Santiago",
    "flag": "🇨🇱"
   },
   {
@@ -413,7 +477,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "CN",
    "capital": "Beijing",
+   "capital_ro": "Beijing",
    "flag": "🇨🇳"
   },
   {
@@ -427,7 +493,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CI",
    "capital": "Yamoussoukro",
+   "capital_ro": "Yamoussoukro",
    "flag": "🇨🇮"
   },
   {
@@ -439,7 +507,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CM",
    "capital": "Yaoundé",
+   "capital_ro": "Yaoundé",
    "flag": "🇨🇲"
   },
   {
@@ -454,7 +524,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CD",
    "capital": "Kinshasa",
+   "capital_ro": "Kinshasa",
    "flag": "🇨🇩"
   },
   {
@@ -469,7 +541,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CG",
    "capital": "Brazzaville",
+   "capital_ro": "Brazzaville",
    "flag": "🇨🇬"
   },
   {
@@ -481,7 +555,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "CO",
    "capital": "Bogotá",
+   "capital_ro": "Bogotá",
    "flag": "🇨🇴"
   },
   {
@@ -493,7 +569,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "KM",
    "capital": "Moroni",
+   "capital_ro": "Moroni",
    "flag": "🇰🇲"
   },
   {
@@ -505,7 +583,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "CV",
    "capital": "Praia",
+   "capital_ro": "Praia",
    "flag": "🇨🇻"
   },
   {
@@ -517,7 +597,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "CR",
    "capital": "San José",
+   "capital_ro": "San José",
    "flag": "🇨🇷"
   },
   {
@@ -529,7 +611,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "CU",
    "capital": "Havana",
+   "capital_ro": "Havana",
    "flag": "🇨🇺"
   },
   {
@@ -541,7 +625,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "CY",
    "capital": "Nicosia",
+   "capital_ro": "Nicosia",
    "flag": "🇨🇾"
   },
   {
@@ -556,7 +642,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "CZ",
    "capital": "Prague",
+   "capital_ro": "Praga",
    "flag": "🇨🇿"
   },
   {
@@ -568,7 +656,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "DE",
    "capital": "Berlin",
+   "capital_ro": "Berlin",
    "flag": "🇩🇪"
   },
   {
@@ -580,7 +670,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "DJ",
    "capital": "Djibouti",
+   "capital_ro": "Djibouti",
    "flag": "🇩🇯"
   },
   {
@@ -592,7 +684,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "DM",
    "capital": "Roseau",
+   "capital_ro": "Roseau",
    "flag": "🇩🇲"
   },
   {
@@ -604,7 +698,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "DK",
    "capital": "Copenhagen",
+   "capital_ro": "Copenhaga",
    "flag": "🇩🇰"
   },
   {
@@ -616,7 +712,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "DO",
    "capital": "Santo Domingo",
+   "capital_ro": "Santo Domingo",
    "flag": "🇩🇴"
   },
   {
@@ -628,7 +726,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "DZ",
    "capital": "Algiers",
+   "capital_ro": "Alger",
    "flag": "🇩🇿"
   },
   {
@@ -640,7 +740,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "EC",
    "capital": "Quito",
+   "capital_ro": "Quito",
    "flag": "🇪🇨"
   },
   {
@@ -652,7 +754,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "EG",
    "capital": "Cairo",
+   "capital_ro": "Cairo",
    "flag": "🇪🇬"
   },
   {
@@ -664,7 +768,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ER",
    "capital": "Asmara",
+   "capital_ro": "Asmara",
    "flag": "🇪🇷"
   },
   {
@@ -676,7 +782,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "ES",
    "capital": "Madrid",
+   "capital_ro": "Madrid",
    "flag": "🇪🇸"
   },
   {
@@ -688,7 +796,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "EE",
    "capital": "Tallinn",
+   "capital_ro": "Tallinn",
    "flag": "🇪🇪"
   },
   {
@@ -700,7 +810,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ET",
    "capital": "Addis Ababa",
+   "capital_ro": "Addis Abeba",
    "flag": "🇪🇹"
   },
   {
@@ -712,7 +824,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "FI",
    "capital": "Helsinki",
+   "capital_ro": "Helsinki",
    "flag": "🇫🇮"
   },
   {
@@ -724,7 +838,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "FJ",
    "capital": "Suva",
+   "capital_ro": "Suva",
    "flag": "🇫🇯"
   },
   {
@@ -736,7 +852,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "FR",
    "capital": "Paris",
+   "capital_ro": "Paris",
    "flag": "🇫🇷"
   },
   {
@@ -750,7 +868,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "FM",
    "capital": "Palikir",
+   "capital_ro": "Palikir",
    "flag": "🇫🇲"
   },
   {
@@ -762,7 +882,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GA",
    "capital": "Libreville",
+   "capital_ro": "Libreville",
    "flag": "🇬🇦"
   },
   {
@@ -778,7 +900,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "GB",
    "capital": "London",
+   "capital_ro": "Londra",
    "flag": "🇬🇧"
   },
   {
@@ -790,7 +914,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "GE",
    "capital": "Tbilisi",
+   "capital_ro": "Tbilisi",
    "flag": "🇬🇪"
   },
   {
@@ -802,7 +928,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GH",
    "capital": "Accra",
+   "capital_ro": "Accra",
    "flag": "🇬🇭"
   },
   {
@@ -814,7 +942,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GN",
    "capital": "Conakry",
+   "capital_ro": "Conakry",
    "flag": "🇬🇳"
   },
   {
@@ -826,7 +956,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GM",
    "capital": "Banjul",
+   "capital_ro": "Banjul",
    "flag": "🇬🇲"
   },
   {
@@ -838,7 +970,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GW",
    "capital": "Bissau",
+   "capital_ro": "Bissau",
    "flag": "🇬🇼"
   },
   {
@@ -850,7 +984,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "GQ",
    "capital": "Malabo",
+   "capital_ro": "Malabo",
    "flag": "🇬🇶"
   },
   {
@@ -862,7 +998,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "GR",
    "capital": "Athens",
+   "capital_ro": "Atena",
    "flag": "🇬🇷"
   },
   {
@@ -874,7 +1012,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "GD",
    "capital": "St. George's",
+   "capital_ro": "St. George's",
    "flag": "🇬🇩"
   },
   {
@@ -886,7 +1026,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "GT",
    "capital": "Guatemala City",
+   "capital_ro": "Guatemala City",
    "flag": "🇬🇹"
   },
   {
@@ -898,7 +1040,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "GY",
    "capital": "Georgetown",
+   "capital_ro": "Georgetown",
    "flag": "🇬🇾"
   },
   {
@@ -910,7 +1054,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "HN",
    "capital": "Tegucigalpa",
+   "capital_ro": "Tegucigalpa",
    "flag": "🇭🇳"
   },
   {
@@ -922,7 +1068,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "HR",
    "capital": "Zagreb",
+   "capital_ro": "Zagreb",
    "flag": "🇭🇷"
   },
   {
@@ -934,7 +1082,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "HT",
    "capital": "Port-au-Prince",
+   "capital_ro": "Port-au-Prince",
    "flag": "🇭🇹"
   },
   {
@@ -946,7 +1096,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "HU",
    "capital": "Budapest",
+   "capital_ro": "Budapesta",
    "flag": "🇭🇺"
   },
   {
@@ -958,7 +1110,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "ID",
    "capital": "Jakarta",
+   "capital_ro": "Jakarta",
    "flag": "🇮🇩"
   },
   {
@@ -970,7 +1124,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "IN",
    "capital": "New Delhi",
+   "capital_ro": "New Delhi",
    "flag": "🇮🇳"
   },
   {
@@ -982,7 +1138,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "IE",
    "capital": "Dublin",
+   "capital_ro": "Dublin",
    "flag": "🇮🇪"
   },
   {
@@ -994,7 +1152,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "IR",
    "capital": "Tehran",
+   "capital_ro": "Teheran",
    "flag": "🇮🇷"
   },
   {
@@ -1006,7 +1166,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "IQ",
    "capital": "Baghdad",
+   "capital_ro": "Bagdad",
    "flag": "🇮🇶"
   },
   {
@@ -1018,7 +1180,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "IS",
    "capital": "Reykjavik",
+   "capital_ro": "Reykjavík",
    "flag": "🇮🇸"
   },
   {
@@ -1030,7 +1194,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "IL",
    "capital": "Jerusalem",
+   "capital_ro": "Ierusalim",
    "flag": "🇮🇱"
   },
   {
@@ -1042,7 +1208,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "IT",
    "capital": "Rome",
+   "capital_ro": "Roma",
    "flag": "🇮🇹"
   },
   {
@@ -1054,7 +1222,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "JM",
    "capital": "Kingston",
+   "capital_ro": "Kingston",
    "flag": "🇯🇲"
   },
   {
@@ -1066,7 +1236,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "JO",
    "capital": "Amman",
+   "capital_ro": "Amman",
    "flag": "🇯🇴"
   },
   {
@@ -1078,7 +1250,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "JP",
    "capital": "Tokyo",
+   "capital_ro": "Tokyo",
    "flag": "🇯🇵"
   },
   {
@@ -1091,7 +1265,9 @@
     "asia",
     "europe"
    ],
+   "cca2": "KZ",
    "capital": "Astana",
+   "capital_ro": "Astana",
    "flag": "🇰🇿"
   },
   {
@@ -1103,7 +1279,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "KE",
    "capital": "Nairobi",
+   "capital_ro": "Nairobi",
    "flag": "🇰🇪"
   },
   {
@@ -1117,7 +1295,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "KG",
    "capital": "Bishkek",
+   "capital_ro": "Bishkek",
    "flag": "🇰🇬"
   },
   {
@@ -1129,7 +1309,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "KH",
    "capital": "Phnom Penh",
+   "capital_ro": "Phnom Penh",
    "flag": "🇰🇭"
   },
   {
@@ -1141,7 +1323,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "KI",
    "capital": "South Tarawa",
+   "capital_ro": "South Tarawa",
    "flag": "🇰🇮"
   },
   {
@@ -1153,7 +1337,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "KN",
    "capital": "Basseterre",
+   "capital_ro": "Basseterre",
    "flag": "🇰🇳"
   },
   {
@@ -1167,7 +1353,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "KR",
    "capital": "Seoul",
+   "capital_ro": "Seul",
    "flag": "🇰🇷"
   },
   {
@@ -1179,7 +1367,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "KW",
    "capital": "Kuwait City",
+   "capital_ro": "Kuweit",
    "flag": "🇰🇼"
   },
   {
@@ -1191,7 +1381,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "LA",
    "capital": "Vientiane",
+   "capital_ro": "Vientiane",
    "flag": "🇱🇦"
   },
   {
@@ -1203,7 +1395,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "LB",
    "capital": "Beirut",
+   "capital_ro": "Beirut",
    "flag": "🇱🇧"
   },
   {
@@ -1215,7 +1409,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "LR",
    "capital": "Monrovia",
+   "capital_ro": "Monrovia",
    "flag": "🇱🇷"
   },
   {
@@ -1227,7 +1423,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "LY",
    "capital": "Tripoli",
+   "capital_ro": "Tripoli",
    "flag": "🇱🇾"
   },
   {
@@ -1239,7 +1437,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "LC",
    "capital": "Castries",
+   "capital_ro": "Castries",
    "flag": "🇱🇨"
   },
   {
@@ -1251,7 +1451,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "LI",
    "capital": "Vaduz",
+   "capital_ro": "Vaduz",
    "flag": "🇱🇮"
   },
   {
@@ -1263,7 +1465,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "LK",
    "capital": "Colombo",
+   "capital_ro": "Colombo",
    "flag": "🇱🇰"
   },
   {
@@ -1275,7 +1479,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "LS",
    "capital": "Maseru",
+   "capital_ro": "Maseru",
    "flag": "🇱🇸"
   },
   {
@@ -1287,7 +1493,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "LT",
    "capital": "Vilnius",
+   "capital_ro": "Vilnius",
    "flag": "🇱🇹"
   },
   {
@@ -1299,7 +1507,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "LU",
    "capital": "Luxembourg",
+   "capital_ro": "Luxemburg",
    "flag": "🇱🇺"
   },
   {
@@ -1311,7 +1521,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "LV",
    "capital": "Riga",
+   "capital_ro": "Riga",
    "flag": "🇱🇻"
   },
   {
@@ -1323,7 +1535,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MA",
    "capital": "Rabat",
+   "capital_ro": "Rabat",
    "flag": "🇲🇦"
   },
   {
@@ -1335,7 +1549,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "MC",
    "capital": "Monaco",
+   "capital_ro": "Monaco",
    "flag": "🇲🇨"
   },
   {
@@ -1349,7 +1565,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "MD",
    "capital": "Chișinău",
+   "capital_ro": "Chișinău",
    "flag": "🇲🇩"
   },
   {
@@ -1361,7 +1579,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MG",
    "capital": "Antananarivo",
+   "capital_ro": "Antananarivo",
    "flag": "🇲🇬"
   },
   {
@@ -1373,7 +1593,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "MV",
    "capital": "Malé",
+   "capital_ro": "Malé",
    "flag": "🇲🇻"
   },
   {
@@ -1385,7 +1607,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "MX",
    "capital": "Mexico City",
+   "capital_ro": "Ciudad de México",
    "flag": "🇲🇽"
   },
   {
@@ -1397,7 +1621,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "MH",
    "capital": "Majuro",
+   "capital_ro": "Majuro",
    "flag": "🇲🇭"
   },
   {
@@ -1411,7 +1637,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "MK",
    "capital": "Skopje",
+   "capital_ro": "Skopje",
    "flag": "🇲🇰"
   },
   {
@@ -1423,7 +1651,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ML",
    "capital": "Bamako",
+   "capital_ro": "Bamako",
    "flag": "🇲🇱"
   },
   {
@@ -1435,7 +1665,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "MT",
    "capital": "Valletta",
+   "capital_ro": "Valletta",
    "flag": "🇲🇹"
   },
   {
@@ -1450,7 +1682,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "MM",
    "capital": "Naypyidaw",
+   "capital_ro": "Naypyidaw",
    "flag": "🇲🇲"
   },
   {
@@ -1462,7 +1696,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "ME",
    "capital": "Podgorica",
+   "capital_ro": "Podgorița",
    "flag": "🇲🇪"
   },
   {
@@ -1474,7 +1710,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "MN",
    "capital": "Ulan Bator",
+   "capital_ro": "Ulan Bator",
    "flag": "🇲🇳"
   },
   {
@@ -1486,7 +1724,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MZ",
    "capital": "Maputo",
+   "capital_ro": "Maputo",
    "flag": "🇲🇿"
   },
   {
@@ -1498,7 +1738,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MR",
    "capital": "Nouakchott",
+   "capital_ro": "Nouakchott",
    "flag": "🇲🇷"
   },
   {
@@ -1510,7 +1752,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MU",
    "capital": "Port Louis",
+   "capital_ro": "Port Louis",
    "flag": "🇲🇺"
   },
   {
@@ -1522,7 +1766,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "MW",
    "capital": "Lilongwe",
+   "capital_ro": "Lilongwe",
    "flag": "🇲🇼"
   },
   {
@@ -1534,7 +1780,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "MY",
    "capital": "Kuala Lumpur",
+   "capital_ro": "Kuala Lumpur",
    "flag": "🇲🇾"
   },
   {
@@ -1546,7 +1794,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "NA",
    "capital": "Windhoek",
+   "capital_ro": "Windhoek",
    "flag": "🇳🇦"
   },
   {
@@ -1558,7 +1808,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "NE",
    "capital": "Niamey",
+   "capital_ro": "Niamey",
    "flag": "🇳🇪"
   },
   {
@@ -1570,7 +1822,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "NG",
    "capital": "Abuja",
+   "capital_ro": "Abuja",
    "flag": "🇳🇬"
   },
   {
@@ -1582,7 +1836,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "NI",
    "capital": "Managua",
+   "capital_ro": "Managua",
    "flag": "🇳🇮"
   },
   {
@@ -1597,7 +1853,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "NL",
    "capital": "Amsterdam",
+   "capital_ro": "Amsterdam",
    "flag": "🇳🇱"
   },
   {
@@ -1609,7 +1867,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "NO",
    "capital": "Oslo",
+   "capital_ro": "Oslo",
    "flag": "🇳🇴"
   },
   {
@@ -1621,7 +1881,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "NP",
    "capital": "Kathmandu",
+   "capital_ro": "Kathmandu",
    "flag": "🇳🇵"
   },
   {
@@ -1633,7 +1895,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "NR",
    "capital": "Yaren",
+   "capital_ro": "Yaren",
    "flag": "🇳🇷"
   },
   {
@@ -1645,7 +1909,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "NZ",
    "capital": "Wellington",
+   "capital_ro": "Wellington",
    "flag": "🇳🇿"
   },
   {
@@ -1657,7 +1923,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "OM",
    "capital": "Muscat",
+   "capital_ro": "Muscat",
    "flag": "🇴🇲"
   },
   {
@@ -1669,7 +1937,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "PK",
    "capital": "Islamabad",
+   "capital_ro": "Islamabad",
    "flag": "🇵🇰"
   },
   {
@@ -1681,7 +1951,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "PA",
    "capital": "Panama City",
+   "capital_ro": "Panama City",
    "flag": "🇵🇦"
   },
   {
@@ -1693,7 +1965,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "PE",
    "capital": "Lima",
+   "capital_ro": "Lima",
    "flag": "🇵🇪"
   },
   {
@@ -1705,7 +1979,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "PH",
    "capital": "Manila",
+   "capital_ro": "Manila",
    "flag": "🇵🇭"
   },
   {
@@ -1717,7 +1993,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "PW",
    "capital": "Ngerulmud",
+   "capital_ro": "Ngerulmud",
    "flag": "🇵🇼"
   },
   {
@@ -1729,7 +2007,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "PG",
    "capital": "Port Moresby",
+   "capital_ro": "Port Moresby",
    "flag": "🇵🇬"
   },
   {
@@ -1741,7 +2021,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "PL",
    "capital": "Warsaw",
+   "capital_ro": "Varșovia",
    "flag": "🇵🇱"
   },
   {
@@ -1755,7 +2037,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "KP",
    "capital": "Pyongyang",
+   "capital_ro": "Phenian",
    "flag": "🇰🇵"
   },
   {
@@ -1767,7 +2051,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "PT",
    "capital": "Lisbon",
+   "capital_ro": "Lisabona",
    "flag": "🇵🇹"
   },
   {
@@ -1779,7 +2065,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "PY",
    "capital": "Asunción",
+   "capital_ro": "Asunción",
    "flag": "🇵🇾"
   },
   {
@@ -1791,7 +2079,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "QA",
    "capital": "Doha",
+   "capital_ro": "Doha",
    "flag": "🇶🇦"
   },
   {
@@ -1803,7 +2093,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "RO",
    "capital": "Bucharest",
+   "capital_ro": "București",
    "flag": "🇷🇴"
   },
   {
@@ -1816,7 +2108,9 @@
     "europe",
     "asia"
    ],
+   "cca2": "RU",
    "capital": "Moscow",
+   "capital_ro": "Moscova",
    "flag": "🇷🇺"
   },
   {
@@ -1828,7 +2122,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "RW",
    "capital": "Kigali",
+   "capital_ro": "Kigali",
    "flag": "🇷🇼"
   },
   {
@@ -1840,7 +2136,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "SA",
    "capital": "Riyadh",
+   "capital_ro": "Riad",
    "flag": "🇸🇦"
   },
   {
@@ -1852,7 +2150,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SD",
    "capital": "Khartoum",
+   "capital_ro": "Khartoum",
    "flag": "🇸🇩"
   },
   {
@@ -1864,7 +2164,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SN",
    "capital": "Dakar",
+   "capital_ro": "Dakar",
    "flag": "🇸🇳"
   },
   {
@@ -1876,7 +2178,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "SG",
    "capital": "Singapore",
+   "capital_ro": "Singapore",
    "flag": "🇸🇬"
   },
   {
@@ -1888,7 +2192,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "SB",
    "capital": "Honiara",
+   "capital_ro": "Honiara",
    "flag": "🇸🇧"
   },
   {
@@ -1900,7 +2206,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SL",
    "capital": "Freetown",
+   "capital_ro": "Freetown",
    "flag": "🇸🇱"
   },
   {
@@ -1912,7 +2220,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "SV",
    "capital": "San Salvador",
+   "capital_ro": "San Salvador",
    "flag": "🇸🇻"
   },
   {
@@ -1924,7 +2234,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "SM",
    "capital": "City of San Marino",
+   "capital_ro": "City of San Marino",
    "flag": "🇸🇲"
   },
   {
@@ -1936,7 +2248,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SO",
    "capital": "Mogadishu",
+   "capital_ro": "Mogadishu",
    "flag": "🇸🇴"
   },
   {
@@ -1948,7 +2262,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "RS",
    "capital": "Belgrade",
+   "capital_ro": "Belgrad",
    "flag": "🇷🇸"
   },
   {
@@ -1960,7 +2276,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SS",
    "capital": "Juba",
+   "capital_ro": "Juba",
    "flag": "🇸🇸"
   },
   {
@@ -1972,7 +2290,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ST",
    "capital": "São Tomé",
+   "capital_ro": "São Tomé",
    "flag": "🇸🇹"
   },
   {
@@ -1984,7 +2304,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "SR",
    "capital": "Paramaribo",
+   "capital_ro": "Paramaribo",
    "flag": "🇸🇷"
   },
   {
@@ -1996,7 +2318,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "SK",
    "capital": "Bratislava",
+   "capital_ro": "Bratislava",
    "flag": "🇸🇰"
   },
   {
@@ -2008,7 +2332,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "SI",
    "capital": "Ljubljana",
+   "capital_ro": "Ljubljana",
    "flag": "🇸🇮"
   },
   {
@@ -2020,7 +2346,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "SE",
    "capital": "Stockholm",
+   "capital_ro": "Stockholm",
    "flag": "🇸🇪"
   },
   {
@@ -2034,7 +2362,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SZ",
    "capital": "Lobamba",
+   "capital_ro": "Lobamba",
    "flag": "🇸🇿"
   },
   {
@@ -2046,7 +2376,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "SC",
    "capital": "Victoria",
+   "capital_ro": "Victoria",
    "flag": "🇸🇨"
   },
   {
@@ -2058,7 +2390,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "SY",
    "capital": "Damascus",
+   "capital_ro": "Damasc",
    "flag": "🇸🇾"
   },
   {
@@ -2070,7 +2404,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "TD",
    "capital": "N'Djamena",
+   "capital_ro": "N'Djamena",
    "flag": "🇹🇩"
   },
   {
@@ -2082,7 +2418,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "TG",
    "capital": "Lomé",
+   "capital_ro": "Lomé",
    "flag": "🇹🇬"
   },
   {
@@ -2094,7 +2432,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "TH",
    "capital": "Bangkok",
+   "capital_ro": "Bangkok",
    "flag": "🇹🇭"
   },
   {
@@ -2106,7 +2446,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "TJ",
    "capital": "Dushanbe",
+   "capital_ro": "Dushanbe",
    "flag": "🇹🇯"
   },
   {
@@ -2118,7 +2460,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "TM",
    "capital": "Ashgabat",
+   "capital_ro": "Ashgabat",
    "flag": "🇹🇲"
   },
   {
@@ -2133,7 +2477,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "TL",
    "capital": "Dili",
+   "capital_ro": "Dili",
    "flag": "🇹🇱"
   },
   {
@@ -2145,7 +2491,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "TO",
    "capital": "Nuku'alofa",
+   "capital_ro": "Nuku'alofa",
    "flag": "🇹🇴"
   },
   {
@@ -2157,7 +2505,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "TT",
    "capital": "Port of Spain",
+   "capital_ro": "Port of Spain",
    "flag": "🇹🇹"
   },
   {
@@ -2169,7 +2519,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "TN",
    "capital": "Tunis",
+   "capital_ro": "Tunis",
    "flag": "🇹🇳"
   },
   {
@@ -2185,7 +2537,9 @@
     "asia",
     "europe"
    ],
+   "cca2": "TR",
    "capital": "Ankara",
+   "capital_ro": "Ankara",
    "flag": "🇹🇷"
   },
   {
@@ -2197,7 +2551,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "TV",
    "capital": "Funafuti",
+   "capital_ro": "Funafuti",
    "flag": "🇹🇻"
   },
   {
@@ -2209,7 +2565,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "TZ",
    "capital": "Dodoma",
+   "capital_ro": "Dodoma",
    "flag": "🇹🇿"
   },
   {
@@ -2221,7 +2579,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "UG",
    "capital": "Kampala",
+   "capital_ro": "Kampala",
    "flag": "🇺🇬"
   },
   {
@@ -2233,7 +2593,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "UA",
    "capital": "Kyiv",
+   "capital_ro": "Kiev",
    "flag": "🇺🇦"
   },
   {
@@ -2245,7 +2607,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "UY",
    "capital": "Montevideo",
+   "capital_ro": "Montevideo",
    "flag": "🇺🇾"
   },
   {
@@ -2261,7 +2625,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "US",
    "capital": "Washington D.C.",
+   "capital_ro": "Washington",
    "flag": "🇺🇸"
   },
   {
@@ -2273,7 +2639,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "UZ",
    "capital": "Tashkent",
+   "capital_ro": "Tașkent",
    "flag": "🇺🇿"
   },
   {
@@ -2287,7 +2655,9 @@
    "continents": [
     "europe"
    ],
+   "cca2": "VA",
    "capital": "Vatican City",
+   "capital_ro": "Vatican",
    "flag": "🇻🇦"
   },
   {
@@ -2299,7 +2669,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "VC",
    "capital": "Kingstown",
+   "capital_ro": "Kingstown",
    "flag": "🇻🇨"
   },
   {
@@ -2311,7 +2683,9 @@
    "continents": [
     "americas"
    ],
+   "cca2": "VE",
    "capital": "Caracas",
+   "capital_ro": "Caracas",
    "flag": "🇻🇪"
   },
   {
@@ -2323,7 +2697,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "VN",
    "capital": "Hanoi",
+   "capital_ro": "Hanoi",
    "flag": "🇻🇳"
   },
   {
@@ -2335,7 +2711,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "VU",
    "capital": "Port Vila",
+   "capital_ro": "Port Vila",
    "flag": "🇻🇺"
   },
   {
@@ -2347,7 +2725,9 @@
    "continents": [
     "oceania"
    ],
+   "cca2": "WS",
    "capital": "Apia",
+   "capital_ro": "Apia",
    "flag": "🇼🇸"
   },
   {
@@ -2359,7 +2739,9 @@
    "continents": [
     "asia"
    ],
+   "cca2": "YE",
    "capital": "Sana'a",
+   "capital_ro": "Sana'a",
    "flag": "🇾🇪"
   },
   {
@@ -2371,7 +2753,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ZA",
    "capital": "Pretoria",
+   "capital_ro": "Pretoria",
    "flag": "🇿🇦"
   },
   {
@@ -2383,7 +2767,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ZM",
    "capital": "Lusaka",
+   "capital_ro": "Lusaka",
    "flag": "🇿🇲"
   },
   {
@@ -2395,7 +2781,9 @@
    "continents": [
     "africa"
    ],
+   "cca2": "ZW",
    "capital": "Harare",
+   "capital_ro": "Harare",
    "flag": "🇿🇼"
   },
   {

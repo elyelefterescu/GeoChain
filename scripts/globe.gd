@@ -141,7 +141,8 @@ func focus(id: String, animate := true) -> void:
 
 
 ## Colorează locurile după starea partidei și pune numele țărilor vizitate.
-func show_session(session) -> void:
+## fog: granițele apar doar la locurile implicate; hide_goal: destinația nu se colorează.
+func show_session(session, fog := false, hide_goal := false) -> void:
 	var colors := {}
 	for id in graph.nodes:
 		if session.continent != "" and not graph.is_allowed(id, session.continent):
@@ -157,7 +158,8 @@ func show_session(session) -> void:
 	for id in session.missing_required():
 		colors[id] = COLORS.required
 	colors[session.start] = COLORS.start_goal
-	colors[session.goal] = COLORS.start_goal
+	if not hide_goal:
+		colors[session.goal] = COLORS.start_goal
 	colors[session.current()] = COLORS.current
 
 	state_image.fill(Color(0, 0, 0, 0))
@@ -167,6 +169,7 @@ func show_session(session) -> void:
 		if colors.has(shown) and i + 1 < STATE_WIDTH:
 			state_image.set_pixel(i + 1, 0, colors[shown])
 	state_texture.update(state_image)
+	globe_material.set_shader_parameter("fog", fog)
 
 	for child in labels.get_children():
 		child.queue_free()
@@ -181,8 +184,19 @@ func show_session(session) -> void:
 		label.modulate = Color.WHITE
 		label.outline_modulate = Color(0, 0, 0, 0.8)
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		label.no_depth_test = true  # altfel globul taie din litere; ascundem noi etichetele din spate
 		label.position = lat_lon_to_point(centers[id][0], centers[id][1]) * 1.01
 		labels.add_child(label)
+	_update_label_visibility()
+
+
+## Etichetele de pe partea din spate a globului nu se văd.
+func _update_label_visibility() -> void:
+	if labels == null:
+		return
+	for label in labels.get_children():
+		var world_pos: Vector3 = globe.basis * label.position
+		label.visible = world_pos.z > 0.15
 
 
 func _apply_view() -> void:
@@ -190,6 +204,7 @@ func _apply_view() -> void:
 		return
 	globe.basis = Basis(Vector3.RIGHT, pitch) * Basis(Vector3.UP, yaw)
 	camera.position = Vector3(0, 0, distance)
+	_update_label_visibility()
 
 
 func _zoom(factor: float) -> void:
