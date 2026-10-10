@@ -247,15 +247,9 @@ func _capitals_known() -> bool:
 	return false
 
 
-## Cum se ghicește destinația pe harta curentă: pe hărțile de regiune nu sunt steaguri (se folosește
-## reședința), iar unde nu sunt nici reședințe (Regatul Unit) destinația se vede.
+## Cum se ghicește destinația: pe hărțile State/Județe nu se ghicește, destinația se vede mereu.
 func _guess() -> String:
-	var guess: String = rules.get_value("guess")
-	if guess == "flag" and _region():
-		guess = "capital"
-	if guess == "capital" and not _capitals_known():
-		guess = "off"
-	return guess
+	return "off" if _region() else rules.get_value("guess")
 
 
 ## Lista de hărți: continentele în modurile cu lumea, țările (SUA, România, Regatul Unit) în State/Județe.
@@ -1423,7 +1417,8 @@ func _refresh() -> void:
 
 	where_label.text = graph.name_of(session.current())
 	history_label.text = "[b]%s[/b] %s" % [t("your_route"), _route_bbcode(session.path)]
-	move_edit.placeholder_text = t("capital_hint") if _capitals_on() else t("move_hint")
+	move_edit.placeholder_text = (t("capital_hint_region") if _region() else t("capital_hint")) if _capitals_on() \
+		else t("move_hint")
 	var over := session.is_finished() or session.is_lost()
 	var flag_mode := _flag_mode()
 	suggestions_box.visible = not rules.get_value("no_suggestions") and not flag_mode
