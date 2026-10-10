@@ -5,9 +5,10 @@ extends RefCounted
 ## - inutilă: vecin care te îndepărtează;
 ## - capcană: țară de pe același continent, dar care nu e vecină.
 ## Dacă locul are prea puțini vecini potriviți, restul variantelor sunt țări de pe continent.
+## Când mutarea bună e pe apă, 2 variante sunt ape: cea corectă și una greșită.
 
 
-## Întoarce {"best": id, "useful": id, "useless": id, "far": [ids], "all": [4 ids amestecate]}.
+## Întoarce {"best", "decoy_water", "useful", "useless", "far": [ids], "all": [4 ids amestecate]}.
 ## Lipsește o cheie când nu există o asemenea variantă.
 static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 	var cur: String = session.current()
@@ -27,25 +28,51 @@ static func make(graph, session, rng: RandomNumberGenerator) -> Dictionary:
 
 	var result := {"far": []}
 	var picked := []
-	# Ținta însăși, dacă e vecină, e mereu cea mai bună.
-	var best := options.filter(func(id): return dist.get(id, 1 << 20) == here - 1)
+	var lands := options.filter(func(id): return not graph.is_water(id))
+	var waters := options.filter(func(id): return graph.is_water(id))
+	var d := func(id): return dist.get(id, 1 << 20)
+
+	# Cea mai bună: ținta, dacă e vecină; altfel o țară care te apropie; abia apoi o apă.
+	var best := ""
 	if target in options:
-		best = [target]
-	if not best.is_empty():
-		result.best = best[0]
-		picked.append(best[0])
-	var useful := options.filter(func(id): return dist.get(id, 1 << 20) == here and not id in picked)
+		best = target
+	else:
+		for group in [lands, waters]:
+			for id in group:
+				if best == "" and d.call(id) == here - 1:
+					best = id
+	if best != "":
+		result.best = best
+		picked.append(best)
+
+	# Când trebuie să treci pe apă, 2 variante sunt ape (una corectă), celelalte 2 țări.
+	# Altfel toate variantele sunt țări (cu steag).
+	var need_water: bool = best != "" and graph.is_water(best)
+	if need_water:
+		var other_waters := waters.filter(func(id): return id != best)
+		other_waters.sort_custom(func(x, y): return d.call(x) < d.call(y))
+		if other_waters.is_empty():
+			for id in graph.nodes:
+				if graph.is_water(id) and id != best and graph.is_allowed(id, session.continent) \
+						and not graph.are_linked(cur, id) and id != cur:
+					other_waters.append(id)
+			_shuffle(other_waters, rng)
+		if not other_waters.is_empty():
+			result.decoy_water = other_waters[0]
+			picked.append(other_waters[0])
+
+	var useful := lands.filter(func(id): return d.call(id) == here and not id in picked)
 	if not useful.is_empty():
 		result.useful = useful[0]
 		picked.append(useful[0])
-	var useless := options.filter(func(id): return dist.get(id, 1 << 20) > here and not id in picked)
-	if not useless.is_empty():
+	var useless := lands.filter(func(id): return d.call(id) > here and not id in picked)
+	if not useless.is_empty() and picked.size() < 3:
 		result.useless = useless[0]
 		picked.append(useless[0])
 
 	# Dacă lipsește o categorie, dar locul are destui vecini, tot 3 variante sunt vecini.
-	var rest := options.filter(func(id): return not id in picked)
-	rest.sort_custom(func(x, y): return dist.get(x, 1 << 20) < dist.get(y, 1 << 20))
+	var rest := lands.filter(func(id): return not id in picked)
+	rest.sort_custom(func(x, y): return d.call(x) < d.call(y))
 	while picked.size() < 3 and not rest.is_empty():
 		picked.append(rest.pop_front())
 

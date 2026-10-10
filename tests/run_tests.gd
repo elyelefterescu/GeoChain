@@ -348,9 +348,11 @@ func test_flag_choices() -> void:
 				check(graph.are_linked(cur, c.useful) and dist[c.useful] == here, "utilă, nu cea mai bună " + label)
 			if c.has("useless"):
 				check(graph.are_linked(cur, c.useless) and dist.get(c.useless, 99) > here, "vecin care nu ajută " + label)
-			var available: int = graph.neighbors(cur).size()
-			check(c.all.filter(func(id): return graph.are_linked(cur, id)).size() == mini(3, available),
-				"3 vecini printre variante (sau câți are) " + label)
+			var water_count: int = c.all.filter(func(id): return graph.is_water(id)).size()
+			if graph.is_water(c.best):
+				check(water_count == 2 and c.has("decoy_water"), "pe apă: 2 ape, una corectă " + label)
+			else:
+				check(water_count == 0, "pe uscat: doar steaguri " + label)
 			for id in c.far:
 				check(not graph.are_linked(cur, id) and not graph.is_water(id), "țara de pe continent nu e vecină " + label)
 				var shared: bool = graph.nodes[id].continents.any(func(x): return x in graph.nodes[cur].continents)
@@ -360,3 +362,9 @@ func test_flag_choices() -> void:
 	l.setup(graph, "LSO", "KEN", GameSession.Mode.NORMAL)
 	var lc: Dictionary = FlagChoices.make(graph, l, rng)
 	check(lc.all.size() == 4 and lc.far.size() >= 2, "Lesotho: completat cu țări de pe continent")
+	# Din Kenya spre România mutarea bună e pe apă (Oceanul Indian): 2 ape printre variante.
+	var k := GameSession.new()
+	k.setup(graph, "KEN", "ROU", GameSession.Mode.NORMAL)
+	var kc: Dictionary = FlagChoices.make(graph, k, rng)
+	check(kc.best == "W_IND", "Kenya: cea mai bună e Oceanul Indian")
+	check(kc.all.filter(func(id): return graph.is_water(id)).size() == 2, "Kenya: 2 ape printre variante")
