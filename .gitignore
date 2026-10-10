@@ -2,3 +2,4 @@
 /android/
 *.tmp
 export/
+__pycache__/
