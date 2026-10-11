@@ -24,7 +24,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_music",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_music", "test_small_map_long_routes",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -617,3 +617,21 @@ func test_music() -> void:
 	for path in Music.TRACKS:
 		var stream = load(path)
 		check(stream is AudioStream and stream.get_length() > 60.0, "piesa %s se încarcă și are peste un minut" % path)
+
+
+## Pe județele României nu există trasee de 8+ mutări: „Lung” ia atunci cele mai lungi trasee ale hărții.
+func test_small_map_long_routes() -> void:
+	var g := WorldGraph.new()
+	g.load_file("res://data/romania.json")
+	var r := Rules.new()
+	r.values.distance = "hard"
+	r.values.forbidden = true
+	r.values.required = true
+	r.values.water_limit = 0
+	var rng := RandomNumberGenerator.new()
+	for seed in 10:
+		rng.seed = seed
+		var c: Dictionary = Challenge.make(g, rng, r)
+		check(not c.is_empty(), "România, traseu lung cu interzis și obligatoriu (seed %d)" % seed)
+		if not c.is_empty():
+			check(g.shortest_path(c.start, c.goal, 0).size() - 1 >= 5, "traseul ales e printre cele mai lungi")

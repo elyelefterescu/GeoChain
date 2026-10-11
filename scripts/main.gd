@@ -1023,6 +1023,12 @@ func _new_game() -> void:
 	var ferry_mode := _selected_mode() == GameSession.Mode.FERRY
 	var c: Dictionary = Challenge.make(graph, rng, rules, continent, ferry_mode)
 	if c.is_empty():
+		# Partida veche nu mai rămâne pe ecran peste harta nouă: pornim una fără restricții.
+		var pair: Array = graph.random_pair(rng, 3, rules.get_value("water_limit"), continent)
+		if pair.is_empty():
+			_say(t("no_challenge"), "bad")
+			return
+		_start_game(pair[0], pair[1])
 		_say(t("no_challenge"), "bad")
 		return
 	_start_game(c.start, c.goal, c.forbidden, c.required)

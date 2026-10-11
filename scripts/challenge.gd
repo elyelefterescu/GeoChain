@@ -9,7 +9,27 @@ extends RefCounted
 ## need_ferry (modul Bac): traseul minim trebuie să treacă măcar o dată cu bacul.
 static func make(graph, rng: RandomNumberGenerator, rules, continent := "", need_ferry := false) -> Dictionary:
 	var water: int = -1 if need_ferry else rules.get_value("water_limit")
-	var range: Array = rules.distance_range()
+	var result := _make(graph, rng, rules, continent, need_ferry, water, rules.distance_range())
+	if result.is_empty() and rules.distance_range()[0] > 3:
+		# Pe hărțile mici (de exemplu județele României) nu există trasee atât de lungi:
+		# luăm atunci cele mai lungi trasee pe care le are harta.
+		var longest := _longest_distance(graph, water, continent)
+		result = _make(graph, rng, rules, continent, need_ferry, water, [maxi(3, longest - 1), 99])
+	return result
+
+
+static func _longest_distance(graph, water: int, continent: String) -> int:
+	var longest := 0
+	for id in graph.nodes:
+		if graph.is_water(id) or not graph.is_allowed(id, continent):
+			continue
+		for d in graph.distances_from(id, water, continent).values():
+			longest = maxi(longest, d)
+	return longest
+
+
+static func _make(graph, rng: RandomNumberGenerator, rules, continent: String, need_ferry: bool, water: int,
+		range: Array) -> Dictionary:
 	var countries: Array = graph.nodes.keys().filter(
 		func(id): return not graph.is_water(id) and graph.is_allowed(id, continent))
 	var starts := countries.duplicate()
