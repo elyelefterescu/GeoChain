@@ -83,14 +83,6 @@ static func build() -> Theme:
 	t.set_color("caret_color", "LineEdit", ACCENT_HOVER)
 	t.set_color("selection_color", "LineEdit", Color(ACCENT, 0.4))
 
-	# Glisorul de volum: șină groasă, partea plină în accent.
-	var rail := box(BUTTON, 4, Color(0, 0, 0, 0), 0)
-	rail.content_margin_top = 4
-	rail.content_margin_bottom = 4
-	t.set_stylebox("slider", "HSlider", rail)
-	t.set_stylebox("grabber_area", "HSlider", box(ACCENT, 4, Color(0, 0, 0, 0), 0))
-	t.set_stylebox("grabber_area_highlight", "HSlider", box(ACCENT_HOVER, 4, Color(0, 0, 0, 0), 0))
-
 	for type in ["Button", "OptionButton"]:
 		t.set_stylebox("normal", type, box(BUTTON, 10, CARD_BORDER, 8))
 		t.set_stylebox("hover", type, box(BUTTON_HOVER, 10, Color(ACCENT, 0.5), 8))
@@ -117,6 +109,17 @@ static func build() -> Theme:
 		t.set_stylebox("hover", variation, chip(ACCENT_HOVER))
 		t.set_stylebox("pressed", variation, chip(ACCENT))
 		t.set_font_size("font_size", variation, 16)
+
+	# Butoanele de sus, peste glob: mai mici, ca să încapă lângă titlu pe telefon.
+	t.set_type_variation("HeaderButton", "Button")
+	for state in ["normal", "hover", "pressed", "focus"]:
+		var style: StyleBoxFlat = t.get_stylebox(state, "Button").duplicate()
+		style.content_margin_left = 9
+		style.content_margin_right = 9
+		style.content_margin_top = 6
+		style.content_margin_bottom = 6
+		t.set_stylebox(state, "HeaderButton", style)
+	t.set_font_size("font_size", "HeaderButton", 16)
 
 	t.set_stylebox("normal", "LineEdit", box(Color("10172a"), 10, CARD_BORDER, 8))
 	t.set_stylebox("focus", "LineEdit", box(Color(0, 0, 0, 0), 10, ACCENT, 8))

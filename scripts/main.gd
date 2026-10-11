@@ -11,7 +11,6 @@ const Challenge := preload("res://scripts/challenge.gd")
 const UiTheme := preload("res://scripts/ui_theme.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
-const Music := preload("res://scripts/music.gd")
 
 const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
@@ -20,6 +19,7 @@ const LANDSCAPE_SIZE := Vector2i(1200, 720)
 const FLAG_SIZE := Vector2(120, 80)
 const MAX_CUSTOM_FORBIDDEN := 6
 const MAX_CUSTOM_REQUIRED := 4
+const RULEBOOK_SECTIONS := ["goal", "moves", "water", "gates", "mistakes", "score", "colors", "normal", "sandbox", "ferry", "region"]
 const LEGEND_ORDER := ["current", "visited", "start_goal", "required", "forbidden", "mistake"]
 
 
@@ -46,10 +46,6 @@ class StarRow extends Control:
 
 var i18n := I18n.new()
 var rules := Rules.new()
-var music: Node
-var music_button: Button
-var music_check: CheckBox
-var music_slider: HSlider
 var world_data: Dictionary
 var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
 var _flags_loaded := false
@@ -88,6 +84,7 @@ var scroll: ScrollContainer
 var mode_select: OptionButton
 var map_select: OptionButton
 var rules_panel: PanelContainer
+var rulebook_panel: PanelContainer
 var pair_row: VBoxContainer
 var keyboard_spacer: Control  # loc gol sub panou cât tastatura de pe ecran (telefon, tabletă)
 var _keyboard_px := 0
@@ -174,9 +171,6 @@ func _ready() -> void:
 	background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(background)
 
-	music = Music.new()
-	add_child(music)
-	music.changed.connect(_refresh_music_ui)
 	_build_ui()
 	if OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android"):
 		var keyboard_timer := Timer.new()
@@ -414,6 +408,7 @@ func _on_language_pressed() -> void:
 	var mode := mode_select.selected
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
+	var rulebook_open := rulebook_panel.visible
 	globe.get_parent().remove_child(globe)
 	ui_root.queue_free()
 	_build_ui()
@@ -422,6 +417,7 @@ func _on_language_pressed() -> void:
 	_fill_map_select()
 	map_select.select(map)
 	rules_panel.visible = rules_open
+	rulebook_panel.visible = rulebook_open
 	from_edit.text = graph.name_of(session.start)
 	to_edit.text = graph.name_of(session.goal)
 	_say("")
@@ -469,6 +465,9 @@ func _build_ui() -> void:
 	scroll.add_child(body)
 	body.minimum_size_changed.connect(_fit_panel, CONNECT_DEFERRED)
 
+	rulebook_panel = _build_rulebook_panel()
+	rulebook_panel.hide()
+	body.add_child(rulebook_panel)
 	rules_panel = _build_rules_panel()
 	rules_panel.hide()
 	body.add_child(rules_panel)
@@ -493,24 +492,12 @@ func _build_header() -> HBoxContainer:
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	header.add_child(title)
-	music_button = _button("♪", func(): music.set_enabled(not music.enabled))
-	music_button.tooltip_text = t("music")
-	music_button.custom_minimum_size = Vector2(48, 0)
-	header.add_child(music_button)
-	header.add_child(_button(t("rules"), func(): rules_panel.visible = not rules_panel.visible))
-	header.add_child(_button(t("language"), _on_language_pressed))
-	_refresh_music_ui()
+	header.add_child(_button(t("rulebook"), func(): _toggle_panel(rulebook_panel), "HeaderButton"))
+	header.add_child(_button(t("rules"), func(): _toggle_panel(rules_panel), "HeaderButton"))
+	var language := _button(t("language_short"), _on_language_pressed, "HeaderButton")
+	language.tooltip_text = t("language")
+	header.add_child(language)
 	return header
-
-
-## Butonul ♪ de sus și rândul de muzică din Reguli arată aceeași stare.
-func _refresh_music_ui() -> void:
-	if is_instance_valid(music_button):
-		music_button.modulate.a = 1.0 if music.enabled else 0.4
-	if is_instance_valid(music_check):
-		music_check.set_pressed_no_signal(music.enabled)
-	if is_instance_valid(music_slider):
-		music_slider.set_value_no_signal(music.volume)
 
 
 ## Legenda culorilor de pe glob, mică, jos peste glob.
@@ -759,6 +746,43 @@ func _build_result_card() -> PanelContainer:
 	return result_panel
 
 
+## Deschide un panou (Setări sau Regulament), închide-l pe celălalt și urcă la începutul listei.
+func _toggle_panel(panel: PanelContainer) -> void:
+	var open := not panel.visible
+	rules_panel.hide()
+	rulebook_panel.hide()
+	panel.visible = open
+	if open:
+		scroll.scroll_vertical = 0
+
+
+## Regulamentul: cum se joacă și ce e diferit în fiecare mod.
+func _build_rulebook_panel() -> PanelContainer:
+	var card := _card()
+	card.add_theme_stylebox_override("panel", UiTheme.box(UiTheme.CARD, 16, Color(UiTheme.ACCENT, 0.6), 12))
+	var panel: VBoxContainer = card.get_child(0)
+	var top := HBoxContainer.new()
+	panel.add_child(top)
+	var title := Label.new()
+	title.text = t("rulebook")
+	title.theme_type_variation = "Big"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(title)
+	top.add_child(_button(t("close"), func(): rulebook_panel.hide()))
+	for section in RULEBOOK_SECTIONS:
+		var heading := _label()
+		heading.text = t("rb_%s_t" % section)
+		heading.add_theme_color_override("font_color", UiTheme.GOLD)
+		panel.add_child(heading)
+		var text := _label("Muted")
+		text.text = t("rb_" + section)
+		panel.add_child(text)
+	var close := _button(t("close"), func(): rulebook_panel.hide())
+	close.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	panel.add_child(close)
+	return card
+
+
 ## Ecranul de reguli: scurtături, liste și câte o bifă pentru fiecare regulă.
 func _build_rules_panel() -> PanelContainer:
 	var card := _card()
@@ -791,22 +815,6 @@ func _build_rules_panel() -> PanelContainer:
 		check.button_pressed = rules.get_value(key)
 		check.toggled.connect(_on_rule_changed.bind(key))
 		panel.add_child(check)
-	var sound := HBoxContainer.new()
-	music_check = CheckBox.new()
-	music_check.text = t("music")
-	music_check.toggled.connect(func(on): music.set_enabled(on))
-	sound.add_child(music_check)
-	music_slider = HSlider.new()
-	music_slider.min_value = 0
-	music_slider.max_value = 100
-	music_slider.step = 5
-	music_slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	music_slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	music_slider.tooltip_text = t("music_volume")
-	music_slider.value_changed.connect(func(v): music.set_volume(int(v)))
-	sound.add_child(music_slider)
-	panel.add_child(sound)
-	_refresh_music_ui()
 	var note := _label("Muted")
 	note.text = t("rules_note")
 	panel.add_child(note)
