@@ -11,6 +11,7 @@ const I18n := preload("res://scripts/i18n.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
 const Sounds := preload("res://scripts/sounds.gd")
+const Achievements := preload("res://scripts/achievements.gd")
 
 var _failures := 0
 var _checks := 0
@@ -25,7 +26,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_small_map_long_routes", "test_sounds",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_small_map_long_routes", "test_sounds", "test_achievements",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -647,3 +648,56 @@ func test_sounds() -> void:
 	r.apply_preset("hard")
 	check(r.get_value("sounds") == false, "scurtătura Greu păstrează sunetele oprite")
 	check("sounds" in Main.RULE_CHECKS, "sunetele au o bifă în Setări")
+
+
+func _facts(extra := {}) -> Dictionary:
+	var f := {"finished": true, "moves": 5, "optimal": 5, "mistakes": 0, "seconds": 60.0, "flag_mode": false,
+		"land_ok": true, "has_water": true, "start_continents": ["europe"], "goal_continents": ["europe"],
+		"path_continents": ["europe"]}
+	f.merge(extra, true)
+	return f
+
+
+## Fiecare medalie se câștigă exact când trebuie, o singură dată.
+func test_achievements() -> void:
+	var a := Achievements.new()
+	check(a.check(_facts({"moves": 6})).is_empty(), "un traseu mai lung decât minimul nu dă medalii")
+	check(a.check(_facts({"optimal": 2, "moves": 2})).is_empty(), "traseele sub 3 mutări nu contează")
+	check(a.check(_facts()) == ["first_perfect"], "primul traseu minim dă Busola de aur")
+	check(a.check(_facts()).is_empty(), "o medalie se câștigă o singură dată")
+	check(a.check(_facts({"mistakes": 1})).is_empty(), "traseul minim cu greșeli nu e perfect")
+	check(a.perfect_count == 2, "se numără traseele perfecte")
+	check("long_perfect" in a.check(_facts({"optimal": 8, "moves": 8})), "traseu perfect de 8 dă Navigatorul")
+	check("fast" in a.check(_facts({"moves": 7, "seconds": 9.5})), "sub 10 secunde dă Fulgerul")
+	a.check(_facts())
+	check("perfect_5" in a.check(_facts()), "al 5-lea traseu perfect dă Cartograful")
+	for i in 4:
+		check(not a.has("perfect_10"), "Maestrul hărților vine abia la 10")
+		a.check(_facts())
+	check(a.check(_facts()) == ["perfect_10"], "al 10-lea traseu perfect dă Maestrul hărților")
+	var land := {"has_water": false, "start_continents": ["americas"], "goal_continents": ["asia"], "moves": 9}
+	check(a.check(_facts(land.merged({"has_water": true}, true))).is_empty(), "cu apă nu se ia Bering")
+	check(a.check(_facts(land.merged({"land_ok": false}, true))).is_empty(), "în modul Bac nu se ia Bering")
+	check(a.check(_facts(land)) == ["bering"], "America spre Asia pe uscat dă Bering")
+	var b := Achievements.new()
+	check(b.check(_facts({"moves": 9, "has_water": false, "start_continents": ["asia"], "goal_continents": ["americas"]})) == ["bering"], "și invers merge")
+	check(b.check(_facts({"moves": 9, "has_water": false, "path_continents": ["europe", "asia", "africa"]})).is_empty(), "fără America nu e Globetrotter")
+	check(b.check(_facts({"moves": 9, "has_water": false, "path_continents": ["europe", "asia", "africa", "americas"]})) == ["globetrotter"], "toate continentele pe uscat dau Globetrotter")
+	check(b.check(_facts({"flag_mode": true})).has("flags"), "traseu perfect cu steaguri dă Vexilologul")
+	for medal in Achievements.MEDALS:
+		for lang in ["ro", "en"]:
+			check(I18n.STRINGS[lang].has("medal_" + medal) and I18n.STRINGS[lang].has("medal_%s_d" % medal), "medalia %s are text în %s" % [medal, lang])
+	# Pe harta lumii se poate ajunge pe uscat din America în Asia și prin toate continentele.
+	var world = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
+	var straits = JSON.parse_string(FileAccess.get_file_as_string("res://data/straits.json"))
+	var g := WorldGraph.new()
+	g.load_data(world)
+	g.add_straits(straits["straits"], straits["gates"], world["gates"])
+	var path: Array = g.shortest_path("USA", "CHN", 0)
+	check(not path.is_empty() and path.all(func(id): return not g.is_water(id)), "există traseu pe uscat SUA → China")
+	var across: Array = g.shortest_path("USA", "ZAF", 0)
+	var seen := {}
+	for id in across:
+		for c in g.nodes[id].get("continents", []):
+			seen[c] = true
+	check(Achievements.LAND_CONTINENTS.all(func(c): return seen.has(c)), "SUA → Africa de Sud pe uscat trece prin toate continentele")

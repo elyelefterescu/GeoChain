@@ -12,6 +12,7 @@ const UiTheme := preload("res://scripts/ui_theme.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
 const Sounds := preload("res://scripts/sounds.gd")
+const Achievements := preload("res://scripts/achievements.gd")
 
 const RULE_CHECKS := ["sounds", "lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
@@ -20,7 +21,7 @@ const LANDSCAPE_SIZE := Vector2i(1200, 720)
 const FLAG_SIZE := Vector2(120, 80)
 const MAX_CUSTOM_FORBIDDEN := 6
 const MAX_CUSTOM_REQUIRED := 4
-const RULEBOOK_SECTIONS := ["goal", "moves", "water", "gates", "mistakes", "score", "colors", "normal", "sandbox", "ferry", "region"]
+const RULEBOOK_SECTIONS := ["goal", "moves", "water", "gates", "mistakes", "score", "colors", "medals", "normal", "sandbox", "ferry", "region"]
 const LEGEND_ORDER := ["current", "visited", "start_goal", "required", "forbidden", "mistake"]
 
 
@@ -45,9 +46,44 @@ class StarRow extends Control:
 			draw_colored_polygon(points, UiTheme.GOLD if i < filled else Color(1, 1, 1, 0.14))
 
 
+## O medalie desenată: panglică, disc și stea; gri cât timp nu e câștigată.
+class MedalIcon extends Control:
+	var color := Color.GOLD
+	var won := true
+
+	func _init(medal_color: Color, is_won: bool, size := 56.0) -> void:
+		color = medal_color
+		won = is_won
+		custom_minimum_size = Vector2(size, size)
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		var s := size.x
+		var main := color if won else Color(1, 1, 1, 0.16)
+		var ribbon := Color(color.darkened(0.35), 1.0) if won else Color(1, 1, 1, 0.09)
+		draw_colored_polygon(PackedVector2Array([Vector2(s * 0.22, 0), Vector2(s * 0.44, 0),
+			Vector2(s * 0.56, s * 0.42), Vector2(s * 0.36, s * 0.42)]), ribbon)
+		draw_colored_polygon(PackedVector2Array([Vector2(s * 0.56, 0), Vector2(s * 0.78, 0),
+			Vector2(s * 0.64, s * 0.42), Vector2(s * 0.44, s * 0.42)]), ribbon.lightened(0.15))
+		var center := Vector2(s * 0.5, s * 0.64)
+		draw_circle(center, s * 0.34, main)
+		draw_circle(center, s * 0.27, main.darkened(0.18) if won else Color(1, 1, 1, 0.08))
+		var points := PackedVector2Array()
+		for k in 10:
+			var radius := s * (0.2 if k % 2 == 0 else 0.085)
+			var angle := -PI / 2 + k * PI / 5
+			points.append(center + Vector2(cos(angle), sin(angle)) * radius)
+		draw_colored_polygon(points, main.lightened(0.35) if won else Color(1, 1, 1, 0.14))
+
+
 var i18n := I18n.new()
 var rules := Rules.new()
 var sounds := Sounds.new()
+var achievements := Achievements.new()
+var medals_panel: PanelContainer
+var medal_layer: Control  # stratul de deasupra jocului, unde apare medalia nouă
+var medal_queue := []
+var game_started_ms := 0
 var world_data: Dictionary
 var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
 var _flags_loaded := false
@@ -143,6 +179,7 @@ func _ready() -> void:
 	world_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
 	globe_assets = load_globe_assets(world_data)
 	rules.load_saved()
+	achievements.load_saved()
 	sounds.enabled = rules.get_value("sounds")
 	add_child(sounds)
 	i18n.lang = I18n.default_lang()
@@ -176,6 +213,7 @@ func _ready() -> void:
 	add_child(background)
 
 	_build_ui()
+	_build_medal_layer()
 	if OS.has_feature("mobile") or OS.has_feature("web_ios") or OS.has_feature("web_android"):
 		var keyboard_timer := Timer.new()
 		keyboard_timer.wait_time = 0.2
@@ -413,6 +451,7 @@ func _on_language_pressed() -> void:
 	var map := map_select.selected
 	var rules_open := rules_panel.visible
 	var rulebook_open := rulebook_panel.visible
+	var medals_open := medals_panel.visible
 	globe.get_parent().remove_child(globe)
 	ui_root.queue_free()
 	_build_ui()
@@ -422,6 +461,7 @@ func _on_language_pressed() -> void:
 	map_select.select(map)
 	rules_panel.visible = rules_open
 	rulebook_panel.visible = rulebook_open
+	medals_panel.visible = medals_open
 	from_edit.text = graph.name_of(session.start)
 	to_edit.text = graph.name_of(session.goal)
 	_say("")
@@ -472,6 +512,9 @@ func _build_ui() -> void:
 	rulebook_panel = _build_rulebook_panel()
 	rulebook_panel.hide()
 	body.add_child(rulebook_panel)
+	medals_panel = _build_medals_panel()
+	medals_panel.hide()
+	body.add_child(medals_panel)
 	rules_panel = _build_rules_panel()
 	rules_panel.hide()
 	body.add_child(rules_panel)
@@ -577,6 +620,7 @@ func _build_setup_card() -> PanelContainer:
 	var new_game := _button(t("new_game"), _new_game, "AccentButton")
 	new_game.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	buttons.add_child(new_game)
+	buttons.add_child(_button(t("medals"), func(): _toggle_panel(medals_panel)))
 	return card
 
 
@@ -668,6 +712,7 @@ func _build_move_card() -> PanelContainer:
 	var cancel := _button(t("gate_cancel"), _hide_gate)
 	cancel.size_flags_horizontal = Control.SIZE_SHRINK_END
 	gate_box.add_child(cancel)
+	gate_panel.hide()
 	box.add_child(gate_panel)
 
 	ferry_panel = PanelContainer.new()
@@ -755,9 +800,166 @@ func _toggle_panel(panel: PanelContainer) -> void:
 	var open := not panel.visible
 	rules_panel.hide()
 	rulebook_panel.hide()
+	medals_panel.hide()
 	panel.visible = open
 	if open:
 		scroll.scroll_vertical = 0
+
+
+## Medaliile: toate, cele câștigate colorate, celelalte gri.
+func _build_medals_panel() -> PanelContainer:
+	var card := _card()
+	card.add_theme_stylebox_override("panel", UiTheme.box(UiTheme.CARD, 16, Color(UiTheme.GOLD, 0.6), 12))
+	var panel: VBoxContainer = card.get_child(0)
+	var top := HBoxContainer.new()
+	panel.add_child(top)
+	var title := Label.new()
+	title.text = t("medals")
+	title.theme_type_variation = "Big"
+	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	top.add_child(title)
+	top.add_child(_button(t("close"), func(): medals_panel.hide()))
+	var count := _label("Muted")
+	count.text = t("medals_count") % [achievements.unlocked.size(), Achievements.MEDALS.size(),
+		achievements.perfect_count]
+	panel.add_child(count)
+	for medal in Achievements.MEDALS:
+		var won := achievements.has(medal)
+		var row := HBoxContainer.new()
+		row.add_theme_constant_override("separation", 12)
+		panel.add_child(row)
+		var icon := MedalIcon.new(Achievements.MEDALS[medal], won, 48)
+		icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		row.add_child(icon)
+		var text := VBoxContainer.new()
+		text.add_theme_constant_override("separation", 2)
+		text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(text)
+		var name := _label()
+		name.text = t("medal_" + medal)
+		if won:
+			name.add_theme_color_override("font_color", UiTheme.GOLD)
+		text.add_child(name)
+		var about := _label("Muted")
+		about.text = "%s · %s" % [t("medal_%s_d" % medal), t("medal_won") if won else t("medal_locked")]
+		text.add_child(about)
+	var note := _label("Muted")
+	note.text = t("medals_note")
+	panel.add_child(note)
+	return card
+
+
+## La un traseu terminat: verifică medaliile, le salvează și le arată pe cele noi.
+func _award_medals() -> void:
+	var path_continents := []
+	var has_water := false
+	for id in session.path:
+		if graph.is_water(id):
+			has_water = true
+		else:
+			for c in _continents_of(id):
+				if not c in path_continents:
+					path_continents.append(c)
+	var facts := {
+		"finished": true, "moves": session.moves(), "optimal": session.optimal_moves(),
+		"mistakes": session.mistakes, "seconds": (Time.get_ticks_msec() - game_started_ms) / 1000.0,
+		"flag_mode": _flag_mode(), "has_water": has_water, "path_continents": path_continents,
+		"land_ok": session.continent == "" and session.mode in [GameSession.Mode.NORMAL, GameSession.Mode.SANDBOX],
+		"start_continents": _continents_of(session.start), "goal_continents": _continents_of(session.goal),
+	}
+	var fresh := achievements.check(facts)
+	achievements.save()
+	if fresh.is_empty():
+		return
+	_rebuild_medals_panel()
+	medal_queue.append_array(fresh)
+	if not medal_layer.visible:
+		_show_next_medal()
+
+
+func _continents_of(id: String) -> Array:
+	return graph.nodes.get(id, {}).get("continents", [])
+
+
+func _rebuild_medals_panel() -> void:
+	var open := medals_panel.visible
+	var index := medals_panel.get_index()
+	var parent := medals_panel.get_parent()
+	medals_panel.queue_free()
+	medals_panel = _build_medals_panel()
+	medals_panel.visible = open
+	parent.add_child(medals_panel)
+	parent.move_child(medals_panel, index)
+
+
+## Stratul cu medalia nouă: acoperă jocul, în centru stă medalia; o atingere îl închide.
+func _build_medal_layer() -> void:
+	medal_layer = Control.new()
+	medal_layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	medal_layer.mouse_filter = Control.MOUSE_FILTER_STOP
+	medal_layer.hide()
+	medal_layer.gui_input.connect(func(event):
+		if event is InputEventMouseButton and event.pressed:
+			_show_next_medal())
+	add_child(medal_layer)
+
+
+func _show_next_medal() -> void:
+	for child in medal_layer.get_children():
+		child.queue_free()
+	if medal_queue.is_empty():
+		medal_layer.hide()
+		return
+	var medal: String = medal_queue.pop_front()
+	var shade := ColorRect.new()
+	shade.color = Color(0, 0, 0, 0.6)
+	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	shade.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	medal_layer.add_child(shade)
+	var center := CenterContainer.new()
+	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	center.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	medal_layer.add_child(center)
+	var card := PanelContainer.new()
+	card.add_theme_stylebox_override("panel", UiTheme.box(UiTheme.CARD, 20, UiTheme.GOLD, 22))
+	card.custom_minimum_size = Vector2(minf(360, get_viewport_rect().size.x - 40), 0)
+	center.add_child(card)
+	var box := VBoxContainer.new()
+	box.alignment = BoxContainer.ALIGNMENT_CENTER
+	box.add_theme_constant_override("separation", 12)
+	card.add_child(box)
+	var heading := Label.new()
+	heading.text = t("medal_new")
+	heading.theme_type_variation = "Muted"
+	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(heading)
+	var icon := MedalIcon.new(Achievements.MEDALS[medal], true, 110)
+	icon.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(icon)
+	var name := Label.new()
+	name.text = t("medal_" + medal)
+	name.theme_type_variation = "Title"
+	name.add_theme_color_override("font_color", UiTheme.GOLD)
+	name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	box.add_child(name)
+	var about := _label("Muted")
+	about.text = t("medal_%s_d" % medal)
+	about.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	box.add_child(about)
+	var ok := _button(t("medal_ok"), _show_next_medal, "AccentButton")
+	ok.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	ok.custom_minimum_size = Vector2(140, 0)
+	box.add_child(ok)
+	medal_layer.show()
+	medal_layer.move_to_front()
+	# Medalia apare cu un mic salt.
+	card.resized.connect(func(): card.pivot_offset = card.size / 2)
+	card.scale = Vector2(0.6, 0.6)
+	card.modulate.a = 0.0
+	var tween := create_tween().set_parallel()
+	tween.tween_property(card, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(card, "modulate:a", 1.0, 0.2)
 
 
 ## Regulamentul: cum se joacă și ce e diferit în fiecare mod.
@@ -1063,6 +1265,7 @@ func _start_game(from: String, to: String, forbidden := [], required := []) -> v
 		"par_bonus": rules.get_value("par_bonus"),
 	}
 	session.setup(graph, from, to, _selected_mode(), continent, forbidden, required, options)
+	game_started_ms = Time.get_ticks_msec()
 	from_edit.text = graph.name_of(from)
 	to_edit.text = graph.name_of(to)
 	_focused = ""
@@ -1217,6 +1420,7 @@ func _apply_move(target: String, gate_answer: String) -> void:
 	if result.ok:
 		if session.is_finished():
 			sounds.play("finish")
+			_award_medals()
 		else:
 			sounds.play("water" if graph.is_water(target) else "land")
 		_hide_gate()
