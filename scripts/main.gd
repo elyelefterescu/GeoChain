@@ -11,8 +11,9 @@ const Challenge := preload("res://scripts/challenge.gd")
 const UiTheme := preload("res://scripts/ui_theme.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
+const Sounds := preload("res://scripts/sounds.gd")
 
-const RULE_CHECKS := ["lives", "forbidden", "required", "detailed_seas", "gate_choices",
+const RULE_CHECKS := ["sounds", "lives", "forbidden", "required", "detailed_seas", "gate_choices",
 	"no_suggestions", "fog", "timer", "capitals", "par_bonus"]
 const PORTRAIT_SIZE := Vector2i(540, 960)
 const LANDSCAPE_SIZE := Vector2i(1200, 720)
@@ -46,6 +47,7 @@ class StarRow extends Control:
 
 var i18n := I18n.new()
 var rules := Rules.new()
+var sounds := Sounds.new()
 var world_data: Dictionary
 var flags := {}  # țară -> SVG, citite doar când e nevoie de un steag
 var _flags_loaded := false
@@ -141,6 +143,8 @@ func _ready() -> void:
 	world_data = JSON.parse_string(FileAccess.get_file_as_string("res://data/world.json"))
 	globe_assets = load_globe_assets(world_data)
 	rules.load_saved()
+	sounds.enabled = rules.get_value("sounds")
+	add_child(sounds)
 	i18n.lang = I18n.default_lang()
 	var ferries = JSON.parse_string(FileAccess.get_file_as_string("res://data/ferries.json"))
 	ferry_list = ferries["ferries"] if ferries is Dictionary else []
@@ -843,6 +847,9 @@ func _rule_select(title_key: String, rule: String, values: Array, prefix: String
 func _on_rule_changed(value, key: String) -> void:
 	rules.set_value(key, value)
 	rules.save()
+	if key == "sounds":
+		sounds.enabled = value
+		return
 	if key == "detailed_seas":
 		_load_graphs()
 	_new_game()
@@ -1086,6 +1093,7 @@ func _on_timer_tick() -> void:
 	time_left -= 1
 	if time_left <= 0:
 		session.add_mistake()
+		sounds.play("mistake")
 		_say(t("time_up"), "bad")
 		time_left = Rules.SECONDS_PER_MOVE
 		if session.is_lost():
@@ -1150,6 +1158,7 @@ func _on_move_text_changed(text: String) -> void:
 func _on_go_pressed() -> void:
 	var id := _find_typed(move_edit.text)
 	if id == "":
+		sounds.play("mistake")
 		_say(t("r_unknown"), "bad")
 		return
 	_try_move(id)
@@ -1206,6 +1215,10 @@ func _on_gate_pressed() -> void:
 func _apply_move(target: String, gate_answer: String) -> void:
 	var result: Dictionary = session.try_move(target, gate_answer)
 	if result.ok:
+		if session.is_finished():
+			sounds.play("finish")
+		else:
+			sounds.play("water" if graph.is_water(target) else "land")
 		_hide_gate()
 		move_edit.text = ""
 		_on_move_text_changed("")
@@ -1219,6 +1232,8 @@ func _apply_move(target: String, gate_answer: String) -> void:
 		if session.current() == session.goal and not session.is_finished():
 			_say(t("need_required") % ", ".join(session.missing_required().map(graph.name_of)), "bad")
 	else:
+		if result.reason != "finished":
+			sounds.play("mistake")
 		_say(t("r_" + result.reason) if result.reason != "lost" else "", "bad")
 		if result.reason != "wrong_gate" or session.is_lost():
 			_hide_gate()
@@ -1276,6 +1291,8 @@ func _on_ferry_answer(choice: int) -> void:
 	ferry_asked += 1
 	if choice == right:
 		ferry_correct += 1
+	else:
+		sounds.play("mistake")
 	ferry_progress.text = t("ferry_progress") % [ferry_asked, ferry_correct]
 	var token := _ferry_token
 	get_tree().create_timer(1.0).timeout.connect(func():

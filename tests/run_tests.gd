@@ -10,6 +10,7 @@ const Challenge := preload("res://scripts/challenge.gd")
 const I18n := preload("res://scripts/i18n.gd")
 const FlagChoices := preload("res://scripts/flag_choices.gd")
 const Quiz := preload("res://scripts/quiz.gd")
+const Sounds := preload("res://scripts/sounds.gd")
 
 var _failures := 0
 var _checks := 0
@@ -24,7 +25,7 @@ func _init() -> void:
 		"test_normal_water_rule", "test_gates", "test_sandbox", "test_scoring",
 		"test_random_pair", "test_continents", "test_world", "test_detailed_seas",
 		"test_forbidden_required", "test_globe",
-		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_small_map_long_routes",
+		"test_rules_options", "test_challenge", "test_capitals", "test_i18n", "test_flag_choices", "test_ferries", "test_quiz", "test_straits", "test_custom_sandbox", "test_usa", "test_regions", "test_flag_svgs", "test_small_map_long_routes", "test_sounds",
 	]:
 		call(test)
 	print("%d verificări, %d eșuate" % [_checks, _failures])
@@ -632,3 +633,17 @@ func test_small_map_long_routes() -> void:
 		check(not c.is_empty(), "România, traseu lung cu interzis și obligatoriu (seed %d)" % seed)
 		if not c.is_empty():
 			check(g.shortest_path(c.start, c.goal, 0).size() - 1 >= 5, "traseul ales e printre cele mai lungi")
+
+
+## Cele 4 sunete se încarcă, sunt pornite implicit, iar scurtăturile nu le opresc.
+func test_sounds() -> void:
+	for sound in Sounds.NAMES:
+		var stream = load("res://sounds/%s.wav" % sound)
+		check(stream is AudioStream, "sunetul %s se încarcă" % sound)
+		check(stream != null and stream.get_length() > 0.1 and stream.get_length() < 2.0, "sunetul %s e scurt" % sound)
+	var r := Rules.new()
+	check(r.get_value("sounds") == true, "sunetele sunt pornite implicit")
+	r.set_value("sounds", false)
+	r.apply_preset("hard")
+	check(r.get_value("sounds") == false, "scurtătura Greu păstrează sunetele oprite")
+	check("sounds" in Main.RULE_CHECKS, "sunetele au o bifă în Setări")

@@ -85,6 +85,8 @@ Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sun
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
 
 Fontul este [Nunito](https://github.com/googlefonts/nunito), licență SIL Open Font License (`fonts/OFL.txt`).
+Sunetele (mutare pe uscat, pe apă, greșeală, final) sunt făcute din cod de `tools/make_sounds.py` în `sounds/`; se opresc din Setări.
+
 Săgețile și stelele vin din `fonts/Symbols.ttf`, un subset din DejaVu Sans (licență Bitstream Vera, `fonts/DejaVu-LICENSE.txt`).
 
 Steagurile vin din [lipis/flag-icons](https://github.com/lipis/flag-icons) v7.2.3, licență MIT.

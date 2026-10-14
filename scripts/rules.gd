@@ -30,6 +30,7 @@ const DEFAULTS := {
 	"capitals": false,
 	"guess": "off",
 	"par_bonus": false,
+	"sounds": true,
 }
 
 const PRESETS := {
@@ -50,11 +51,13 @@ func set_value(key: String, value) -> void:
 	values[key] = value
 
 
-## O scurtătură pornește de la valorile implicite și păstrează mările detaliate.
+## O scurtătură pornește de la valorile implicite și păstrează mările detaliate și sunetele.
 func apply_preset(name: String) -> void:
 	var detailed = values.detailed_seas
+	var sounds = values.sounds
 	values = DEFAULTS.duplicate()
 	values.detailed_seas = detailed
+	values.sounds = sounds
 	for key in PRESETS[name]:
 		values[key] = PRESETS[name][key]
 
