@@ -85,6 +85,8 @@ Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sun
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
 
 Fontul este [Nunito](https://github.com/googlefonts/nunito), licență SIL Open Font License (`fonts/OFL.txt`).
+Iconița jocului e în `icons/` (Android, web și fereastra jocului). Pe Windows, `tools/set_windows_icon.mjs` o pune în șablonul `windows_release_x86_64.exe` înainte de export (are nevoie de pachetul npm `resedit`).
+
 Medaliile (`scripts/achievements.gd`) se salvează în `user://achievements.cfg`; cea nouă apare peste joc, toate se văd cu butonul „Medalii”.
 
 Sunetele (mutare pe uscat, pe apă, greșeală, final) sunt făcute din cod de `tools/make_sounds.py` în `sounds/`; se opresc din Setări.
