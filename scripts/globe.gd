@@ -320,7 +320,9 @@ func show_session(session, fog := false, hide_goal := false) -> void:
 	if key == _labels_key:
 		return
 	_labels_key = key
+	# Scoatem etichetele vechi imediat: globul se redesenează doar la cerere, deci altfel ar rămâne în imagine.
 	for child in labels.get_children():
+		labels.remove_child(child)
 		child.queue_free()
 	for id in session.path:
 		if graph.is_water(id) or not centers.has(id):
@@ -342,6 +344,7 @@ func show_session(session, fog := false, hide_goal := false) -> void:
 		label.position = lat_lon_to_point(box.lat, box.lon) * 1.01
 		labels.add_child(label)
 	_update_label_visibility()
+	_request_draw()
 
 
 ## Cât de lată și de înaltă e țara (în unități pe glob) pe rândul și coloana punctului de etichetă,
