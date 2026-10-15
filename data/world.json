@@ -1,0 +1,7706 @@
+{
+ "version": 2,
+ "region": "lume",
+ "continents": [
+  "europe",
+  "africa",
+  "asia",
+  "americas"
+ ],
+ "source": {
+  "borders": "https://raw.githubusercontent.com/mledoze/countries/master/countries.json",
+  "license": "ODbL 1.0 (mledoze/countries)"
+ },
+ "nodes": [
+  {
+   "id": "AFG",
+   "type": "country",
+   "name_ro": "Afganistan",
+   "name_en": "Afghanistan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "AF",
+   "capital": "Kabul",
+   "capital_ro": "Kabul",
+   "flag": "🇦🇫"
+  },
+  {
+   "id": "AGO",
+   "type": "country",
+   "name_ro": "Angola",
+   "name_en": "Angola",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "AO",
+   "capital": "Luanda",
+   "capital_ro": "Luanda",
+   "flag": "🇦🇴"
+  },
+  {
+   "id": "ALB",
+   "type": "country",
+   "name_ro": "Albania",
+   "name_en": "Albania",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "AL",
+   "capital": "Tirana",
+   "capital_ro": "Tirana",
+   "flag": "🇦🇱"
+  },
+  {
+   "id": "AND",
+   "type": "country",
+   "name_ro": "Andorra",
+   "name_en": "Andorra",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "AD",
+   "capital": "Andorra la Vella",
+   "capital_ro": "Andorra la Vella",
+   "flag": "🇦🇩"
+  },
+  {
+   "id": "ARE",
+   "type": "country",
+   "name_ro": "Emiratele Arabe Unite",
+   "name_en": "United Arab Emirates",
+   "aliases": [
+    "Emirate",
+    "UAE",
+    "EAU"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "AE",
+   "capital": "Abu Dhabi",
+   "capital_ro": "Abu Dhabi",
+   "flag": "🇦🇪"
+  },
+  {
+   "id": "ARG",
+   "type": "country",
+   "name_ro": "Argentina",
+   "name_en": "Argentina",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "AR",
+   "capital": "Buenos Aires",
+   "capital_ro": "Buenos Aires",
+   "flag": "🇦🇷"
+  },
+  {
+   "id": "ARM",
+   "type": "country",
+   "name_ro": "Armenia",
+   "name_en": "Armenia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "AM",
+   "capital": "Yerevan",
+   "capital_ro": "Erevan",
+   "flag": "🇦🇲"
+  },
+  {
+   "id": "ATG",
+   "type": "country",
+   "name_ro": "Antigua și Barbuda",
+   "name_en": "Antigua and Barbuda",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "AG",
+   "capital": "Saint John's",
+   "capital_ro": "Saint John's",
+   "flag": "🇦🇬"
+  },
+  {
+   "id": "AUS",
+   "type": "country",
+   "name_ro": "Australia",
+   "name_en": "Australia",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "AU",
+   "capital": "Canberra",
+   "capital_ro": "Canberra",
+   "flag": "🇦🇺"
+  },
+  {
+   "id": "AUT",
+   "type": "country",
+   "name_ro": "Austria",
+   "name_en": "Austria",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "AT",
+   "capital": "Vienna",
+   "capital_ro": "Viena",
+   "flag": "🇦🇹"
+  },
+  {
+   "id": "AZE",
+   "type": "country",
+   "name_ro": "Azerbaidjan",
+   "name_en": "Azerbaijan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "AZ",
+   "capital": "Baku",
+   "capital_ro": "Baku",
+   "flag": "🇦🇿"
+  },
+  {
+   "id": "BDI",
+   "type": "country",
+   "name_ro": "Burundi",
+   "name_en": "Burundi",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "BI",
+   "capital": "Gitega",
+   "capital_ro": "Gitega",
+   "flag": "🇧🇮"
+  },
+  {
+   "id": "BEL",
+   "type": "country",
+   "name_ro": "Belgia",
+   "name_en": "Belgium",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "BE",
+   "capital": "Brussels",
+   "capital_ro": "Bruxelles",
+   "flag": "🇧🇪"
+  },
+  {
+   "id": "BEN",
+   "type": "country",
+   "name_ro": "Benin",
+   "name_en": "Benin",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "BJ",
+   "capital": "Porto-Novo",
+   "capital_ro": "Porto-Novo",
+   "flag": "🇧🇯"
+  },
+  {
+   "id": "BFA",
+   "type": "country",
+   "name_ro": "Burkina Faso",
+   "name_en": "Burkina Faso",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "BF",
+   "capital": "Ouagadougou",
+   "capital_ro": "Ouagadougou",
+   "flag": "🇧🇫"
+  },
+  {
+   "id": "BGD",
+   "type": "country",
+   "name_ro": "Bangladesh",
+   "name_en": "Bangladesh",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "BD",
+   "capital": "Dhaka",
+   "capital_ro": "Dhaka",
+   "flag": "🇧🇩"
+  },
+  {
+   "id": "BGR",
+   "type": "country",
+   "name_ro": "Bulgaria",
+   "name_en": "Bulgaria",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "BG",
+   "capital": "Sofia",
+   "capital_ro": "Sofia",
+   "flag": "🇧🇬"
+  },
+  {
+   "id": "BHR",
+   "type": "country",
+   "name_ro": "Bahrain",
+   "name_en": "Bahrain",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "BH",
+   "capital": "Manama",
+   "capital_ro": "Manama",
+   "flag": "🇧🇭"
+  },
+  {
+   "id": "BHS",
+   "type": "country",
+   "name_ro": "Bahamas",
+   "name_en": "Bahamas",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "BS",
+   "capital": "Nassau",
+   "capital_ro": "Nassau",
+   "flag": "🇧🇸"
+  },
+  {
+   "id": "BIH",
+   "type": "country",
+   "name_ro": "Bosnia și Herțegovina",
+   "name_en": "Bosnia and Herzegovina",
+   "aliases": [
+    "Bosnia"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "BA",
+   "capital": "Sarajevo",
+   "capital_ro": "Sarajevo",
+   "flag": "🇧🇦"
+  },
+  {
+   "id": "BLR",
+   "type": "country",
+   "name_ro": "Belarus",
+   "name_en": "Belarus",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "BY",
+   "capital": "Minsk",
+   "capital_ro": "Minsk",
+   "flag": "🇧🇾"
+  },
+  {
+   "id": "BLZ",
+   "type": "country",
+   "name_ro": "Belize",
+   "name_en": "Belize",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "BZ",
+   "capital": "Belmopan",
+   "capital_ro": "Belmopan",
+   "flag": "🇧🇿"
+  },
+  {
+   "id": "BOL",
+   "type": "country",
+   "name_ro": "Bolivia",
+   "name_en": "Bolivia",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "BO",
+   "capital": "Sucre",
+   "capital_ro": "Sucre",
+   "flag": "🇧🇴"
+  },
+  {
+   "id": "BRA",
+   "type": "country",
+   "name_ro": "Brazilia",
+   "name_en": "Brazil",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "BR",
+   "capital": "Brasília",
+   "capital_ro": "Brasília",
+   "flag": "🇧🇷"
+  },
+  {
+   "id": "BRB",
+   "type": "country",
+   "name_ro": "Barbados",
+   "name_en": "Barbados",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "BB",
+   "capital": "Bridgetown",
+   "capital_ro": "Bridgetown",
+   "flag": "🇧🇧"
+  },
+  {
+   "id": "BRN",
+   "type": "country",
+   "name_ro": "Brunei",
+   "name_en": "Brunei",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "BN",
+   "capital": "Bandar Seri Begawan",
+   "capital_ro": "Bandar Seri Begawan",
+   "flag": "🇧🇳"
+  },
+  {
+   "id": "BTN",
+   "type": "country",
+   "name_ro": "Bhutan",
+   "name_en": "Bhutan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "BT",
+   "capital": "Thimphu",
+   "capital_ro": "Thimphu",
+   "flag": "🇧🇹"
+  },
+  {
+   "id": "BWA",
+   "type": "country",
+   "name_ro": "Botswana",
+   "name_en": "Botswana",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "BW",
+   "capital": "Gaborone",
+   "capital_ro": "Gaborone",
+   "flag": "🇧🇼"
+  },
+  {
+   "id": "CAF",
+   "type": "country",
+   "name_ro": "Republica Centrafricană",
+   "name_en": "Central African Republic",
+   "aliases": [
+    "RCA"
+   ],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CF",
+   "capital": "Bangui",
+   "capital_ro": "Bangui",
+   "flag": "🇨🇫"
+  },
+  {
+   "id": "CAN",
+   "type": "country",
+   "name_ro": "Canada",
+   "name_en": "Canada",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "CA",
+   "capital": "Ottawa",
+   "capital_ro": "Ottawa",
+   "flag": "🇨🇦"
+  },
+  {
+   "id": "CHE",
+   "type": "country",
+   "name_ro": "Elveția",
+   "name_en": "Switzerland",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "CH",
+   "capital": "Bern",
+   "capital_ro": "Berna",
+   "flag": "🇨🇭"
+  },
+  {
+   "id": "CHL",
+   "type": "country",
+   "name_ro": "Chile",
+   "name_en": "Chile",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "CL",
+   "capital": "Santiago",
+   "capital_ro": "Santiago",
+   "flag": "🇨🇱"
+  },
+  {
+   "id": "CHN",
+   "type": "country",
+   "name_ro": "China",
+   "name_en": "China",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "CN",
+   "capital": "Beijing",
+   "capital_ro": "Beijing",
+   "flag": "🇨🇳"
+  },
+  {
+   "id": "CIV",
+   "type": "country",
+   "name_ro": "Coasta de Fildeș",
+   "name_en": "Ivory Coast",
+   "aliases": [
+    "Côte d'Ivoire"
+   ],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CI",
+   "capital": "Yamoussoukro",
+   "capital_ro": "Yamoussoukro",
+   "flag": "🇨🇮"
+  },
+  {
+   "id": "CMR",
+   "type": "country",
+   "name_ro": "Camerun",
+   "name_en": "Cameroon",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CM",
+   "capital": "Yaoundé",
+   "capital_ro": "Yaoundé",
+   "flag": "🇨🇲"
+  },
+  {
+   "id": "COD",
+   "type": "country",
+   "name_ro": "Republica Democratică Congo",
+   "name_en": "DR Congo",
+   "aliases": [
+    "RD Congo",
+    "Congo-Kinshasa"
+   ],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CD",
+   "capital": "Kinshasa",
+   "capital_ro": "Kinshasa",
+   "flag": "🇨🇩"
+  },
+  {
+   "id": "COG",
+   "type": "country",
+   "name_ro": "Republica Congo",
+   "name_en": "Congo",
+   "aliases": [
+    "Congo",
+    "Congo-Brazzaville"
+   ],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CG",
+   "capital": "Brazzaville",
+   "capital_ro": "Brazzaville",
+   "flag": "🇨🇬"
+  },
+  {
+   "id": "COL",
+   "type": "country",
+   "name_ro": "Columbia",
+   "name_en": "Colombia",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "CO",
+   "capital": "Bogotá",
+   "capital_ro": "Bogotá",
+   "flag": "🇨🇴"
+  },
+  {
+   "id": "COM",
+   "type": "country",
+   "name_ro": "Comore",
+   "name_en": "Comoros",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "KM",
+   "capital": "Moroni",
+   "capital_ro": "Moroni",
+   "flag": "🇰🇲"
+  },
+  {
+   "id": "CPV",
+   "type": "country",
+   "name_ro": "Capul Verde",
+   "name_en": "Cape Verde",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "CV",
+   "capital": "Praia",
+   "capital_ro": "Praia",
+   "flag": "🇨🇻"
+  },
+  {
+   "id": "CRI",
+   "type": "country",
+   "name_ro": "Costa Rica",
+   "name_en": "Costa Rica",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "CR",
+   "capital": "San José",
+   "capital_ro": "San José",
+   "flag": "🇨🇷"
+  },
+  {
+   "id": "CUB",
+   "type": "country",
+   "name_ro": "Cuba",
+   "name_en": "Cuba",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "CU",
+   "capital": "Havana",
+   "capital_ro": "Havana",
+   "flag": "🇨🇺"
+  },
+  {
+   "id": "CYP",
+   "type": "country",
+   "name_ro": "Cipru",
+   "name_en": "Cyprus",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "CY",
+   "capital": "Nicosia",
+   "capital_ro": "Nicosia",
+   "flag": "🇨🇾"
+  },
+  {
+   "id": "CZE",
+   "type": "country",
+   "name_ro": "Cehia",
+   "name_en": "Czechia",
+   "aliases": [
+    "Republica Cehă",
+    "Czech Republic"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "CZ",
+   "capital": "Prague",
+   "capital_ro": "Praga",
+   "flag": "🇨🇿"
+  },
+  {
+   "id": "DEU",
+   "type": "country",
+   "name_ro": "Germania",
+   "name_en": "Germany",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "DE",
+   "capital": "Berlin",
+   "capital_ro": "Berlin",
+   "flag": "🇩🇪"
+  },
+  {
+   "id": "DJI",
+   "type": "country",
+   "name_ro": "Djibouti",
+   "name_en": "Djibouti",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "DJ",
+   "capital": "Djibouti",
+   "capital_ro": "Djibouti",
+   "flag": "🇩🇯"
+  },
+  {
+   "id": "DMA",
+   "type": "country",
+   "name_ro": "Dominica",
+   "name_en": "Dominica",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "DM",
+   "capital": "Roseau",
+   "capital_ro": "Roseau",
+   "flag": "🇩🇲"
+  },
+  {
+   "id": "DNK",
+   "type": "country",
+   "name_ro": "Danemarca",
+   "name_en": "Denmark",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "DK",
+   "capital": "Copenhagen",
+   "capital_ro": "Copenhaga",
+   "flag": "🇩🇰"
+  },
+  {
+   "id": "DOM",
+   "type": "country",
+   "name_ro": "Republica Dominicană",
+   "name_en": "Dominican Republic",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "DO",
+   "capital": "Santo Domingo",
+   "capital_ro": "Santo Domingo",
+   "flag": "🇩🇴"
+  },
+  {
+   "id": "DZA",
+   "type": "country",
+   "name_ro": "Algeria",
+   "name_en": "Algeria",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "DZ",
+   "capital": "Algiers",
+   "capital_ro": "Alger",
+   "flag": "🇩🇿"
+  },
+  {
+   "id": "ECU",
+   "type": "country",
+   "name_ro": "Ecuador",
+   "name_en": "Ecuador",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "EC",
+   "capital": "Quito",
+   "capital_ro": "Quito",
+   "flag": "🇪🇨"
+  },
+  {
+   "id": "EGY",
+   "type": "country",
+   "name_ro": "Egipt",
+   "name_en": "Egypt",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "EG",
+   "capital": "Cairo",
+   "capital_ro": "Cairo",
+   "flag": "🇪🇬"
+  },
+  {
+   "id": "ERI",
+   "type": "country",
+   "name_ro": "Eritreea",
+   "name_en": "Eritrea",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ER",
+   "capital": "Asmara",
+   "capital_ro": "Asmara",
+   "flag": "🇪🇷"
+  },
+  {
+   "id": "ESP",
+   "type": "country",
+   "name_ro": "Spania",
+   "name_en": "Spain",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "ES",
+   "capital": "Madrid",
+   "capital_ro": "Madrid",
+   "flag": "🇪🇸"
+  },
+  {
+   "id": "EST",
+   "type": "country",
+   "name_ro": "Estonia",
+   "name_en": "Estonia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "EE",
+   "capital": "Tallinn",
+   "capital_ro": "Tallinn",
+   "flag": "🇪🇪"
+  },
+  {
+   "id": "ETH",
+   "type": "country",
+   "name_ro": "Etiopia",
+   "name_en": "Ethiopia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ET",
+   "capital": "Addis Ababa",
+   "capital_ro": "Addis Abeba",
+   "flag": "🇪🇹"
+  },
+  {
+   "id": "FIN",
+   "type": "country",
+   "name_ro": "Finlanda",
+   "name_en": "Finland",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "FI",
+   "capital": "Helsinki",
+   "capital_ro": "Helsinki",
+   "flag": "🇫🇮"
+  },
+  {
+   "id": "FJI",
+   "type": "country",
+   "name_ro": "Fiji",
+   "name_en": "Fiji",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "FJ",
+   "capital": "Suva",
+   "capital_ro": "Suva",
+   "flag": "🇫🇯"
+  },
+  {
+   "id": "FRA",
+   "type": "country",
+   "name_ro": "Franța",
+   "name_en": "France",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "FR",
+   "capital": "Paris",
+   "capital_ro": "Paris",
+   "flag": "🇫🇷"
+  },
+  {
+   "id": "FSM",
+   "type": "country",
+   "name_ro": "Micronezia",
+   "name_en": "Micronesia",
+   "aliases": [
+    "Micronesia"
+   ],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "FM",
+   "capital": "Palikir",
+   "capital_ro": "Palikir",
+   "flag": "🇫🇲"
+  },
+  {
+   "id": "GAB",
+   "type": "country",
+   "name_ro": "Gabon",
+   "name_en": "Gabon",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GA",
+   "capital": "Libreville",
+   "capital_ro": "Libreville",
+   "flag": "🇬🇦"
+  },
+  {
+   "id": "GBR",
+   "type": "country",
+   "name_ro": "Regatul Unit",
+   "name_en": "United Kingdom",
+   "aliases": [
+    "Marea Britanie",
+    "Anglia",
+    "UK"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "GB",
+   "capital": "London",
+   "capital_ro": "Londra",
+   "flag": "🇬🇧"
+  },
+  {
+   "id": "GEO",
+   "type": "country",
+   "name_ro": "Georgia",
+   "name_en": "Georgia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "GE",
+   "capital": "Tbilisi",
+   "capital_ro": "Tbilisi",
+   "flag": "🇬🇪"
+  },
+  {
+   "id": "GHA",
+   "type": "country",
+   "name_ro": "Ghana",
+   "name_en": "Ghana",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GH",
+   "capital": "Accra",
+   "capital_ro": "Accra",
+   "flag": "🇬🇭"
+  },
+  {
+   "id": "GIN",
+   "type": "country",
+   "name_ro": "Guineea",
+   "name_en": "Guinea",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GN",
+   "capital": "Conakry",
+   "capital_ro": "Conakry",
+   "flag": "🇬🇳"
+  },
+  {
+   "id": "GMB",
+   "type": "country",
+   "name_ro": "Gambia",
+   "name_en": "Gambia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GM",
+   "capital": "Banjul",
+   "capital_ro": "Banjul",
+   "flag": "🇬🇲"
+  },
+  {
+   "id": "GNB",
+   "type": "country",
+   "name_ro": "Guineea-Bissau",
+   "name_en": "Guinea-Bissau",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GW",
+   "capital": "Bissau",
+   "capital_ro": "Bissau",
+   "flag": "🇬🇼"
+  },
+  {
+   "id": "GNQ",
+   "type": "country",
+   "name_ro": "Guineea Ecuatorială",
+   "name_en": "Equatorial Guinea",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "GQ",
+   "capital": "Malabo",
+   "capital_ro": "Malabo",
+   "flag": "🇬🇶"
+  },
+  {
+   "id": "GRC",
+   "type": "country",
+   "name_ro": "Grecia",
+   "name_en": "Greece",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "GR",
+   "capital": "Athens",
+   "capital_ro": "Atena",
+   "flag": "🇬🇷"
+  },
+  {
+   "id": "GRD",
+   "type": "country",
+   "name_ro": "Grenada",
+   "name_en": "Grenada",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "GD",
+   "capital": "St. George's",
+   "capital_ro": "St. George's",
+   "flag": "🇬🇩"
+  },
+  {
+   "id": "GTM",
+   "type": "country",
+   "name_ro": "Guatemala",
+   "name_en": "Guatemala",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "GT",
+   "capital": "Guatemala City",
+   "capital_ro": "Guatemala City",
+   "flag": "🇬🇹"
+  },
+  {
+   "id": "GUY",
+   "type": "country",
+   "name_ro": "Guyana",
+   "name_en": "Guyana",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "GY",
+   "capital": "Georgetown",
+   "capital_ro": "Georgetown",
+   "flag": "🇬🇾"
+  },
+  {
+   "id": "HND",
+   "type": "country",
+   "name_ro": "Honduras",
+   "name_en": "Honduras",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "HN",
+   "capital": "Tegucigalpa",
+   "capital_ro": "Tegucigalpa",
+   "flag": "🇭🇳"
+  },
+  {
+   "id": "HRV",
+   "type": "country",
+   "name_ro": "Croația",
+   "name_en": "Croatia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "HR",
+   "capital": "Zagreb",
+   "capital_ro": "Zagreb",
+   "flag": "🇭🇷"
+  },
+  {
+   "id": "HTI",
+   "type": "country",
+   "name_ro": "Haiti",
+   "name_en": "Haiti",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "HT",
+   "capital": "Port-au-Prince",
+   "capital_ro": "Port-au-Prince",
+   "flag": "🇭🇹"
+  },
+  {
+   "id": "HUN",
+   "type": "country",
+   "name_ro": "Ungaria",
+   "name_en": "Hungary",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "HU",
+   "capital": "Budapest",
+   "capital_ro": "Budapesta",
+   "flag": "🇭🇺"
+  },
+  {
+   "id": "IDN",
+   "type": "country",
+   "name_ro": "Indonezia",
+   "name_en": "Indonesia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "ID",
+   "capital": "Jakarta",
+   "capital_ro": "Jakarta",
+   "flag": "🇮🇩"
+  },
+  {
+   "id": "IND",
+   "type": "country",
+   "name_ro": "India",
+   "name_en": "India",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "IN",
+   "capital": "New Delhi",
+   "capital_ro": "New Delhi",
+   "flag": "🇮🇳"
+  },
+  {
+   "id": "IRL",
+   "type": "country",
+   "name_ro": "Irlanda",
+   "name_en": "Ireland",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "IE",
+   "capital": "Dublin",
+   "capital_ro": "Dublin",
+   "flag": "🇮🇪"
+  },
+  {
+   "id": "IRN",
+   "type": "country",
+   "name_ro": "Iran",
+   "name_en": "Iran",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "IR",
+   "capital": "Tehran",
+   "capital_ro": "Teheran",
+   "flag": "🇮🇷"
+  },
+  {
+   "id": "IRQ",
+   "type": "country",
+   "name_ro": "Irak",
+   "name_en": "Iraq",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "IQ",
+   "capital": "Baghdad",
+   "capital_ro": "Bagdad",
+   "flag": "🇮🇶"
+  },
+  {
+   "id": "ISL",
+   "type": "country",
+   "name_ro": "Islanda",
+   "name_en": "Iceland",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "IS",
+   "capital": "Reykjavik",
+   "capital_ro": "Reykjavík",
+   "flag": "🇮🇸"
+  },
+  {
+   "id": "ISR",
+   "type": "country",
+   "name_ro": "Israel",
+   "name_en": "Israel",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "IL",
+   "capital": "Jerusalem",
+   "capital_ro": "Ierusalim",
+   "flag": "🇮🇱"
+  },
+  {
+   "id": "ITA",
+   "type": "country",
+   "name_ro": "Italia",
+   "name_en": "Italy",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "IT",
+   "capital": "Rome",
+   "capital_ro": "Roma",
+   "flag": "🇮🇹"
+  },
+  {
+   "id": "JAM",
+   "type": "country",
+   "name_ro": "Jamaica",
+   "name_en": "Jamaica",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "JM",
+   "capital": "Kingston",
+   "capital_ro": "Kingston",
+   "flag": "🇯🇲"
+  },
+  {
+   "id": "JOR",
+   "type": "country",
+   "name_ro": "Iordania",
+   "name_en": "Jordan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "JO",
+   "capital": "Amman",
+   "capital_ro": "Amman",
+   "flag": "🇯🇴"
+  },
+  {
+   "id": "JPN",
+   "type": "country",
+   "name_ro": "Japonia",
+   "name_en": "Japan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "JP",
+   "capital": "Tokyo",
+   "capital_ro": "Tokyo",
+   "flag": "🇯🇵"
+  },
+  {
+   "id": "KAZ",
+   "type": "country",
+   "name_ro": "Kazahstan",
+   "name_en": "Kazakhstan",
+   "aliases": [],
+   "continents": [
+    "asia",
+    "europe"
+   ],
+   "cca2": "KZ",
+   "capital": "Astana",
+   "capital_ro": "Astana",
+   "flag": "🇰🇿"
+  },
+  {
+   "id": "KEN",
+   "type": "country",
+   "name_ro": "Kenya",
+   "name_en": "Kenya",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "KE",
+   "capital": "Nairobi",
+   "capital_ro": "Nairobi",
+   "flag": "🇰🇪"
+  },
+  {
+   "id": "KGZ",
+   "type": "country",
+   "name_ro": "Kârgâzstan",
+   "name_en": "Kyrgyzstan",
+   "aliases": [
+    "Kirghizstan"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "KG",
+   "capital": "Bishkek",
+   "capital_ro": "Bishkek",
+   "flag": "🇰🇬"
+  },
+  {
+   "id": "KHM",
+   "type": "country",
+   "name_ro": "Cambodgia",
+   "name_en": "Cambodia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "KH",
+   "capital": "Phnom Penh",
+   "capital_ro": "Phnom Penh",
+   "flag": "🇰🇭"
+  },
+  {
+   "id": "KIR",
+   "type": "country",
+   "name_ro": "Kiribati",
+   "name_en": "Kiribati",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "KI",
+   "capital": "South Tarawa",
+   "capital_ro": "South Tarawa",
+   "flag": "🇰🇮"
+  },
+  {
+   "id": "KNA",
+   "type": "country",
+   "name_ro": "Saint Kitts și Nevis",
+   "name_en": "Saint Kitts and Nevis",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "KN",
+   "capital": "Basseterre",
+   "capital_ro": "Basseterre",
+   "flag": "🇰🇳"
+  },
+  {
+   "id": "KOR",
+   "type": "country",
+   "name_ro": "Coreea de Sud",
+   "name_en": "South Korea",
+   "aliases": [
+    "Korea de Sud"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "KR",
+   "capital": "Seoul",
+   "capital_ro": "Seul",
+   "flag": "🇰🇷"
+  },
+  {
+   "id": "KWT",
+   "type": "country",
+   "name_ro": "Kuweit",
+   "name_en": "Kuwait",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "KW",
+   "capital": "Kuwait City",
+   "capital_ro": "Kuweit",
+   "flag": "🇰🇼"
+  },
+  {
+   "id": "LAO",
+   "type": "country",
+   "name_ro": "Laos",
+   "name_en": "Laos",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "LA",
+   "capital": "Vientiane",
+   "capital_ro": "Vientiane",
+   "flag": "🇱🇦"
+  },
+  {
+   "id": "LBN",
+   "type": "country",
+   "name_ro": "Liban",
+   "name_en": "Lebanon",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "LB",
+   "capital": "Beirut",
+   "capital_ro": "Beirut",
+   "flag": "🇱🇧"
+  },
+  {
+   "id": "LBR",
+   "type": "country",
+   "name_ro": "Liberia",
+   "name_en": "Liberia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "LR",
+   "capital": "Monrovia",
+   "capital_ro": "Monrovia",
+   "flag": "🇱🇷"
+  },
+  {
+   "id": "LBY",
+   "type": "country",
+   "name_ro": "Libia",
+   "name_en": "Libya",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "LY",
+   "capital": "Tripoli",
+   "capital_ro": "Tripoli",
+   "flag": "🇱🇾"
+  },
+  {
+   "id": "LCA",
+   "type": "country",
+   "name_ro": "Saint Lucia",
+   "name_en": "Saint Lucia",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "LC",
+   "capital": "Castries",
+   "capital_ro": "Castries",
+   "flag": "🇱🇨"
+  },
+  {
+   "id": "LIE",
+   "type": "country",
+   "name_ro": "Liechtenstein",
+   "name_en": "Liechtenstein",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "LI",
+   "capital": "Vaduz",
+   "capital_ro": "Vaduz",
+   "flag": "🇱🇮"
+  },
+  {
+   "id": "LKA",
+   "type": "country",
+   "name_ro": "Sri Lanka",
+   "name_en": "Sri Lanka",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "LK",
+   "capital": "Colombo",
+   "capital_ro": "Colombo",
+   "flag": "🇱🇰"
+  },
+  {
+   "id": "LSO",
+   "type": "country",
+   "name_ro": "Lesotho",
+   "name_en": "Lesotho",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "LS",
+   "capital": "Maseru",
+   "capital_ro": "Maseru",
+   "flag": "🇱🇸"
+  },
+  {
+   "id": "LTU",
+   "type": "country",
+   "name_ro": "Lituania",
+   "name_en": "Lithuania",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "LT",
+   "capital": "Vilnius",
+   "capital_ro": "Vilnius",
+   "flag": "🇱🇹"
+  },
+  {
+   "id": "LUX",
+   "type": "country",
+   "name_ro": "Luxemburg",
+   "name_en": "Luxembourg",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "LU",
+   "capital": "Luxembourg",
+   "capital_ro": "Luxemburg",
+   "flag": "🇱🇺"
+  },
+  {
+   "id": "LVA",
+   "type": "country",
+   "name_ro": "Letonia",
+   "name_en": "Latvia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "LV",
+   "capital": "Riga",
+   "capital_ro": "Riga",
+   "flag": "🇱🇻"
+  },
+  {
+   "id": "MAR",
+   "type": "country",
+   "name_ro": "Maroc",
+   "name_en": "Morocco",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MA",
+   "capital": "Rabat",
+   "capital_ro": "Rabat",
+   "flag": "🇲🇦"
+  },
+  {
+   "id": "MCO",
+   "type": "country",
+   "name_ro": "Monaco",
+   "name_en": "Monaco",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "MC",
+   "capital": "Monaco",
+   "capital_ro": "Monaco",
+   "flag": "🇲🇨"
+  },
+  {
+   "id": "MDA",
+   "type": "country",
+   "name_ro": "Republica Moldova",
+   "name_en": "Moldova",
+   "aliases": [
+    "Moldova"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "MD",
+   "capital": "Chișinău",
+   "capital_ro": "Chișinău",
+   "flag": "🇲🇩"
+  },
+  {
+   "id": "MDG",
+   "type": "country",
+   "name_ro": "Madagascar",
+   "name_en": "Madagascar",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MG",
+   "capital": "Antananarivo",
+   "capital_ro": "Antananarivo",
+   "flag": "🇲🇬"
+  },
+  {
+   "id": "MDV",
+   "type": "country",
+   "name_ro": "Maldive",
+   "name_en": "Maldives",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "MV",
+   "capital": "Malé",
+   "capital_ro": "Malé",
+   "flag": "🇲🇻"
+  },
+  {
+   "id": "MEX",
+   "type": "country",
+   "name_ro": "Mexic",
+   "name_en": "Mexico",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "MX",
+   "capital": "Mexico City",
+   "capital_ro": "Ciudad de México",
+   "flag": "🇲🇽"
+  },
+  {
+   "id": "MHL",
+   "type": "country",
+   "name_ro": "Insulele Marshall",
+   "name_en": "Marshall Islands",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "MH",
+   "capital": "Majuro",
+   "capital_ro": "Majuro",
+   "flag": "🇲🇭"
+  },
+  {
+   "id": "MKD",
+   "type": "country",
+   "name_ro": "Macedonia de Nord",
+   "name_en": "North Macedonia",
+   "aliases": [
+    "Macedonia"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "MK",
+   "capital": "Skopje",
+   "capital_ro": "Skopje",
+   "flag": "🇲🇰"
+  },
+  {
+   "id": "MLI",
+   "type": "country",
+   "name_ro": "Mali",
+   "name_en": "Mali",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ML",
+   "capital": "Bamako",
+   "capital_ro": "Bamako",
+   "flag": "🇲🇱"
+  },
+  {
+   "id": "MLT",
+   "type": "country",
+   "name_ro": "Malta",
+   "name_en": "Malta",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "MT",
+   "capital": "Valletta",
+   "capital_ro": "Valletta",
+   "flag": "🇲🇹"
+  },
+  {
+   "id": "MMR",
+   "type": "country",
+   "name_ro": "Myanmar",
+   "name_en": "Myanmar",
+   "aliases": [
+    "Birmania",
+    "Burma"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "MM",
+   "capital": "Naypyidaw",
+   "capital_ro": "Naypyidaw",
+   "flag": "🇲🇲"
+  },
+  {
+   "id": "MNE",
+   "type": "country",
+   "name_ro": "Muntenegru",
+   "name_en": "Montenegro",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "ME",
+   "capital": "Podgorica",
+   "capital_ro": "Podgorița",
+   "flag": "🇲🇪"
+  },
+  {
+   "id": "MNG",
+   "type": "country",
+   "name_ro": "Mongolia",
+   "name_en": "Mongolia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "MN",
+   "capital": "Ulan Bator",
+   "capital_ro": "Ulan Bator",
+   "flag": "🇲🇳"
+  },
+  {
+   "id": "MOZ",
+   "type": "country",
+   "name_ro": "Mozambic",
+   "name_en": "Mozambique",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MZ",
+   "capital": "Maputo",
+   "capital_ro": "Maputo",
+   "flag": "🇲🇿"
+  },
+  {
+   "id": "MRT",
+   "type": "country",
+   "name_ro": "Mauritania",
+   "name_en": "Mauritania",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MR",
+   "capital": "Nouakchott",
+   "capital_ro": "Nouakchott",
+   "flag": "🇲🇷"
+  },
+  {
+   "id": "MUS",
+   "type": "country",
+   "name_ro": "Mauritius",
+   "name_en": "Mauritius",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MU",
+   "capital": "Port Louis",
+   "capital_ro": "Port Louis",
+   "flag": "🇲🇺"
+  },
+  {
+   "id": "MWI",
+   "type": "country",
+   "name_ro": "Malawi",
+   "name_en": "Malawi",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "MW",
+   "capital": "Lilongwe",
+   "capital_ro": "Lilongwe",
+   "flag": "🇲🇼"
+  },
+  {
+   "id": "MYS",
+   "type": "country",
+   "name_ro": "Malaysia",
+   "name_en": "Malaysia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "MY",
+   "capital": "Kuala Lumpur",
+   "capital_ro": "Kuala Lumpur",
+   "flag": "🇲🇾"
+  },
+  {
+   "id": "NAM",
+   "type": "country",
+   "name_ro": "Namibia",
+   "name_en": "Namibia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "NA",
+   "capital": "Windhoek",
+   "capital_ro": "Windhoek",
+   "flag": "🇳🇦"
+  },
+  {
+   "id": "NER",
+   "type": "country",
+   "name_ro": "Niger",
+   "name_en": "Niger",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "NE",
+   "capital": "Niamey",
+   "capital_ro": "Niamey",
+   "flag": "🇳🇪"
+  },
+  {
+   "id": "NGA",
+   "type": "country",
+   "name_ro": "Nigeria",
+   "name_en": "Nigeria",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "NG",
+   "capital": "Abuja",
+   "capital_ro": "Abuja",
+   "flag": "🇳🇬"
+  },
+  {
+   "id": "NIC",
+   "type": "country",
+   "name_ro": "Nicaragua",
+   "name_en": "Nicaragua",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "NI",
+   "capital": "Managua",
+   "capital_ro": "Managua",
+   "flag": "🇳🇮"
+  },
+  {
+   "id": "NLD",
+   "type": "country",
+   "name_ro": "Țările de Jos",
+   "name_en": "Netherlands",
+   "aliases": [
+    "Olanda",
+    "Holland"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "NL",
+   "capital": "Amsterdam",
+   "capital_ro": "Amsterdam",
+   "flag": "🇳🇱"
+  },
+  {
+   "id": "NOR",
+   "type": "country",
+   "name_ro": "Norvegia",
+   "name_en": "Norway",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "NO",
+   "capital": "Oslo",
+   "capital_ro": "Oslo",
+   "flag": "🇳🇴"
+  },
+  {
+   "id": "NPL",
+   "type": "country",
+   "name_ro": "Nepal",
+   "name_en": "Nepal",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "NP",
+   "capital": "Kathmandu",
+   "capital_ro": "Kathmandu",
+   "flag": "🇳🇵"
+  },
+  {
+   "id": "NRU",
+   "type": "country",
+   "name_ro": "Nauru",
+   "name_en": "Nauru",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "NR",
+   "capital": "Yaren",
+   "capital_ro": "Yaren",
+   "flag": "🇳🇷"
+  },
+  {
+   "id": "NZL",
+   "type": "country",
+   "name_ro": "Noua Zeelandă",
+   "name_en": "New Zealand",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "NZ",
+   "capital": "Wellington",
+   "capital_ro": "Wellington",
+   "flag": "🇳🇿"
+  },
+  {
+   "id": "OMN",
+   "type": "country",
+   "name_ro": "Oman",
+   "name_en": "Oman",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "OM",
+   "capital": "Muscat",
+   "capital_ro": "Muscat",
+   "flag": "🇴🇲"
+  },
+  {
+   "id": "PAK",
+   "type": "country",
+   "name_ro": "Pakistan",
+   "name_en": "Pakistan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "PK",
+   "capital": "Islamabad",
+   "capital_ro": "Islamabad",
+   "flag": "🇵🇰"
+  },
+  {
+   "id": "PAN",
+   "type": "country",
+   "name_ro": "Panama",
+   "name_en": "Panama",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "PA",
+   "capital": "Panama City",
+   "capital_ro": "Panama City",
+   "flag": "🇵🇦"
+  },
+  {
+   "id": "PER",
+   "type": "country",
+   "name_ro": "Peru",
+   "name_en": "Peru",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "PE",
+   "capital": "Lima",
+   "capital_ro": "Lima",
+   "flag": "🇵🇪"
+  },
+  {
+   "id": "PHL",
+   "type": "country",
+   "name_ro": "Filipine",
+   "name_en": "Philippines",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "PH",
+   "capital": "Manila",
+   "capital_ro": "Manila",
+   "flag": "🇵🇭"
+  },
+  {
+   "id": "PLW",
+   "type": "country",
+   "name_ro": "Palau",
+   "name_en": "Palau",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "PW",
+   "capital": "Ngerulmud",
+   "capital_ro": "Ngerulmud",
+   "flag": "🇵🇼"
+  },
+  {
+   "id": "PNG",
+   "type": "country",
+   "name_ro": "Papua Noua Guinee",
+   "name_en": "Papua New Guinea",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "PG",
+   "capital": "Port Moresby",
+   "capital_ro": "Port Moresby",
+   "flag": "🇵🇬"
+  },
+  {
+   "id": "POL",
+   "type": "country",
+   "name_ro": "Polonia",
+   "name_en": "Poland",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "PL",
+   "capital": "Warsaw",
+   "capital_ro": "Varșovia",
+   "flag": "🇵🇱"
+  },
+  {
+   "id": "PRK",
+   "type": "country",
+   "name_ro": "Coreea de Nord",
+   "name_en": "North Korea",
+   "aliases": [
+    "Korea de Nord"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "KP",
+   "capital": "Pyongyang",
+   "capital_ro": "Phenian",
+   "flag": "🇰🇵"
+  },
+  {
+   "id": "PRT",
+   "type": "country",
+   "name_ro": "Portugalia",
+   "name_en": "Portugal",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "PT",
+   "capital": "Lisbon",
+   "capital_ro": "Lisabona",
+   "flag": "🇵🇹"
+  },
+  {
+   "id": "PRY",
+   "type": "country",
+   "name_ro": "Paraguay",
+   "name_en": "Paraguay",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "PY",
+   "capital": "Asunción",
+   "capital_ro": "Asunción",
+   "flag": "🇵🇾"
+  },
+  {
+   "id": "QAT",
+   "type": "country",
+   "name_ro": "Qatar",
+   "name_en": "Qatar",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "QA",
+   "capital": "Doha",
+   "capital_ro": "Doha",
+   "flag": "🇶🇦"
+  },
+  {
+   "id": "ROU",
+   "type": "country",
+   "name_ro": "România",
+   "name_en": "Romania",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "RO",
+   "capital": "Bucharest",
+   "capital_ro": "București",
+   "flag": "🇷🇴"
+  },
+  {
+   "id": "RUS",
+   "type": "country",
+   "name_ro": "Rusia",
+   "name_en": "Russia",
+   "aliases": [],
+   "continents": [
+    "europe",
+    "asia"
+   ],
+   "cca2": "RU",
+   "capital": "Moscow",
+   "capital_ro": "Moscova",
+   "flag": "🇷🇺"
+  },
+  {
+   "id": "RWA",
+   "type": "country",
+   "name_ro": "Rwanda",
+   "name_en": "Rwanda",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "RW",
+   "capital": "Kigali",
+   "capital_ro": "Kigali",
+   "flag": "🇷🇼"
+  },
+  {
+   "id": "SAU",
+   "type": "country",
+   "name_ro": "Arabia Saudită",
+   "name_en": "Saudi Arabia",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "SA",
+   "capital": "Riyadh",
+   "capital_ro": "Riad",
+   "flag": "🇸🇦"
+  },
+  {
+   "id": "SDN",
+   "type": "country",
+   "name_ro": "Sudan",
+   "name_en": "Sudan",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SD",
+   "capital": "Khartoum",
+   "capital_ro": "Khartoum",
+   "flag": "🇸🇩"
+  },
+  {
+   "id": "SEN",
+   "type": "country",
+   "name_ro": "Senegal",
+   "name_en": "Senegal",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SN",
+   "capital": "Dakar",
+   "capital_ro": "Dakar",
+   "flag": "🇸🇳"
+  },
+  {
+   "id": "SGP",
+   "type": "country",
+   "name_ro": "Singapore",
+   "name_en": "Singapore",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "SG",
+   "capital": "Singapore",
+   "capital_ro": "Singapore",
+   "flag": "🇸🇬"
+  },
+  {
+   "id": "SLB",
+   "type": "country",
+   "name_ro": "Insulele Solomon",
+   "name_en": "Solomon Islands",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "SB",
+   "capital": "Honiara",
+   "capital_ro": "Honiara",
+   "flag": "🇸🇧"
+  },
+  {
+   "id": "SLE",
+   "type": "country",
+   "name_ro": "Sierra Leone",
+   "name_en": "Sierra Leone",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SL",
+   "capital": "Freetown",
+   "capital_ro": "Freetown",
+   "flag": "🇸🇱"
+  },
+  {
+   "id": "SLV",
+   "type": "country",
+   "name_ro": "El Salvador",
+   "name_en": "El Salvador",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "SV",
+   "capital": "San Salvador",
+   "capital_ro": "San Salvador",
+   "flag": "🇸🇻"
+  },
+  {
+   "id": "SMR",
+   "type": "country",
+   "name_ro": "San Marino",
+   "name_en": "San Marino",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "SM",
+   "capital": "City of San Marino",
+   "capital_ro": "City of San Marino",
+   "flag": "🇸🇲"
+  },
+  {
+   "id": "SOM",
+   "type": "country",
+   "name_ro": "Somalia",
+   "name_en": "Somalia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SO",
+   "capital": "Mogadishu",
+   "capital_ro": "Mogadishu",
+   "flag": "🇸🇴"
+  },
+  {
+   "id": "SRB",
+   "type": "country",
+   "name_ro": "Serbia",
+   "name_en": "Serbia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "RS",
+   "capital": "Belgrade",
+   "capital_ro": "Belgrad",
+   "flag": "🇷🇸"
+  },
+  {
+   "id": "SSD",
+   "type": "country",
+   "name_ro": "Sudanul de Sud",
+   "name_en": "South Sudan",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SS",
+   "capital": "Juba",
+   "capital_ro": "Juba",
+   "flag": "🇸🇸"
+  },
+  {
+   "id": "STP",
+   "type": "country",
+   "name_ro": "São Tomé și Príncipe",
+   "name_en": "São Tomé and Príncipe",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ST",
+   "capital": "São Tomé",
+   "capital_ro": "São Tomé",
+   "flag": "🇸🇹"
+  },
+  {
+   "id": "SUR",
+   "type": "country",
+   "name_ro": "Surinam",
+   "name_en": "Suriname",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "SR",
+   "capital": "Paramaribo",
+   "capital_ro": "Paramaribo",
+   "flag": "🇸🇷"
+  },
+  {
+   "id": "SVK",
+   "type": "country",
+   "name_ro": "Slovacia",
+   "name_en": "Slovakia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "SK",
+   "capital": "Bratislava",
+   "capital_ro": "Bratislava",
+   "flag": "🇸🇰"
+  },
+  {
+   "id": "SVN",
+   "type": "country",
+   "name_ro": "Slovenia",
+   "name_en": "Slovenia",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "SI",
+   "capital": "Ljubljana",
+   "capital_ro": "Ljubljana",
+   "flag": "🇸🇮"
+  },
+  {
+   "id": "SWE",
+   "type": "country",
+   "name_ro": "Suedia",
+   "name_en": "Sweden",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "SE",
+   "capital": "Stockholm",
+   "capital_ro": "Stockholm",
+   "flag": "🇸🇪"
+  },
+  {
+   "id": "SWZ",
+   "type": "country",
+   "name_ro": "Eswatini",
+   "name_en": "Eswatini",
+   "aliases": [
+    "Swaziland"
+   ],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SZ",
+   "capital": "Lobamba",
+   "capital_ro": "Lobamba",
+   "flag": "🇸🇿"
+  },
+  {
+   "id": "SYC",
+   "type": "country",
+   "name_ro": "Seychelles",
+   "name_en": "Seychelles",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "SC",
+   "capital": "Victoria",
+   "capital_ro": "Victoria",
+   "flag": "🇸🇨"
+  },
+  {
+   "id": "SYR",
+   "type": "country",
+   "name_ro": "Siria",
+   "name_en": "Syria",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "SY",
+   "capital": "Damascus",
+   "capital_ro": "Damasc",
+   "flag": "🇸🇾"
+  },
+  {
+   "id": "TCD",
+   "type": "country",
+   "name_ro": "Ciad",
+   "name_en": "Chad",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "TD",
+   "capital": "N'Djamena",
+   "capital_ro": "N'Djamena",
+   "flag": "🇹🇩"
+  },
+  {
+   "id": "TGO",
+   "type": "country",
+   "name_ro": "Togo",
+   "name_en": "Togo",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "TG",
+   "capital": "Lomé",
+   "capital_ro": "Lomé",
+   "flag": "🇹🇬"
+  },
+  {
+   "id": "THA",
+   "type": "country",
+   "name_ro": "Thailanda",
+   "name_en": "Thailand",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "TH",
+   "capital": "Bangkok",
+   "capital_ro": "Bangkok",
+   "flag": "🇹🇭"
+  },
+  {
+   "id": "TJK",
+   "type": "country",
+   "name_ro": "Tadjikistan",
+   "name_en": "Tajikistan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "TJ",
+   "capital": "Dushanbe",
+   "capital_ro": "Dushanbe",
+   "flag": "🇹🇯"
+  },
+  {
+   "id": "TKM",
+   "type": "country",
+   "name_ro": "Turkmenistan",
+   "name_en": "Turkmenistan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "TM",
+   "capital": "Ashgabat",
+   "capital_ro": "Ashgabat",
+   "flag": "🇹🇲"
+  },
+  {
+   "id": "TLS",
+   "type": "country",
+   "name_ro": "Timorul de Est",
+   "name_en": "Timor-Leste",
+   "aliases": [
+    "East Timor",
+    "Timor-Leste"
+   ],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "TL",
+   "capital": "Dili",
+   "capital_ro": "Dili",
+   "flag": "🇹🇱"
+  },
+  {
+   "id": "TON",
+   "type": "country",
+   "name_ro": "Tonga",
+   "name_en": "Tonga",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "TO",
+   "capital": "Nuku'alofa",
+   "capital_ro": "Nuku'alofa",
+   "flag": "🇹🇴"
+  },
+  {
+   "id": "TTO",
+   "type": "country",
+   "name_ro": "Trinidad și Tobago",
+   "name_en": "Trinidad and Tobago",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "TT",
+   "capital": "Port of Spain",
+   "capital_ro": "Port of Spain",
+   "flag": "🇹🇹"
+  },
+  {
+   "id": "TUN",
+   "type": "country",
+   "name_ro": "Tunisia",
+   "name_en": "Tunisia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "TN",
+   "capital": "Tunis",
+   "capital_ro": "Tunis",
+   "flag": "🇹🇳"
+  },
+  {
+   "id": "TUR",
+   "type": "country",
+   "name_ro": "Turcia",
+   "name_en": "Türkiye",
+   "aliases": [
+    "Turkey",
+    "Türkiye"
+   ],
+   "continents": [
+    "asia",
+    "europe"
+   ],
+   "cca2": "TR",
+   "capital": "Ankara",
+   "capital_ro": "Ankara",
+   "flag": "🇹🇷"
+  },
+  {
+   "id": "TUV",
+   "type": "country",
+   "name_ro": "Tuvalu",
+   "name_en": "Tuvalu",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "TV",
+   "capital": "Funafuti",
+   "capital_ro": "Funafuti",
+   "flag": "🇹🇻"
+  },
+  {
+   "id": "TZA",
+   "type": "country",
+   "name_ro": "Tanzania",
+   "name_en": "Tanzania",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "TZ",
+   "capital": "Dodoma",
+   "capital_ro": "Dodoma",
+   "flag": "🇹🇿"
+  },
+  {
+   "id": "UGA",
+   "type": "country",
+   "name_ro": "Uganda",
+   "name_en": "Uganda",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "UG",
+   "capital": "Kampala",
+   "capital_ro": "Kampala",
+   "flag": "🇺🇬"
+  },
+  {
+   "id": "UKR",
+   "type": "country",
+   "name_ro": "Ucraina",
+   "name_en": "Ukraine",
+   "aliases": [],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "UA",
+   "capital": "Kyiv",
+   "capital_ro": "Kiev",
+   "flag": "🇺🇦"
+  },
+  {
+   "id": "URY",
+   "type": "country",
+   "name_ro": "Uruguay",
+   "name_en": "Uruguay",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "UY",
+   "capital": "Montevideo",
+   "capital_ro": "Montevideo",
+   "flag": "🇺🇾"
+  },
+  {
+   "id": "USA",
+   "type": "country",
+   "name_ro": "Statele Unite ale Americii",
+   "name_en": "United States",
+   "aliases": [
+    "SUA",
+    "America",
+    "Statele Unite"
+   ],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "US",
+   "capital": "Washington D.C.",
+   "capital_ro": "Washington",
+   "flag": "🇺🇸"
+  },
+  {
+   "id": "UZB",
+   "type": "country",
+   "name_ro": "Uzbekistan",
+   "name_en": "Uzbekistan",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "UZ",
+   "capital": "Tashkent",
+   "capital_ro": "Tașkent",
+   "flag": "🇺🇿"
+  },
+  {
+   "id": "VAT",
+   "type": "country",
+   "name_ro": "Vatican",
+   "name_en": "Vatican City",
+   "aliases": [
+    "Sfântul Scaun"
+   ],
+   "continents": [
+    "europe"
+   ],
+   "cca2": "VA",
+   "capital": "Vatican City",
+   "capital_ro": "Vatican",
+   "flag": "🇻🇦"
+  },
+  {
+   "id": "VCT",
+   "type": "country",
+   "name_ro": "Saint Vincent și Grenadinele",
+   "name_en": "Saint Vincent and the Grenadines",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "VC",
+   "capital": "Kingstown",
+   "capital_ro": "Kingstown",
+   "flag": "🇻🇨"
+  },
+  {
+   "id": "VEN",
+   "type": "country",
+   "name_ro": "Venezuela",
+   "name_en": "Venezuela",
+   "aliases": [],
+   "continents": [
+    "americas"
+   ],
+   "cca2": "VE",
+   "capital": "Caracas",
+   "capital_ro": "Caracas",
+   "flag": "🇻🇪"
+  },
+  {
+   "id": "VNM",
+   "type": "country",
+   "name_ro": "Vietnam",
+   "name_en": "Vietnam",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "VN",
+   "capital": "Hanoi",
+   "capital_ro": "Hanoi",
+   "flag": "🇻🇳"
+  },
+  {
+   "id": "VUT",
+   "type": "country",
+   "name_ro": "Vanuatu",
+   "name_en": "Vanuatu",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "VU",
+   "capital": "Port Vila",
+   "capital_ro": "Port Vila",
+   "flag": "🇻🇺"
+  },
+  {
+   "id": "WSM",
+   "type": "country",
+   "name_ro": "Samoa",
+   "name_en": "Samoa",
+   "aliases": [],
+   "continents": [
+    "oceania"
+   ],
+   "cca2": "WS",
+   "capital": "Apia",
+   "capital_ro": "Apia",
+   "flag": "🇼🇸"
+  },
+  {
+   "id": "YEM",
+   "type": "country",
+   "name_ro": "Yemen",
+   "name_en": "Yemen",
+   "aliases": [],
+   "continents": [
+    "asia"
+   ],
+   "cca2": "YE",
+   "capital": "Sana'a",
+   "capital_ro": "Sana'a",
+   "flag": "🇾🇪"
+  },
+  {
+   "id": "ZAF",
+   "type": "country",
+   "name_ro": "Africa de Sud",
+   "name_en": "South Africa",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ZA",
+   "capital": "Pretoria",
+   "capital_ro": "Pretoria",
+   "flag": "🇿🇦"
+  },
+  {
+   "id": "ZMB",
+   "type": "country",
+   "name_ro": "Zambia",
+   "name_en": "Zambia",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ZM",
+   "capital": "Lusaka",
+   "capital_ro": "Lusaka",
+   "flag": "🇿🇲"
+  },
+  {
+   "id": "ZWE",
+   "type": "country",
+   "name_ro": "Zimbabwe",
+   "name_en": "Zimbabwe",
+   "aliases": [],
+   "continents": [
+    "africa"
+   ],
+   "cca2": "ZW",
+   "capital": "Harare",
+   "capital_ro": "Harare",
+   "flag": "🇿🇼"
+  },
+  {
+   "id": "W_ATL",
+   "type": "water",
+   "name_ro": "Oceanul Atlantic",
+   "name_en": "Atlantic Ocean",
+   "aliases": [
+    "Atlantic"
+   ]
+  },
+  {
+   "id": "W_IND",
+   "type": "water",
+   "name_ro": "Oceanul Indian",
+   "name_en": "Indian Ocean",
+   "aliases": [
+    "Indian"
+   ]
+  },
+  {
+   "id": "W_ARC",
+   "type": "water",
+   "name_ro": "Oceanul Arctic",
+   "name_en": "Arctic Ocean",
+   "aliases": [
+    "Arctic"
+   ]
+  },
+  {
+   "id": "W_MED",
+   "type": "water",
+   "name_ro": "Marea Mediterană",
+   "name_en": "Mediterranean Sea",
+   "aliases": [
+    "Mediterana"
+   ]
+  },
+  {
+   "id": "W_BLK",
+   "type": "water",
+   "name_ro": "Marea Neagră",
+   "name_en": "Black Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_RED",
+   "type": "water",
+   "name_ro": "Marea Roșie",
+   "name_en": "Red Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_NRT",
+   "type": "water",
+   "name_ro": "Marea Nordului",
+   "name_en": "North Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_BAL",
+   "type": "water",
+   "name_ro": "Marea Baltică",
+   "name_en": "Baltic Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_CAS",
+   "type": "water",
+   "name_ro": "Marea Caspică",
+   "name_en": "Caspian Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_GUL",
+   "type": "water",
+   "name_ro": "Golful Persic",
+   "name_en": "Persian Gulf",
+   "aliases": [
+    "Golful Arab"
+   ]
+  },
+  {
+   "id": "W_PAC",
+   "type": "water",
+   "name_ro": "Oceanul Pacific",
+   "name_en": "Pacific Ocean",
+   "aliases": [
+    "Pacific"
+   ]
+  },
+  {
+   "id": "W_CAR",
+   "type": "water",
+   "name_ro": "Marea Caraibilor",
+   "name_en": "Caribbean Sea",
+   "aliases": [
+    "Caraibe",
+    "Marea Caraibelor"
+   ]
+  },
+  {
+   "id": "W_MEX",
+   "type": "water",
+   "name_ro": "Golful Mexic",
+   "name_en": "Gulf of Mexico",
+   "aliases": [
+    "Golful Mexicului"
+   ]
+  },
+  {
+   "id": "W_SCS",
+   "type": "water",
+   "name_ro": "Marea Chinei de Sud",
+   "name_en": "South China Sea",
+   "aliases": []
+  },
+  {
+   "id": "W_ECS",
+   "type": "water",
+   "name_ro": "Marea Chinei de Est",
+   "name_en": "East China Sea",
+   "aliases": [
+    "Marea Galbenă",
+    "Yellow Sea"
+   ]
+  },
+  {
+   "id": "W_JPN",
+   "type": "water",
+   "name_ro": "Marea Japoniei",
+   "name_en": "Sea of Japan",
+   "aliases": [
+    "Marea de Est",
+    "East Sea"
+   ]
+  },
+  {
+   "id": "W_ADR",
+   "type": "water",
+   "name_ro": "Marea Adriatică",
+   "name_en": "Adriatic Sea",
+   "aliases": [
+    "Adriatica"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_ION",
+   "type": "water",
+   "name_ro": "Marea Ionică",
+   "name_en": "Ionian Sea",
+   "aliases": [
+    "Ionica"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_TYR",
+   "type": "water",
+   "name_ro": "Marea Tireniană",
+   "name_en": "Tyrrhenian Sea",
+   "aliases": [
+    "Tireniana"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_EGE",
+   "type": "water",
+   "name_ro": "Marea Egee",
+   "name_en": "Aegean Sea",
+   "aliases": [
+    "Egeea"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_MAR",
+   "type": "water",
+   "name_ro": "Marea Marmara",
+   "name_en": "Sea of Marmara",
+   "aliases": [
+    "Marmara"
+   ],
+   "detailed": true,
+   "parent": "W_MED"
+  },
+  {
+   "id": "W_AZO",
+   "type": "water",
+   "name_ro": "Marea Azov",
+   "name_en": "Sea of Azov",
+   "aliases": [
+    "Azov"
+   ],
+   "detailed": true,
+   "parent": "W_BLK"
+  },
+  {
+   "id": "W_ADN",
+   "type": "water",
+   "name_ro": "Golful Aden",
+   "name_en": "Gulf of Aden",
+   "aliases": [
+    "Aden"
+   ],
+   "detailed": true,
+   "parent": "W_IND"
+  },
+  {
+   "id": "W_OMG",
+   "type": "water",
+   "name_ro": "Golful Oman",
+   "name_en": "Gulf of Oman",
+   "aliases": [],
+   "detailed": true,
+   "parent": "W_IND"
+  },
+  {
+   "id": "W_MAN",
+   "type": "water",
+   "name_ro": "Canalul Mânecii",
+   "name_en": "English Channel",
+   "aliases": [
+    "Marea Mânecii",
+    "La Manche",
+    "Mânecii"
+   ],
+   "detailed": true,
+   "parent": "W_ATL"
+  },
+  {
+   "id": "W_BOT",
+   "type": "water",
+   "name_ro": "Golful Botnic",
+   "name_en": "Gulf of Bothnia",
+   "aliases": [
+    "Botnic"
+   ],
+   "detailed": true,
+   "parent": "W_BAL"
+  }
+ ],
+ "gates": [
+  {
+   "id": "G_BAB",
+   "name_ro": "Strâmtoarea Bab-el-Mandeb",
+   "name_en": "Bab-el-Mandeb Strait",
+   "aliases": [
+    "Bab el Mandeb",
+    "Bab-el-Mandeb"
+   ]
+  },
+  {
+   "id": "G_SUE",
+   "name_ro": "Canalul Suez",
+   "name_en": "Suez Canal",
+   "aliases": [
+    "Suez"
+   ]
+  },
+  {
+   "id": "G_TUR",
+   "name_ro": "Strâmtorile Bosfor și Dardanele",
+   "name_en": "Bosporus and Dardanelles",
+   "aliases": [
+    "Bosfor",
+    "Bosforul",
+    "Dardanele",
+    "Bosporus",
+    "Dardanelles",
+    "Strâmtorile Turcești"
+   ]
+  },
+  {
+   "id": "G_GIB",
+   "name_ro": "Strâmtoarea Gibraltar",
+   "name_en": "Strait of Gibraltar",
+   "aliases": [
+    "Gibraltar"
+   ]
+  },
+  {
+   "id": "G_HOR",
+   "name_ro": "Strâmtoarea Ormuz",
+   "name_en": "Strait of Hormuz",
+   "aliases": [
+    "Ormuz",
+    "Hormuz"
+   ]
+  },
+  {
+   "id": "G_DAN",
+   "name_ro": "Strâmtorile Daneze",
+   "name_en": "Danish Straits",
+   "aliases": [
+    "Skagerrak",
+    "Kattegat",
+    "Øresund",
+    "Oresund",
+    "Canalul Kiel",
+    "Kiel"
+   ]
+  },
+  {
+   "id": "G_VOL",
+   "name_ro": "Canalul Volga-Don",
+   "name_en": "Volga-Don Canal",
+   "aliases": [
+    "Volga-Don",
+    "Volga Don"
+   ]
+  },
+  {
+   "id": "G_MAL",
+   "name_ro": "Strâmtoarea Malacca",
+   "name_en": "Strait of Malacca",
+   "aliases": [
+    "Malacca"
+   ]
+  },
+  {
+   "id": "G_TAI",
+   "name_ro": "Strâmtoarea Taiwan",
+   "name_en": "Taiwan Strait",
+   "aliases": [
+    "Taiwan",
+    "Formosa"
+   ]
+  },
+  {
+   "id": "G_KOR",
+   "name_ro": "Strâmtoarea Coreei",
+   "name_en": "Korea Strait",
+   "aliases": [
+    "Tsushima",
+    "Strâmtoarea Tsushima"
+   ]
+  },
+  {
+   "id": "G_BER",
+   "name_ro": "Strâmtoarea Bering",
+   "name_en": "Bering Strait",
+   "aliases": [
+    "Bering"
+   ]
+  },
+  {
+   "id": "G_DRK",
+   "name_ro": "Pasajul Drake",
+   "name_en": "Drake Passage",
+   "aliases": [
+    "Drake",
+    "Strâmtoarea Magellan",
+    "Magellan",
+    "Capul Horn",
+    "Cape Horn"
+   ]
+  },
+  {
+   "id": "G_PAN",
+   "name_ro": "Canalul Panama",
+   "name_en": "Panama Canal",
+   "aliases": [
+    "Panama"
+   ]
+  },
+  {
+   "id": "G_FLA",
+   "name_ro": "Strâmtoarea Florida",
+   "name_en": "Straits of Florida",
+   "aliases": [
+    "Florida"
+   ]
+  },
+  {
+   "id": "G_OTR",
+   "name_ro": "Strâmtoarea Otranto",
+   "name_en": "Strait of Otranto",
+   "aliases": [
+    "Otranto"
+   ]
+  },
+  {
+   "id": "G_DAR",
+   "name_ro": "Strâmtoarea Dardanele",
+   "name_en": "Dardanelles",
+   "aliases": [
+    "Dardanele",
+    "Dardanelles"
+   ]
+  },
+  {
+   "id": "G_BOS",
+   "name_ro": "Strâmtoarea Bosfor",
+   "name_en": "Bosporus",
+   "aliases": [
+    "Bosfor",
+    "Bosforul",
+    "Bosporus"
+   ]
+  },
+  {
+   "id": "G_KER",
+   "name_ro": "Strâmtoarea Kerci",
+   "name_en": "Kerch Strait",
+   "aliases": [
+    "Kerci",
+    "Kerch"
+   ]
+  },
+  {
+   "id": "G_DOV",
+   "name_ro": "Strâmtoarea Pas-de-Calais",
+   "name_en": "Strait of Dover",
+   "aliases": [
+    "Pas-de-Calais",
+    "Pas de Calais",
+    "Dover"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "a": "AFG",
+   "b": "CHN"
+  },
+  {
+   "a": "AFG",
+   "b": "IRN"
+  },
+  {
+   "a": "AFG",
+   "b": "PAK"
+  },
+  {
+   "a": "AFG",
+   "b": "TJK"
+  },
+  {
+   "a": "AFG",
+   "b": "TKM"
+  },
+  {
+   "a": "AFG",
+   "b": "UZB"
+  },
+  {
+   "a": "AGO",
+   "b": "COD"
+  },
+  {
+   "a": "AGO",
+   "b": "COG"
+  },
+  {
+   "a": "AGO",
+   "b": "NAM"
+  },
+  {
+   "a": "AGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "AGO",
+   "b": "ZMB"
+  },
+  {
+   "a": "ALB",
+   "b": "GRC"
+  },
+  {
+   "a": "ALB",
+   "b": "MKD"
+  },
+  {
+   "a": "ALB",
+   "b": "MNE"
+  },
+  {
+   "a": "ALB",
+   "b": "W_MED"
+  },
+  {
+   "a": "AND",
+   "b": "ESP"
+  },
+  {
+   "a": "AND",
+   "b": "FRA"
+  },
+  {
+   "a": "ARE",
+   "b": "OMN"
+  },
+  {
+   "a": "ARE",
+   "b": "SAU"
+  },
+  {
+   "a": "ARE",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ARE",
+   "b": "W_IND"
+  },
+  {
+   "a": "ARG",
+   "b": "BOL"
+  },
+  {
+   "a": "ARG",
+   "b": "BRA"
+  },
+  {
+   "a": "ARG",
+   "b": "CHL"
+  },
+  {
+   "a": "ARG",
+   "b": "PRY"
+  },
+  {
+   "a": "ARG",
+   "b": "URY"
+  },
+  {
+   "a": "ARG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ARM",
+   "b": "AZE"
+  },
+  {
+   "a": "ARM",
+   "b": "GEO"
+  },
+  {
+   "a": "ARM",
+   "b": "IRN"
+  },
+  {
+   "a": "ARM",
+   "b": "TUR"
+  },
+  {
+   "a": "ATG",
+   "b": "W_CAR"
+  },
+  {
+   "a": "AUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "AUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "AUT",
+   "b": "CHE"
+  },
+  {
+   "a": "AUT",
+   "b": "CZE"
+  },
+  {
+   "a": "AUT",
+   "b": "DEU"
+  },
+  {
+   "a": "AUT",
+   "b": "HUN"
+  },
+  {
+   "a": "AUT",
+   "b": "ITA"
+  },
+  {
+   "a": "AUT",
+   "b": "LIE"
+  },
+  {
+   "a": "AUT",
+   "b": "SVK"
+  },
+  {
+   "a": "AUT",
+   "b": "SVN"
+  },
+  {
+   "a": "AZE",
+   "b": "GEO"
+  },
+  {
+   "a": "AZE",
+   "b": "IRN"
+  },
+  {
+   "a": "AZE",
+   "b": "RUS"
+  },
+  {
+   "a": "AZE",
+   "b": "TUR"
+  },
+  {
+   "a": "AZE",
+   "b": "W_CAS"
+  },
+  {
+   "a": "BDI",
+   "b": "COD"
+  },
+  {
+   "a": "BDI",
+   "b": "RWA"
+  },
+  {
+   "a": "BDI",
+   "b": "TZA"
+  },
+  {
+   "a": "BEL",
+   "b": "DEU"
+  },
+  {
+   "a": "BEL",
+   "b": "FRA"
+  },
+  {
+   "a": "BEL",
+   "b": "LUX"
+  },
+  {
+   "a": "BEL",
+   "b": "NLD"
+  },
+  {
+   "a": "BEL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "BEN",
+   "b": "BFA"
+  },
+  {
+   "a": "BEN",
+   "b": "NER"
+  },
+  {
+   "a": "BEN",
+   "b": "NGA"
+  },
+  {
+   "a": "BEN",
+   "b": "TGO"
+  },
+  {
+   "a": "BEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BFA",
+   "b": "CIV"
+  },
+  {
+   "a": "BFA",
+   "b": "GHA"
+  },
+  {
+   "a": "BFA",
+   "b": "MLI"
+  },
+  {
+   "a": "BFA",
+   "b": "NER"
+  },
+  {
+   "a": "BFA",
+   "b": "TGO"
+  },
+  {
+   "a": "BGD",
+   "b": "IND"
+  },
+  {
+   "a": "BGD",
+   "b": "MMR"
+  },
+  {
+   "a": "BGD",
+   "b": "W_IND"
+  },
+  {
+   "a": "BGR",
+   "b": "GRC"
+  },
+  {
+   "a": "BGR",
+   "b": "MKD"
+  },
+  {
+   "a": "BGR",
+   "b": "ROU"
+  },
+  {
+   "a": "BGR",
+   "b": "SRB"
+  },
+  {
+   "a": "BGR",
+   "b": "TUR"
+  },
+  {
+   "a": "BGR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "BHR",
+   "b": "W_GUL"
+  },
+  {
+   "a": "BHS",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BIH",
+   "b": "HRV"
+  },
+  {
+   "a": "BIH",
+   "b": "MNE"
+  },
+  {
+   "a": "BIH",
+   "b": "SRB"
+  },
+  {
+   "a": "BIH",
+   "b": "W_MED"
+  },
+  {
+   "a": "BLR",
+   "b": "LTU"
+  },
+  {
+   "a": "BLR",
+   "b": "LVA"
+  },
+  {
+   "a": "BLR",
+   "b": "POL"
+  },
+  {
+   "a": "BLR",
+   "b": "RUS"
+  },
+  {
+   "a": "BLR",
+   "b": "UKR"
+  },
+  {
+   "a": "BLZ",
+   "b": "GTM"
+  },
+  {
+   "a": "BLZ",
+   "b": "MEX"
+  },
+  {
+   "a": "BLZ",
+   "b": "W_CAR"
+  },
+  {
+   "a": "BOL",
+   "b": "BRA"
+  },
+  {
+   "a": "BOL",
+   "b": "CHL"
+  },
+  {
+   "a": "BOL",
+   "b": "PER"
+  },
+  {
+   "a": "BOL",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "COL"
+  },
+  {
+   "a": "BRA",
+   "b": "GUY"
+  },
+  {
+   "a": "BRA",
+   "b": "PER"
+  },
+  {
+   "a": "BRA",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "SUR"
+  },
+  {
+   "a": "BRA",
+   "b": "URY"
+  },
+  {
+   "a": "BRA",
+   "b": "VEN"
+  },
+  {
+   "a": "BRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRN",
+   "b": "MYS"
+  },
+  {
+   "a": "BRN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "BTN",
+   "b": "CHN"
+  },
+  {
+   "a": "BTN",
+   "b": "IND"
+  },
+  {
+   "a": "BWA",
+   "b": "NAM"
+  },
+  {
+   "a": "BWA",
+   "b": "ZAF"
+  },
+  {
+   "a": "BWA",
+   "b": "ZMB"
+  },
+  {
+   "a": "BWA",
+   "b": "ZWE"
+  },
+  {
+   "a": "CAF",
+   "b": "CMR"
+  },
+  {
+   "a": "CAF",
+   "b": "COD"
+  },
+  {
+   "a": "CAF",
+   "b": "COG"
+  },
+  {
+   "a": "CAF",
+   "b": "SDN"
+  },
+  {
+   "a": "CAF",
+   "b": "SSD"
+  },
+  {
+   "a": "CAF",
+   "b": "TCD"
+  },
+  {
+   "a": "CAN",
+   "b": "USA"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ARC"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHE",
+   "b": "DEU"
+  },
+  {
+   "a": "CHE",
+   "b": "FRA"
+  },
+  {
+   "a": "CHE",
+   "b": "ITA"
+  },
+  {
+   "a": "CHE",
+   "b": "LIE"
+  },
+  {
+   "a": "CHL",
+   "b": "PER"
+  },
+  {
+   "a": "CHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHN",
+   "b": "IND"
+  },
+  {
+   "a": "CHN",
+   "b": "KAZ"
+  },
+  {
+   "a": "CHN",
+   "b": "KGZ"
+  },
+  {
+   "a": "CHN",
+   "b": "LAO"
+  },
+  {
+   "a": "CHN",
+   "b": "MMR"
+  },
+  {
+   "a": "CHN",
+   "b": "MNG"
+  },
+  {
+   "a": "CHN",
+   "b": "NPL"
+  },
+  {
+   "a": "CHN",
+   "b": "PAK"
+  },
+  {
+   "a": "CHN",
+   "b": "PRK"
+  },
+  {
+   "a": "CHN",
+   "b": "RUS"
+  },
+  {
+   "a": "CHN",
+   "b": "TJK"
+  },
+  {
+   "a": "CHN",
+   "b": "VNM"
+  },
+  {
+   "a": "CHN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "CHN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "CIV",
+   "b": "GHA"
+  },
+  {
+   "a": "CIV",
+   "b": "GIN"
+  },
+  {
+   "a": "CIV",
+   "b": "LBR"
+  },
+  {
+   "a": "CIV",
+   "b": "MLI"
+  },
+  {
+   "a": "CIV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CMR",
+   "b": "COG"
+  },
+  {
+   "a": "CMR",
+   "b": "GAB"
+  },
+  {
+   "a": "CMR",
+   "b": "GNQ"
+  },
+  {
+   "a": "CMR",
+   "b": "NGA"
+  },
+  {
+   "a": "CMR",
+   "b": "TCD"
+  },
+  {
+   "a": "CMR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "COG"
+  },
+  {
+   "a": "COD",
+   "b": "RWA"
+  },
+  {
+   "a": "COD",
+   "b": "SSD"
+  },
+  {
+   "a": "COD",
+   "b": "TZA"
+  },
+  {
+   "a": "COD",
+   "b": "UGA"
+  },
+  {
+   "a": "COD",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "ZMB"
+  },
+  {
+   "a": "COG",
+   "b": "GAB"
+  },
+  {
+   "a": "COG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COL",
+   "b": "ECU"
+  },
+  {
+   "a": "COL",
+   "b": "PAN"
+  },
+  {
+   "a": "COL",
+   "b": "PER"
+  },
+  {
+   "a": "COL",
+   "b": "VEN"
+  },
+  {
+   "a": "COL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "COL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "COM",
+   "b": "W_IND"
+  },
+  {
+   "a": "CPV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CRI",
+   "b": "NIC"
+  },
+  {
+   "a": "CRI",
+   "b": "PAN"
+  },
+  {
+   "a": "CRI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CRI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CUB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CUB",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CUB",
+   "b": "W_MEX"
+  },
+  {
+   "a": "CYP",
+   "b": "W_MED"
+  },
+  {
+   "a": "CZE",
+   "b": "DEU"
+  },
+  {
+   "a": "CZE",
+   "b": "POL"
+  },
+  {
+   "a": "CZE",
+   "b": "SVK"
+  },
+  {
+   "a": "DEU",
+   "b": "DNK"
+  },
+  {
+   "a": "DEU",
+   "b": "FRA"
+  },
+  {
+   "a": "DEU",
+   "b": "LUX"
+  },
+  {
+   "a": "DEU",
+   "b": "NLD"
+  },
+  {
+   "a": "DEU",
+   "b": "POL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DJI",
+   "b": "ERI"
+  },
+  {
+   "a": "DJI",
+   "b": "ETH"
+  },
+  {
+   "a": "DJI",
+   "b": "SOM"
+  },
+  {
+   "a": "DJI",
+   "b": "W_IND"
+  },
+  {
+   "a": "DJI",
+   "b": "W_RED"
+  },
+  {
+   "a": "DMA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DNK",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DNK",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DOM",
+   "b": "HTI"
+  },
+  {
+   "a": "DOM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "DOM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DZA",
+   "b": "LBY"
+  },
+  {
+   "a": "DZA",
+   "b": "MAR"
+  },
+  {
+   "a": "DZA",
+   "b": "MLI"
+  },
+  {
+   "a": "DZA",
+   "b": "MRT"
+  },
+  {
+   "a": "DZA",
+   "b": "NER"
+  },
+  {
+   "a": "DZA",
+   "b": "TUN"
+  },
+  {
+   "a": "DZA",
+   "b": "W_MED"
+  },
+  {
+   "a": "ECU",
+   "b": "PER"
+  },
+  {
+   "a": "ECU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "EGY",
+   "b": "ISR"
+  },
+  {
+   "a": "EGY",
+   "b": "LBY"
+  },
+  {
+   "a": "EGY",
+   "b": "SDN"
+  },
+  {
+   "a": "EGY",
+   "b": "W_MED"
+  },
+  {
+   "a": "EGY",
+   "b": "W_RED"
+  },
+  {
+   "a": "ERI",
+   "b": "ETH"
+  },
+  {
+   "a": "ERI",
+   "b": "SDN"
+  },
+  {
+   "a": "ERI",
+   "b": "W_RED"
+  },
+  {
+   "a": "ESP",
+   "b": "FRA"
+  },
+  {
+   "a": "ESP",
+   "b": "MAR"
+  },
+  {
+   "a": "ESP",
+   "b": "PRT"
+  },
+  {
+   "a": "ESP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ESP",
+   "b": "W_MED"
+  },
+  {
+   "a": "EST",
+   "b": "LVA"
+  },
+  {
+   "a": "EST",
+   "b": "RUS"
+  },
+  {
+   "a": "EST",
+   "b": "W_BAL"
+  },
+  {
+   "a": "ETH",
+   "b": "KEN"
+  },
+  {
+   "a": "ETH",
+   "b": "SDN"
+  },
+  {
+   "a": "ETH",
+   "b": "SOM"
+  },
+  {
+   "a": "ETH",
+   "b": "SSD"
+  },
+  {
+   "a": "FIN",
+   "b": "NOR"
+  },
+  {
+   "a": "FIN",
+   "b": "RUS"
+  },
+  {
+   "a": "FIN",
+   "b": "SWE"
+  },
+  {
+   "a": "FIN",
+   "b": "W_BAL"
+  },
+  {
+   "a": "FJI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA"
+  },
+  {
+   "a": "FRA",
+   "b": "LUX"
+  },
+  {
+   "a": "FRA",
+   "b": "MCO"
+  },
+  {
+   "a": "FRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "FRA",
+   "b": "W_MED"
+  },
+  {
+   "a": "FRA",
+   "b": "W_NRT"
+  },
+  {
+   "a": "FSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GAB",
+   "b": "GNQ"
+  },
+  {
+   "a": "GAB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "IRL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "GEO",
+   "b": "RUS"
+  },
+  {
+   "a": "GEO",
+   "b": "TUR"
+  },
+  {
+   "a": "GEO",
+   "b": "W_BLK"
+  },
+  {
+   "a": "GHA",
+   "b": "TGO"
+  },
+  {
+   "a": "GHA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GIN",
+   "b": "GNB"
+  },
+  {
+   "a": "GIN",
+   "b": "LBR"
+  },
+  {
+   "a": "GIN",
+   "b": "MLI"
+  },
+  {
+   "a": "GIN",
+   "b": "SEN"
+  },
+  {
+   "a": "GIN",
+   "b": "SLE"
+  },
+  {
+   "a": "GIN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GMB",
+   "b": "SEN"
+  },
+  {
+   "a": "GMB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNB",
+   "b": "SEN"
+  },
+  {
+   "a": "GNB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNQ",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GRC",
+   "b": "MKD"
+  },
+  {
+   "a": "GRC",
+   "b": "TUR"
+  },
+  {
+   "a": "GRC",
+   "b": "W_MED"
+  },
+  {
+   "a": "GRD",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "HND"
+  },
+  {
+   "a": "GTM",
+   "b": "MEX"
+  },
+  {
+   "a": "GTM",
+   "b": "SLV"
+  },
+  {
+   "a": "GTM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GUY",
+   "b": "SUR"
+  },
+  {
+   "a": "GUY",
+   "b": "VEN"
+  },
+  {
+   "a": "GUY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HND",
+   "b": "NIC"
+  },
+  {
+   "a": "HND",
+   "b": "SLV"
+  },
+  {
+   "a": "HND",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "HRV",
+   "b": "HUN"
+  },
+  {
+   "a": "HRV",
+   "b": "MNE"
+  },
+  {
+   "a": "HRV",
+   "b": "SRB"
+  },
+  {
+   "a": "HRV",
+   "b": "SVN"
+  },
+  {
+   "a": "HRV",
+   "b": "W_MED"
+  },
+  {
+   "a": "HTI",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HTI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HUN",
+   "b": "ROU"
+  },
+  {
+   "a": "HUN",
+   "b": "SRB"
+  },
+  {
+   "a": "HUN",
+   "b": "SVK"
+  },
+  {
+   "a": "HUN",
+   "b": "SVN"
+  },
+  {
+   "a": "HUN",
+   "b": "UKR"
+  },
+  {
+   "a": "IDN",
+   "b": "MYS"
+  },
+  {
+   "a": "IDN",
+   "b": "PNG"
+  },
+  {
+   "a": "IDN",
+   "b": "TLS"
+  },
+  {
+   "a": "IDN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IDN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "IDN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "IND",
+   "b": "MMR"
+  },
+  {
+   "a": "IND",
+   "b": "NPL"
+  },
+  {
+   "a": "IND",
+   "b": "PAK"
+  },
+  {
+   "a": "IND",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "IRN",
+   "b": "IRQ"
+  },
+  {
+   "a": "IRN",
+   "b": "PAK"
+  },
+  {
+   "a": "IRN",
+   "b": "TKM"
+  },
+  {
+   "a": "IRN",
+   "b": "TUR"
+  },
+  {
+   "a": "IRN",
+   "b": "W_CAS"
+  },
+  {
+   "a": "IRN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "IRN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRQ",
+   "b": "JOR"
+  },
+  {
+   "a": "IRQ",
+   "b": "KWT"
+  },
+  {
+   "a": "IRQ",
+   "b": "SAU"
+  },
+  {
+   "a": "IRQ",
+   "b": "SYR"
+  },
+  {
+   "a": "IRQ",
+   "b": "TUR"
+  },
+  {
+   "a": "IRQ",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ARC"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ISR",
+   "b": "JOR"
+  },
+  {
+   "a": "ISR",
+   "b": "LBN"
+  },
+  {
+   "a": "ISR",
+   "b": "SYR"
+  },
+  {
+   "a": "ISR",
+   "b": "W_MED"
+  },
+  {
+   "a": "ISR",
+   "b": "W_RED"
+  },
+  {
+   "a": "ITA",
+   "b": "SMR"
+  },
+  {
+   "a": "ITA",
+   "b": "SVN"
+  },
+  {
+   "a": "ITA",
+   "b": "VAT"
+  },
+  {
+   "a": "ITA",
+   "b": "W_MED"
+  },
+  {
+   "a": "JAM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "JOR",
+   "b": "SAU"
+  },
+  {
+   "a": "JOR",
+   "b": "SYR"
+  },
+  {
+   "a": "JOR",
+   "b": "W_RED"
+  },
+  {
+   "a": "JPN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "JPN",
+   "b": "W_JPN"
+  },
+  {
+   "a": "JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KAZ",
+   "b": "KGZ"
+  },
+  {
+   "a": "KAZ",
+   "b": "RUS"
+  },
+  {
+   "a": "KAZ",
+   "b": "TKM"
+  },
+  {
+   "a": "KAZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KAZ",
+   "b": "W_CAS"
+  },
+  {
+   "a": "KEN",
+   "b": "SOM"
+  },
+  {
+   "a": "KEN",
+   "b": "SSD"
+  },
+  {
+   "a": "KEN",
+   "b": "TZA"
+  },
+  {
+   "a": "KEN",
+   "b": "UGA"
+  },
+  {
+   "a": "KEN",
+   "b": "W_IND"
+  },
+  {
+   "a": "KGZ",
+   "b": "TJK"
+  },
+  {
+   "a": "KGZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KHM",
+   "b": "LAO"
+  },
+  {
+   "a": "KHM",
+   "b": "THA"
+  },
+  {
+   "a": "KHM",
+   "b": "VNM"
+  },
+  {
+   "a": "KHM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "KIR",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KNA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "KOR",
+   "b": "PRK"
+  },
+  {
+   "a": "KOR",
+   "b": "W_ECS"
+  },
+  {
+   "a": "KOR",
+   "b": "W_JPN"
+  },
+  {
+   "a": "KWT",
+   "b": "SAU"
+  },
+  {
+   "a": "KWT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "LAO",
+   "b": "MMR"
+  },
+  {
+   "a": "LAO",
+   "b": "THA"
+  },
+  {
+   "a": "LAO",
+   "b": "VNM"
+  },
+  {
+   "a": "LBN",
+   "b": "SYR"
+  },
+  {
+   "a": "LBN",
+   "b": "W_MED"
+  },
+  {
+   "a": "LBR",
+   "b": "SLE"
+  },
+  {
+   "a": "LBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "LBY",
+   "b": "NER"
+  },
+  {
+   "a": "LBY",
+   "b": "SDN"
+  },
+  {
+   "a": "LBY",
+   "b": "TCD"
+  },
+  {
+   "a": "LBY",
+   "b": "TUN"
+  },
+  {
+   "a": "LBY",
+   "b": "W_MED"
+  },
+  {
+   "a": "LCA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "LKA",
+   "b": "W_IND"
+  },
+  {
+   "a": "LSO",
+   "b": "ZAF"
+  },
+  {
+   "a": "LTU",
+   "b": "LVA"
+  },
+  {
+   "a": "LTU",
+   "b": "POL"
+  },
+  {
+   "a": "LTU",
+   "b": "RUS"
+  },
+  {
+   "a": "LTU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "LVA",
+   "b": "RUS"
+  },
+  {
+   "a": "LVA",
+   "b": "W_BAL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_MED"
+  },
+  {
+   "a": "MCO",
+   "b": "W_MED"
+  },
+  {
+   "a": "MDA",
+   "b": "ROU"
+  },
+  {
+   "a": "MDA",
+   "b": "UKR"
+  },
+  {
+   "a": "MDG",
+   "b": "W_IND"
+  },
+  {
+   "a": "MDV",
+   "b": "W_IND"
+  },
+  {
+   "a": "MEX",
+   "b": "USA"
+  },
+  {
+   "a": "MEX",
+   "b": "W_CAR"
+  },
+  {
+   "a": "MEX",
+   "b": "W_MEX"
+  },
+  {
+   "a": "MEX",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MKD",
+   "b": "SRB"
+  },
+  {
+   "a": "MLI",
+   "b": "MRT"
+  },
+  {
+   "a": "MLI",
+   "b": "NER"
+  },
+  {
+   "a": "MLI",
+   "b": "SEN"
+  },
+  {
+   "a": "MLT",
+   "b": "W_MED"
+  },
+  {
+   "a": "MMR",
+   "b": "THA"
+  },
+  {
+   "a": "MMR",
+   "b": "W_IND"
+  },
+  {
+   "a": "MNE",
+   "b": "SRB"
+  },
+  {
+   "a": "MNE",
+   "b": "W_MED"
+  },
+  {
+   "a": "MNG",
+   "b": "RUS"
+  },
+  {
+   "a": "MOZ",
+   "b": "MWI"
+  },
+  {
+   "a": "MOZ",
+   "b": "SWZ"
+  },
+  {
+   "a": "MOZ",
+   "b": "TZA"
+  },
+  {
+   "a": "MOZ",
+   "b": "W_IND"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZMB"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZWE"
+  },
+  {
+   "a": "MRT",
+   "b": "SEN"
+  },
+  {
+   "a": "MRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MWI",
+   "b": "TZA"
+  },
+  {
+   "a": "MWI",
+   "b": "ZMB"
+  },
+  {
+   "a": "MYS",
+   "b": "THA"
+  },
+  {
+   "a": "MYS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MYS",
+   "b": "W_SCS"
+  },
+  {
+   "a": "NAM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NAM",
+   "b": "ZAF"
+  },
+  {
+   "a": "NAM",
+   "b": "ZMB"
+  },
+  {
+   "a": "NER",
+   "b": "NGA"
+  },
+  {
+   "a": "NER",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NIC",
+   "b": "W_CAR"
+  },
+  {
+   "a": "NIC",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NLD",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NOR",
+   "b": "RUS"
+  },
+  {
+   "a": "NOR",
+   "b": "SWE"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ARC"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NOR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NRU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NZL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "OMN",
+   "b": "SAU"
+  },
+  {
+   "a": "OMN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "OMN",
+   "b": "W_IND"
+  },
+  {
+   "a": "OMN",
+   "b": "YEM"
+  },
+  {
+   "a": "PAK",
+   "b": "W_IND"
+  },
+  {
+   "a": "PAN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "PAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PER",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_SCS"
+  },
+  {
+   "a": "PLW",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PNG",
+   "b": "W_PAC"
+  },
+  {
+   "a": "POL",
+   "b": "RUS"
+  },
+  {
+   "a": "POL",
+   "b": "SVK"
+  },
+  {
+   "a": "POL",
+   "b": "UKR"
+  },
+  {
+   "a": "POL",
+   "b": "W_BAL"
+  },
+  {
+   "a": "PRK",
+   "b": "RUS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_ECS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_JPN"
+  },
+  {
+   "a": "PRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "QAT",
+   "b": "SAU"
+  },
+  {
+   "a": "QAT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ROU",
+   "b": "SRB"
+  },
+  {
+   "a": "ROU",
+   "b": "UKR"
+  },
+  {
+   "a": "ROU",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "UKR"
+  },
+  {
+   "a": "RUS",
+   "b": "W_ARC"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BAL"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "W_CAS"
+  },
+  {
+   "a": "RUS",
+   "b": "W_JPN"
+  },
+  {
+   "a": "RUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "RWA",
+   "b": "TZA"
+  },
+  {
+   "a": "RWA",
+   "b": "UGA"
+  },
+  {
+   "a": "SAU",
+   "b": "W_GUL"
+  },
+  {
+   "a": "SAU",
+   "b": "W_RED"
+  },
+  {
+   "a": "SAU",
+   "b": "YEM"
+  },
+  {
+   "a": "SDN",
+   "b": "SSD"
+  },
+  {
+   "a": "SDN",
+   "b": "TCD"
+  },
+  {
+   "a": "SDN",
+   "b": "W_RED"
+  },
+  {
+   "a": "SEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SGP",
+   "b": "W_SCS"
+  },
+  {
+   "a": "SLB",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SLE",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SLV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SOM",
+   "b": "W_IND"
+  },
+  {
+   "a": "SSD",
+   "b": "UGA"
+  },
+  {
+   "a": "STP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SUR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SVK",
+   "b": "UKR"
+  },
+  {
+   "a": "SVN",
+   "b": "W_MED"
+  },
+  {
+   "a": "SWE",
+   "b": "W_BAL"
+  },
+  {
+   "a": "SWE",
+   "b": "W_NRT"
+  },
+  {
+   "a": "SWZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "SYC",
+   "b": "W_IND"
+  },
+  {
+   "a": "SYR",
+   "b": "TUR"
+  },
+  {
+   "a": "SYR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "THA",
+   "b": "W_IND"
+  },
+  {
+   "a": "THA",
+   "b": "W_SCS"
+  },
+  {
+   "a": "TJK",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "W_CAS"
+  },
+  {
+   "a": "TLS",
+   "b": "W_IND"
+  },
+  {
+   "a": "TLS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TON",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TTO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "TTO",
+   "b": "W_CAR"
+  },
+  {
+   "a": "TUN",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "TUR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TZA",
+   "b": "UGA"
+  },
+  {
+   "a": "TZA",
+   "b": "W_IND"
+  },
+  {
+   "a": "TZA",
+   "b": "ZMB"
+  },
+  {
+   "a": "UKR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "URY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_ARC"
+  },
+  {
+   "a": "USA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_MEX"
+  },
+  {
+   "a": "USA",
+   "b": "W_PAC"
+  },
+  {
+   "a": "VCT",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "VEN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VNM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "VUT",
+   "b": "W_PAC"
+  },
+  {
+   "a": "WSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_ATL"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_PAC",
+   "gate": "G_BER"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_IND"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MED",
+   "gate": "G_GIB"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MEX",
+   "gate": "G_FLA"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_PAC",
+   "gate": "G_DRK"
+  },
+  {
+   "a": "W_BAL",
+   "b": "W_NRT",
+   "gate": "G_DAN"
+  },
+  {
+   "a": "W_BLK",
+   "b": "W_CAS",
+   "gate": "G_VOL"
+  },
+  {
+   "a": "W_BLK",
+   "b": "W_MED",
+   "gate": "G_TUR"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_MEX"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_PAC",
+   "gate": "G_PAN"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_JPN",
+   "gate": "G_KOR"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_SCS",
+   "gate": "G_TAI"
+  },
+  {
+   "a": "W_GUL",
+   "b": "W_IND",
+   "gate": "G_HOR"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_RED",
+   "gate": "G_BAB"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_SCS",
+   "gate": "G_MAL"
+  },
+  {
+   "a": "W_JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_MED",
+   "b": "W_RED",
+   "gate": "G_SUE"
+  },
+  {
+   "a": "W_PAC",
+   "b": "W_SCS"
+  },
+  {
+   "a": "YEM",
+   "b": "W_IND"
+  },
+  {
+   "a": "YEM",
+   "b": "W_RED"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_IND"
+  },
+  {
+   "a": "ZAF",
+   "b": "ZWE"
+  },
+  {
+   "a": "ZMB",
+   "b": "ZWE"
+  }
+ ],
+ "edges_detailed": [
+  {
+   "a": "AFG",
+   "b": "CHN"
+  },
+  {
+   "a": "AFG",
+   "b": "IRN"
+  },
+  {
+   "a": "AFG",
+   "b": "PAK"
+  },
+  {
+   "a": "AFG",
+   "b": "TJK"
+  },
+  {
+   "a": "AFG",
+   "b": "TKM"
+  },
+  {
+   "a": "AFG",
+   "b": "UZB"
+  },
+  {
+   "a": "AGO",
+   "b": "COD"
+  },
+  {
+   "a": "AGO",
+   "b": "COG"
+  },
+  {
+   "a": "AGO",
+   "b": "NAM"
+  },
+  {
+   "a": "AGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "AGO",
+   "b": "ZMB"
+  },
+  {
+   "a": "ALB",
+   "b": "GRC"
+  },
+  {
+   "a": "ALB",
+   "b": "MKD"
+  },
+  {
+   "a": "ALB",
+   "b": "MNE"
+  },
+  {
+   "a": "ALB",
+   "b": "W_ADR"
+  },
+  {
+   "a": "ALB",
+   "b": "W_ION"
+  },
+  {
+   "a": "AND",
+   "b": "ESP"
+  },
+  {
+   "a": "AND",
+   "b": "FRA"
+  },
+  {
+   "a": "ARE",
+   "b": "OMN"
+  },
+  {
+   "a": "ARE",
+   "b": "SAU"
+  },
+  {
+   "a": "ARE",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ARE",
+   "b": "W_OMG"
+  },
+  {
+   "a": "ARG",
+   "b": "BOL"
+  },
+  {
+   "a": "ARG",
+   "b": "BRA"
+  },
+  {
+   "a": "ARG",
+   "b": "CHL"
+  },
+  {
+   "a": "ARG",
+   "b": "PRY"
+  },
+  {
+   "a": "ARG",
+   "b": "URY"
+  },
+  {
+   "a": "ARG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ARM",
+   "b": "AZE"
+  },
+  {
+   "a": "ARM",
+   "b": "GEO"
+  },
+  {
+   "a": "ARM",
+   "b": "IRN"
+  },
+  {
+   "a": "ARM",
+   "b": "TUR"
+  },
+  {
+   "a": "ATG",
+   "b": "W_CAR"
+  },
+  {
+   "a": "AUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "AUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "AUT",
+   "b": "CHE"
+  },
+  {
+   "a": "AUT",
+   "b": "CZE"
+  },
+  {
+   "a": "AUT",
+   "b": "DEU"
+  },
+  {
+   "a": "AUT",
+   "b": "HUN"
+  },
+  {
+   "a": "AUT",
+   "b": "ITA"
+  },
+  {
+   "a": "AUT",
+   "b": "LIE"
+  },
+  {
+   "a": "AUT",
+   "b": "SVK"
+  },
+  {
+   "a": "AUT",
+   "b": "SVN"
+  },
+  {
+   "a": "AZE",
+   "b": "GEO"
+  },
+  {
+   "a": "AZE",
+   "b": "IRN"
+  },
+  {
+   "a": "AZE",
+   "b": "RUS"
+  },
+  {
+   "a": "AZE",
+   "b": "TUR"
+  },
+  {
+   "a": "AZE",
+   "b": "W_CAS"
+  },
+  {
+   "a": "BDI",
+   "b": "COD"
+  },
+  {
+   "a": "BDI",
+   "b": "RWA"
+  },
+  {
+   "a": "BDI",
+   "b": "TZA"
+  },
+  {
+   "a": "BEL",
+   "b": "DEU"
+  },
+  {
+   "a": "BEL",
+   "b": "FRA"
+  },
+  {
+   "a": "BEL",
+   "b": "LUX"
+  },
+  {
+   "a": "BEL",
+   "b": "NLD"
+  },
+  {
+   "a": "BEL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "BEN",
+   "b": "BFA"
+  },
+  {
+   "a": "BEN",
+   "b": "NER"
+  },
+  {
+   "a": "BEN",
+   "b": "NGA"
+  },
+  {
+   "a": "BEN",
+   "b": "TGO"
+  },
+  {
+   "a": "BEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BFA",
+   "b": "CIV"
+  },
+  {
+   "a": "BFA",
+   "b": "GHA"
+  },
+  {
+   "a": "BFA",
+   "b": "MLI"
+  },
+  {
+   "a": "BFA",
+   "b": "NER"
+  },
+  {
+   "a": "BFA",
+   "b": "TGO"
+  },
+  {
+   "a": "BGD",
+   "b": "IND"
+  },
+  {
+   "a": "BGD",
+   "b": "MMR"
+  },
+  {
+   "a": "BGD",
+   "b": "W_IND"
+  },
+  {
+   "a": "BGR",
+   "b": "GRC"
+  },
+  {
+   "a": "BGR",
+   "b": "MKD"
+  },
+  {
+   "a": "BGR",
+   "b": "ROU"
+  },
+  {
+   "a": "BGR",
+   "b": "SRB"
+  },
+  {
+   "a": "BGR",
+   "b": "TUR"
+  },
+  {
+   "a": "BGR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "BHR",
+   "b": "W_GUL"
+  },
+  {
+   "a": "BHS",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BIH",
+   "b": "HRV"
+  },
+  {
+   "a": "BIH",
+   "b": "MNE"
+  },
+  {
+   "a": "BIH",
+   "b": "SRB"
+  },
+  {
+   "a": "BIH",
+   "b": "W_ADR"
+  },
+  {
+   "a": "BLR",
+   "b": "LTU"
+  },
+  {
+   "a": "BLR",
+   "b": "LVA"
+  },
+  {
+   "a": "BLR",
+   "b": "POL"
+  },
+  {
+   "a": "BLR",
+   "b": "RUS"
+  },
+  {
+   "a": "BLR",
+   "b": "UKR"
+  },
+  {
+   "a": "BLZ",
+   "b": "GTM"
+  },
+  {
+   "a": "BLZ",
+   "b": "MEX"
+  },
+  {
+   "a": "BLZ",
+   "b": "W_CAR"
+  },
+  {
+   "a": "BOL",
+   "b": "BRA"
+  },
+  {
+   "a": "BOL",
+   "b": "CHL"
+  },
+  {
+   "a": "BOL",
+   "b": "PER"
+  },
+  {
+   "a": "BOL",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "COL"
+  },
+  {
+   "a": "BRA",
+   "b": "GUY"
+  },
+  {
+   "a": "BRA",
+   "b": "PER"
+  },
+  {
+   "a": "BRA",
+   "b": "PRY"
+  },
+  {
+   "a": "BRA",
+   "b": "SUR"
+  },
+  {
+   "a": "BRA",
+   "b": "URY"
+  },
+  {
+   "a": "BRA",
+   "b": "VEN"
+  },
+  {
+   "a": "BRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "BRN",
+   "b": "MYS"
+  },
+  {
+   "a": "BRN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "BTN",
+   "b": "CHN"
+  },
+  {
+   "a": "BTN",
+   "b": "IND"
+  },
+  {
+   "a": "BWA",
+   "b": "NAM"
+  },
+  {
+   "a": "BWA",
+   "b": "ZAF"
+  },
+  {
+   "a": "BWA",
+   "b": "ZMB"
+  },
+  {
+   "a": "BWA",
+   "b": "ZWE"
+  },
+  {
+   "a": "CAF",
+   "b": "CMR"
+  },
+  {
+   "a": "CAF",
+   "b": "COD"
+  },
+  {
+   "a": "CAF",
+   "b": "COG"
+  },
+  {
+   "a": "CAF",
+   "b": "SDN"
+  },
+  {
+   "a": "CAF",
+   "b": "SSD"
+  },
+  {
+   "a": "CAF",
+   "b": "TCD"
+  },
+  {
+   "a": "CAN",
+   "b": "USA"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ARC"
+  },
+  {
+   "a": "CAN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHE",
+   "b": "DEU"
+  },
+  {
+   "a": "CHE",
+   "b": "FRA"
+  },
+  {
+   "a": "CHE",
+   "b": "ITA"
+  },
+  {
+   "a": "CHE",
+   "b": "LIE"
+  },
+  {
+   "a": "CHL",
+   "b": "PER"
+  },
+  {
+   "a": "CHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CHN",
+   "b": "IND"
+  },
+  {
+   "a": "CHN",
+   "b": "KAZ"
+  },
+  {
+   "a": "CHN",
+   "b": "KGZ"
+  },
+  {
+   "a": "CHN",
+   "b": "LAO"
+  },
+  {
+   "a": "CHN",
+   "b": "MMR"
+  },
+  {
+   "a": "CHN",
+   "b": "MNG"
+  },
+  {
+   "a": "CHN",
+   "b": "NPL"
+  },
+  {
+   "a": "CHN",
+   "b": "PAK"
+  },
+  {
+   "a": "CHN",
+   "b": "PRK"
+  },
+  {
+   "a": "CHN",
+   "b": "RUS"
+  },
+  {
+   "a": "CHN",
+   "b": "TJK"
+  },
+  {
+   "a": "CHN",
+   "b": "VNM"
+  },
+  {
+   "a": "CHN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "CHN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "CIV",
+   "b": "GHA"
+  },
+  {
+   "a": "CIV",
+   "b": "GIN"
+  },
+  {
+   "a": "CIV",
+   "b": "LBR"
+  },
+  {
+   "a": "CIV",
+   "b": "MLI"
+  },
+  {
+   "a": "CIV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CMR",
+   "b": "COG"
+  },
+  {
+   "a": "CMR",
+   "b": "GAB"
+  },
+  {
+   "a": "CMR",
+   "b": "GNQ"
+  },
+  {
+   "a": "CMR",
+   "b": "NGA"
+  },
+  {
+   "a": "CMR",
+   "b": "TCD"
+  },
+  {
+   "a": "CMR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "COG"
+  },
+  {
+   "a": "COD",
+   "b": "RWA"
+  },
+  {
+   "a": "COD",
+   "b": "SSD"
+  },
+  {
+   "a": "COD",
+   "b": "TZA"
+  },
+  {
+   "a": "COD",
+   "b": "UGA"
+  },
+  {
+   "a": "COD",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COD",
+   "b": "ZMB"
+  },
+  {
+   "a": "COG",
+   "b": "GAB"
+  },
+  {
+   "a": "COG",
+   "b": "W_ATL"
+  },
+  {
+   "a": "COL",
+   "b": "ECU"
+  },
+  {
+   "a": "COL",
+   "b": "PAN"
+  },
+  {
+   "a": "COL",
+   "b": "PER"
+  },
+  {
+   "a": "COL",
+   "b": "VEN"
+  },
+  {
+   "a": "COL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "COL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "COM",
+   "b": "W_IND"
+  },
+  {
+   "a": "CPV",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CRI",
+   "b": "NIC"
+  },
+  {
+   "a": "CRI",
+   "b": "PAN"
+  },
+  {
+   "a": "CRI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CRI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "CUB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "CUB",
+   "b": "W_CAR"
+  },
+  {
+   "a": "CUB",
+   "b": "W_MEX"
+  },
+  {
+   "a": "CYP",
+   "b": "W_MED"
+  },
+  {
+   "a": "CZE",
+   "b": "DEU"
+  },
+  {
+   "a": "CZE",
+   "b": "POL"
+  },
+  {
+   "a": "CZE",
+   "b": "SVK"
+  },
+  {
+   "a": "DEU",
+   "b": "DNK"
+  },
+  {
+   "a": "DEU",
+   "b": "FRA"
+  },
+  {
+   "a": "DEU",
+   "b": "LUX"
+  },
+  {
+   "a": "DEU",
+   "b": "NLD"
+  },
+  {
+   "a": "DEU",
+   "b": "POL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DEU",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DJI",
+   "b": "ERI"
+  },
+  {
+   "a": "DJI",
+   "b": "ETH"
+  },
+  {
+   "a": "DJI",
+   "b": "SOM"
+  },
+  {
+   "a": "DJI",
+   "b": "W_ADN"
+  },
+  {
+   "a": "DJI",
+   "b": "W_RED"
+  },
+  {
+   "a": "DMA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DNK",
+   "b": "W_BAL"
+  },
+  {
+   "a": "DNK",
+   "b": "W_NRT"
+  },
+  {
+   "a": "DOM",
+   "b": "HTI"
+  },
+  {
+   "a": "DOM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "DOM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "DZA",
+   "b": "LBY"
+  },
+  {
+   "a": "DZA",
+   "b": "MAR"
+  },
+  {
+   "a": "DZA",
+   "b": "MLI"
+  },
+  {
+   "a": "DZA",
+   "b": "MRT"
+  },
+  {
+   "a": "DZA",
+   "b": "NER"
+  },
+  {
+   "a": "DZA",
+   "b": "TUN"
+  },
+  {
+   "a": "DZA",
+   "b": "W_MED"
+  },
+  {
+   "a": "ECU",
+   "b": "PER"
+  },
+  {
+   "a": "ECU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "EGY",
+   "b": "ISR"
+  },
+  {
+   "a": "EGY",
+   "b": "LBY"
+  },
+  {
+   "a": "EGY",
+   "b": "SDN"
+  },
+  {
+   "a": "EGY",
+   "b": "W_MED"
+  },
+  {
+   "a": "EGY",
+   "b": "W_RED"
+  },
+  {
+   "a": "ERI",
+   "b": "ETH"
+  },
+  {
+   "a": "ERI",
+   "b": "SDN"
+  },
+  {
+   "a": "ERI",
+   "b": "W_RED"
+  },
+  {
+   "a": "ESP",
+   "b": "FRA"
+  },
+  {
+   "a": "ESP",
+   "b": "MAR"
+  },
+  {
+   "a": "ESP",
+   "b": "PRT"
+  },
+  {
+   "a": "ESP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ESP",
+   "b": "W_MED"
+  },
+  {
+   "a": "EST",
+   "b": "LVA"
+  },
+  {
+   "a": "EST",
+   "b": "RUS"
+  },
+  {
+   "a": "EST",
+   "b": "W_BAL"
+  },
+  {
+   "a": "ETH",
+   "b": "KEN"
+  },
+  {
+   "a": "ETH",
+   "b": "SDN"
+  },
+  {
+   "a": "ETH",
+   "b": "SOM"
+  },
+  {
+   "a": "ETH",
+   "b": "SSD"
+  },
+  {
+   "a": "FIN",
+   "b": "NOR"
+  },
+  {
+   "a": "FIN",
+   "b": "RUS"
+  },
+  {
+   "a": "FIN",
+   "b": "SWE"
+  },
+  {
+   "a": "FIN",
+   "b": "W_BAL"
+  },
+  {
+   "a": "FIN",
+   "b": "W_BOT"
+  },
+  {
+   "a": "FJI",
+   "b": "W_PAC"
+  },
+  {
+   "a": "FRA",
+   "b": "ITA"
+  },
+  {
+   "a": "FRA",
+   "b": "LUX"
+  },
+  {
+   "a": "FRA",
+   "b": "MCO"
+  },
+  {
+   "a": "FRA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "FRA",
+   "b": "W_MAN"
+  },
+  {
+   "a": "FRA",
+   "b": "W_MED"
+  },
+  {
+   "a": "FRA",
+   "b": "W_NRT"
+  },
+  {
+   "a": "FRA",
+   "b": "W_TYR"
+  },
+  {
+   "a": "FSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GAB",
+   "b": "GNQ"
+  },
+  {
+   "a": "GAB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "IRL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GBR",
+   "b": "W_MAN"
+  },
+  {
+   "a": "GBR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "GEO",
+   "b": "RUS"
+  },
+  {
+   "a": "GEO",
+   "b": "TUR"
+  },
+  {
+   "a": "GEO",
+   "b": "W_BLK"
+  },
+  {
+   "a": "GHA",
+   "b": "TGO"
+  },
+  {
+   "a": "GHA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GIN",
+   "b": "GNB"
+  },
+  {
+   "a": "GIN",
+   "b": "LBR"
+  },
+  {
+   "a": "GIN",
+   "b": "MLI"
+  },
+  {
+   "a": "GIN",
+   "b": "SEN"
+  },
+  {
+   "a": "GIN",
+   "b": "SLE"
+  },
+  {
+   "a": "GIN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GMB",
+   "b": "SEN"
+  },
+  {
+   "a": "GMB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNB",
+   "b": "SEN"
+  },
+  {
+   "a": "GNB",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GNQ",
+   "b": "W_ATL"
+  },
+  {
+   "a": "GRC",
+   "b": "MKD"
+  },
+  {
+   "a": "GRC",
+   "b": "TUR"
+  },
+  {
+   "a": "GRC",
+   "b": "W_EGE"
+  },
+  {
+   "a": "GRC",
+   "b": "W_ION"
+  },
+  {
+   "a": "GRC",
+   "b": "W_MED"
+  },
+  {
+   "a": "GRD",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "HND"
+  },
+  {
+   "a": "GTM",
+   "b": "MEX"
+  },
+  {
+   "a": "GTM",
+   "b": "SLV"
+  },
+  {
+   "a": "GTM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "GTM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "GUY",
+   "b": "SUR"
+  },
+  {
+   "a": "GUY",
+   "b": "VEN"
+  },
+  {
+   "a": "GUY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HND",
+   "b": "NIC"
+  },
+  {
+   "a": "HND",
+   "b": "SLV"
+  },
+  {
+   "a": "HND",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "HRV",
+   "b": "HUN"
+  },
+  {
+   "a": "HRV",
+   "b": "MNE"
+  },
+  {
+   "a": "HRV",
+   "b": "SRB"
+  },
+  {
+   "a": "HRV",
+   "b": "SVN"
+  },
+  {
+   "a": "HRV",
+   "b": "W_ADR"
+  },
+  {
+   "a": "HTI",
+   "b": "W_ATL"
+  },
+  {
+   "a": "HTI",
+   "b": "W_CAR"
+  },
+  {
+   "a": "HUN",
+   "b": "ROU"
+  },
+  {
+   "a": "HUN",
+   "b": "SRB"
+  },
+  {
+   "a": "HUN",
+   "b": "SVK"
+  },
+  {
+   "a": "HUN",
+   "b": "SVN"
+  },
+  {
+   "a": "HUN",
+   "b": "UKR"
+  },
+  {
+   "a": "IDN",
+   "b": "MYS"
+  },
+  {
+   "a": "IDN",
+   "b": "PNG"
+  },
+  {
+   "a": "IDN",
+   "b": "TLS"
+  },
+  {
+   "a": "IDN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IDN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "IDN",
+   "b": "W_SCS"
+  },
+  {
+   "a": "IND",
+   "b": "MMR"
+  },
+  {
+   "a": "IND",
+   "b": "NPL"
+  },
+  {
+   "a": "IND",
+   "b": "PAK"
+  },
+  {
+   "a": "IND",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "IRN",
+   "b": "IRQ"
+  },
+  {
+   "a": "IRN",
+   "b": "PAK"
+  },
+  {
+   "a": "IRN",
+   "b": "TKM"
+  },
+  {
+   "a": "IRN",
+   "b": "TUR"
+  },
+  {
+   "a": "IRN",
+   "b": "W_CAS"
+  },
+  {
+   "a": "IRN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "IRN",
+   "b": "W_IND"
+  },
+  {
+   "a": "IRN",
+   "b": "W_OMG"
+  },
+  {
+   "a": "IRQ",
+   "b": "JOR"
+  },
+  {
+   "a": "IRQ",
+   "b": "KWT"
+  },
+  {
+   "a": "IRQ",
+   "b": "SAU"
+  },
+  {
+   "a": "IRQ",
+   "b": "SYR"
+  },
+  {
+   "a": "IRQ",
+   "b": "TUR"
+  },
+  {
+   "a": "IRQ",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ARC"
+  },
+  {
+   "a": "ISL",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ISR",
+   "b": "JOR"
+  },
+  {
+   "a": "ISR",
+   "b": "LBN"
+  },
+  {
+   "a": "ISR",
+   "b": "SYR"
+  },
+  {
+   "a": "ISR",
+   "b": "W_MED"
+  },
+  {
+   "a": "ISR",
+   "b": "W_RED"
+  },
+  {
+   "a": "ITA",
+   "b": "SMR"
+  },
+  {
+   "a": "ITA",
+   "b": "SVN"
+  },
+  {
+   "a": "ITA",
+   "b": "VAT"
+  },
+  {
+   "a": "ITA",
+   "b": "W_ADR"
+  },
+  {
+   "a": "ITA",
+   "b": "W_ION"
+  },
+  {
+   "a": "ITA",
+   "b": "W_MED"
+  },
+  {
+   "a": "ITA",
+   "b": "W_TYR"
+  },
+  {
+   "a": "JAM",
+   "b": "W_CAR"
+  },
+  {
+   "a": "JOR",
+   "b": "SAU"
+  },
+  {
+   "a": "JOR",
+   "b": "SYR"
+  },
+  {
+   "a": "JOR",
+   "b": "W_RED"
+  },
+  {
+   "a": "JPN",
+   "b": "W_ECS"
+  },
+  {
+   "a": "JPN",
+   "b": "W_JPN"
+  },
+  {
+   "a": "JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KAZ",
+   "b": "KGZ"
+  },
+  {
+   "a": "KAZ",
+   "b": "RUS"
+  },
+  {
+   "a": "KAZ",
+   "b": "TKM"
+  },
+  {
+   "a": "KAZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KAZ",
+   "b": "W_CAS"
+  },
+  {
+   "a": "KEN",
+   "b": "SOM"
+  },
+  {
+   "a": "KEN",
+   "b": "SSD"
+  },
+  {
+   "a": "KEN",
+   "b": "TZA"
+  },
+  {
+   "a": "KEN",
+   "b": "UGA"
+  },
+  {
+   "a": "KEN",
+   "b": "W_IND"
+  },
+  {
+   "a": "KGZ",
+   "b": "TJK"
+  },
+  {
+   "a": "KGZ",
+   "b": "UZB"
+  },
+  {
+   "a": "KHM",
+   "b": "LAO"
+  },
+  {
+   "a": "KHM",
+   "b": "THA"
+  },
+  {
+   "a": "KHM",
+   "b": "VNM"
+  },
+  {
+   "a": "KHM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "KIR",
+   "b": "W_PAC"
+  },
+  {
+   "a": "KNA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "KOR",
+   "b": "PRK"
+  },
+  {
+   "a": "KOR",
+   "b": "W_ECS"
+  },
+  {
+   "a": "KOR",
+   "b": "W_JPN"
+  },
+  {
+   "a": "KWT",
+   "b": "SAU"
+  },
+  {
+   "a": "KWT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "LAO",
+   "b": "MMR"
+  },
+  {
+   "a": "LAO",
+   "b": "THA"
+  },
+  {
+   "a": "LAO",
+   "b": "VNM"
+  },
+  {
+   "a": "LBN",
+   "b": "SYR"
+  },
+  {
+   "a": "LBN",
+   "b": "W_MED"
+  },
+  {
+   "a": "LBR",
+   "b": "SLE"
+  },
+  {
+   "a": "LBR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "LBY",
+   "b": "NER"
+  },
+  {
+   "a": "LBY",
+   "b": "SDN"
+  },
+  {
+   "a": "LBY",
+   "b": "TCD"
+  },
+  {
+   "a": "LBY",
+   "b": "TUN"
+  },
+  {
+   "a": "LBY",
+   "b": "W_MED"
+  },
+  {
+   "a": "LCA",
+   "b": "W_CAR"
+  },
+  {
+   "a": "LKA",
+   "b": "W_IND"
+  },
+  {
+   "a": "LSO",
+   "b": "ZAF"
+  },
+  {
+   "a": "LTU",
+   "b": "LVA"
+  },
+  {
+   "a": "LTU",
+   "b": "POL"
+  },
+  {
+   "a": "LTU",
+   "b": "RUS"
+  },
+  {
+   "a": "LTU",
+   "b": "W_BAL"
+  },
+  {
+   "a": "LVA",
+   "b": "RUS"
+  },
+  {
+   "a": "LVA",
+   "b": "W_BAL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MAR",
+   "b": "W_MED"
+  },
+  {
+   "a": "MCO",
+   "b": "W_MED"
+  },
+  {
+   "a": "MDA",
+   "b": "ROU"
+  },
+  {
+   "a": "MDA",
+   "b": "UKR"
+  },
+  {
+   "a": "MDG",
+   "b": "W_IND"
+  },
+  {
+   "a": "MDV",
+   "b": "W_IND"
+  },
+  {
+   "a": "MEX",
+   "b": "USA"
+  },
+  {
+   "a": "MEX",
+   "b": "W_CAR"
+  },
+  {
+   "a": "MEX",
+   "b": "W_MEX"
+  },
+  {
+   "a": "MEX",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "MKD",
+   "b": "SRB"
+  },
+  {
+   "a": "MLI",
+   "b": "MRT"
+  },
+  {
+   "a": "MLI",
+   "b": "NER"
+  },
+  {
+   "a": "MLI",
+   "b": "SEN"
+  },
+  {
+   "a": "MLT",
+   "b": "W_MED"
+  },
+  {
+   "a": "MMR",
+   "b": "THA"
+  },
+  {
+   "a": "MMR",
+   "b": "W_IND"
+  },
+  {
+   "a": "MNE",
+   "b": "SRB"
+  },
+  {
+   "a": "MNE",
+   "b": "W_ADR"
+  },
+  {
+   "a": "MNG",
+   "b": "RUS"
+  },
+  {
+   "a": "MOZ",
+   "b": "MWI"
+  },
+  {
+   "a": "MOZ",
+   "b": "SWZ"
+  },
+  {
+   "a": "MOZ",
+   "b": "TZA"
+  },
+  {
+   "a": "MOZ",
+   "b": "W_IND"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZMB"
+  },
+  {
+   "a": "MOZ",
+   "b": "ZWE"
+  },
+  {
+   "a": "MRT",
+   "b": "SEN"
+  },
+  {
+   "a": "MRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "MUS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MWI",
+   "b": "TZA"
+  },
+  {
+   "a": "MWI",
+   "b": "ZMB"
+  },
+  {
+   "a": "MYS",
+   "b": "THA"
+  },
+  {
+   "a": "MYS",
+   "b": "W_IND"
+  },
+  {
+   "a": "MYS",
+   "b": "W_SCS"
+  },
+  {
+   "a": "NAM",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NAM",
+   "b": "ZAF"
+  },
+  {
+   "a": "NAM",
+   "b": "ZMB"
+  },
+  {
+   "a": "NER",
+   "b": "NGA"
+  },
+  {
+   "a": "NER",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "TCD"
+  },
+  {
+   "a": "NGA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NIC",
+   "b": "W_CAR"
+  },
+  {
+   "a": "NIC",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NLD",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NOR",
+   "b": "RUS"
+  },
+  {
+   "a": "NOR",
+   "b": "SWE"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ARC"
+  },
+  {
+   "a": "NOR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "NOR",
+   "b": "W_NRT"
+  },
+  {
+   "a": "NRU",
+   "b": "W_PAC"
+  },
+  {
+   "a": "NZL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "OMN",
+   "b": "SAU"
+  },
+  {
+   "a": "OMN",
+   "b": "W_GUL"
+  },
+  {
+   "a": "OMN",
+   "b": "W_IND"
+  },
+  {
+   "a": "OMN",
+   "b": "W_OMG"
+  },
+  {
+   "a": "OMN",
+   "b": "YEM"
+  },
+  {
+   "a": "PAK",
+   "b": "W_IND"
+  },
+  {
+   "a": "PAN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "PAN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PER",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PHL",
+   "b": "W_SCS"
+  },
+  {
+   "a": "PLW",
+   "b": "W_PAC"
+  },
+  {
+   "a": "PNG",
+   "b": "W_PAC"
+  },
+  {
+   "a": "POL",
+   "b": "RUS"
+  },
+  {
+   "a": "POL",
+   "b": "SVK"
+  },
+  {
+   "a": "POL",
+   "b": "UKR"
+  },
+  {
+   "a": "POL",
+   "b": "W_BAL"
+  },
+  {
+   "a": "PRK",
+   "b": "RUS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_ECS"
+  },
+  {
+   "a": "PRK",
+   "b": "W_JPN"
+  },
+  {
+   "a": "PRT",
+   "b": "W_ATL"
+  },
+  {
+   "a": "QAT",
+   "b": "SAU"
+  },
+  {
+   "a": "QAT",
+   "b": "W_GUL"
+  },
+  {
+   "a": "ROU",
+   "b": "SRB"
+  },
+  {
+   "a": "ROU",
+   "b": "UKR"
+  },
+  {
+   "a": "ROU",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "UKR"
+  },
+  {
+   "a": "RUS",
+   "b": "W_ARC"
+  },
+  {
+   "a": "RUS",
+   "b": "W_AZO"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BAL"
+  },
+  {
+   "a": "RUS",
+   "b": "W_BLK"
+  },
+  {
+   "a": "RUS",
+   "b": "W_CAS"
+  },
+  {
+   "a": "RUS",
+   "b": "W_JPN"
+  },
+  {
+   "a": "RUS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "RWA",
+   "b": "TZA"
+  },
+  {
+   "a": "RWA",
+   "b": "UGA"
+  },
+  {
+   "a": "SAU",
+   "b": "W_GUL"
+  },
+  {
+   "a": "SAU",
+   "b": "W_RED"
+  },
+  {
+   "a": "SAU",
+   "b": "YEM"
+  },
+  {
+   "a": "SDN",
+   "b": "SSD"
+  },
+  {
+   "a": "SDN",
+   "b": "TCD"
+  },
+  {
+   "a": "SDN",
+   "b": "W_RED"
+  },
+  {
+   "a": "SEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SGP",
+   "b": "W_SCS"
+  },
+  {
+   "a": "SLB",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SLE",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SLV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "SOM",
+   "b": "W_ADN"
+  },
+  {
+   "a": "SOM",
+   "b": "W_IND"
+  },
+  {
+   "a": "SSD",
+   "b": "UGA"
+  },
+  {
+   "a": "STP",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SUR",
+   "b": "W_ATL"
+  },
+  {
+   "a": "SVK",
+   "b": "UKR"
+  },
+  {
+   "a": "SVN",
+   "b": "W_ADR"
+  },
+  {
+   "a": "SWE",
+   "b": "W_BAL"
+  },
+  {
+   "a": "SWE",
+   "b": "W_BOT"
+  },
+  {
+   "a": "SWE",
+   "b": "W_NRT"
+  },
+  {
+   "a": "SWZ",
+   "b": "ZAF"
+  },
+  {
+   "a": "SYC",
+   "b": "W_IND"
+  },
+  {
+   "a": "SYR",
+   "b": "TUR"
+  },
+  {
+   "a": "SYR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TGO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "THA",
+   "b": "W_IND"
+  },
+  {
+   "a": "THA",
+   "b": "W_SCS"
+  },
+  {
+   "a": "TJK",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "UZB"
+  },
+  {
+   "a": "TKM",
+   "b": "W_CAS"
+  },
+  {
+   "a": "TLS",
+   "b": "W_IND"
+  },
+  {
+   "a": "TLS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TON",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TTO",
+   "b": "W_ATL"
+  },
+  {
+   "a": "TTO",
+   "b": "W_CAR"
+  },
+  {
+   "a": "TUN",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "TUR",
+   "b": "W_EGE"
+  },
+  {
+   "a": "TUR",
+   "b": "W_MAR"
+  },
+  {
+   "a": "TUR",
+   "b": "W_MED"
+  },
+  {
+   "a": "TUV",
+   "b": "W_PAC"
+  },
+  {
+   "a": "TZA",
+   "b": "UGA"
+  },
+  {
+   "a": "TZA",
+   "b": "W_IND"
+  },
+  {
+   "a": "TZA",
+   "b": "ZMB"
+  },
+  {
+   "a": "UKR",
+   "b": "W_AZO"
+  },
+  {
+   "a": "UKR",
+   "b": "W_BLK"
+  },
+  {
+   "a": "URY",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_ARC"
+  },
+  {
+   "a": "USA",
+   "b": "W_ATL"
+  },
+  {
+   "a": "USA",
+   "b": "W_MEX"
+  },
+  {
+   "a": "USA",
+   "b": "W_PAC"
+  },
+  {
+   "a": "VCT",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VEN",
+   "b": "W_ATL"
+  },
+  {
+   "a": "VEN",
+   "b": "W_CAR"
+  },
+  {
+   "a": "VNM",
+   "b": "W_SCS"
+  },
+  {
+   "a": "VUT",
+   "b": "W_PAC"
+  },
+  {
+   "a": "WSM",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ADN",
+   "b": "W_IND"
+  },
+  {
+   "a": "W_ADN",
+   "b": "W_RED",
+   "gate": "G_BAB"
+  },
+  {
+   "a": "W_ADR",
+   "b": "W_ION",
+   "gate": "G_OTR"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_ATL"
+  },
+  {
+   "a": "W_ARC",
+   "b": "W_PAC",
+   "gate": "G_BER"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_CAR"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_IND"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MAN"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MED",
+   "gate": "G_GIB"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_MEX",
+   "gate": "G_FLA"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_NRT"
+  },
+  {
+   "a": "W_ATL",
+   "b": "W_PAC",
+   "gate": "G_DRK"
+  },
+  {
+   "a": "W_AZO",
+   "b": "W_BLK",
+   "gate": "G_KER"
+  },
+  {
+   "a": "W_AZO",
+   "b": "W_CAS",
+   "gate": "G_VOL"
+  },
+  {
+   "a": "W_BAL",
+   "b": "W_BOT"
+  },
+  {
+   "a": "W_BAL",
+   "b": "W_NRT",
+   "gate": "G_DAN"
+  },
+  {
+   "a": "W_BLK",
+   "b": "W_MAR",
+   "gate": "G_BOS"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_MEX"
+  },
+  {
+   "a": "W_CAR",
+   "b": "W_PAC",
+   "gate": "G_PAN"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_JPN",
+   "gate": "G_KOR"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_ECS",
+   "b": "W_SCS",
+   "gate": "G_TAI"
+  },
+  {
+   "a": "W_EGE",
+   "b": "W_MAR",
+   "gate": "G_DAR"
+  },
+  {
+   "a": "W_EGE",
+   "b": "W_MED"
+  },
+  {
+   "a": "W_GUL",
+   "b": "W_OMG",
+   "gate": "G_HOR"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_OMG"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_IND",
+   "b": "W_SCS",
+   "gate": "G_MAL"
+  },
+  {
+   "a": "W_ION",
+   "b": "W_MED"
+  },
+  {
+   "a": "W_JPN",
+   "b": "W_PAC"
+  },
+  {
+   "a": "W_MAN",
+   "b": "W_NRT",
+   "gate": "G_DOV"
+  },
+  {
+   "a": "W_MED",
+   "b": "W_RED",
+   "gate": "G_SUE"
+  },
+  {
+   "a": "W_MED",
+   "b": "W_TYR"
+  },
+  {
+   "a": "W_PAC",
+   "b": "W_SCS"
+  },
+  {
+   "a": "YEM",
+   "b": "W_ADN"
+  },
+  {
+   "a": "YEM",
+   "b": "W_IND"
+  },
+  {
+   "a": "YEM",
+   "b": "W_RED"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_ATL"
+  },
+  {
+   "a": "ZAF",
+   "b": "W_IND"
+  },
+  {
+   "a": "ZAF",
+   "b": "ZWE"
+  },
+  {
+   "a": "ZMB",
+   "b": "ZWE"
+  }
+ ]
+}

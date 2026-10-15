@@ -1,0 +1,32 @@
+{
+  "note": "Strâmtori care despart două țări fără graniță pe uscat. În Normal și Sandbox, cele două țări devin legate direct; ca să treci, numești strâmtoarea (ca la porți). pa/pb sunt malurile, pentru linia de pe glob.",
+  "gates": [
+    {"id": "G_LAP", "name_ro": "Strâmtoarea La Pérouse", "name_en": "La Pérouse Strait", "aliases": ["La Perouse", "Soya", "Strâmtoarea Soya"]},
+    {"id": "G_TOR", "name_ro": "Strâmtoarea Torres", "name_en": "Torres Strait", "aliases": ["Torres"]},
+    {"id": "G_PLK", "name_ro": "Strâmtoarea Palk", "name_en": "Palk Strait", "aliases": ["Palk"]},
+    {"id": "G_JOH", "name_ro": "Strâmtoarea Johor", "name_en": "Johor Strait", "aliases": ["Johor", "Tebrau"]},
+    {"id": "G_SIN", "name_ro": "Strâmtoarea Singapore", "name_en": "Singapore Strait", "aliases": ["Singapore"]},
+    {"id": "G_TIR", "name_ro": "Strâmtoarea Tiran", "name_en": "Straits of Tiran", "aliases": ["Tiran"]},
+    {"id": "G_YUC", "name_ro": "Canalul Yucatán", "name_en": "Yucatán Channel", "aliases": ["Yucatan", "Strâmtoarea Yucatán"]},
+    {"id": "G_SER", "name_ro": "Gura Șarpelui", "name_en": "Serpent's Mouth", "aliases": ["Boca de la Sierpe", "Columbus Channel", "Canalul Columbus"]}
+  ],
+  "straits": [
+    {"a": "USA", "b": "RUS", "gate": "G_BER", "pa": [65.6, -168.1], "pb": [66.05, -169.7]},
+    {"a": "GBR", "b": "FRA", "gate": "G_DOV", "pa": [51.13, 1.33], "pb": [50.95, 1.6]},
+    {"a": "DNK", "b": "SWE", "gate": "G_DAN", "pa": [56.03, 12.61], "pb": [56.04, 12.69]},
+    {"a": "ITA", "b": "ALB", "gate": "G_OTR", "pa": [40.15, 18.49], "pb": [40.3, 19.4]},
+    {"a": "YEM", "b": "DJI", "gate": "G_BAB", "pa": [12.65, 43.45], "pb": [12.47, 43.3]},
+    {"a": "YEM", "b": "ERI", "gate": "G_BAB", "pa": [12.65, 43.45], "pb": [12.71, 43.12]},
+    {"a": "IRN", "b": "OMN", "gate": "G_HOR", "pa": [26.95, 56.25], "pb": [26.4, 56.4]},
+    {"a": "KOR", "b": "JPN", "gate": "G_KOR", "pa": [35.1, 129.0], "pb": [34.4, 129.3]},
+    {"a": "RUS", "b": "JPN", "gate": "G_LAP", "pa": [45.9, 142.1], "pb": [45.4, 141.9]},
+    {"a": "AUS", "b": "PNG", "gate": "G_TOR", "pa": [-10.7, 142.5], "pb": [-9.2, 142.6]},
+    {"a": "IND", "b": "LKA", "gate": "G_PLK", "pa": [9.3, 79.3], "pb": [9.1, 79.8]},
+    {"a": "SGP", "b": "MYS", "gate": "G_JOH", "pa": [1.43, 103.77], "pb": [1.47, 103.78]},
+    {"a": "SGP", "b": "IDN", "gate": "G_SIN", "pa": [1.25, 103.85], "pb": [1.1, 104.0]},
+    {"a": "EGY", "b": "SAU", "gate": "G_TIR", "pa": [27.98, 34.45], "pb": [28.0, 34.6]},
+    {"a": "USA", "b": "CUB", "gate": "G_FLA", "pa": [24.55, -81.8], "pb": [23.15, -82.35]},
+    {"a": "MEX", "b": "CUB", "gate": "G_YUC", "pa": [21.2, -86.8], "pb": [21.85, -84.95]},
+    {"a": "TTO", "b": "VEN", "gate": "G_SER", "pa": [10.05, -61.9], "pb": [9.95, -61.95]}
+  ]
+}

@@ -1,0 +1,2777 @@
+{
+ "version": 1,
+ "region": "uk",
+ "continents": [],
+ "source": "Natural Earth (domeniu public): ne_10m_admin_1_states_provinces_lakes, ne_50m_lakes",
+ "nodes": [
+  {
+   "id": "UK-ABERDEEN",
+   "type": "country",
+   "name_ro": "Aberdeen",
+   "name_en": "Aberdeen",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-ABERDEENSH",
+   "type": "country",
+   "name_ro": "Aberdeenshire",
+   "name_en": "Aberdeenshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-ANGLESEY",
+   "type": "country",
+   "name_ro": "Anglesey",
+   "name_en": "Anglesey",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-ANGUS",
+   "type": "country",
+   "name_ro": "Angus",
+   "name_en": "Angus",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-ARGYLLANDB",
+   "type": "country",
+   "name_ro": "Argyll and Bute",
+   "name_en": "Argyll and Bute",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BEDFORDSHI",
+   "type": "country",
+   "name_ro": "Bedfordshire",
+   "name_en": "Bedfordshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BERKSHIRE",
+   "type": "country",
+   "name_ro": "Berkshire",
+   "name_en": "Berkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BLAENAUGWE",
+   "type": "country",
+   "name_ro": "Blaenau Gwent",
+   "name_en": "Blaenau Gwent",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BRIDGEND",
+   "type": "country",
+   "name_ro": "Bridgend",
+   "name_en": "Bridgend",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BRISTOL",
+   "type": "country",
+   "name_ro": "Bristol",
+   "name_en": "Bristol",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-BUCKINGHAM",
+   "type": "country",
+   "name_ro": "Buckinghamshire",
+   "name_en": "Buckinghamshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CAERPHILLY",
+   "type": "country",
+   "name_ro": "Caerphilly",
+   "name_en": "Caerphilly",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CAMBRIDGES",
+   "type": "country",
+   "name_ro": "Cambridgeshire",
+   "name_en": "Cambridgeshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CARDIFF",
+   "type": "country",
+   "name_ro": "Cardiff",
+   "name_en": "Cardiff",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CARMARTHEN",
+   "type": "country",
+   "name_ro": "Carmarthenshire",
+   "name_en": "Carmarthenshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CEREDIGION",
+   "type": "country",
+   "name_ro": "Ceredigion",
+   "name_en": "Ceredigion",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CHESHIRE",
+   "type": "country",
+   "name_ro": "Cheshire",
+   "name_en": "Cheshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CLACKMANNA",
+   "type": "country",
+   "name_ro": "Clackmannanshire",
+   "name_en": "Clackmannanshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CONWY",
+   "type": "country",
+   "name_ro": "Conwy",
+   "name_en": "Conwy",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CORNWALL",
+   "type": "country",
+   "name_ro": "Cornwall",
+   "name_en": "Cornwall",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-CUMBRIA",
+   "type": "country",
+   "name_ro": "Cumbria",
+   "name_en": "Cumbria",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DENBIGHSHI",
+   "type": "country",
+   "name_ro": "Denbighshire",
+   "name_en": "Denbighshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DERBYSHIRE",
+   "type": "country",
+   "name_ro": "Derbyshire",
+   "name_en": "Derbyshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DEVON",
+   "type": "country",
+   "name_ro": "Devon",
+   "name_en": "Devon",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DORSET",
+   "type": "country",
+   "name_ro": "Dorset",
+   "name_en": "Dorset",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DUMFRIESAN",
+   "type": "country",
+   "name_ro": "Dumfries and Galloway",
+   "name_en": "Dumfries and Galloway",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DUNDEE",
+   "type": "country",
+   "name_ro": "Dundee",
+   "name_en": "Dundee",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-DURHAM",
+   "type": "country",
+   "name_ro": "Durham",
+   "name_en": "Durham",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTAYRSHI",
+   "type": "country",
+   "name_ro": "East Ayrshire",
+   "name_en": "East Ayrshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTDUNBAR",
+   "type": "country",
+   "name_ro": "East Dunbartonshire",
+   "name_en": "East Dunbartonshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTLOTHIA",
+   "type": "country",
+   "name_ro": "East Lothian",
+   "name_en": "East Lothian",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTRENFRE",
+   "type": "country",
+   "name_ro": "East Renfrewshire",
+   "name_en": "East Renfrewshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTRIDING",
+   "type": "country",
+   "name_ro": "East Riding of Yorkshire",
+   "name_en": "East Riding of Yorkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EASTSUSSEX",
+   "type": "country",
+   "name_ro": "East Sussex",
+   "name_en": "East Sussex",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-EDINBURGH",
+   "type": "country",
+   "name_ro": "Edinburgh",
+   "name_en": "Edinburgh",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-ESSEX",
+   "type": "country",
+   "name_ro": "Essex",
+   "name_en": "Essex",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-FALKIRK",
+   "type": "country",
+   "name_ro": "Falkirk",
+   "name_en": "Falkirk",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-FIFE",
+   "type": "country",
+   "name_ro": "Fife",
+   "name_en": "Fife",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-FLINTSHIRE",
+   "type": "country",
+   "name_ro": "Flintshire",
+   "name_en": "Flintshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-GLASGOW",
+   "type": "country",
+   "name_ro": "Glasgow",
+   "name_en": "Glasgow",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-GLOUCESTER",
+   "type": "country",
+   "name_ro": "Gloucestershire",
+   "name_en": "Gloucestershire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-GREATERLON",
+   "type": "country",
+   "name_ro": "Londra Mare",
+   "name_en": "Greater London",
+   "aliases": [
+    "Londra",
+    "London",
+    "Greater London"
+   ],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-GREATERMAN",
+   "type": "country",
+   "name_ro": "Greater Manchester",
+   "name_en": "Greater Manchester",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-GWYNEDD",
+   "type": "country",
+   "name_ro": "Gwynedd",
+   "name_en": "Gwynedd",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-HAMPSHIRE",
+   "type": "country",
+   "name_ro": "Hampshire",
+   "name_en": "Hampshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-HEREFORDSH",
+   "type": "country",
+   "name_ro": "Herefordshire",
+   "name_en": "Herefordshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-HERTFORDSH",
+   "type": "country",
+   "name_ro": "Hertfordshire",
+   "name_en": "Hertfordshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-HIGHLAND",
+   "type": "country",
+   "name_ro": "Highland",
+   "name_en": "Highland",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-INVERCLYDE",
+   "type": "country",
+   "name_ro": "Inverclyde",
+   "name_en": "Inverclyde",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-KENT",
+   "type": "country",
+   "name_ro": "Kent",
+   "name_en": "Kent",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-LANCASHIRE",
+   "type": "country",
+   "name_ro": "Lancashire",
+   "name_en": "Lancashire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-LEICESTERS",
+   "type": "country",
+   "name_ro": "Leicestershire",
+   "name_en": "Leicestershire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-LINCOLNSHI",
+   "type": "country",
+   "name_ro": "Lincolnshire",
+   "name_en": "Lincolnshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-MERSEYSIDE",
+   "type": "country",
+   "name_ro": "Merseyside",
+   "name_en": "Merseyside",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-MERTHYRTYD",
+   "type": "country",
+   "name_ro": "Merthyr Tydfil",
+   "name_en": "Merthyr Tydfil",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-MIDLOTHIAN",
+   "type": "country",
+   "name_ro": "Midlothian",
+   "name_en": "Midlothian",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-MONMOUTHSH",
+   "type": "country",
+   "name_ro": "Monmouthshire",
+   "name_en": "Monmouthshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-MORAY",
+   "type": "country",
+   "name_ro": "Moray",
+   "name_en": "Moray",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NEATHPORTT",
+   "type": "country",
+   "name_ro": "Neath Port Talbot",
+   "name_en": "Neath Port Talbot",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NEWPORT",
+   "type": "country",
+   "name_ro": "Newport",
+   "name_en": "Newport",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORFOLK",
+   "type": "country",
+   "name_ro": "Norfolk",
+   "name_en": "Norfolk",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORTHAYRSH",
+   "type": "country",
+   "name_ro": "North Ayrshire",
+   "name_en": "North Ayrshire",
+   "aliases": [
+    "North Ayrshire"
+   ],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORTHLANAR",
+   "type": "country",
+   "name_ro": "North Lanarkshire",
+   "name_en": "North Lanarkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORTHYORKS",
+   "type": "country",
+   "name_ro": "North Yorkshire",
+   "name_en": "North Yorkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORTHAMPTO",
+   "type": "country",
+   "name_ro": "Northamptonshire",
+   "name_en": "Northamptonshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NORTHUMBER",
+   "type": "country",
+   "name_ro": "Northumberland",
+   "name_en": "Northumberland",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-NOTTINGHAM",
+   "type": "country",
+   "name_ro": "Nottinghamshire",
+   "name_en": "Nottinghamshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-OXFORDSHIR",
+   "type": "country",
+   "name_ro": "Oxfordshire",
+   "name_en": "Oxfordshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-PEMBROKESH",
+   "type": "country",
+   "name_ro": "Pembrokeshire",
+   "name_en": "Pembrokeshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-PERTHANDKI",
+   "type": "country",
+   "name_ro": "Perth and Kinross",
+   "name_en": "Perth and Kinross",
+   "aliases": [
+    "Perth and Kinross"
+   ],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-POWYS",
+   "type": "country",
+   "name_ro": "Powys",
+   "name_en": "Powys",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-RENFREWSHI",
+   "type": "country",
+   "name_ro": "Renfrewshire",
+   "name_en": "Renfrewshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-RHONDDACYN",
+   "type": "country",
+   "name_ro": "Rhondda Cynon Taf",
+   "name_en": "Rhondda Cynon Taf",
+   "aliases": [
+    "Rhondda Cynon Taf"
+   ],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-RUTLAND",
+   "type": "country",
+   "name_ro": "Rutland",
+   "name_en": "Rutland",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SCOTTISHBO",
+   "type": "country",
+   "name_ro": "Scottish Borders",
+   "name_en": "Scottish Borders",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SHROPSHIRE",
+   "type": "country",
+   "name_ro": "Shropshire",
+   "name_en": "Shropshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SOMERSET",
+   "type": "country",
+   "name_ro": "Somerset",
+   "name_en": "Somerset",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SOUTHAYRSH",
+   "type": "country",
+   "name_ro": "South Ayrshire",
+   "name_en": "South Ayrshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SOUTHLANAR",
+   "type": "country",
+   "name_ro": "South Lanarkshire",
+   "name_en": "South Lanarkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SOUTHYORKS",
+   "type": "country",
+   "name_ro": "South Yorkshire",
+   "name_en": "South Yorkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-STAFFORDSH",
+   "type": "country",
+   "name_ro": "Staffordshire",
+   "name_en": "Staffordshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-STIRLING",
+   "type": "country",
+   "name_ro": "Stirling",
+   "name_en": "Stirling",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SUFFOLK",
+   "type": "country",
+   "name_ro": "Suffolk",
+   "name_en": "Suffolk",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SURREY",
+   "type": "country",
+   "name_ro": "Surrey",
+   "name_en": "Surrey",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-SWANSEA",
+   "type": "country",
+   "name_ro": "Swansea",
+   "name_en": "Swansea",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-TORFAEN",
+   "type": "country",
+   "name_ro": "Torfaen",
+   "name_en": "Torfaen",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-TYNEANDWEA",
+   "type": "country",
+   "name_ro": "Tyne and Wear",
+   "name_en": "Tyne and Wear",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-VALEOFGLAM",
+   "type": "country",
+   "name_ro": "Vale of Glamorgan",
+   "name_en": "Vale of Glamorgan",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WARWICKSHI",
+   "type": "country",
+   "name_ro": "Warwickshire",
+   "name_en": "Warwickshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WESTDUNBAR",
+   "type": "country",
+   "name_ro": "West Dunbartonshire",
+   "name_en": "West Dunbartonshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WESTLOTHIA",
+   "type": "country",
+   "name_ro": "West Lothian",
+   "name_en": "West Lothian",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WESTMIDLAN",
+   "type": "country",
+   "name_ro": "West Midlands",
+   "name_en": "West Midlands",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WESTSUSSEX",
+   "type": "country",
+   "name_ro": "West Sussex",
+   "name_en": "West Sussex",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WESTYORKSH",
+   "type": "country",
+   "name_ro": "West Yorkshire",
+   "name_en": "West Yorkshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WILTSHIRE",
+   "type": "country",
+   "name_ro": "Wiltshire",
+   "name_en": "Wiltshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WORCESTERS",
+   "type": "country",
+   "name_ro": "Worcestershire",
+   "name_en": "Worcestershire",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  },
+  {
+   "id": "UK-WREXHAM",
+   "type": "country",
+   "name_ro": "Wrexham",
+   "name_en": "Wrexham",
+   "aliases": [],
+   "continents": [],
+   "capital": "",
+   "capital_ro": ""
+  }
+ ],
+ "gates": [],
+ "edges": [
+  {
+   "a": "UK-ABERDEEN",
+   "b": "UK-ABERDEENSH"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-ANGUS"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-HIGHLAND"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-MORAY"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ANGLESEY",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-ANGUS",
+   "b": "UK-DUNDEE"
+  },
+  {
+   "a": "UK-ANGUS",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-HIGHLAND"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-BUCKINGHAM"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-CAMBRIDGES"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-BUCKINGHAM"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-HAMPSHIRE"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-CAERPHILLY"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-NEATHPORTT"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-BRISTOL",
+   "b": "UK-GLOUCESTER"
+  },
+  {
+   "a": "UK-BRISTOL",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-GREATERLON"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-CARDIFF"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-MERTHYRTYD"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-ESSEX"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-NORFOLK"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-CEREDIGION"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-NEATHPORTT"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-PEMBROKESH"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-SWANSEA"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-PEMBROKESH"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-DERBYSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-FLINTSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-GREATERMAN"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-FIFE"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-CONWY",
+   "b": "UK-DENBIGHSHI"
+  },
+  {
+   "a": "UK-CONWY",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-CORNWALL",
+   "b": "UK-DEVON"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-DUMFRIESAN"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-DURHAM"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-LANCASHIRE"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-NORTHUMBER"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-FLINTSHIRE"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-GREATERMAN"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-LEICESTERS"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-DEVON",
+   "b": "UK-DORSET"
+  },
+  {
+   "a": "UK-DEVON",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-HAMPSHIRE"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-EASTAYRSHI"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-DUNDEE",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-NORTHUMBER"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-TYNEANDWEA"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-EASTRENFRE"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-NORTHAYRSH"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-GLASGOW"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-EASTLOTHIA",
+   "b": "UK-MIDLOTHIAN"
+  },
+  {
+   "a": "UK-EASTLOTHIA",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-GLASGOW"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-MIDLOTHIAN"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-GREATERLON"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-FIFE",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-FLINTSHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-HEREFORDSH"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-LANCASHIRE"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-GWYNEDD",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-HIGHLAND",
+   "b": "UK-MORAY"
+  },
+  {
+   "a": "UK-HIGHLAND",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-INVERCLYDE",
+   "b": "UK-NORTHAYRSH"
+  },
+  {
+   "a": "UK-INVERCLYDE",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-KENT",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-NORFOLK"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-MERTHYRTYD",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-MERTHYRTYD",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-MIDLOTHIAN",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-SWANSEA"
+  },
+  {
+   "a": "UK-NEWPORT",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-NORFOLK",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-NORTHAYRSH",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-NORTHAYRSH",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-NORTHUMBER",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-NORTHUMBER",
+   "b": "UK-TYNEANDWEA"
+  },
+  {
+   "a": "UK-NORTHYORKS",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-NORTHYORKS",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-NOTTINGHAM",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-OXFORDSHIR",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-OXFORDSHIR",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-PERTHANDKI",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-RENFREWSHI",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-RHONDDACYN",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-SCOTTISHBO",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-SCOTTISHBO",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-SOMERSET",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-SOUTHLANAR",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-SOUTHYORKS",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WESTMIDLAN"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-STIRLING",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-SURREY",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-WARWICKSHI",
+   "b": "UK-WESTMIDLAN"
+  },
+  {
+   "a": "UK-WARWICKSHI",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-WESTMIDLAN",
+   "b": "UK-WORCESTERS"
+  }
+ ],
+ "edges_detailed": [
+  {
+   "a": "UK-ABERDEEN",
+   "b": "UK-ABERDEENSH"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-ANGUS"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-HIGHLAND"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-MORAY"
+  },
+  {
+   "a": "UK-ABERDEENSH",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ANGLESEY",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-ANGUS",
+   "b": "UK-DUNDEE"
+  },
+  {
+   "a": "UK-ANGUS",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-HIGHLAND"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-ARGYLLANDB",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-BUCKINGHAM"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-CAMBRIDGES"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-BEDFORDSHI",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-BUCKINGHAM"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-HAMPSHIRE"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-BERKSHIRE",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-CAERPHILLY"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-BLAENAUGWE",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-NEATHPORTT"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-BRIDGEND",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-BRISTOL",
+   "b": "UK-GLOUCESTER"
+  },
+  {
+   "a": "UK-BRISTOL",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-GREATERLON"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-BUCKINGHAM",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-CARDIFF"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-MERTHYRTYD"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-CAERPHILLY",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-ESSEX"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-NORFOLK"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-CAMBRIDGES",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-CARDIFF",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-CEREDIGION"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-NEATHPORTT"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-PEMBROKESH"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CARMARTHEN",
+   "b": "UK-SWANSEA"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-PEMBROKESH"
+  },
+  {
+   "a": "UK-CEREDIGION",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-DERBYSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-FLINTSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-GREATERMAN"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-CHESHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-FIFE"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-CLACKMANNA",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-CONWY",
+   "b": "UK-DENBIGHSHI"
+  },
+  {
+   "a": "UK-CONWY",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-CORNWALL",
+   "b": "UK-DEVON"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-DUMFRIESAN"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-DURHAM"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-LANCASHIRE"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-NORTHUMBER"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-CUMBRIA",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-FLINTSHIRE"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-GWYNEDD"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-DENBIGHSHI",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-GREATERMAN"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-LEICESTERS"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-DERBYSHIRE",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-DEVON",
+   "b": "UK-DORSET"
+  },
+  {
+   "a": "UK-DEVON",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-HAMPSHIRE"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-DORSET",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-EASTAYRSHI"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-DUMFRIESAN",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-DUNDEE",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-NORTHUMBER"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-DURHAM",
+   "b": "UK-TYNEANDWEA"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-EASTRENFRE"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-NORTHAYRSH"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-EASTAYRSHI",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-GLASGOW"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-EASTDUNBAR",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-EASTLOTHIA",
+   "b": "UK-MIDLOTHIAN"
+  },
+  {
+   "a": "UK-EASTLOTHIA",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-GLASGOW"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-EASTRENFRE",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-EASTRIDING",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-EASTSUSSEX",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-MIDLOTHIAN"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-EDINBURGH",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-GREATERLON"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-ESSEX",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-FALKIRK",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-FIFE",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-FLINTSHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-NORTHLANAR"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-GLASGOW",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-HEREFORDSH"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-SOMERSET"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-GLOUCESTER",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-HERTFORDSH"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-KENT"
+  },
+  {
+   "a": "UK-GREATERLON",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-LANCASHIRE"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-GREATERMAN",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-GWYNEDD",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-HAMPSHIRE",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-MONMOUTHSH"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-HEREFORDSH",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-HIGHLAND",
+   "b": "UK-MORAY"
+  },
+  {
+   "a": "UK-HIGHLAND",
+   "b": "UK-PERTHANDKI"
+  },
+  {
+   "a": "UK-INVERCLYDE",
+   "b": "UK-NORTHAYRSH"
+  },
+  {
+   "a": "UK-INVERCLYDE",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-KENT",
+   "b": "UK-SURREY"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-MERSEYSIDE"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-NORTHYORKS"
+  },
+  {
+   "a": "UK-LANCASHIRE",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-LINCOLNSHI"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-NORTHAMPTO"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-LEICESTERS",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-NORFOLK"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-NOTTINGHAM"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-LINCOLNSHI",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-MERTHYRTYD",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-MERTHYRTYD",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-MIDLOTHIAN",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-NEWPORT"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-MONMOUTHSH",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-POWYS"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-NEATHPORTT",
+   "b": "UK-SWANSEA"
+  },
+  {
+   "a": "UK-NEWPORT",
+   "b": "UK-TORFAEN"
+  },
+  {
+   "a": "UK-NORFOLK",
+   "b": "UK-SUFFOLK"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-OXFORDSHIR"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-RUTLAND"
+  },
+  {
+   "a": "UK-NORTHAMPTO",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-NORTHAYRSH",
+   "b": "UK-RENFREWSHI"
+  },
+  {
+   "a": "UK-NORTHAYRSH",
+   "b": "UK-SOUTHAYRSH"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-NORTHLANAR",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-NORTHUMBER",
+   "b": "UK-SCOTTISHBO"
+  },
+  {
+   "a": "UK-NORTHUMBER",
+   "b": "UK-TYNEANDWEA"
+  },
+  {
+   "a": "UK-NORTHYORKS",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-NORTHYORKS",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-NOTTINGHAM",
+   "b": "UK-SOUTHYORKS"
+  },
+  {
+   "a": "UK-OXFORDSHIR",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-OXFORDSHIR",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-PERTHANDKI",
+   "b": "UK-STIRLING"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-RHONDDACYN"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-SHROPSHIRE"
+  },
+  {
+   "a": "UK-POWYS",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-RENFREWSHI",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-RHONDDACYN",
+   "b": "UK-VALEOFGLAM"
+  },
+  {
+   "a": "UK-SCOTTISHBO",
+   "b": "UK-SOUTHLANAR"
+  },
+  {
+   "a": "UK-SCOTTISHBO",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-STAFFORDSH"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-SHROPSHIRE",
+   "b": "UK-WREXHAM"
+  },
+  {
+   "a": "UK-SOMERSET",
+   "b": "UK-WILTSHIRE"
+  },
+  {
+   "a": "UK-SOUTHLANAR",
+   "b": "UK-WESTLOTHIA"
+  },
+  {
+   "a": "UK-SOUTHYORKS",
+   "b": "UK-WESTYORKSH"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WARWICKSHI"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WESTMIDLAN"
+  },
+  {
+   "a": "UK-STAFFORDSH",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-STIRLING",
+   "b": "UK-WESTDUNBAR"
+  },
+  {
+   "a": "UK-SURREY",
+   "b": "UK-WESTSUSSEX"
+  },
+  {
+   "a": "UK-WARWICKSHI",
+   "b": "UK-WESTMIDLAN"
+  },
+  {
+   "a": "UK-WARWICKSHI",
+   "b": "UK-WORCESTERS"
+  },
+  {
+   "a": "UK-WESTMIDLAN",
+   "b": "UK-WORCESTERS"
+  }
+ ]
+}

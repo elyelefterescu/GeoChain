@@ -1,0 +1,1360 @@
+{
+ "version": 1,
+ "region": "usa",
+ "continents": [],
+ "source": "Natural Earth (domeniu public): ne_10m_admin_1_states_provinces_lakes, ne_50m_lakes",
+ "nodes": [
+  {
+   "id": "US-AL",
+   "type": "country",
+   "name_ro": "Alabama",
+   "name_en": "Alabama",
+   "aliases": [],
+   "continents": [],
+   "capital": "Montgomery",
+   "capital_ro": "Montgomery"
+  },
+  {
+   "id": "US-AZ",
+   "type": "country",
+   "name_ro": "Arizona",
+   "name_en": "Arizona",
+   "aliases": [],
+   "continents": [],
+   "capital": "Phoenix",
+   "capital_ro": "Phoenix"
+  },
+  {
+   "id": "US-AR",
+   "type": "country",
+   "name_ro": "Arkansas",
+   "name_en": "Arkansas",
+   "aliases": [],
+   "continents": [],
+   "capital": "Little Rock",
+   "capital_ro": "Little Rock"
+  },
+  {
+   "id": "US-CA",
+   "type": "country",
+   "name_ro": "California",
+   "name_en": "California",
+   "aliases": [
+    "Californa"
+   ],
+   "continents": [],
+   "capital": "Sacramento",
+   "capital_ro": "Sacramento"
+  },
+  {
+   "id": "US-CO",
+   "type": "country",
+   "name_ro": "Colorado",
+   "name_en": "Colorado",
+   "aliases": [],
+   "continents": [],
+   "capital": "Denver",
+   "capital_ro": "Denver"
+  },
+  {
+   "id": "US-CT",
+   "type": "country",
+   "name_ro": "Connecticut",
+   "name_en": "Connecticut",
+   "aliases": [],
+   "continents": [],
+   "capital": "Hartford",
+   "capital_ro": "Hartford"
+  },
+  {
+   "id": "US-DE",
+   "type": "country",
+   "name_ro": "Delaware",
+   "name_en": "Delaware",
+   "aliases": [],
+   "continents": [],
+   "capital": "Dover",
+   "capital_ro": "Dover"
+  },
+  {
+   "id": "US-FL",
+   "type": "country",
+   "name_ro": "Florida",
+   "name_en": "Florida",
+   "aliases": [],
+   "continents": [],
+   "capital": "Tallahassee",
+   "capital_ro": "Tallahassee"
+  },
+  {
+   "id": "US-GA",
+   "type": "country",
+   "name_ro": "Georgia",
+   "name_en": "Georgia",
+   "aliases": [],
+   "continents": [],
+   "capital": "Atlanta",
+   "capital_ro": "Atlanta"
+  },
+  {
+   "id": "US-ID",
+   "type": "country",
+   "name_ro": "Idaho",
+   "name_en": "Idaho",
+   "aliases": [],
+   "continents": [],
+   "capital": "Boise",
+   "capital_ro": "Boise"
+  },
+  {
+   "id": "US-IL",
+   "type": "country",
+   "name_ro": "Illinois",
+   "name_en": "Illinois",
+   "aliases": [],
+   "continents": [],
+   "capital": "Springfield",
+   "capital_ro": "Springfield"
+  },
+  {
+   "id": "US-IN",
+   "type": "country",
+   "name_ro": "Indiana",
+   "name_en": "Indiana",
+   "aliases": [],
+   "continents": [],
+   "capital": "Indianapolis",
+   "capital_ro": "Indianapolis"
+  },
+  {
+   "id": "US-IA",
+   "type": "country",
+   "name_ro": "Iowa",
+   "name_en": "Iowa",
+   "aliases": [],
+   "continents": [],
+   "capital": "Des Moines",
+   "capital_ro": "Des Moines"
+  },
+  {
+   "id": "US-KS",
+   "type": "country",
+   "name_ro": "Kansas",
+   "name_en": "Kansas",
+   "aliases": [],
+   "continents": [],
+   "capital": "Topeka",
+   "capital_ro": "Topeka"
+  },
+  {
+   "id": "US-KY",
+   "type": "country",
+   "name_ro": "Kentucky",
+   "name_en": "Kentucky",
+   "aliases": [],
+   "continents": [],
+   "capital": "Frankfort",
+   "capital_ro": "Frankfort"
+  },
+  {
+   "id": "US-LA",
+   "type": "country",
+   "name_ro": "Louisiana",
+   "name_en": "Louisiana",
+   "aliases": [
+    "Luisiana"
+   ],
+   "continents": [],
+   "capital": "Baton Rouge",
+   "capital_ro": "Baton Rouge"
+  },
+  {
+   "id": "US-ME",
+   "type": "country",
+   "name_ro": "Maine",
+   "name_en": "Maine",
+   "aliases": [],
+   "continents": [],
+   "capital": "Augusta",
+   "capital_ro": "Augusta"
+  },
+  {
+   "id": "US-MD",
+   "type": "country",
+   "name_ro": "Maryland",
+   "name_en": "Maryland",
+   "aliases": [],
+   "continents": [],
+   "capital": "Annapolis",
+   "capital_ro": "Annapolis"
+  },
+  {
+   "id": "US-MA",
+   "type": "country",
+   "name_ro": "Massachusetts",
+   "name_en": "Massachusetts",
+   "aliases": [
+    "Massachussetts"
+   ],
+   "continents": [],
+   "capital": "Boston",
+   "capital_ro": "Boston"
+  },
+  {
+   "id": "US-MI",
+   "type": "country",
+   "name_ro": "Michigan",
+   "name_en": "Michigan",
+   "aliases": [],
+   "continents": [],
+   "capital": "Lansing",
+   "capital_ro": "Lansing"
+  },
+  {
+   "id": "US-MN",
+   "type": "country",
+   "name_ro": "Minnesota",
+   "name_en": "Minnesota",
+   "aliases": [],
+   "continents": [],
+   "capital": "Saint Paul",
+   "capital_ro": "Saint Paul"
+  },
+  {
+   "id": "US-MS",
+   "type": "country",
+   "name_ro": "Mississippi",
+   "name_en": "Mississippi",
+   "aliases": [],
+   "continents": [],
+   "capital": "Jackson",
+   "capital_ro": "Jackson"
+  },
+  {
+   "id": "US-MO",
+   "type": "country",
+   "name_ro": "Missouri",
+   "name_en": "Missouri",
+   "aliases": [],
+   "continents": [],
+   "capital": "Jefferson City",
+   "capital_ro": "Jefferson City"
+  },
+  {
+   "id": "US-MT",
+   "type": "country",
+   "name_ro": "Montana",
+   "name_en": "Montana",
+   "aliases": [],
+   "continents": [],
+   "capital": "Helena",
+   "capital_ro": "Helena"
+  },
+  {
+   "id": "US-NE",
+   "type": "country",
+   "name_ro": "Nebraska",
+   "name_en": "Nebraska",
+   "aliases": [],
+   "continents": [],
+   "capital": "Lincoln",
+   "capital_ro": "Lincoln"
+  },
+  {
+   "id": "US-NV",
+   "type": "country",
+   "name_ro": "Nevada",
+   "name_en": "Nevada",
+   "aliases": [],
+   "continents": [],
+   "capital": "Carson City",
+   "capital_ro": "Carson City"
+  },
+  {
+   "id": "US-NH",
+   "type": "country",
+   "name_ro": "New Hampshire",
+   "name_en": "New Hampshire",
+   "aliases": [],
+   "continents": [],
+   "capital": "Concord",
+   "capital_ro": "Concord"
+  },
+  {
+   "id": "US-NJ",
+   "type": "country",
+   "name_ro": "New Jersey",
+   "name_en": "New Jersey",
+   "aliases": [
+    "Noul Jersey"
+   ],
+   "continents": [],
+   "capital": "Trenton",
+   "capital_ro": "Trenton"
+  },
+  {
+   "id": "US-NM",
+   "type": "country",
+   "name_ro": "New Mexico",
+   "name_en": "New Mexico",
+   "aliases": [
+    "Noul Mexic"
+   ],
+   "continents": [],
+   "capital": "Santa Fe",
+   "capital_ro": "Santa Fe"
+  },
+  {
+   "id": "US-NY",
+   "type": "country",
+   "name_ro": "New York",
+   "name_en": "New York",
+   "aliases": [
+    "Statul New York"
+   ],
+   "continents": [],
+   "capital": "Albany",
+   "capital_ro": "Albany"
+  },
+  {
+   "id": "US-NC",
+   "type": "country",
+   "name_ro": "Carolina de Nord",
+   "name_en": "North Carolina",
+   "aliases": [
+    "Carolina de Nord",
+    "North Carolina",
+    "Carolina Nord"
+   ],
+   "continents": [],
+   "capital": "Raleigh",
+   "capital_ro": "Raleigh"
+  },
+  {
+   "id": "US-ND",
+   "type": "country",
+   "name_ro": "Dakota de Nord",
+   "name_en": "North Dakota",
+   "aliases": [
+    "Dakota Nord"
+   ],
+   "continents": [],
+   "capital": "Bismarck",
+   "capital_ro": "Bismarck"
+  },
+  {
+   "id": "US-OH",
+   "type": "country",
+   "name_ro": "Ohio",
+   "name_en": "Ohio",
+   "aliases": [],
+   "continents": [],
+   "capital": "Columbus",
+   "capital_ro": "Columbus"
+  },
+  {
+   "id": "US-OK",
+   "type": "country",
+   "name_ro": "Oklahoma",
+   "name_en": "Oklahoma",
+   "aliases": [],
+   "continents": [],
+   "capital": "Oklahoma City",
+   "capital_ro": "Oklahoma City"
+  },
+  {
+   "id": "US-OR",
+   "type": "country",
+   "name_ro": "Oregon",
+   "name_en": "Oregon",
+   "aliases": [],
+   "continents": [],
+   "capital": "Salem",
+   "capital_ro": "Salem"
+  },
+  {
+   "id": "US-PA",
+   "type": "country",
+   "name_ro": "Pennsylvania",
+   "name_en": "Pennsylvania",
+   "aliases": [
+    "Pensilvania"
+   ],
+   "continents": [],
+   "capital": "Harrisburg",
+   "capital_ro": "Harrisburg"
+  },
+  {
+   "id": "US-RI",
+   "type": "country",
+   "name_ro": "Rhode Island",
+   "name_en": "Rhode Island",
+   "aliases": [],
+   "continents": [],
+   "capital": "Providence",
+   "capital_ro": "Providence"
+  },
+  {
+   "id": "US-SC",
+   "type": "country",
+   "name_ro": "Carolina de Sud",
+   "name_en": "South Carolina",
+   "aliases": [
+    "Carolina de Sud",
+    "Carolina Sud"
+   ],
+   "continents": [],
+   "capital": "Columbia",
+   "capital_ro": "Columbia"
+  },
+  {
+   "id": "US-SD",
+   "type": "country",
+   "name_ro": "Dakota de Sud",
+   "name_en": "South Dakota",
+   "aliases": [
+    "Dakota Sud"
+   ],
+   "continents": [],
+   "capital": "Pierre",
+   "capital_ro": "Pierre"
+  },
+  {
+   "id": "US-TN",
+   "type": "country",
+   "name_ro": "Tennessee",
+   "name_en": "Tennessee",
+   "aliases": [],
+   "continents": [],
+   "capital": "Nashville",
+   "capital_ro": "Nashville"
+  },
+  {
+   "id": "US-TX",
+   "type": "country",
+   "name_ro": "Texas",
+   "name_en": "Texas",
+   "aliases": [],
+   "continents": [],
+   "capital": "Austin",
+   "capital_ro": "Austin"
+  },
+  {
+   "id": "US-UT",
+   "type": "country",
+   "name_ro": "Utah",
+   "name_en": "Utah",
+   "aliases": [],
+   "continents": [],
+   "capital": "Salt Lake City",
+   "capital_ro": "Salt Lake City"
+  },
+  {
+   "id": "US-VT",
+   "type": "country",
+   "name_ro": "Vermont",
+   "name_en": "Vermont",
+   "aliases": [],
+   "continents": [],
+   "capital": "Montpelier",
+   "capital_ro": "Montpelier"
+  },
+  {
+   "id": "US-VA",
+   "type": "country",
+   "name_ro": "Virginia",
+   "name_en": "Virginia",
+   "aliases": [],
+   "continents": [],
+   "capital": "Richmond",
+   "capital_ro": "Richmond"
+  },
+  {
+   "id": "US-WA",
+   "type": "country",
+   "name_ro": "Washington",
+   "name_en": "Washington",
+   "aliases": [],
+   "continents": [],
+   "capital": "Olympia",
+   "capital_ro": "Olympia"
+  },
+  {
+   "id": "US-WV",
+   "type": "country",
+   "name_ro": "Virginia de Vest",
+   "name_en": "West Virginia",
+   "aliases": [
+    "Virginia Vest"
+   ],
+   "continents": [],
+   "capital": "Charleston",
+   "capital_ro": "Charleston"
+  },
+  {
+   "id": "US-WI",
+   "type": "country",
+   "name_ro": "Wisconsin",
+   "name_en": "Wisconsin",
+   "aliases": [],
+   "continents": [],
+   "capital": "Madison",
+   "capital_ro": "Madison"
+  },
+  {
+   "id": "US-WY",
+   "type": "country",
+   "name_ro": "Wyoming",
+   "name_en": "Wyoming",
+   "aliases": [],
+   "continents": [],
+   "capital": "Cheyenne",
+   "capital_ro": "Cheyenne"
+  }
+ ],
+ "gates": [],
+ "edges": [
+  {
+   "a": "US-AL",
+   "b": "US-FL"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-GA"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-LA"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-CA"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-NM"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-CA",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-CA",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-KS"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-NM"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-MA"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-RI"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-MD"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-NJ"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-FL",
+   "b": "US-GA"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-NC"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-SC"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-IL"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-MN"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-MT"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-WA"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-IN"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-KY"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-KY"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-MI"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-LA",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-LA",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-NH"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-RI"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-ME",
+   "b": "US-NH"
+  },
+  {
+   "a": "US-MI",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-MI",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-ND"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-MS",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-ND"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-SC"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-ND",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-NE",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-NE",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-NH",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-NJ",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-NJ",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-NM",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-NM",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-NV",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-NV",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-NY",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-NY",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-OH",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-OH",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-OK",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-OR",
+   "b": "US-WA"
+  },
+  {
+   "a": "US-PA",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-SD",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-TN",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-UT",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-VA",
+   "b": "US-WV"
+  }
+ ],
+ "edges_detailed": [
+  {
+   "a": "US-AL",
+   "b": "US-FL"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-GA"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-AL",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-LA"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-AR",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-CA"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-NM"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-AZ",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-CA",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-CA",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-KS"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-NM"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-CO",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-MA"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-CT",
+   "b": "US-RI"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-MD"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-NJ"
+  },
+  {
+   "a": "US-DE",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-FL",
+   "b": "US-GA"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-NC"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-SC"
+  },
+  {
+   "a": "US-GA",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-IL"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-MN"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-IA",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-MT"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-NV"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-WA"
+  },
+  {
+   "a": "US-ID",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-IN"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-KY"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-IL",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-KY"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-MI"
+  },
+  {
+   "a": "US-IN",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-KS",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-MO"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-KY",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-LA",
+   "b": "US-MS"
+  },
+  {
+   "a": "US-LA",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-NH"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-RI"
+  },
+  {
+   "a": "US-MA",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-MD",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-ME",
+   "b": "US-NH"
+  },
+  {
+   "a": "US-MI",
+   "b": "US-OH"
+  },
+  {
+   "a": "US-MI",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-ND"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-MN",
+   "b": "US-WI"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-NE"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-MO",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-MS",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-ND"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-MT",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-SC"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-TN"
+  },
+  {
+   "a": "US-NC",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-ND",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-NE",
+   "b": "US-SD"
+  },
+  {
+   "a": "US-NE",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-NH",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-NJ",
+   "b": "US-NY"
+  },
+  {
+   "a": "US-NJ",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-NM",
+   "b": "US-OK"
+  },
+  {
+   "a": "US-NM",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-NV",
+   "b": "US-OR"
+  },
+  {
+   "a": "US-NV",
+   "b": "US-UT"
+  },
+  {
+   "a": "US-NY",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-NY",
+   "b": "US-VT"
+  },
+  {
+   "a": "US-OH",
+   "b": "US-PA"
+  },
+  {
+   "a": "US-OH",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-OK",
+   "b": "US-TX"
+  },
+  {
+   "a": "US-OR",
+   "b": "US-WA"
+  },
+  {
+   "a": "US-PA",
+   "b": "US-WV"
+  },
+  {
+   "a": "US-SD",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-TN",
+   "b": "US-VA"
+  },
+  {
+   "a": "US-UT",
+   "b": "US-WY"
+  },
+  {
+   "a": "US-VA",
+   "b": "US-WV"
+  }
+ ]
+}
