@@ -47,7 +47,7 @@ mov = pornirea și destinația, portocaliu = greșeli, roșu = unde nu ai voie, 
 
 ## Cum rulezi
 
-1. Instalează [Godot 4.3](https://godotengine.org/download) (versiunea standard, nu .NET).
+1. Instalează [Godot 4.7.2](https://godotengine.org/download) (versiunea standard, nu .NET).
 2. Deschide Godot, apasă **Import** și alege `project.godot` din acest folder.
 3. Apasă **F5** ca să pornești jocul.
 
@@ -85,7 +85,7 @@ Pentru simplitate, mările mici fac parte din cele mari (Adriatica și Egeea sun
 Marea Arabiei în Oceanul Indian etc.). Sunt incluse statele membre ONU, plus Vaticanul (sursa îl marchează ca membru).
 
 Fontul este [Nunito](https://github.com/googlefonts/nunito), licență SIL Open Font License (`fonts/OFL.txt`).
-Iconița jocului e în `icons/` (Android, web și fereastra jocului). Pe Windows, `tools/set_windows_icon.mjs` o pune în șablonul `windows_release_x86_64.exe` înainte de export (are nevoie de pachetul npm `resedit`).
+Iconița jocului e în `icons/` (Android, web și fereastra jocului). Pe Windows, Godot 4.7 pune singur `icons/icon.ico` în exe la export. Pe Android 13+ iconița tematică folosește `icons/icon_mono_432.png` (conturul uscatului).
 
 Medaliile (`scripts/achievements.gd`) se salvează în `user://achievements.cfg`; cea nouă apare peste joc, toate se văd cu butonul „Medalii”.
 
@@ -111,8 +111,12 @@ python3 tools/build_globe.py .
 
 ## Android
 
-Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.3, fără Gradle. Semnarea: `tools/android/Signer.java` înlocuiește `apksigner` (semnătură v2, minSdk 24). Pe telefon, panoul se derulează trăgând cu degetul oriunde pe el, iar când apare tastatura globul se ascunde ca să rămână vizibil câmpul în care scrii.
+Exportul Android (preset „Android”, arm64 + armv7, orientare după senzor) folosește șabloanele Godot 4.7.2, fără Gradle, cu target SDK 36. Se semnează cu `apksigner` din Android SDK (build-tools 36.1.0); `tools/android/Signer.java` rămâne pentru mediile fără Android SDK. Pe telefon, panoul se derulează trăgând cu degetul oriunde pe el, iar când apare tastatura globul se ascunde ca să rămână vizibil câmpul în care scrii.
+
+### Google Play (AAB)
+
+`tools/android/build_aab.sh` face `GeoChain.aab` din APK-ul semnat: îl convertește cu `aapt2 convert --output-format proto`, îl împachetează cu bundletool (bibliotecile native necomprimate, aliniate la 16 KB) și îl semnează cu aceeași cheie. Bibliotecile arm64 din Godot 4.7 au segmentele ELF aliniate la 16 KB. Presetul „Google Play” face același lucru prin Gradle (`gradle_build/export_format=1`), dar are nevoie de acces la Maven Central.
 
 ## Web
 
-Presetul „Web” exportă jocul pentru browser (Godot 4.3, fără threads, deci nu cere antete COOP/COEP). Pagina de pornire e `tools/web/geochain.html`: motorul (`index.wasm`, ~35 MB) și datele jocului (`index.pck`) se publică comprimate ca `engine.gz.wasm` și `game.gz.wasm`, iar pagina le despachetează în browser cu `DecompressionStream`.
+Presetul „Web” exportă jocul pentru browser (Godot 4.7.2, fără threads, deci nu cere antete COOP/COEP). Pagina de pornire e `tools/web/geochain.html`: motorul (`index.wasm`, ~40 MB) și datele jocului (`index.pck`) se publică comprimate ca `engine.gz.wasm` și `game.gz.wasm`, iar pagina le despachetează în browser cu `DecompressionStream`.

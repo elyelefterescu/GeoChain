@@ -8,7 +8,7 @@ config/name="GeoChain"
 config/description="Din vecin în vecin, până la destinație."
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icons/icon.png"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 run/low_processor_mode=true
 
 [display]
